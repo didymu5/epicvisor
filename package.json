@@ -17,7 +17,7 @@
     "api",
     "server"
   ],
-  "author": "Abiee Alejandro <abiee.alejandro@gmail.com>",
+  "author": "Ian and Tommy",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.0.20",
