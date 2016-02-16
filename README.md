@@ -1,17 +1,5 @@
-Another boring Hapijs Boilerplate
+EpicVisor API and views
 ======================
-Simple Hapi.js project to build RESTful API's. The main goal of this project is to be built on top of native ES6, it also adds compatibility to ES5 with Babel.
-
-What's inside
-----------------
-Batteries included:
- - Hapi.js
- - gulp
- - Lab
- - Babel
-
-Note: This project is based on Node v5.x, so that Babel is used only for compatibility reasons to older Node versions. 
-
 Setup
 -----
 Clone the repository and install the dependencies.
@@ -41,10 +29,6 @@ The other option to just run tests once.
     
     $ gulp test
 
-Contribution
+React
 ---------------
-If you have ideas or find an error feel free to submit a PR.
-
-Licence
--------
-Licensed under the MIT license.
+All React files and views will be stored under src/views. Those will need to be linked to the right file in server.js server.register
