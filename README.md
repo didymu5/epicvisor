@@ -4,7 +4,7 @@ Setup
 -----
 Clone the repository and install the dependencies.
 
-    $ git clone https://github.com/abiee/es6-hapi.git my-project
+    $ git clone git@bitbucket.org:epicvisor/epicvisor-app.git my-project
     $ cd my-project
     $ npm install
     $ gulp serve
