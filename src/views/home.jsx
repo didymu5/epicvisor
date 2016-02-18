@@ -1,5 +1,5 @@
-var React = require('react');
-
+// var React = require('react');
+import React from 'react';
 
 var Component = React.createClass({
     render: function () {
