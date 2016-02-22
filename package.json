@@ -27,6 +27,7 @@
     "babel-preset-stage-0": "^6.0.15",
     "code": "^2.0.1",
     "del": "^2.1.0",
+    "flightplan": "^0.6.9",
     "good-console": "^5.0.0",
     "gulp": "^3.8.11",
     "gulp-babel": "^6.1.0",
