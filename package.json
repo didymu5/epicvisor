@@ -43,8 +43,12 @@
     "hapi": "^11.1.2",
     "hapi-react-views": "^5.0.2",
     "inert": "^3.2.0",
+    "node-linkedin": "^0.5.3",
+    "pg": "^4.4.6",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
+    "sequelize": "^3.19.3",
+    "sequelize-cli": "^2.3.1",
     "vision": "^4.0.1"
   }
 }
