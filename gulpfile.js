@@ -1,5 +1,11 @@
-var gulp = require('gulp');
+var gulp = require('gulp'),
+  sass = require('gulp-sass'),
+  neat = require('node-neat').includePaths;
 var $ = require('gulp-load-plugins')();
+
+var paths = {
+  scss: 'assets/sass/**/*.scss'
+}
 
 // Transpile ES6 source files into JavaScript
 gulp.task('build', function() {
@@ -9,6 +15,14 @@ gulp.task('build', function() {
     .pipe($.cached('*.js'))
     .pipe($.babel())
     .pipe(gulp.dest('dist/'));
+});
+//compile css
+gulp.task('styles', function() {
+  return gulp.src(paths.scss)
+    .pipe(sass({
+      includePaths: ['styles'].concat(neat)
+    }))
+    .pipe(gulp.dest('dist/assets/css/'));
 });
 
 // Run Hapi server and reload on changes
@@ -34,7 +48,7 @@ gulp.task('tdd', ['test'], function() {
 });
 
 // Clean built directory
-gulp.task('clean', function (callback) {
+gulp.task('clean', function(callback) {
   'use strict';
 
   var del = require('del');
