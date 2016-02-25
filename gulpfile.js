@@ -4,7 +4,7 @@ var gulp = require('gulp'),
 var $ = require('gulp-load-plugins')();
 
 var paths = {
-  scss: 'assets/sass/**/*.scss'
+  scss: 'src/assets/sass/**/*.scss'
 }
 
 // Transpile ES6 source files into JavaScript
@@ -16,21 +16,26 @@ gulp.task('build', function() {
     .pipe($.babel())
     .pipe(gulp.dest('dist/'));
 });
+
 //compile css
-gulp.task('styles', function() {
+gulp.task('sass', function() {
   return gulp.src(paths.scss)
     .pipe(sass({
-      includePaths: ['styles'].concat(neat)
-    }))
+      includePaths: ['assets/sass'].concat(neat)
+    }).on('error', sass.logError))
     .pipe(gulp.dest('dist/assets/css/'));
 });
 
+gulp.task('sass:watch', function () {
+  gulp.watch(paths.scss, ['sass']);
+});
+
 // Run Hapi server and reload on changes
-gulp.task('serve', function() {
+gulp.task('serve', ['sass:watch'], function() {
   'use strict';
   $.nodemon({
     script: 'src/server.js',
-    ignore: ['gulpfile.js', 'node_modules', 'test']
+    ignore: ['gulpfile.js', 'node_modules', 'test'],
   });
 });
 
