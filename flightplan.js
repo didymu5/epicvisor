@@ -1,7 +1,7 @@
 var plan = require('flightplan');
-
+var server = require('./config/server.json');
 var appName = 'node-app';
-var username = 'deploy';
+
 var startFile = 'bin/www';
 
 var tmpDir = appName+'-' + new Date().getTime();
@@ -17,8 +17,8 @@ var tmpDir = appName+'-' + new Date().getTime();
 
 plan.target('production', [
   {
-    host: '107.170.211.108',
-    username: deploy,
+    host: server.production.host,
+    username: server.production.username,
     agent: process.env.SSH_AUTH_SOCK
   },
 //add in another server if you have more than one
