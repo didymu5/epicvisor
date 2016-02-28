@@ -32,3 +32,24 @@ The other option to just run tests once.
 React
 ---------------
 All React files and views will be stored under src/views. Those will need to be linked to the right file in server.js server.register
+
+
+Digital Ocean set up
+______________
+
+There is a `deploy` user on the Droplet `epic-othello`
+
+`ssh deploy@[ipaddres]`
+
+Basically, Ian Likes Cats
+
+Go passwordless
+
+`scp ~/.ssh/id_rsa.pub deploy@url.com:~/.ssh/authorized_keys`
+
+Fly
+__________
+
+`fly production` will copy your project and run production npm to install dependencies
+
+
