@@ -1,5 +1,5 @@
 var Linkedin = require('node-linkedin')( '753q6tuln2wr0s', 'lK27ABwIJOYFe8Uz');//TODO put id/secret in config file
-Linkedin.auth.setCallback('/oauth/linkedin/callback');
+Linkedin.auth.setCallback('https://arcane-badlands-87546.herokuapp.com/oauth/linkedin/callback');
 var scope = ['r_basicprofile',  'r_emailaddress'];
 
 function sayHello(request, reply) {
