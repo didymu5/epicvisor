@@ -1,5 +1,5 @@
 var Linkedin = require('node-linkedin')( '753q6tuln2wr0s', 'lK27ABwIJOYFe8Uz');//TODO put id/secret in config file
-Linkedin.auth.setCallback('https://arcane-badlands-87546.herokuapp.com/oauth/linkedin/callback');
+Linkedin.auth.setCallback('https://arcane-badlands-87546.herokuapp.com//oauth/linkedin/callback');
 var scope = ['r_basicprofile',  'r_emailaddress'];
 
 function sayHello(request, reply) {
@@ -16,7 +16,7 @@ function requestAuth(request, reply) {
 }
 
 function linkedInOAUTH(request, reply) {
-   Linkedin.auth.getAccessToken(res, req.query.code, req.query.state, function(err, results) {
+   Linkedin.auth.getAccessToken(reply, request.query.code, request.query.state, function(err, results) {
         if ( err )
             return console.error(err);
 
