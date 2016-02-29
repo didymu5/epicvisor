@@ -54,7 +54,7 @@ server.register(Vision, (err) => {
         method: 'GET',
         path: '/',
         handler: (request, reply) => {
-
+            
             reply.view('home');
         }
     });
