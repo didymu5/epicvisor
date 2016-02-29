@@ -13,7 +13,7 @@ function sayHello(request, reply) {
 function sayLinkedinHello(request, reply){
   var linkedin = Linkedin.init(request.params.accessToken);
   console.log("IM ATTEMPTING TO ACCESS WITH" + request.params.accessToken);
-  linkedin.people.me(['id','first-name','last-name'], function(err, $in) {
+  linkedin.people.me(['id','first-name','last-name', 'headline','location','industry','summary','positions','specialties','public-profile-url','email-address'], function(err, $in) {
     reply($in);
   });
   
