@@ -10,7 +10,7 @@ function sayHello(request, reply) {
   });
 }
 
-function sayLinkedInHello(request, reply){
+function sayLinkedinHello(request, reply){
   var linkedin = Linkedin.init(request.params.accessToken);
   console.log("IM ATTEMPTING TO ACCESS WITH" + request.params.accessToken);
   linkedin.people.me(['id','first-name','last-name'], function(err, $in) {
