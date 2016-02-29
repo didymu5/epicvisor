@@ -10,6 +10,15 @@ function sayHello(request, reply) {
   });
 }
 
+function sayLinkedInHello(request, reply){
+  var linkedin = Linkedin.init(request.params.accessToken);
+  console.log("IM ATTEMPTING TO ACCESS WITH" + request.params.accessToken);
+  linkedin.people.me(['id','first-name','last-name'], function(err, $in) {
+    reply($in);
+  });
+  
+}
+
 function requestAuth(request, reply) {
   'use strict';
    Linkedin.auth.authorize(reply, scope);
@@ -24,7 +33,7 @@ function linkedInOAUTH(request, reply) {
 
         console.log(results);
         console.log("DID THAT RETURN RESULTS?");
-        return reply.redirect('/' );
+        return reply.redirect('/info/' + results.access_token );
     });
 }
 
@@ -41,6 +50,11 @@ function register(server, options, next) {
     method: 'GET',
     path: '/oauth/linkedin/callback',
     handler: linkedInOAUTH
+  });
+  server.route({
+    method: 'GET',
+    path: '/info/{accessToken}',
+    handler: sayLinkedinHello
   });
   server.route({
     method: 'GET',
