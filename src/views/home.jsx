@@ -12,6 +12,9 @@ var Component = React.createClass({
                 <body>
                     <h1>Let's do this awesome thing</h1>
                 </body>
+                <a href='/oauth/linkedin'>
+                    Register with Linkedin I guess?
+                </a>
             </html>
         );
     }
