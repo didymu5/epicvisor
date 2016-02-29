@@ -28,7 +28,6 @@
     "code": "^2.0.1",
     "del": "^2.1.0",
     "flightplan": "^0.6.9",
-    "good-console": "^5.0.0",
     
     "lab": "^7.3.0",
     "webpack": "^1.12.13"
@@ -54,6 +53,7 @@
     "react-dom": "^0.14.7",
     "sequelize": "^3.19.3",
     "sequelize-cli": "^2.3.1",
-    "vision": "^4.0.1"
+    "vision": "^4.0.1",
+    "good-console": "^5.0.0"
   }
 }
