@@ -1,10 +1,10 @@
 {
-  "name": "hapijs-boilerplate",
-  "version": "0.0.2",
+  "name": "epicvisor-app",
+  "version": "0.0.1",
   "description": "Another boring Hapi.js boilerplate written in ES6",
   "repository": {
     "type": "git",
-    "url": "https://github.com/abiee/es6-hapijs.git"
+    "url": "https://bitbucket.org/epicvisor/epicvisor-app"
   },
   "main": "server.js",
   "scripts": {
@@ -44,14 +44,15 @@
     "hapi": "^11.1.2",
     "hapi-react-views": "^5.0.2",
     "inert": "^3.2.0",
+    "node-bourbon": "^4.2.3",
     "node-linkedin": "^0.5.3",
+    "node-neat": "^1.7.2",
     "pg": "^4.4.6",
+    "pm2": "^1.0.1",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "sequelize": "^3.19.3",
     "sequelize-cli": "^2.3.1",
-    "vision": "^4.0.1",
-    "node-bourbon": "^4.2.3",
-    "node-neat": "^1.7.2"
+    "vision": "^4.0.1"
   }
 }
