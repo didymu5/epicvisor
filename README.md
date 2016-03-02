@@ -45,7 +45,7 @@ Basically, Ian Likes Cats
 
 Go passwordless
 
-`scp ~/.ssh/id_rsa.pub deploy@url.com:~/.ssh/authorized_keys`
+Append your keys to: `deploy@url.com:~/.ssh/authorized_keys`
 
 Fly
 __________
