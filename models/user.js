@@ -4,7 +4,8 @@ var Sequelize = db.Sequelize;
 var User = db.sequelize.define('user',{
   id: {
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
       },
       first_name: {
         type: Sequelize.STRING
