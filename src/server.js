@@ -59,4 +59,15 @@ server.register(Vision, (err) => {
         }
     });
 
+    server.route({
+      method: 'GET',
+      path: '/profile',
+      handler: (request, reply) => {
+        var user = require('./models/user');
+        user.findAll().then(function(users) { 
+          reply.view('profile', {users: users});
+        })
+      }
+    });
+
 })

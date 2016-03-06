@@ -1,7 +1,7 @@
 var Linkedin = require('node-linkedin')( '753q6tuln2wr0s', 'lK27ABwIJOYFe8Uz');//TODO put id/secret in config file
 Linkedin.auth.setCallback('https://arcane-badlands-87546.herokuapp.com/oauth/linkedin/callback');
 var scope = ['r_basicprofile',  'r_emailaddress'];
-
+var User = require('./models/user');
 function sayHello(request, reply) {
   'use strict';
 
@@ -12,7 +12,6 @@ function sayHello(request, reply) {
 
 function sayLinkedinHello(request, reply){
   var linkedin = Linkedin.init(request.params.accessToken);
-  console.log("IM ATTEMPTING TO ACCESS WITH" + request.params.accessToken);
   linkedin.people.me(['id','first-name','last-name', 'headline','location','industry','summary','positions','specialties','public-profile-url','email-address'], function(err, $in) {
     reply($in);
   });
@@ -28,12 +27,21 @@ function linkedInOAUTH(request, reply) {
    Linkedin.auth.getAccessToken(reply, request.query.code, request.query.state, function(err, results) {
         if ( err )
             return console.error(err);
-
-        console.log("I AUTHENTICATED WITH LINKEDIN!")
-
-        console.log(results);
-        console.log("DID THAT RETURN RESULTS?");
-        return reply.redirect('/info/' + results.access_token );
+        var linkedin = Linkedin.init(results.access_token);
+        linkedin.people.me(['id','first-name','last-name', 'headline','location','industry','summary','positions','specialties','public-profile-url','email-address'], function(err, $in) {
+          user.create({
+            first_name: $in["firstName"],
+            last_name: $in["lastName"],
+            email_address: $in["emailAddress"],
+            industry: $in["industry"],
+            public_url: $in["publicProfileUrl"],
+            summary: $in["summary"],
+            headline: $in["headline"],
+            user_access_token: results.access_token
+          }).then(function(user) {
+            return reply.redirect('/profile');
+          });
+        });
     });
 }
 
@@ -45,6 +53,7 @@ function register(server, options, next) {
     path: '/hello/{name}',
     handler: sayHello
   });
+
 
   server.route({
     method: 'GET',
