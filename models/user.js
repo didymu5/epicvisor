@@ -38,6 +38,9 @@ var User = db.sequelize.define('user',{
       },
        specialties: {
         type: Sequelize.STRING
+      },
+      linkedin_id: {
+        type: Sequelize.STRING
       }
 })
 module.exports = User;
