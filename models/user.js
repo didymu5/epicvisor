@@ -1,6 +1,5 @@
 var db = require('./index');
 var Sequelize = db.Sequelize;
-
 var User = db.sequelize.define('user',{
   id: {
         type: Sequelize.INTEGER,
@@ -17,6 +16,27 @@ var User = db.sequelize.define('user',{
         type: Sequelize.TEXT
       },
       public_url: {
+        type: Sequelize.STRING
+      },
+      email_address: {
+        type: Sequelize.STRING
+      },
+       positions: {
+        type: Sequelize.STRING
+      },
+      headline: {
+        type: Sequelize.STRING
+      },
+      industry: {
+        type: Sequelize.STRING
+      },
+       user_access_token: {
+        type: Sequelize.STRING
+      },
+      location: {
+        type: Sequelize.STRING
+      },
+       specialties: {
         type: Sequelize.STRING
       }
 })

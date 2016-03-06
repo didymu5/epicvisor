@@ -29,7 +29,11 @@ function linkedInOAUTH(request, reply) {
             return console.error(err);
         var linkedin = Linkedin.init(results.access_token);
         linkedin.people.me(['id','first-name','last-name', 'headline','location','industry','summary','positions','specialties','public-profile-url','email-address'], function(err, $in) {
-          User.create({
+          User.findOrCreate({
+            where: {
+              linkedin_id: $in['id']
+            },
+            defaults: {
             first_name: $in["firstName"],
             last_name: $in["lastName"],
             email_address: $in["emailAddress"],
@@ -37,8 +41,9 @@ function linkedInOAUTH(request, reply) {
             public_url: $in["publicProfileUrl"],
             summary: $in["summary"],
             headline: $in["headline"],
-            user_access_token: results.access_token
-          }).then(function(user) {
+            user_access_token: results.access_token,
+            linkedin_id: $in['id']
+          }}).then(function(user) {
             return reply.redirect('/profile');
           });
         });

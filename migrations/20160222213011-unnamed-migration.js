@@ -41,7 +41,8 @@ module.exports = {
         column("specialties", Sequelize.STRING),
         column("industry", Sequelize.STRING),
         column("location", Sequelize.STRING),
-        column("user_access_token", Sequelize.STRING)
+        column("user_access_token", Sequelize.STRING),
+        column("linkedin_id", Sequelize.STRING)
 
         )
       
