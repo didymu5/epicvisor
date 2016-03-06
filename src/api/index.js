@@ -29,7 +29,7 @@ function linkedInOAUTH(request, reply) {
             return console.error(err);
         var linkedin = Linkedin.init(results.access_token);
         linkedin.people.me(['id','first-name','last-name', 'headline','location','industry','summary','positions','specialties','public-profile-url','email-address'], function(err, $in) {
-          user.create({
+          User.create({
             first_name: $in["firstName"],
             last_name: $in["lastName"],
             email_address: $in["emailAddress"],
