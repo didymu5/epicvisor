@@ -63,7 +63,7 @@ server.register(Vision, (err) => {
       method: 'GET',
       path: '/profile',
       handler: (request, reply) => {
-        var user = require('./models/user');
+        var user = require('.././models/user');
         user.findAll().then(function(users) { 
           reply.view('profile', {users: users});
         })
