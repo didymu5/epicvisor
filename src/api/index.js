@@ -29,6 +29,9 @@ function linkedInOAUTH(request, reply) {
             return console.error(err);
         var linkedin = Linkedin.init(results.access_token);
         linkedin.people.me(['id','first-name','last-name', 'headline','location','industry','summary','positions','specialties','public-profile-url','email-address'], function(err, $in) {
+          console.log("DATA!")
+          console.log($in);
+          console.log("SAS DATA")
           User.findOrCreate({
             where: {
               linkedin_id: $in['id']
