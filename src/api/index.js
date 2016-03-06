@@ -34,7 +34,7 @@ function linkedInOAUTH(request, reply) {
           console.log("SAS DATA")
           User.findOrCreate({
             where: {
-              linkedin_id: $in['id']
+              linkedin_id: $in["id"]
             },
             defaults: {
             first_name: $in["firstName"],
@@ -45,7 +45,7 @@ function linkedInOAUTH(request, reply) {
             summary: $in["summary"],
             headline: $in["headline"],
             user_access_token: results.access_token,
-            linkedin_id: $in['id']
+            linkedin_id: $in["id"]
           }}).then(function(user) {
             return reply.redirect('/profile');
           });
