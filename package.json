@@ -52,7 +52,6 @@
     "babel-preset-stage-0": "^6.0.15",
     "code": "^2.0.1",
     "del": "^2.1.0",
-    "flightplan": "^0.6.9",
     "lab": "^7.3.0",
     "webpack": "^1.12.13"
   }
