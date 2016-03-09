@@ -1,0 +1,11 @@
+host='deploy@107.170.211.108'
+path='/home/deploy/code'
+
+[deploy:local]
+git push origin master
+
+[deploy]
+git checkout master
+
+[status]
+uptime
