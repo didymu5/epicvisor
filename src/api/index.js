@@ -12,8 +12,20 @@ function sayHello(request, reply) {
 
 function sayLinkedinHello(request, reply){
   var linkedin = Linkedin.init(request.params.accessToken);
-  linkedin.people.me(['id','first-name','last-name', 'headline','location','industry','summary','positions','specialties','public-profile-url','email-address'], function(err, $in) {
-    reply($in);
+  linkedin.people.me([
+    'id',
+    'first-name',
+    'last-name', 
+    'headline',
+    'location',
+    'industry',
+    'summary',
+    'positions',
+    'specialties',
+    'public-profile-url',
+    'email-address'], function(err, $in) {
+      if(err) return err;
+      reply($in);
   });
   
 }
