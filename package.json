@@ -31,7 +31,7 @@
     "code": "^2.0.1",
     "del": "^2.1.0",
     "lab": "^7.3.0",
-     "sequelize-cli": "^2.3.1"//causing issues on prod
+     "sequelize-cli": "^2.3.1"
   },
   "dependencies": {
     "good": "^6.1.2",
