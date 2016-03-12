@@ -34,8 +34,15 @@ React
 All React files and views will be stored under src/views. Those will need to be linked to the right file in server.js server.register
 
 
+Migrations
+-------
+To run migreations it calls on [sequlize cli](https://github.com/sequelize/cli).
+
+`npm run migrate [flags, tags, commands]`
+
+
 Digital Ocean set up
-______________
+-----
 
 There is a `deploy` user on the Droplet `epic-othello`
 
@@ -46,10 +53,4 @@ Basically, Ian Likes Cats
 Go passwordless
 
 Append your keys to: `deploy@url.com:~/.ssh/authorized_keys`
-
-Fly
-__________
-
-`fly production` will copy your project and run production npm to install dependencies
-
 
