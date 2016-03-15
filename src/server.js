@@ -35,10 +35,10 @@ server.register(require('inert'), (err) => {
    });
     server.route({
       method: 'GET',
-      path: '/bower_components/{param*}',
+      path: '/node_modules/{param*}',
       handler: {
           directory: {
-              path: 'bower_components',
+              path: 'node_modules',
               redirectToSlash: false,
               index: false
           }
