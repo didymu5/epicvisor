@@ -3,32 +3,27 @@
 // Declare app level module which depends on filters, and services
 
 var myApp = angular.module('myApp', [
-  'ngRoute',
-
-  'myApp.controllers',
-  'myApp.filters',
-  'myApp.services',
-  'myApp.directives'
+  'ngRoute'
 ]).
 config(function ($routeProvider, $locationProvider) {
   $routeProvider.
     when('/home', {
-      templateUrl: 'partials/home',
+      templateUrl: 'templates/home.html',
       controller: 'HomeController'
-    }).
-    when('/room/:room_id', {
-      templateUrl: 'partials/room',
-      controller: 'RoomController'
     }).
     otherwise({
       redirectTo: '/home'
     });
 
-  $locationProvider.html5Mode(true);
+  // $locationProvider.html5Mode(true);
 });
 
 myApp.controller('ApplicationController', function($scope) {
   $scope.hello = "Hello linkedin!"
-}).controller('HomeController', function($scope) {
-
+}).controller('HomeController', function($scope, $http) {
+  $http.get('/user/info').then(function(res) {
+    if(res.data) {
+      $scope.user = res.data;
+    }
+  })
 });

@@ -1,9 +1,11 @@
+  'use strict';
 var Linkedin = require('node-linkedin')( '753q6tuln2wr0s', 'lK27ABwIJOYFe8Uz');//TODO put id/secret in config file
-Linkedin.auth.setCallback('https://arcane-badlands-87546.herokuapp.com/oauth/linkedin/callback');
+var callback_url = process.env.CALLBACK_URL || "https://arcane-badlands-87546.herokuapp.com";
+Linkedin.auth.setCallback(callback_url + '/oauth/linkedin/callback');
+
 var scope = ['r_basicprofile',  'r_emailaddress'];
 var User = require('../../models/user');
 function sayHello(request, reply) {
-  'use strict';
 
   reply({
     hello: request.params.name
@@ -31,13 +33,24 @@ function sayLinkedinHello(request, reply){
 }
 
 function getUserInfo(request, reply) {
-  User.findAll().then(function(users) {
-    reply(users);
-  });
+  console.log("HI MOM!")
+  var user = request.yar.get('user');
+  reply(user);  
 }
 
+var handler1 = function (request, reply) {
+
+    request.yar.set('example', 'sample_value');
+    return reply("YUP!");
+};
+
+var handler2 = function (request, reply) {
+
+    var example = request.yar.get('example');
+    reply(example);     // Will send back 'value'
+};
+
 function requestAuth(request, reply) {
-  'use strict';
    Linkedin.auth.authorize(reply, scope);
 }
 
@@ -47,10 +60,6 @@ function linkedInOAUTH(request, reply) {
             return console.error(err);
         var linkedin = Linkedin.init(results.access_token);
         linkedin.people.me(['id','first-name','last-name', 'headline','location','industry','summary','positions','specialties','public-profile-url','email-address'], function(err, $in) {
-          console.log("DATA!")
-          console.log($in);
-          console.log("SAS DATA")
-          console.log("WHY? " + $in.id);
           User.findOrCreate({
             where: {
               linkedin_id: $in.id
@@ -65,8 +74,9 @@ function linkedInOAUTH(request, reply) {
             headline: $in.headline,
             user_access_token: results.access_token,
             linkedin_id: $in.id
-          }}).then(function(user) {
-            return reply.redirect('/home');
+          }}).then(function(userData) {
+            request.yar.set('user', userData[0]);
+            return reply.redirect('/index.html');
           });
         });
     });
@@ -102,6 +112,16 @@ function register(server, options, next) {
     method: 'GET',
     path: '/user/info',
     handler: getUserInfo
+  });
+   server.route({
+    method: 'GET',
+    path: '/handler1',
+    handler: handler1
+  });
+    server.route({
+    method: 'GET',
+    path: '/handler2',
+    handler: handler2
   });
 
   return next();

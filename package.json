@@ -42,7 +42,6 @@
     "good": "^6.1.2",
     "good-console": "^5.0.0",
     "hapi": "^11.1.2",
-    "hapi-auth-cookie": "^6.1.1",
     "hapi-react-views": "^5.0.2",
     "hapi-sass": "^2.1.0",
     "inert": "^3.2.0",
@@ -59,6 +58,7 @@
     "vision": "^4.0.1",
     "webpack": "^1.12.13",
     "angular": "^1.5.0",
-    "angular-route": "^1.5.0"
+    "angular-route": "^1.5.0",
+    "yar": "^7.0.0"
   }
 }

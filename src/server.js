@@ -4,7 +4,6 @@ var Hapi = require('hapi');
 var good = require('good');
 var api = require('./api');
 const Path = require('path');
-var dotenv = require('dotenv').config();
 
 
 const Vision = require('vision');
@@ -15,11 +14,22 @@ require('babel-core/register')({
 });
 
 var server = new Hapi.Server();
-
+var options = {
+    storeBlank: false,
+    cookieOptions: {
+        password: 'the-password-must-be-at-least-32-characters-long',
+        isSecure: false
+    }
+};
 server.connection({
   port: process.env.PORT || 3000,
   host: process.env.HOST
 });
+server.register({
+    register: require('yar'),
+    options: options
+}, function (err) { });
+
 server.register(require('inert'), (err) => {
   if (err) throw err;
 
