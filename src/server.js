@@ -3,6 +3,7 @@ var dotenv = require('dotenv').config();
 var Hapi = require('hapi');
 var good = require('good');
 var api = require('./api');
+const Path = require('path');
 
 const Vision = require('vision');
 const HapiReactViews = require('hapi-react-views');
@@ -11,7 +12,51 @@ require('babel-core/register')({
     presets: ['react', 'es2015']
 });
 
-var server = new Hapi.Server();
+var server = new Hapi.Server({
+    connections: {
+        routes: {
+            files: {
+                relativeTo: Path.join(__dirname, 'public')
+            }
+        }
+    }
+});
+
+server.route({
+    method: 'GET',
+    path: 'bower_components/{param*}',
+    handler: {
+        directory: {
+            path: 'bower_components',
+            redirectToSlash: true,
+            index: false
+        }
+    }
+});
+
+server.route({
+    method: 'GET',
+    path: 'public/{param*}',
+    handler: {
+        directory: {
+            path: 'public',
+            redirectToSlash: true,
+            index: false
+        }
+    }
+});
+
+server.route({
+    method: 'GET',
+    path: 'templates/{param*}',
+    handler: {
+        directory: {
+            path: 'templates',
+            redirectToSlash: true,
+            index: false
+        }
+    }
+});
 
 server.connection({
   port: process.env.PORT || 3000,
@@ -38,59 +83,27 @@ server.register([{
     });
   }
 });
-server.register(require('inert'), (err) => {
-  if (err) throw err;
-  server.route({
-    method: 'GET',
-    path: '/{param*}',
-    handler: {
-      directory: {
-        path: 'public',
-        listing: true
-      }
-    }
-  });
-});
-server.register(Vision, (err) => {
-   if (err) {
-        console.log('Failed to load vision.');
-    }
 
-    server.views({
-        defaultExtension: 'jsx',
-        engines: {
-            jsx: HapiReactViews
-        },
-        relativeTo: __dirname,
-        path: 'views'
-    });
+
+server.register(require('inert'), (err) => {
+
+    if (err) {
+        throw err;
+    }
 
     server.route({
         method: 'GET',
         path: '/',
-        handler: (request, reply) => {
-            
-            reply.view('home');
+        handler: function (request, reply) {
+            reply.file('public/index.html');
         }
     });
 
-    server.route({
-        method: 'GET',
-        path: '/hello',
-        handler: (request, reply) => {
-            
-            reply.view('index');
-        }
-    });
+    server.start((err) => {
 
-    server.route({
-      method: 'GET',
-      path: '/profile',
-      handler: (request, reply) => {
-        var user = require('.././models/user');
-        user.findAll().then(function(users) { 
-          reply.view('profile', {users: users});
-        })
-      }
+        if (err) {
+            throw err;
+        }
+
     });
 });

@@ -60,7 +60,7 @@ function linkedInOAUTH(request, reply) {
             user_access_token: results.access_token,
             linkedin_id: $in.id
           }}).then(function(user) {
-            return reply.redirect('/profile');
+            return reply.redirect('/home');
           });
         });
     });
@@ -90,6 +90,12 @@ function register(server, options, next) {
     method: 'GET',
     path: '/oauth/linkedin',
     handler: requestAuth
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/user/info',
+    handler: getUserInfo
   });
 
   return next();
