@@ -1,4 +1,5 @@
 'use strict';
+var dotenv = require('dotenv').config();
 var Hapi = require('hapi');
 var good = require('good');
 var api = require('./api');
