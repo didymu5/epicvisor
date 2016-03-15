@@ -26,8 +26,14 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('dist/assets/css/'));
 });
 
+gulp.task('copy-assets', function() {  
+  gulp.src('./dist/assets/**/*')
+    .pipe(gulp.dest('public/assets/'));
+});
+
 gulp.task('sass:watch', function () {
   gulp.watch(paths.scss, ['sass']);
+  gulp.watch('./src/assets/**/*', ['copy-assets']);
 });
 
 // Run Hapi server and reload on changes
