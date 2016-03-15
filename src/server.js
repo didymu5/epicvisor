@@ -3,6 +3,8 @@ var Hapi = require('hapi');
 var good = require('good');
 var api = require('./api');
 const Path = require('path');
+var dotenv = require('dotenv').config();
+
 
 const Vision = require('vision');
 const HapiReactViews = require('hapi-react-views');
@@ -11,15 +13,7 @@ require('babel-core/register')({
     presets: ['react', 'es2015']
 });
 
-var server = new Hapi.Server({
-    connections: {
-        routes: {
-            files: {
-                relativeTo: Path.join(__dirname, 'public')
-            }
-        }
-    }
-});
+var server = new Hapi.Server();
 
 server.connection({
   port: process.env.PORT || 3000,
@@ -38,9 +32,7 @@ server.register(require('inert'), (err) => {
        }
      }
    });
-
-
-  server.route({
+    server.route({
       method: 'GET',
       path: '/bower_components/{param*}',
       handler: {
@@ -51,7 +43,6 @@ server.register(require('inert'), (err) => {
           }
       }
   });
-
 
 
   server.route({

@@ -37,6 +37,7 @@
     "babel-preset-stage-0": "^6.0.15",
     "code": "^2.0.1",
     "del": "^2.1.0",
+    "dotenv": "^2.0.0",
     "good": "^6.1.2",
     "good-console": "^5.0.0",
     "hapi": "^11.1.2",
