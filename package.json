@@ -57,6 +57,8 @@
     "sequelize": "^3.19.3",
     "sequelize-cli": "^2.3.1",
     "vision": "^4.0.1",
-    "webpack": "^1.12.13"
+    "webpack": "^1.12.13",
+    "angular": "^1.5.0",
+    "angular-route": "^1.5.0"
   }
 }
