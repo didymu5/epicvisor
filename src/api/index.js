@@ -30,6 +30,12 @@ function sayLinkedinHello(request, reply){
   
 }
 
+function getUserInfo(request, reply) {
+  User.findAll().then(function(users) {
+    reply(users);
+  });
+}
+
 function requestAuth(request, reply) {
   'use strict';
    Linkedin.auth.authorize(reply, scope);

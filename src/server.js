@@ -1,5 +1,4 @@
 'use strict';
-var dotenv = require('dotenv').config();
 var Hapi = require('hapi');
 var good = require('good');
 var api = require('./api');
@@ -22,45 +21,50 @@ var server = new Hapi.Server({
     }
 });
 
-server.route({
-    method: 'GET',
-    path: 'bower_components/{param*}',
-    handler: {
-        directory: {
-            path: 'bower_components',
-            redirectToSlash: true,
-            index: false
-        }
-    }
-});
-
-server.route({
-    method: 'GET',
-    path: 'public/{param*}',
-    handler: {
-        directory: {
-            path: 'public',
-            redirectToSlash: true,
-            index: false
-        }
-    }
-});
-
-server.route({
-    method: 'GET',
-    path: 'templates/{param*}',
-    handler: {
-        directory: {
-            path: 'templates',
-            redirectToSlash: true,
-            index: false
-        }
-    }
-});
-
 server.connection({
   port: process.env.PORT || 3000,
   host: process.env.HOST
+});
+server.register(require('inert'), (err) => {
+  if (err) throw err;
+
+  server.route({
+     method: 'GET',
+     path: '/{param*}',
+     handler: {
+       directory: {
+         path: 'public',
+         listing: true
+       }
+     }
+   });
+
+
+  server.route({
+      method: 'GET',
+      path: '/bower_components/{param*}',
+      handler: {
+          directory: {
+              path: 'bower_components',
+              redirectToSlash: false,
+              index: false
+          }
+      }
+  });
+
+
+
+  server.route({
+      method: 'GET',
+      path: '/templates/{param*}',
+      handler: {
+          directory: {
+              path: 'templates',
+              redirectToSlash: false,
+              index: false
+          }
+      }
+  });
 });
 
 server.register([{
@@ -85,25 +89,9 @@ server.register([{
 });
 
 
-server.register(require('inert'), (err) => {
 
-    if (err) {
-        throw err;
-    }
 
-    server.route({
-        method: 'GET',
-        path: '/',
-        handler: function (request, reply) {
-            reply.file('public/index.html');
-        }
-    });
 
-    server.start((err) => {
 
-        if (err) {
-            throw err;
-        }
 
-    });
-});
+
