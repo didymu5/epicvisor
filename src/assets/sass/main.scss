@@ -2,8 +2,5 @@
 @import "neat";
 @import "normalize";
 @import "header";
-.card-list{
-  @include outer-container;
-  margin-top:30px;
-}
+
 @import "cards"
