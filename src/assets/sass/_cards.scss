@@ -1,3 +1,26 @@
+@mixin circle($width, $color) {
+  width: $width;
+  height: $width;
+  background: $color;
+  -webkit-border-radius: $width/2;
+     -moz-border-radius: $width/2;
+          border-radius: $width/2;
+}
+@mixin centerer($horizontal: true, $vertical: true) {
+  position: absolute;
+  @if ($horizontal and $vertical) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } @else if ($horizontal) {
+    left: 50%;
+    transform: translate(-50%, 0);
+  } @else if ($vertical) {
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
+
 .card-list{
   @include outer-container;
   margin-top:30px;
@@ -34,20 +57,21 @@
   cursor: pointer;
   margin: 0 $card-margin $base-spacing $card-margin;
   position: relative;
-
+  text-align: center;
 
   .card-image {
     overflow: hidden;
     height: 150px;
     max-height: 150px;
-    background-color: $card-image-hover-color;
-
+    padding-top: 20px;
+    
     img {
       @include transition (all 0.2s ease-in-out);
-      border-top-left-radius: $base-border-radius;
-      border-top-right-radius: $base-border-radius;
-      width: 100%;
+      @include circle(100px, #fffe);
+      text-align: center;
+      width: auto;
       opacity: 1;
+      float: none;
     }
   }
 
@@ -74,17 +98,13 @@
   &:focus,
   &:hover {
     cursor: pointer;
-
-    img {
-      opacity: $card-image-hover-opacity;
-    }
   }
 
   &:active {
-    background-color: $card-background;
+    
 
     .card-header {
-      background-color: $card-background;
+      
     }
   }
 }
