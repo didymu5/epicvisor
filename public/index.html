@@ -17,15 +17,6 @@
         <script type="text/javascript" src="/js/app.js"></script>
         <link rel="stylesheet" href="assets/css/main.css">
     </head>
-    <body ng-app="myApp">
-        <div ng-controller="ApplicationController">
-            <h1>Let's do this awesome thing</h1>
-            <a href='/oauth/linkedin'>
-                Register with Linkedin I guess?
-            </a>
-            <div ng-view> </div>
-        </div>
-    </body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -70,6 +61,18 @@
   </div>
 </header>
 
+<div ng-app="myApp">
+    <div ng-controller="ApplicationController">
+        <h1>Let's do this awesome thing</h1>
+        <a href='/oauth/linkedin'>
+            Register with Linkedin I guess?
+        </a>
+        <div ng-view> </div>
+    </div>
+</div>
+
+
+
 <div class="card-list">
     <div class="cards">
         <div class="card">
@@ -80,7 +83,8 @@
                 First Card
             </div>
             <div class="card-copy">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident.</p>
+                <p>Anderson UCLA, 2013</p>
+                <p>Operations and Communitions Manager</p>
             </div>
         </div>
         <div class="card">
@@ -91,7 +95,8 @@
                 Another Card
             </div>
             <div class="card-copy">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident.</p>
+                <p>Anderson UCLA, 2012</p>
+                <p>Senior Executive Marketing Officer, Cisco</p>
             </div>
         </div>
         <div class="card">
@@ -99,10 +104,11 @@
                 <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains-3.png" alt="">
             </div>
             <div class="card-header">
-                The Last Card
+                Louie Siongco
             </div>
             <div class="card-copy">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <p>Anderson UCLA, 2012</p>
+                <p>Director, Human Resources at NBCUniversal, Inc.</p>
             </div>
         </div>
     </div>
@@ -124,6 +130,38 @@ $(document).ready(function() {
       }
     });
   });
+  window.userImgThumbnail;
+  $.ajax({
+      url: 'https://randomuser.me/api/',
+      dataType: 'json',
+      success: function(data){
+        console.log(data)
+        userImgThumbnail = data.results[0].user.picture.thumbnail;
+        $('.card-image img').eq(0).attr('src', userImgThumbnail);
+        $('.card-header').eq(0).html(data.results[0].user.name.first + ' ' + data.results[0].user.name.last);
+      }
+    });
+  $.ajax({
+      url: 'https://randomuser.me/api/',
+      dataType: 'json',
+      success: function(data){
+        console.log(data)
+        userImgThumbnail = data.results[0].user.picture.thumbnail;
+        $('.card-image img').eq(1).attr('src', userImgThumbnail);
+        $('.card-header').eq(1).html(data.results[0].user.name.first + ' ' + data.results[0].user.name.last);
+      }
+    });
+  $.ajax({
+      url: 'https://randomuser.me/api/',
+      dataType: 'json',
+      success: function(data){
+        console.log(data)
+        userImgThumbnail = data.results[0].user.picture.thumbnail;
+        $('.card-image img').eq(2).attr('src', userImgThumbnail);
+        $('.card-header').eq(2).html(data.results[0].user.name.first + ' ' + data.results[0].user.name.last);
+      }
+    });
+
 });
 </script>
 
