@@ -14,7 +14,7 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
         <script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>
-        <script type="text/javascript" src="/js/app.js"></script>
+        <script type="text/javascript" src="/js/search-filter.js"></script>
         <link rel="stylesheet" href="assets/css/main.css">
     </head>
         <!--[if lt IE 8]>
@@ -61,20 +61,11 @@
   </div>
 </header>
 
-<div ng-app="myApp">
-    <div ng-controller="ApplicationController">
-        <h1>Let's do this awesome thing</h1>
-        <a href='/oauth/linkedin'>
-            Register with Linkedin I guess?
-        </a>
-        <div ng-view> </div>
-    </div>
-</div>
 
 <div class="search-tools">
   <div class="filters">
     <div class="filter">
-      <label>Colors</label>
+      <label>Industry</label>
       <div>
         <ol class="filter-list">
           <li>
@@ -93,7 +84,7 @@
       </div>
     </div>
     <div class="filter">
-      <label>Sizes</label>
+      <label>Field</label>
       <div>
         <ol class="filter-list">
           <li>
@@ -112,7 +103,7 @@
       </div>
     </div>
     <div class="filter">
-      <label>Lengths</label>
+      <label>Company</label>
       <div>
         <ol class="filter-list">
           <li>
@@ -221,7 +212,7 @@ $(document).ready(function() {
         $('.card-header').eq(2).html(data.results[0].user.name.first + ' ' + data.results[0].user.name.last);
       }
     });
-
+  Filter.enhance();
 });
 </script>
 

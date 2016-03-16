@@ -574,14 +574,14 @@ th {
   -ms-flex-pack: justify; }
 
 .card {
-  -webkit-flex-basis: 15em;
-  -moz-flex-basis: 15em;
-  flex-basis: 15em;
-  -ms-flex-preferred-size: 15em;
-  -webkit-flex-grow: 1;
-  -moz-flex-grow: 1;
-  flex-grow: 1;
-  -ms-flex-positive: 1;
+  -webkit-flex-basis: 16em;
+  -moz-flex-basis: 16em;
+  flex-basis: 16em;
+  -ms-flex-preferred-size: 16em;
+  -webkit-flex-grow: 3;
+  -moz-flex-grow: 3;
+  flex-grow: 3;
+  -ms-flex-positive: 3;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
@@ -648,11 +648,18 @@ th {
   -o-justify-content: space-between;
   justify-content: space-between;
   -ms-flex-pack: justify;
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto;
   background: #f6f6f6;
   border-radius: 3px;
   border: 1px solid gainsboro;
   padding: 1.618em 0.809em;
   width: 100%; }
+  .search-tools::after {
+    clear: both;
+    content: "";
+    display: table; }
   .search-tools::after {
     clear: both;
     content: "";
