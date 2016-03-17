@@ -7,7 +7,7 @@ Clone the repository and install the dependencies.
     $ git clone git@bitbucket.org:epicvisor/epicvisor-app.git my-project
     $ cd my-project
     $ npm install
-    $ gulp serve
+    $ npm run serve-dev
 
 Do not forget to install globally gulp if not installed yet.
 
@@ -29,7 +29,17 @@ The other option to just run tests once.
     
     $ gulp test
 
-React
+Webpack
+-------
+Webpack is use to bundle the front-end app: Angular. It compiles `app/app.js` and outputs to `public/js/bundle.js`
+
+To run Webpack when you want to: `node_modules/.bin/webpack`
+
+Append `--watch` to watch for changes to app.js as you're working on it.
+
+
+Dev server to run you 
+React (no more)
 ---------------
 All React files and views will be stored under src/views. Those will need to be linked to the right file in server.js server.register
 
