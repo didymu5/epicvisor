@@ -1,0 +1,8 @@
+.profile{
+  @include outer-container;
+
+  &__nameInfo{
+    @include span-columns(6);
+    border: 1px #eee solid;
+  }
+}
