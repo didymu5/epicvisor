@@ -1,5 +1,7 @@
-'use strict';
 
+'use strict';
+import angular from 'node_modules/angular/angular.min.js';
+import angular_routes from 'node_modules/angular-route/angular-route.min.js';
 // Declare app level module which depends on filters, and services
 
 var myApp = angular.module('myApp', [
