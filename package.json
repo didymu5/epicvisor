@@ -9,7 +9,9 @@
   "main": "server.js",
   "scripts": {
     "test": "node_modules/.bin/lab -t 100 test",
-    "migrate": "node_modules/.bin/sequelize"
+    "migrate": "node_modules/.bin/sequelize",
+    "webpack-watch": "node_modules/.bin/webpack --watch",
+    "serve-dev": "gulp serve & node_modules/.bin/webpack --watch"
   },
   "keywords": [
     "hapijs",
@@ -42,7 +44,7 @@
     "good": "^6.1.2",
     "good-console": "^5.0.0",
     "hapi": "^11.1.2",
-    "hapi-react-views": "^5.0.2",
+    "yar": "^7.0.0",
     "hapi-sass": "^2.1.0",
     "inert": "^3.2.0",
     "lab": "^7.3.0",
@@ -58,7 +60,6 @@
     "vision": "^4.0.1",
     "webpack": "^1.12.13",
     "angular": "^1.5.0",
-    "angular-route": "^1.5.0",
-    "yar": "^7.0.0"
+    "angular-route": "^1.5.0"
   }
 }
