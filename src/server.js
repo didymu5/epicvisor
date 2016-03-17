@@ -4,8 +4,6 @@ var Hapi = require('hapi');
 var good = require('good');
 var api = require('./api');
 const Path = require('path');
-
-
 const Vision = require('vision');
 
 require('babel-core/register')({
@@ -21,7 +19,7 @@ var options = {
     }
 };
 server.connection({
-  port: process.env.PORT || 3000,
+  port: process.env.PORT || 3333,
   host: process.env.HOST
 });
 server.register({
