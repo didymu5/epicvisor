@@ -7,7 +7,6 @@ const Path = require('path');
 
 
 const Vision = require('vision');
-const HapiReactViews = require('hapi-react-views');
 
 require('babel-core/register')({
     presets: ['react', 'es2015']
