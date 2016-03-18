@@ -11,7 +11,7 @@
     "test": "node_modules/.bin/lab -t 100 test",
     "migrate": "node_modules/.bin/sequelize",
     "webpack-watch": "node_modules/.bin/webpack --watch",
-    "serve-dev": "gulp serve & node_modules/.bin/webpack --watch"
+    "serve-dev": "node_modules/.bin/webpack --watch & gulp serve"
   },
   "keywords": [
     "hapijs",
