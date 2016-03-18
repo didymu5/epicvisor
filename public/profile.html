@@ -60,14 +60,79 @@
 </header>
 
 <div class="profile">
-
-  <div class="profile__nameinfo">
-    <div class="profile__nameInfo__name">
-      <h3>Nick Camrillo</h3>
+  <div class="profile__name-info">
+    <div class="profile__avatar">
+      <img class="profile__img" src="#">
     </div>
+    <div class="profile__name-info-name">
+      <h1>Nick Camrillo</h1>
+    </div>
+    <div class="profile__nameInfo-about">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+    <div class="profile__name-info-edu">
+      <h2>Education</h2>
+      <p>UCLA, School of Anderson</p>
+      <p>2014</p>
+    </div>
+  </div>
+
+  <div class="profile__area-info">
+    <h2>Career Field</h2>
+    <ul>
+      <li>Career Field topic</li>
+      <li>Career Field topic</li>
+      <li>Career Field topic</li>
+      <li>Career Field topic</li>
+    </ul>
+    <h2>Advice Topic</h2>
+    <ul>
+      <li>Advice topic</li>
+      <li>Advice topic</li>
+      <li>Advice topic</li>
+      <li>Advice topic</li>
+    </ul>
   </div>
 </div>
 
+<div class="scheduler">
+    <h3 class="scheduler__h3">Availabliltiy</h3>
+
+  <table class="scheduler__tables">
+  <tbody>
+    <tr>
+      <td>Week of 4/4</td>
+      <td>3 sessions</td>
+      <td>Status</td>
+      <td class="scheduler__session-status-open">Open</td>
+    </tr>
+    <tr>
+      <td>Week of 4/11</td>
+      <td>3 sessions</td>
+      <td>Status</td>
+      <td class="scheduler__session-status-open">Open</td>
+    </tr>
+    <tr>
+      <td>Week of 4/18</td>
+      <td>3 sessions</td>
+      <td>Status</td>
+      <td class="scheduler__session-status-blocked">Blocked</td>
+    </tr>
+    <tr>
+      <td>Week of 4/25</td>
+      <td>3 sessions</td>
+      <td>Status</td>
+      <td class="scheduler__session-status-blocked">Blocked</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
@@ -91,31 +156,10 @@ $(document).ready(function() {
       success: function(data){
         console.log(data)
         userImgThumbnail = data.results[0].user.picture.thumbnail;
-        $('.card-image img').eq(0).attr('src', userImgThumbnail);
-        $('.card-header').eq(0).html(data.results[0].user.name.first + ' ' + data.results[0].user.name.last);
+        $('.profile__img').attr('src', userImgThumbnail);
       }
     });
-  $.ajax({
-      url: 'https://randomuser.me/api/',
-      dataType: 'json',
-      success: function(data){
-        console.log(data)
-        userImgThumbnail = data.results[0].user.picture.thumbnail;
-        $('.card-image img').eq(1).attr('src', userImgThumbnail);
-        $('.card-header').eq(1).html(data.results[0].user.name.first + ' ' + data.results[0].user.name.last);
-      }
-    });
-  $.ajax({
-      url: 'https://randomuser.me/api/',
-      dataType: 'json',
-      success: function(data){
-        console.log(data)
-        userImgThumbnail = data.results[0].user.picture.thumbnail;
-        $('.card-image img').eq(2).attr('src', userImgThumbnail);
-        $('.card-header').eq(2).html(data.results[0].user.name.first + ' ' + data.results[0].user.name.last);
-      }
-    });
-  Filter.enhance();
+
 });
 </script>
 
