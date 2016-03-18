@@ -1,6 +1,6 @@
 
 'use strict';
-import angular from 'angular/angular';
+import angular from 'angular';
 import angular_routes from 'angular-route/angular-route';
 
 // Declare app level module which depends on filters, and services
