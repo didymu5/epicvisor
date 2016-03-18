@@ -785,12 +785,102 @@ th {
     clear: both;
     content: "";
     display: table; }
-  .profile__nameInfo {
+  .profile__avatar {
+    width: 100px;
+    height: 100px;
+    background: #fffe;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px; }
+  .profile__img {
+    width: 100px;
+    height: 100px;
+    background: #fffe;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px; }
+  .profile__name-info {
     float: left;
     display: block;
     margin-right: 2.35765%;
-    width: 48.82117%;
-    border: 1px #000 solid;
-    background-color: #ccc; }
-    .profile__nameInfo:last-child {
+    width: 48.82117%; }
+    .profile__name-info:last-child {
       margin-right: 0; }
+
+.scheduler {
+  border-top: 3px #eee solid;
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  text-align: center; }
+  .scheduler::after {
+    clear: both;
+    content: "";
+    display: table; }
+  .scheduler::after {
+    clear: both;
+    content: "";
+    display: table; }
+  .scheduler__h3 {
+    text-align: center; }
+
+.scheduler__tables {
+  border-collapse: separate;
+  border-left: 0px;
+  border-radius: 3px;
+  border-spacing: 0;
+  border: 1px solid gainsboro;
+  width: 100%; }
+  .scheduler__tables tbody {
+    background-color: #fbfbfb; }
+    .scheduler__tables tbody tr:hover > td, .scheduler__tables tbody tr:hover > th {
+      background-color: #eeeeee; }
+    .scheduler__tables tbody tr:nth-child(even) {
+      background-color: #f6f6f6; }
+      .scheduler__tables tbody tr:nth-child(even):hover > td {
+        background-color: #e9e9e9; }
+  .scheduler__tables thead:first-of-type tr:first-child > th:first-child {
+    border-top-left-radius: 3px; }
+  .scheduler__tables thead:first-of-type tr:first-child > th:last-child {
+    border-top-right-radius: 3px; }
+  .scheduler__tables tbody:last-child tr:last-child > td:first-child {
+    border-bottom-left-radius: 3px; }
+  .scheduler__tables tbody:last-child tr:last-child > td:last-child {
+    border-bottom-right-radius: 3px; }
+  .scheduler__tables thead th {
+    background-color: white;
+    border-bottom: 0px;
+    border-left: 1px solid gainsboro;
+    padding: 0.75em 1em;
+    text-align: left; }
+    .scheduler__tables thead th:first-child {
+      border-left: none; }
+  .scheduler__tables tbody {
+    background-color: #fbfbfb; }
+    .scheduler__tables tbody td {
+      border-bottom: 0px;
+      border-left: 1px solid gainsboro;
+      border-top: 1px solid gainsboro;
+      padding: 0.75em 1em; }
+      .scheduler__tables tbody td:first-child {
+        border-left: none; }
+      .scheduler__tables tbody td button {
+        display: inline-block;
+        font-size: 0.7em;
+        line-height: 1.5em;
+        margin-bottom: 0.3em;
+        margin-right: 0.5em;
+        outline: none;
+        padding: 0.3em 1em;
+        width: 100%; }
+        @media screen and (min-width: 40em) {
+          .scheduler__tables tbody td button {
+            margin-bottom: 0;
+            width: auto; } }
+
+.scheduler__session-status-open {
+  background-color: green; }
+
+.scheduler__session-status-blocked {
+  background-color: #ccc; }
