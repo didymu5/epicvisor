@@ -1,12 +1,19 @@
-.profile{
-  @include outer-container;
+.profile {
+  @include outer-container();
+  // background: #eee;
+  &__avatar{
 
-  &__nameInfo{
+  }
+  &__name-info {
     @include span-columns(6);
-    border: 1px #000 solid;
-    background-color: #ccc;
-    &__name{
+    float:left;
+    background-color:#eee;
+    &-name {
+        
+    }
+    &-about{
 
     }
+    &-edu{}
   }
 }
