@@ -1,13 +1,15 @@
 .profile {
   @include outer-container();
   // background: #eee;
-  &__avatar{
-
+  &__avatar {
+    // @include circle(100px, #fffe);
+  }
+  &__img{
+    @include circle(100px, #fffe);
   }
   &__name-info {
     @include span-columns(6);
-    float:left;
-    background-color:#eee;
+    
     &-name {
         
     }
