@@ -360,6 +360,15 @@ td,
 th {
   padding: 0; }
 
+.header {
+  background-color: #E7F1EC;
+  border-bottom: 1px solid #d4e6dd;
+  min-height: 60px;
+  width: 100%;
+  z-index: 9999; }
+  .header__navigation--centered {
+    background: black; }
+
 .centered-navigation {
   background-color: #E7F1EC;
   border-bottom: 1px solid #d4e6dd;
@@ -767,3 +776,21 @@ th {
       width: 100%;
       padding: .5em 1em;
       text-align: center; }
+
+.profile {
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto; }
+  .profile::after {
+    clear: both;
+    content: "";
+    display: table; }
+  .profile__nameInfo {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%;
+    border: 1px #000 solid;
+    background-color: #ccc; }
+    .profile__nameInfo:last-child {
+      margin-right: 0; }
