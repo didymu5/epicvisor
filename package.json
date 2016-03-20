@@ -11,7 +11,8 @@
     "test": "node_modules/.bin/lab -t 100 test",
     "migrate": "node_modules/.bin/sequelize",
     "webpack-watch": "node_modules/.bin/webpack --watch",
-    "serve-dev": "node_modules/.bin/webpack --watch & gulp serve"
+    "serve-dev": "node_modules/.bin/webpack --watch & gulp serve",
+    "serve-prod": "node_modules/.bin/webpack && node node_modules/gulp/bin/gulp serve"
   },
   "keywords": [
     "hapijs",
@@ -22,16 +23,15 @@
   "author": "Ian and Tommy",
   "license": "MIT",
   "devDependencies": {
-    "gulp": "^3.8.11",
-    "gulp-cached": "^1.0.4",
-    "gulp-lab": "^1.0.5",
-    "gulp-nodemon": "^2.0.2",
-    "normalize.css": "^3.0.3"
+    "gulp": "^3.8.11"
   },
   "dependencies": {
         "gulp-sass": "^2.2.0",
             "gulp-load-plugins": "^1.1.0",
-
+    "gulp-cached": "^1.0.4",
+    "gulp-lab": "^1.0.5",
+    "gulp-nodemon": "^2.0.2",
+    "normalize.css": "^3.0.3",
     "gulp-babel": "^6.1.0",
     "babel-core": "^6.0.20",
     "babel-loader": "^6.0.1",
