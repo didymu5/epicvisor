@@ -58,7 +58,7 @@ server.register(require('inert'), (err) => {
       path: '/templates/{param*}',
       handler: {
           directory: {
-              path: 'templates',
+              path: 'app/templates',
               redirectToSlash: false,
               index: false
           }
