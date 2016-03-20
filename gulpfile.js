@@ -23,17 +23,17 @@ gulp.task('sass', function() {
     .pipe(sass({
       includePaths: ['assets/sass'].concat(neat)
     }).on('error', sass.logError))
-    .pipe(gulp.dest('dist/assets/css/'));
+    .pipe(gulp.dest('public/assets/css'));
 });
 
-gulp.task('copy-assets', function() {  
-  gulp.src('./dist/assets/**/*')
-    .pipe(gulp.dest('public/assets/'));
-});
+// gulp.task('copy-assets', function() {  
+//   gulp.src('./dist/assets/**/*')
+//     .pipe(gulp.dest('public/assets/'));
+// });
 
 gulp.task('sass:watch', function () {
   gulp.watch(paths.scss, ['sass']);
-  gulp.watch('./src/assets/**/*', ['copy-assets']);
+  gulp.watch('./src/assets/**/*', ['sass']);
 });
 
 // Run Hapi server and reload on changes
