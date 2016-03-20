@@ -2,6 +2,7 @@
   border-top: 3px #eee solid;
   @include outer-container;
   @include clearfix;
+  @include pad(20px 0);
   margin-top:30px;
   text-align: center;
   &__h3 {
@@ -117,9 +118,10 @@
 }
 .scheduler__session-status{
     &-open{
-      background-color: green;
+      background-color: $light-green;
+      text-transform: uppercase;
     }
     &-blocked{
-      background-color: #ccc;
+      background-color: $light-gray;
     }
 }

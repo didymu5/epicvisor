@@ -1,6 +1,7 @@
 .profile {
   @include outer-container();
-  // background: #eee;
+  @include pad(0 20px);
+  margin-top: 2em;
   &__avatar {
     // @include circle(100px, #fffe);
   }
@@ -8,14 +9,25 @@
     @include circle(100px, #fffe);
   }
   &__name-info {
-    @include span-columns(6);
-    
+    @include span-columns(12);
+    text-align: center;
+    @include media($large-screen) {
+      @include span-columns(6);
+      @include pad(0);
+    }
     &-name {
         
     }
     &-about{
-
+      text-align: left;
     }
     &-edu{}
+  }
+  &__area-info{
+    @include span-columns(12);
+    @include media($large-screen) {
+      @include span-columns(6);
+      @include pad(0);
+    }
   }
 }
