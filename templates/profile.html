@@ -1,3 +1,4 @@
+<profile-menu> </profile-menu>
 <h2>
 	My Epic Profile
 </h2>
@@ -5,7 +6,28 @@
 	<span>
 		<div> Class Year </div>
 		<select ng-options="year as year for year in years" ng-model="selectedYear"></select>
+		<div>
+			Share a blurb about yourself with students:
+		</div>
+		<textarea ng-model="blurb"></textarea>
 	</span>
 	<span>
+		<div>
+			Sync your LinkedIn background
+		</div>
+		<div>
+			<span>
+				<p>
+					{{user.name}}
+				</p>
+				<p>
+					Last Sync: {{user.last_modified}}
+				</p>
+			</span>
+			<span>
+				<button> Sync </button>
+			</span>
+
+		</div>
 	</span>
 </div>

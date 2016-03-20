@@ -1,7 +1,8 @@
 
 'use strict';
 import angular from 'angular';
-import angular_routes from 'angular-route/angular-route';
+
+import angular_routes from 'angular-route';
 
 // Declare app level module which depends on filters, and services
 
@@ -27,9 +28,11 @@ config(function ($routeProvider, $locationProvider) {
     });
 
   // $locationProvider.html5Mode(true);
-});
-
-myApp.service('userService', function($http, $q) {
+}).directive('profileMenu', function() {
+  return {
+    templateUrl: 'templates/directives/profile_menubar.html'
+  }
+}).service('userService', function($http, $q) {
   var userState = {};
   var userStateFetch = $http.get('/user/info').then(function(res) {
     userState.user = res.data;
@@ -52,14 +55,13 @@ myApp.service('userService', function($http, $q) {
   };
 })
 
-myApp.directive('profile_menu', function() {
-  return {
-    templateUrl: 'templates/profile_menubar.html'
+myApp.controller('ApplicationController', function($scope, userService) {
+  userService.getUser().then(function(user) {
+    $scope.user = user;
+  });
+  $scope.signedIn = function() {
+    return $scope.user;
   }
-})
-
-myApp.controller('ApplicationController', function($scope) {
-  $scope.hello = "Hello linkedin!"
 }).controller('HomeController', function($scope, userService) {
   userService.getUser().then(function(user) {
     if(user) {
@@ -70,11 +72,18 @@ myApp.controller('ApplicationController', function($scope) {
    userService.getUser().then(function(user) {
       $scope.user = user;
   });
-   $scope.years = Array.from(new Array(2016-1940), (x,i) => i+1940);
+   $scope.years = Array.from(new Array(2016-1940), (x,i) => 2016-i);
 
 }).controller('MentorProfileSessionsController', function($scope, userService) {
   userService.getUser().then(function(user) {
       $scope.user = user;
   });  
 
+  $scope.sessionCounts = Array.from(new Array(5), (x,i) => i+1);
+  $scope.sessionCountTypes = ["Per Week", "Per Month"]; 
+  $scope.topics = ["Career Advancement", "Building a Team","Internships","International Business","Raising Funding","Work Life Balance"];
+  $scope.contacts = ["Skype", "Email", "Google Hangouts"]
+  $scope.selectedContact = $scope.contacts[0];
+  $scope.selectedSessionCountType = $scope.sessionCountTypes[0];
+  $scope.selectedSessionCount = $scope.sessionCounts[0];
 });

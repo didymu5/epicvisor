@@ -61,9 +61,8 @@
 
 <div ng-app="myApp">
     <div ng-controller="ApplicationController">
-        <h1>Let's do this awesome thing</h1>
-        <a href='/oauth/linkedin'>
-            Register with Linkedin I guess?
+        <a href='/oauth/linkedin' ng-if="!signedIn()">
+            Register with Linkedin
         </a>
         <div ng-view> </div>
     </div>
