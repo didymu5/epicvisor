@@ -1,4 +1,3 @@
-
 @mixin centerer($horizontal: true, $vertical: true) {
   position: absolute;
   @if ($horizontal and $vertical) {
