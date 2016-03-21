@@ -20,9 +20,14 @@
     }
     &-about{
       text-align: left;
+      &-textarea{
+        border:1px #ccc solid;
+        width:90%;
+      }
     }
     &-edu{}
   }
+
   &__area-info{
     @include span-columns(12);
     @include media($large-screen) {
