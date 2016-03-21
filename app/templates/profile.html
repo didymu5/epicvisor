@@ -1,33 +1,22 @@
 <profile-menu> </profile-menu>
-<h2>
-	My Epic Profile
-</h2>
-<div class="row">
-	<span>
-		<div> Class Year </div>
-		<select ng-options="year as year for year in years" ng-model="selectedYear"></select>
-		<div>
-			Share a blurb about yourself with students:
-		</div>
-		<textarea ng-model="blurb"></textarea>
-	</span>
-	<span>
-		<div>
-			Sync your LinkedIn background
-		</div>
-		<div>
-			<span>
-				<p>
-					{{user.name}}
-				</p>
-				<p>
-					Last Sync: {{user.last_modified}}
-				</p>
-			</span>
-			<span>
-				<button> Sync </button>
-			</span>
+<div class="profile">
+<div class="profile__name-info">
+	<div class="profile__avatar">
+		<img class="profile__img" src="#">
+	</div>
+	<div class="profile__name-info-name">
+		<h1>{{user.name}} Ed Cho</h1>
+	</div>
+	<div class="profile__name-info-about">
+		<textarea class="profile__name-info-about-textarea" maxlength="200" ng-model="blurb"></textarea>
+		<p>Tell us about yourself in 200 characters</p>
+	</div>
+	<div class="profile__name-info-edu">
+		<h2>Education</h2>
+		<p>UCLA, School of Anderson</p>
+		<p>2014 <select ng-options="year as year for year in years" ng-model="selectedYear"></select></p>
+		<p>Last Sync: {{user.last_modified}} <button>sync</button></p>
+	</div>
+</div>
 
-		</div>
-	</span>
 </div>
