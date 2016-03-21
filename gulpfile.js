@@ -4,7 +4,7 @@ var gulp = require('gulp'),
 var $ = require('gulp-load-plugins')();
 
 var paths = {
-  scss: 'src/assets/sass/**/*.scss'
+  scss: 'app/assets/sass/**/*.scss'
 }
 
 // Transpile ES6 source files into JavaScript
@@ -33,7 +33,7 @@ gulp.task('sass', function() {
 
 gulp.task('sass:watch', function () {
   gulp.watch(paths.scss, ['sass']);
-  gulp.watch('./src/assets/**/*', ['sass']);
+  gulp.watch('./app/assets/**/*', ['sass']);
 });
 
 // Run Hapi server and reload on changes
