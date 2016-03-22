@@ -8,9 +8,7 @@ var env       = process.env.NODE_ENV || 'development';
 var config    = require(__dirname + './../config/config.json')[env];
 var db        = {};
 
-console.log("LOADED?")
 if (config.use_env_variable) {
-  console.log("YE")
   var match = process.env.DATABASE_URL.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/)
 
     sequelize = new Sequelize(match[5], match[1], match[2], {

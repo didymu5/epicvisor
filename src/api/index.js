@@ -14,26 +14,6 @@ function sayHello(request, reply) {
   });
 }
 
-function sayLinkedinHello(request, reply){
-  var linkedin = Linkedin.init(request.params.accessToken);
-  linkedin.people.me([
-    'id',
-    'first-name',
-    'last-name', 
-    'headline',
-    'location',
-    'industry',
-    'summary',
-    'positions',
-    'specialties',
-    'public-profile-url',
-    'email-address'], function(err, $in) {
-      if(err) return err;
-      reply($in);
-  });
-  
-}
-
 function getUserProfile(request, reply) {
  UserProfile.findOne({
     where: {
@@ -50,12 +30,6 @@ UserProfile.findOrCreate({
     }
   }).then(function(userSettingSet) {
     var userSetting = userSettingSet[0];
-    console.log("MEH?");
-    console.log(request.payload.profileSettings['blurb']);
-    console.log(request.payload)
-    // ["year","blurb"].forEach(function(attr) {
-    //   // userSetting[attr] = request.payload.profileSettings[attr].toString();
-    //  });
     return userSetting.update(request.payload.profileSettings, {fields:  ["year","blurb"]});
   }).then(function(userData) {
     reply(userData);
@@ -105,12 +79,9 @@ function linkedInOAUTH(request, reply) {
         if ( err )
             return console.error(err);
         var linkedin = Linkedin.init(results.access_token);
-        linkedin.people.me(['id','first-name','last-name', 'headline','location','industry','summary','positions','specialties','public-profile-url','email-address'], function(err, $in) {
-          User.findOrCreate({
-            where: {
-              linkedin_id: $in.id
-            },
-            defaults: {
+        linkedin.people.me(['id','first-name','last-name','picture-url', 'headline','location','industry','summary','positions','specialties','public-profile-url','email-address'], function(err, $in) {
+          console.log($in)
+          var userDetails = {
             first_name: $in.firstName,
             last_name: $in.lastName,
             email_address: $in.emailAddress,
@@ -119,10 +90,20 @@ function linkedInOAUTH(request, reply) {
             summary: $in.summary,
             headline: $in.headline,
             user_access_token: results.access_token,
+            avatar: $in.pictureUrl,
             linkedin_id: $in.id
-          }}).then(function(userData) {
-            request.yar.set('user', userData[0]);
-            return reply.redirect('/index.html');
+          }
+          User.findOrCreate({
+            where: {
+              linkedin_id: $in.id
+            },
+            defaults: userDetails}).then(function(userData) {
+              console.log("MEO!")
+            userData[0].update(userDetails, {fields: Object.keys(userDetails)}).then(function(userData) {
+              request.yar.set('user', userData);
+              console.log("DOUBLE RAINBOW!")
+              return reply.redirect('/index.html#/profile');
+            });
           });
         });
     });
@@ -142,11 +123,6 @@ function register(server, options, next) {
     method: 'GET',
     path: '/oauth/linkedin/callback',
     handler: linkedInOAUTH
-  });
-  server.route({
-    method: 'GET',
-    path: '/info/{accessToken}',
-    handler: sayLinkedinHello
   });
   server.route({
     method: 'GET',

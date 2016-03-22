@@ -41,6 +41,9 @@ var User = db.sequelize.define('user',{
       },
       linkedin_id: {
         type: Sequelize.STRING
+      },
+      avatar: {
+        type: Sequelize.STRING
       }
 })
 module.exports = User;
