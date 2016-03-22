@@ -5,6 +5,8 @@ Linkedin.auth.setCallback(callback_url + '/oauth/linkedin/callback');
 
 var scope = ['r_basicprofile',  'r_emailaddress'];
 var User = require('../../models/user');
+var UserProfile = require('../../models/user_profile');
+var UserProfileSessionSetting = require('../../models/user_profile_session_settings');
 function sayHello(request, reply) {
 
   reply({
@@ -32,23 +34,67 @@ function sayLinkedinHello(request, reply){
   
 }
 
+function getUserProfile(request, reply) {
+ UserProfile.findOne({
+    where: {
+      user_id : request.yar.get('user').id.toString()
+    }
+  }).then(function(userProfile) {
+    reply(userProfile || {});
+  });
+}
+function setUserProfile(request, reply) {
+UserProfile.findOrCreate({
+    where: {
+      user_id : request.yar.get('user').id.toString()
+    }
+  }).then(function(userSettingSet) {
+    var userSetting = userSettingSet[0];
+    console.log("MEH?");
+    console.log(request.payload.profileSettings['blurb']);
+    console.log(request.payload)
+    // ["year","blurb"].forEach(function(attr) {
+    //   // userSetting[attr] = request.payload.profileSettings[attr].toString();
+    //  });
+    return userSetting.update(request.payload.profileSettings, {fields:  ["year","blurb"]});
+  }).then(function(userData) {
+    reply(userData);
+  });
+}
+
+function getUserProfileSessionSettings(request, reply) {
+  UserProfileSessionSetting.find({
+    where: {
+      user_id : request.yar.get('user').id.toString()
+    }
+  }).then(function(userProfile) {
+    reply(userProfile);
+  });
+}
+
+function setUserProfileSessionSettings(request, reply) {
+  UserProfileSessionSetting.findOrCreate({
+    where: {
+      user_id : request.yar.get('user').id.toString()
+    }
+  }).then(function(userSettingSet) {
+    var userSetting = userSettingSet[0];
+    ["topics", "contact","sessionCount", "sessionCountType",
+     "extraTopic1", "extraTopic2", "extraTopic3", "contactDetails", "user_id"].forEach(function(attr) {
+      userSetting[attr] = request.payload[attr];
+     });
+    return userSetting.update(request.payload.sessionState, {fields:  ["topics", "contact","sessionCount", "sessionCountType",
+     "extraTopic1", "extraTopic2", "extraTopic3", "contactDetails", "user_id"]});
+  }).then(function(userData) {
+    reply(userData);
+  });
+}
+
 function getUserInfo(request, reply) {
-  console.log("HI MOM!")
   var user = request.yar.get('user');
   reply(user);  
 }
 
-var handler1 = function (request, reply) {
-
-    request.yar.set('example', 'sample_value');
-    return reply("YUP!");
-};
-
-var handler2 = function (request, reply) {
-
-    var example = request.yar.get('example');
-    reply(example);     // Will send back 'value'
-};
 
 function requestAuth(request, reply) {
    Linkedin.auth.authorize(reply, scope);
@@ -115,14 +161,24 @@ function register(server, options, next) {
   });
    server.route({
     method: 'GET',
-    path: '/handler1',
-    handler: handler1
-  });
+    path: '/user/mentor/settings/session',
+    handler: getUserProfileSessionSettings
+   });
+   server.route({
+    method: 'POST',
+    path: '/user/mentor/settings/session/create',
+    handler: setUserProfileSessionSettings
+   });
     server.route({
     method: 'GET',
-    path: '/handler2',
-    handler: handler2
-  });
+    path: '/user/mentor/profile',
+    handler: getUserProfile
+   });
+     server.route({
+    method: 'POST',
+    path: '/user/mentor/profile/create',
+    handler: setUserProfile
+   });
 
   return next();
 }

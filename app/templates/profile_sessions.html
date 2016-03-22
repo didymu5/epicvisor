@@ -3,6 +3,10 @@
 	Set up your sessions
 </h2>
 
+<div class="alert" ng-if="savedText">
+	{{savedText}}
+</div>
+
 <div class="row">
 	<span>
 		How many student EpicSessions would you like to hold?
@@ -24,11 +28,9 @@
 
 <div class="row">
 	<h3> Which topics would you like to share about? </h3>
+
 	<div ng-repeat="topic in topics">
-		<div>
-			{{topic}}
-			<input type="checkbox" ng-click="selectTopic(topic)">
-		</div>
+		<topic topic-to-select="topic"></topic>
 	</div>
 </div>
 
@@ -53,3 +55,7 @@
 	</span>
 	
 </div>
+
+<button class="button" ng-click="saveSessionState()">
+	Update Profile Settings
+</button>
