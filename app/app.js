@@ -126,7 +126,7 @@ myApp.service('mentorService', function($http) {
       return $http.get('/mentors').then(function(res) {
         var mentors = res.data;
         mentors.map(function(mentor) {
-          var latestPosition = mentor.positions.values[0];
+          var latestPosition = mentor.positions && mentor.positions.values[0];
           if(latestPosition)
           {
             mentor.position = latestPosition.title + " -- " + latestPosition.company.name
