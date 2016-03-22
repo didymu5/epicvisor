@@ -22,7 +22,7 @@ var User = db.sequelize.define('user',{
         type: Sequelize.STRING
       },
        positions: {
-        type: Sequelize.STRING
+        type: Sequelize.JSON
       },
       headline: {
         type: Sequelize.STRING

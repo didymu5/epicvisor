@@ -24,6 +24,11 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'templates/profile_sessions.html',
       controller: 'MentorProfileSessionsController'
     }).
+    when('/landing',
+      {
+        templateUrl: 'templates/landing.html',
+        controller: 'ProfileSearchController'
+      }).
     otherwise({
       redirectTo: '/home'
     });
@@ -113,6 +118,39 @@ config(function ($routeProvider, $locationProvider) {
       });
     }
   };
+})
+
+myApp.service('mentorService', function($http) {
+  return {
+    getMentors: function(){
+      return $http.get('/mentors').then(function(res) {
+        var mentors = res.data;
+        mentors.map(function(mentor) {
+          var latestPosition = mentor.positions.values[0];
+          if(latestPosition)
+          {
+            mentor.position = latestPosition.title + " -- " + latestPosition.company.name
+          }
+          return mentor;
+        });
+        return res.data;
+      });
+    }
+  }
+})
+
+myApp = myApp.controller('ProfileSearchController', function($scope, userService, mentorService) {
+  userService.getUser().then(function(user) {
+    $scope.user = user;
+  })
+  mentorService.getMentors().then(function(mentors) {
+    $scope.mentors = mentors;
+  })
+  $scope.search = function() {
+    mentorService.getMentors().then(function(mentors) {
+      $scope.mentors = mentors;
+    })
+  }
 })
 
 myApp.controller('ApplicationController', function($scope, userService) {

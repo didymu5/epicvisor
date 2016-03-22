@@ -9,10 +9,18 @@ var UserProfile = require('../../models/user_profile');
 var UserProfileSessionSetting = require('../../models/user_profile_session_settings');
 var Sessions = require('../../models/sessions');
 var moment = require('moment');
+var sequelize = require('../../models').sequelize;
 function sayHello(request, reply) {
 
   reply({
     hello: request.params.name
+  });
+}
+
+function getMentors(request, reply){
+  sequelize.query("SELECT * FROM users LEFT JOIN user_profiles ON users.id = user_profiles.user_id", { type: sequelize.QueryTypes.SELECT})
+  .then(function(users) {
+    reply(users);
   });
 }
 
@@ -102,7 +110,8 @@ function linkedInOAUTH(request, reply) {
             headline: $in.headline,
             user_access_token: results.access_token,
             avatar: $in.pictureUrl,
-            linkedin_id: $in.id
+            linkedin_id: $in.id,
+            positions: $in.positions
           }
           User.findOrCreate({
             where: {
@@ -169,6 +178,11 @@ function register(server, options, next) {
     path: '/sessions/user',
     handler: getSessions
   });
+  server.route({
+    method: 'GET',
+    path: '/mentors',
+    handler: getMentors
+  })
 
   return next();
 }
