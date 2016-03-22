@@ -4,6 +4,7 @@ import angular from 'angular';
 
 import angular_routes from 'angular-route';
 
+import moment from 'moment';
 // Declare app level module which depends on filters, and services
 
 var myApp = angular.module('myApp', [
@@ -55,6 +56,19 @@ config(function ($routeProvider, $locationProvider) {
     userState.user = res.data;
     return userState.user;
   });
+  function makeSessions(sessions, sessionState) {
+    var numberOfSessionsToGenerate = sessionState.sessionCount;
+    for(var week=0; week <4; week++) {
+      for(var sessionNumber=0; sessionNumber<numberOfSessionsToGenerate; sessionNumber++) {
+        sessions.push({
+          date: moment().add(week, 'week'),
+          number: sessionNumber+1,
+          status: 'Open'
+        })
+      }
+    }
+    return sessions;
+  }
   return {
     getUser: function() {
       return userStateFetch;
@@ -63,6 +77,15 @@ config(function ($routeProvider, $locationProvider) {
       return $http.get('/user/mentor/profile').then(function(res) {
         userState.profile = res.data;
         return userState.profile;
+      });
+    },
+    getSessions: function() {
+      var self = this;
+      return $http.get('/sessions/user').then(function(res) {
+        var sessions = res.data;
+        return self.getSessionSettings().then(function(sessionState) {       
+          return makeSessions(sessions, sessionState);
+        })
       });
     },
     getSessionSettings: function() {
@@ -113,6 +136,9 @@ myApp.controller('ApplicationController', function($scope, userService) {
       $scope.selectedYear = profile.year || "2016";
       $scope.blurb = profile.blurb || "";
    });
+   userService.getSessions().then(function(sessions) {
+    $scope.sessions = sessions;
+  });
 
    $scope.years = Array.from(new Array(2016-1940), (x,i) => 2016-i);
    $scope.saveProfile = function() {
@@ -146,6 +172,8 @@ myApp.controller('ApplicationController', function($scope, userService) {
   var extractTopics = function() {
     return Object.keys($scope.selectedTopics)
   }
+
+  
 
   $scope.saveSessionState = function() {
     $scope.loading = false;

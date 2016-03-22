@@ -7,10 +7,22 @@ var scope = ['r_basicprofile',  'r_emailaddress'];
 var User = require('../../models/user');
 var UserProfile = require('../../models/user_profile');
 var UserProfileSessionSetting = require('../../models/user_profile_session_settings');
+var Sessions = require('../../models/sessions');
+var moment = require('moment');
 function sayHello(request, reply) {
 
   reply({
     hello: request.params.name
+  });
+}
+
+function getSessions(request, reply) {
+  var dates = [moment().startOf('day').toDate(), moment().startOf('day').add('4','weeks').toDate()];
+  Sessions.find({
+    where:{'date': {$between: dates 
+      }}})
+  .then(function(sessions) {
+    reply(sessions || []);
   });
 }
 
@@ -152,6 +164,11 @@ function register(server, options, next) {
     path: '/user/mentor/profile/create',
     handler: setUserProfile
    });
+  server.route({
+    method: 'GET',
+    path: '/sessions/user',
+    handler: getSessions
+  });
 
   return next();
 }
