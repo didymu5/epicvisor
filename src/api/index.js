@@ -80,7 +80,6 @@ function linkedInOAUTH(request, reply) {
             return console.error(err);
         var linkedin = Linkedin.init(results.access_token);
         linkedin.people.me(['id','first-name','last-name','picture-url', 'headline','location','industry','summary','positions','specialties','public-profile-url','email-address'], function(err, $in) {
-          console.log($in)
           var userDetails = {
             first_name: $in.firstName,
             last_name: $in.lastName,
@@ -98,10 +97,8 @@ function linkedInOAUTH(request, reply) {
               linkedin_id: $in.id
             },
             defaults: userDetails}).then(function(userData) {
-              console.log("MEO!")
             userData[0].update(userDetails, {fields: Object.keys(userDetails)}).then(function(userData) {
               request.yar.set('user', userData);
-              console.log("DOUBLE RAINBOW!")
               return reply.redirect('/index.html#/profile');
             });
           });
