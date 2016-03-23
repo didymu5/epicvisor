@@ -27,7 +27,7 @@
     <a href="javascript:void(0)" id="js-centered-navigation-mobile-menu" class="centered-navigation-mobile-menu">MENU</a>
     <nav role="navigation">
       <ul id="js-centered-navigation-menu" class="centered-navigation-menu show">
-        <li class="nav-link"><a href="javascript:void(0)">Mentors</a></li>
+        <li class="nav-link"><a href="landing.html">Mentors</a></li>
         <li class="nav-link"><a href="javascript:void(0)">About Us</a></li>
         <li class="nav-link"><a href="javascript:void(0)">Contact</a></li>
         <li class="nav-link logo">
@@ -62,40 +62,33 @@
 <div class="profile">
   <div class="profile__name-info">
     <div class="profile__avatar">
-      <img class="profile__img" src="#">
+      <img class="profile__img" src="assets/images/edchoprofile.jpg">
     </div>
     <div class="profile__name-info-name">
-      <h1>Nick Camrillo</h1>
+      <h1>Ed Cho</h1>
     </div>
     <div class="profile__name-info-about">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>A professonial with a wide experience in marketing, finance and leading people. Detailed and deidcated to business and entrepreneurship </p>
     </div>
     <div class="profile__name-info-edu">
       <h2>Education</h2>
       <p>UCLA, School of Anderson</p>
-      <p>2014</p>
+      <p>2013</p>
     </div>
   </div>
 
   <div class="profile__area-info">
     <h2>Career Field</h2>
     <ul>
-      <li>Career Field topic</li>
-      <li>Career Field topic</li>
-      <li>Career Field topic</li>
-      <li>Career Field topic</li>
+      <li>Marketing</li>
+      <li>Business</li>
+      <li>Technology</li>
     </ul>
     <h2>Advice Topic</h2>
     <ul>
-      <li>Advice topic</li>
-      <li>Advice topic</li>
-      <li>Advice topic</li>
-      <li>Advice topic</li>
+      <li>Mentoring</li>
+      <li>Career Growth</li>
+      <li>Greate Ideas</li>
     </ul>
   </div>
 </div>
@@ -174,17 +167,6 @@ $(document).ready(function() {
       }
     });
   });
-  window.userImgThumbnail;
-  $.ajax({
-      url: 'https://randomuser.me/api/',
-      dataType: 'json',
-      success: function(data){
-        console.log(data)
-        userImgThumbnail = data.results[0].user.picture.thumbnail;
-        $('.profile__img').attr('src', userImgThumbnail);
-      }
-    });
-
 });
 </script>
 

@@ -125,36 +125,36 @@
 
 <div class="card-list">
     <div class="cards">
-        <div class="card">
+        <div class="card" id="edchoprofile">
             <div class="card-image">
-                <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
+                <img src="assets/images/edchoprofile.jpg" alt="Ed Cho">
             </div>
             <div class="card-header">
-                First Card
+                Ed Cho
             </div>
             <div class="card-copy">
                 <p>Anderson UCLA, 2013</p>
-                <p>Operations and Communitions Manager</p>
+                <p>Strategic Partner Marketing Manager</p>
             </div>
         </div>
         <div class="card">
             <div class="card-image">
-                <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains-4.png" alt="">
+                <img src="assets/images/ekim.jpg" alt="Eugene Kim">
             </div>
             <div class="card-header">
-                Another Card
+                Eugene Kim
             </div>
             <div class="card-copy">
-                <p>Anderson UCLA, 2012</p>
-                <p>Senior Executive Marketing Officer, Cisco</p>
+                <p>Anderson UCLA, 2011</p>
+                <p>Global Product Marketing, Cisco</p>
             </div>
         </div>
         <div class="card">
             <div class="card-image">
-                <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains-3.png" alt="">
+                <img src="assets/images/louie.jpg" alt="Ed Cho">
             </div>
             <div class="card-header">
-                Louie Siongco
+                Louies Siongco
             </div>
             <div class="card-copy">
                 <p>Anderson UCLA, 2012</p>
@@ -167,7 +167,7 @@
                 <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
             </div>
             <div class="card-header">
-                First Card
+                Mentor 1
             </div>
             <div class="card-copy">
                 <p>Anderson UCLA, 2013</p>
@@ -179,7 +179,7 @@
                 <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains-4.png" alt="">
             </div>
             <div class="card-header">
-                Another Card
+                Mentor 2
             </div>
             <div class="card-copy">
                 <p>Anderson UCLA, 2012</p>
@@ -191,7 +191,7 @@
                 <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains-3.png" alt="">
             </div>
             <div class="card-header">
-                Louie Siongco
+                Mentor 3
             </div>
             <div class="card-copy">
                 <p>Anderson UCLA, 2012</p>
@@ -224,8 +224,8 @@ $(document).ready(function() {
       success: function(data){
         console.log(data)
         userImgThumbnail = data.results[0].user.picture.thumbnail;
-        $('.card-image img').eq(0).attr('src', userImgThumbnail);
-        $('.card-header').eq(0).html(data.results[0].user.name.first + ' ' + data.results[0].user.name.last);
+        $('.card-image img').eq(3).attr('src', userImgThumbnail);
+        $('.card-header').eq(3).html(data.results[0].user.name.first + ' ' + data.results[0].user.name.last);
       }
     });
   $.ajax({
@@ -234,8 +234,8 @@ $(document).ready(function() {
       success: function(data){
         console.log(data)
         userImgThumbnail = data.results[0].user.picture.thumbnail;
-        $('.card-image img').eq(1).attr('src', userImgThumbnail);
-        $('.card-header').eq(1).html(data.results[0].user.name.first + ' ' + data.results[0].user.name.last);
+        $('.card-image img').eq(4).attr('src', userImgThumbnail);
+        $('.card-header').eq(4).html(data.results[0].user.name.first + ' ' + data.results[0].user.name.last);
       }
     });
   $.ajax({
@@ -244,11 +244,15 @@ $(document).ready(function() {
       success: function(data){
         console.log(data)
         userImgThumbnail = data.results[0].user.picture.thumbnail;
-        $('.card-image img').eq(2).attr('src', userImgThumbnail);
-        $('.card-header').eq(2).html(data.results[0].user.name.first + ' ' + data.results[0].user.name.last);
+        $('.card-image img').eq(5).attr('src', userImgThumbnail);
+        $('.card-header').eq(5).html(data.results[0].user.name.first + ' ' + data.results[0].user.name.last);
       }
     });
   Filter.enhance();
+
+  $('#edchoprofile').on('click', function(e) {
+    window.location = 'profile.html';
+  })
 });
 </script>
 
