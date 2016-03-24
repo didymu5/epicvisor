@@ -24,7 +24,27 @@ function getMentors(request, reply){
   });
 }
 
+function getMentor(request, reply) {
+  sequelize.query(`SELECT * FROM users
+    LEFT JOIN user_profiles ON users.id = user_profiles.user_id 
+    LEFT JOIN user_profile_session_settings ON users.id = user_profile_session_settings.user_id
+    WHERE users.id = ?`, { type: sequelize.QueryTypes.SELECT, replacements: [request.params.id]})
+  .then(function(users) {
+    reply(users[0]);
+  });
+}
+
 function getSessions(request, reply) {
+  var dates = [moment().startOf('day').toDate(), moment().startOf('day').add('4','weeks').toDate()];
+  Sessions.find({
+    where:{'user_id': request.params.id,'date': {$between: dates 
+      }}})
+  .then(function(sessions) {
+    reply(sessions || []);
+  });
+}
+
+function getMentorSessions(request, reply) {
   var dates = [moment().startOf('day').toDate(), moment().startOf('day').add('4','weeks').toDate()];
   Sessions.find({
     where:{'date': {$between: dates 
@@ -60,6 +80,16 @@ function getUserProfileSessionSettings(request, reply) {
   UserProfileSessionSetting.find({
     where: {
       user_id : request.yar.get('user').id.toString()
+    }
+  }).then(function(userProfile) {
+    reply(userProfile);
+  });
+}
+
+function getMentorProfileSessionSettings(request, reply) {
+  UserProfileSessionSetting.find({
+    where: {
+      user_id : request.params.id
     }
   }).then(function(userProfile) {
     reply(userProfile);
@@ -182,6 +212,23 @@ function register(server, options, next) {
     method: 'GET',
     path: '/mentors',
     handler: getMentors
+  });
+  server.route({
+    method:'GET',
+    path: '/mentors/{id}',
+    handler: getMentor
+  });
+
+  server.route({
+    method: 'GET',
+    path:'/mentor/{id}/sessions',
+    handler: getMentorSessions
+  })
+
+  server.route({
+    method:'GET',
+    path:'/mentor/{id}/settings/session',
+    handler: getMentorProfileSessionSettings
   })
 
   return next();

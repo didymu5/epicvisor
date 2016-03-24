@@ -3,6 +3,7 @@
 import angular from 'angular';
 
 import angular_routes from 'angular-route';
+import mentorDetailsController from './controllers/mentor_details_controller';
 
 import moment from 'moment';
 // Declare app level module which depends on filters, and services
@@ -15,6 +16,11 @@ config(function ($routeProvider, $locationProvider) {
     when('/home', {
       templateUrl: 'templates/home.html',
       controller: 'HomeController'
+    }).
+    when('/mentors/:mentor_id', {
+      templateUrl: 'templates/mentor_details.html',
+      controller: 'MentorDetailsController',
+      resolve: mentorDetailsController.$resolve
     }).
     when('/profile', {
       templateUrl: 'templates/profile.html',
@@ -55,183 +61,26 @@ config(function ($routeProvider, $locationProvider) {
    
   }
 })
-.service('userService', function($http, $q) {
-  var userState = {};
-  var userStateFetch = $http.get('/user/info').then(function(res) {
-    userState.user = res.data;
-    return userState.user;
-  });
-  function makeSessions(sessions, sessionState) {
-    var numberOfSessionsToGenerate = sessionState.sessionCount;
-    for(var week=0; week <4; week++) {
-      for(var sessionNumber=0; sessionNumber<numberOfSessionsToGenerate; sessionNumber++) {
-        sessions.push({
-          date: moment().add(week, 'week'),
-          number: sessionNumber+1,
-          status: 'Open'
-        })
-      }
-    }
-    return sessions;
-  }
-  return {
-    getUser: function() {
-      return userStateFetch;
-    },
-    getProfile: function() {
-      return $http.get('/user/mentor/profile').then(function(res) {
-        userState.profile = res.data;
-        return userState.profile;
-      });
-    },
-    getSessions: function() {
-      var self = this;
-      return $http.get('/sessions/user').then(function(res) {
-        var sessions = res.data;
-        return self.getSessionSettings().then(function(sessionState) {       
-          return makeSessions(sessions, sessionState);
-        })
-      });
-    },
-    getSessionSettings: function() {
-      return $http.get('/user/mentor/settings/session').then(function(res) {
-        userState.sessionSettings = res.data;
-        return userState.sessionSettings;
-      });
-    },
-    setSessionSettings: function(sessionState) {
-      return $http({
-        method: 'POST',
-        url: '/user/mentor/settings/session/create',
-        data: {
-          sessionState
-        }
-      });
-    },
-    setProfileSettings: function(profileSettings) {
-      return $http({
-        method: 'POST',
-        url: '/user/mentor/profile/create',
-        data: {
-          profileSettings
-        }
-      });
-    }
-  };
-})
 
-myApp.service('mentorService', function($http) {
-  return {
-    getMentors: function(){
-      return $http.get('/mentors').then(function(res) {
-        var mentors = res.data;
-        mentors.map(function(mentor) {
-          var latestPosition = mentor.positions && mentor.positions.values[0];
-          if(latestPosition)
-          {
-            mentor.position = latestPosition.title + " -- " + latestPosition.company.name
-          }
-          return mentor;
-        });
-        return res.data;
-      });
-    }
-  }
-})
+import nameFilter from './filters/name_filter';
+myApp.filter('name', nameFilter);
 
-myApp = myApp.controller('ProfileSearchController', function($scope, userService, mentorService) {
-  userService.getUser().then(function(user) {
-    $scope.user = user;
-  })
-  mentorService.getMentors().then(function(mentors) {
-    $scope.mentors = mentors;
-  })
-  $scope.search = function() {
-    mentorService.getMentors().then(function(mentors) {
-      $scope.mentors = mentors;
-    })
-  }
-})
+import mentorService from './services/mentor_service';
+import userService from './services/user_service';
+import sessionsService from './services/sessions_service';
 
-myApp.controller('ApplicationController', function($scope, userService) {
-  userService.getUser().then(function(user) {
-    $scope.user = user;
-  });
-  $scope.signedIn = function() {
-    return $scope.user;
-  }
-}).controller('HomeController', function($scope, userService) {
-  userService.getUser().then(function(user) {
-    if(user) {
-      $scope.user = user;
-    }
-  });
-}).controller('MentorProfileController', function($scope, userService) {
-   userService.getUser().then(function(user) {
-      $scope.user = user;
-  });
-   userService.getProfile().then(function(profile) {
-      $scope.selectedYear = profile.year || "2016";
-      $scope.blurb = profile.blurb || "";
-   });
-   userService.getSessions().then(function(sessions) {
-    $scope.sessions = sessions;
-  });
+myApp.service('mentorService', mentorService);
+myApp.service('userService', userService);
+myApp.service('sessionsService', sessionsService);
 
-   $scope.years = Array.from(new Array(2016-1940), (x,i) => 2016-i);
-   $scope.saveProfile = function() {
-    userService.setProfileSettings({
-      blurb: $scope.blurb,
-      year: $scope.selectedYear
-    });
-   }
-
-}).controller('MentorProfileSessionsController', function($scope, userService) {
-  userService.getUser().then(function(user) {
-      $scope.user = user;
-  });  
-  $scope.selectedTopics = {};
-  userService.getSessionSettings().then(function(userSessionSettings) {
-    $scope.selectedContact = userSessionSettings.contact || $scope.contacts[0];
-    $scope.selectedSessionCountType = userSessionSettings.sessionCountType || $scope.sessionCountTypes[0];
-    $scope.selectedSessionCount = userSessionSettings.sessionCount || $scope.sessionCounts[0];
-    $scope.extraTopic1 = userSessionSettings.extraTopic1;
-    $scope.extraTopic2 = userSessionSettings.extraTopic2;
-    $scope.extraTopic3 = userSessionSettings.extraTopic3;
-    $scope.contactDetails = userSessionSettings.contactDetails;
-    if(userSessionSettings.topics) {
-       userSessionSettings.topics.forEach(function(topic){
-        $scope.selectedTopics[topic] = true;
-      });
-    }
-
-   
-  })
-  var extractTopics = function() {
-    return Object.keys($scope.selectedTopics)
-  }
-
-  
-
-  $scope.saveSessionState = function() {
-    $scope.loading = false;
-    return userService.setSessionSettings({
-      contact: $scope.selectedContact,
-      sessionCountType: $scope.selectedSessionCountType,
-      sessionCount: $scope.selectedSessionCount,
-      extraTopic1: $scope.extraTopic1,
-      extraTopic2: $scope.extraTopic2,
-      extraTopic3: $scope.extraTopic3,
-      contactDetails: $scope.contactDetails,
-      topics: extractTopics()
-    }).then(function(data) {
-      $scope.loading = true;
-      $scope.savedText = "Your details have been saved."
-    })
-  }
-  $scope.sessionCounts = Array.from(new Array(5), (x,i) => i+1);
-  $scope.sessionCountTypes = ["Per Week", "Per Month"]; 
-  $scope.topics = ["Career Advancement", "Building a Team","Internships","International Business","Raising Funding","Work Life Balance"];
-  $scope.contacts = ["Skype", "Email", "Google Hangouts"]
-  
-});
+import profileSearchController from './controllers/profile_search_controller';
+import homeController from './controllers/home_controller';
+import applicationController from './controllers/application_controller';
+import mentorProfileController from './controllers/mentor_profile_controller';
+import mentorProfileSessionsController from './controllers/mentor_profile_sessions_controller';
+myApp = myApp.controller('HomeController', homeController);
+myApp = myApp.controller('ApplicationController', applicationController);
+myApp = myApp.controller('MentorProfileController', mentorProfileController);
+myApp = myApp.controller('MentorProfileSessionsController', mentorProfileSessionsController);
+myApp = myApp.controller('ProfileSearchController', profileSearchController);
+myApp = myApp.controller('MentorDetailsController', mentorDetailsController);

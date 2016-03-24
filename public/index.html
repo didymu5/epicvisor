@@ -22,10 +22,12 @@
 <body>
 <div ng-app="myApp">
   <div ng-controller="ApplicationController">
-    <div ng-view ng-if="signedIn()"> </div>
-    <a href='/oauth/linkedin' ng-if="!signedIn()">
-      Register with Linkedin
+     <a href='/oauth/linkedin' ng-if="!signedIn() && !notNecessaryToSignIn()">
+      Register or Sign In with Linkedin
     </a>
+    <profile-menu> </profile-menu>
+    <div ng-view ng-if="signedIn() || notNecessaryToSignIn()"> </div>
+   
   </div>
 </div>
 
