@@ -1,6 +1,7 @@
 import moment from 'moment';
 
 function sessionsService($http, userService, mentorService) {
+	sessionState = {};
 	function makeSessions(sessions, sessionState) {
 	    var numberOfSessionsToGenerate = sessionState.sessionCount;
 	    for(var week=0; week <4; week++) {
@@ -23,6 +24,18 @@ function sessionsService($http, userService, mentorService) {
           return makeSessions(sessions, sessionState);
         })
       });
+    },
+    storeMentor: function(mentor) {
+    	sessionState.mentor = mentor;
+    },
+    storeSession: function(session) {
+    	sessionState.session = session
+    },
+    getSession: function() {
+    	return sessionState.session;
+    },
+    getSessionMentor: function(){
+    	return sessionState.mentor;
     },
     getMentorSessions: function(mentorId) {
 		var self = this;

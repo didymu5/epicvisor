@@ -42,6 +42,7 @@
       <td>Session {{session.number}}</td>
       <td>Status</td>
       <td class="scheduler__session-status-open">{{session.status}}</td>
+      <td> <button ng-if="session.status === 'Open'" ng-click="bookSession(session, mentor)"> Book </button> </td>
     </tr>
   </tbody>
 </table>
