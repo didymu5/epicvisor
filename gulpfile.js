@@ -11,7 +11,7 @@ var paths = {
 gulp.task('build', function() {
   'use strict';
 
-  return gulp.src(['src/**/*.js'])
+  return gulp.src(['src/**/*.js', 'src/**/*.es6'])
     .pipe($.cached('*.js'))
     .pipe($.babel())
     .pipe(gulp.dest('dist/'));
