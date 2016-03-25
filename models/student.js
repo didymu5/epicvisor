@@ -1,6 +1,6 @@
 var db = require('./index');
 var Sequelize = db.Sequelize;
-var Session = db.sequelize.define('sessions',{
+var Student = db.sequelize.define('students',{
   id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -9,14 +9,15 @@ var Session = db.sequelize.define('sessions',{
       user_id: {
         type: Sequelize.STRING
       },
-      date: {
-        type: Sequelize.DATE
-      },
-      status: {
+      class_year: {
         type: Sequelize.STRING
       },
-      student_id: {
-        type: Sequelize.INTEGER
+      name: {
+        type: Sequelize.STRING
+      },
+      email: {
+        type: Sequelize.STRING
       }
+
 })
-module.exports = Session;
+module.exports = Student;

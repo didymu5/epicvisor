@@ -8,13 +8,30 @@ var User = require('../../models/user');
 var UserProfile = require('../../models/user_profile');
 var UserProfileSessionSetting = require('../../models/user_profile_session_settings');
 var Sessions = require('../../models/sessions');
+var Student = require('../../models/student');
 var moment = require('moment');
 var sequelize = require('../../models').sequelize;
-function sayHello(request, reply) {
 
-  reply({
-    hello: request.params.name
+function bookAppointment(request, reply) {
+  var bookingDetails = request.payload.data;
+  bookingDetails.user_id = request.params.id;
+  console.log("WHATSA UP?");
+  console.log(bookingDetails);
+  Sessions.create(bookingDetails).then(function(created) {
+    reply(created);
   });
+}
+
+function checkStudentSignature(request, reply) {
+  var studentDetails = request.payload.data;
+  Student.findOne({where: {name: studentDetails.name, email: studentDetails.email}}).then(function(student) {
+    if(student) {
+      reply(student);
+    }
+    else {
+      reply(undefined);
+    }
+  })
 }
 
 function getMentors(request, reply){
@@ -46,10 +63,12 @@ function getSessions(request, reply) {
 
 function getMentorSessions(request, reply) {
   var dates = [moment().startOf('day').toDate(), moment().startOf('day').add('4','weeks').toDate()];
-  Sessions.find({
+  Sessions.findAll({
     where:{'date': {$between: dates 
       }}})
   .then(function(sessions) {
+    console.log("WUt WUT IN")
+    console.log(sessions);
     reply(sessions || []);
   });
 }
@@ -162,13 +181,6 @@ function register(server, options, next) {
 
   server.route({
     method: 'GET',
-    path: '/hello/{name}',
-    handler: sayHello
-  });
-
-
-  server.route({
-    method: 'GET',
     path: '/oauth/linkedin/callback',
     handler: linkedInOAUTH
   });
@@ -229,6 +241,17 @@ function register(server, options, next) {
     method:'GET',
     path:'/mentor/{id}/settings/session',
     handler: getMentorProfileSessionSettings
+  })
+
+  server.route({
+    method: 'POST',
+    path: '/mentor/{id}/sessions/appointment',
+    handler: bookAppointment
+  });
+  server.route({
+    method: 'POST',
+    path: '/student/verify',
+    handler: checkStudentSignature
   })
 
   return next();

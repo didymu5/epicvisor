@@ -1,7 +1,6 @@
 import moment from 'moment';
-
 function sessionsService($http, userService, mentorService) {
-	sessionState = {};
+	var sessionState = {};
 	function makeSessions(sessions, sessionState) {
 	    var numberOfSessionsToGenerate = sessionState.sessionCount;
 	    for(var week=0; week <4; week++) {
@@ -36,6 +35,22 @@ function sessionsService($http, userService, mentorService) {
     },
     getSessionMentor: function(){
     	return sessionState.mentor;
+    },
+    confirmSession: function(session, mentor, student) {
+    	return $http.post('/student/verify', {data: student}).then(function(res) {
+            var studentData = res.data;
+    		if(studentData) {
+                session.student_id = studentData.id;
+                session.status = 'pending';
+    			return $http.post('/mentor/' + mentor.id +  '/sessions/appointment', 
+                    {data: session}).then(function(session) {
+                        return true;
+                    })
+    		}
+    		else {
+    			return false;
+    		}
+    	})
     },
     getMentorSessions: function(mentorId) {
 		var self = this;

@@ -4,6 +4,7 @@ import angular from 'angular';
 
 import angular_routes from 'angular-route';
 import mentorDetailsController from './controllers/mentor_details_controller';
+import bookSessionController from './controllers/book_session_controller';
 
 import moment from 'moment';
 // Declare app level module which depends on filters, and services
@@ -29,6 +30,12 @@ config(function ($routeProvider, $locationProvider) {
     when('/profile/sessions', {
       templateUrl: 'templates/profile_sessions.html',
       controller: 'MentorProfileSessionsController'
+    }).
+    when('/mentor/sessions/confirm', {
+      templateUrl: 'templates/book_session.html',
+      controller: 'BookSessionController',
+      resolve: bookSessionController.$resolve
+
     }).
     when('/landing',
       {
@@ -78,6 +85,7 @@ import homeController from './controllers/home_controller';
 import applicationController from './controllers/application_controller';
 import mentorProfileController from './controllers/mentor_profile_controller';
 import mentorProfileSessionsController from './controllers/mentor_profile_sessions_controller';
+myApp.controller('BookSessionController', bookSessionController);
 myApp = myApp.controller('HomeController', homeController);
 myApp = myApp.controller('ApplicationController', applicationController);
 myApp = myApp.controller('MentorProfileController', mentorProfileController);

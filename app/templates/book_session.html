@@ -1,0 +1,18 @@
+<div class="booker">
+	<div class="alert" ng-if="error"> {{error}}</div>
+  <h2>Epic Session for 4/13</h2>
+  <form class="booker__session__form">
+    <input type="text" name="name" placeholder="Name" ng-model="name">
+    <input type="text" name="inviteEmail" placeholder="Invite Email" ng-model="email">
+    <span>Only emails invited to EpicVisor can book sessions.</span>
+    <input type="text" name="classYear" placeholder="Enter class year" ng-model="year">
+
+    <p>Which topics would you like to talk about?</p>
+    <div class="booker__checkbox-group">
+    	<div class="booker__checkbox-group--checkboxlabel" ng-repeat="topic in topics"><input type="checkbox" name="chk1" ng-model="selectedTopics[topic]"> <label for="chk1">{{topic}}</label></div>
+    </div>
+      <button ng-click="confirm()">Send Request</button>
+      <button ng-click="cancel()">Cancel</button>
+  </form>
+
+</div>

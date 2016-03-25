@@ -2,10 +2,10 @@ function mentorDetailsController($scope, user, mentor, mentorSessions, sessionsS
 	$scope.user = user;
 	$scope.mentor = mentor;
 	$scope.mentorSessions = mentorSessions;
-	$scope.bookSession = function(mentor, session){
+	$scope.bookSession = function(session, mentor){
 		sessionsService.storeMentor(mentor);
 		sessionsService.storeSession(session);
-		$location.path('/session/book')
+		$location.path('/mentor/sessions/confirm')
 	}
 }
 mentorDetailsController.$resolve = {
