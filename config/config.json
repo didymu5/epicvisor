@@ -7,7 +7,7 @@
     "dialect": "postgres"
   },
   "test": {
-    "username": "root",
+    "username": "ian",
     "password": null,
     "database": "epicvisor_test",
     "host": "127.0.0.1",

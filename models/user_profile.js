@@ -13,7 +13,7 @@ var UserProfile = db.sequelize.define('user_profiles',{
         type: Sequelize.TEXT
       },
       user_id: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       }
 })
 module.exports = UserProfile;

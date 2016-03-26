@@ -31,7 +31,7 @@ var UserProfileSessionSettings = db.sequelize.define('user_profile_session_setti
         type: Sequelize.STRING
       },
       user_id: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       }
 })
 module.exports = UserProfileSessionSettings;
