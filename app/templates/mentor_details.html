@@ -38,7 +38,7 @@
   <table class="scheduler__tables">
   <tbody>
     <tr ng-repeat="session in mentorSessions">
-      <td>Week of {{session.date.toDate() | date:"M/d"}}</td>
+      <td>Week of {{session.date | date:"M/d"}}</td>
       <td>Session {{session.number}}</td>
       <td>Status</td>
       <td class="scheduler__session-status-open">{{session.status}}</td>

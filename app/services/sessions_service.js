@@ -6,7 +6,7 @@ function sessionsService($http, userService, mentorService) {
 	    for(var week=0; week <4; week++) {
 	      for(var sessionNumber=0; sessionNumber<numberOfSessionsToGenerate; sessionNumber++) {
 	        sessions.push({
-	          date: moment().add(week, 'week'),
+	          date: moment().add(week, 'week').toDate(),
 	          number: sessionNumber+1,
 	          status: 'Open'
 	        })
