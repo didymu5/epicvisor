@@ -3,8 +3,8 @@ var User = require('../../models/user');
 var Linkedin;
 var callback_url;
 exports.initialize = function(LinkedInModule) {
-  Linkedin = LinkedInModule( '753q6tuln2wr0s', 'lK27ABwIJOYFe8Uz');
-  callback_url = process.env.CALLBACK_URL || "https://arcane-badlands-87546.herokuapp.com";
+  Linkedin = LinkedInModule( process.env.LINKEDIN_API_KEY, process.env.LINKEDIN_API_SECRET);
+  callback_url = process.env.CALLBACK_URL ;
   Linkedin.auth.setCallback(callback_url + '/oauth/linkedin/callback');
   
   return {
