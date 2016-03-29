@@ -81,6 +81,16 @@ function register(server, options, next) {
     path: '/student/verify',
     handler: sessionsController.checkStudentSignature
   })
+   server.route({
+    method: 'GET',
+    path: '/students/{id}',
+    handler: sessionsController.getStudent
+  })
+   server.route({
+    method: 'GET',
+    path: '/sessions/{id}',
+    handler: sessionsController.getSession
+  })
 
   return next();
 }
