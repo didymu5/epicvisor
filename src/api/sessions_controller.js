@@ -10,7 +10,6 @@ exports.bookAppointment = function (request, reply) {
   var Mailgun = require('mailgun-js');
 
   // bookingDetails.user_id = encodeURIComponent(request.params.id);
-  console.log("WHATSA UP?");
   var emailTemplate =  Handlebars.compile(fs.readFileSync(Path.resolve(__dirname, '../templates/email-intro.hbs'), 'utf-8'));
 
   var mailgun = new Mailgun({apiKey: process.env.MAILGUN_API_KEY, domain: process.env.MAILGUN_DOMAIN});
@@ -25,7 +24,7 @@ exports.bookAppointment = function (request, reply) {
       throw err;
     }
     reply('emails sent');
-  });
+
   // Sessions.create(bookingDetails).then(function(created) {
   //   console.log(created)
     // email_data.to = created.menotorEmail + ',' + created.menteeEmail;
@@ -41,6 +40,20 @@ exports.bookAppointment = function (request, reply) {
   //   reply(created);
   // });
 }
+=======
+exports.getStudent = function(request, reply) {
+  Student.findOne({where:{id: request.params.id}}).then(function(student) {
+    reply(student || undefined);
+  });
+}
+
+exports.getSession = function(request, reply) {
+  Sessions.findOne({where:{id: request.params.id}}).then(function(session) {
+    reply(session || undefined);
+  });
+}
+
+>>>>>>> changing session details
 exports.checkStudentSignature = function(request, reply) {
   var studentDetails = request.payload.data;
   Student.findOne({where: {name: studentDetails.name, email: studentDetails.email}}).then(function(student) {

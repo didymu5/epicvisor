@@ -30,7 +30,7 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 }
 book_session_controller.$resolve = {
 	session: ['sessionsService', function(sessionsService) {
-		return sessionsService.getSession();
+		return sessionsService.getCurrentSession();
 	}],
 	mentor: ['sessionsService', function(sessionsService) {
 		return sessionsService.getSessionMentor();

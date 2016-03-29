@@ -1,5 +1,5 @@
 import moment from 'moment';
-function sessionsService($http, userService, mentorService) {
+function sessionsService($http, userService, mentorService, $q, studentService) {
 	var sessionState = {};
 	function makeSessions(sessions, sessionState) {
 	    var numberOfSessionsToGenerate = sessionState.sessionCount;
@@ -24,13 +24,27 @@ function sessionsService($http, userService, mentorService) {
         })
       });
     },
+    getSession: function(sessionid) {
+        return $http.get('/sessions/' + sessionid).then(function(res) {
+            var session = res.data;
+            var mentorId = session.user_id;
+            var studentId = session.student_id;
+            return $q.all([mentorService.getMentor(mentorId), studentService.getStudent(studentId)])
+            .then(function(results) {
+                session.mentor = results[0];
+                session.student = results[1];
+                return session;
+            });
+        });
+
+    },
     storeMentor: function(mentor) {
     	sessionState.mentor = mentor;
     },
     storeSession: function(session) {
     	sessionState.session = session
     },
-    getSession: function() {
+    getCurrentSession: function() {
     	return sessionState.session;
     },
     getSessionMentor: function(){
@@ -42,7 +56,7 @@ function sessionsService($http, userService, mentorService) {
     		if(studentData) {
                 session.student_id = studentData.id;
                 session.status = 'pending';
-    			return $http.post('/mentor/' + mentor.id +  '/sessions/appointment', 
+			return $http.post('/mentor/' + mentor.user_id +  '/sessions/appointment',
                     {data: session}).then(function(session) {
                         return true;
                     })
@@ -64,5 +78,5 @@ function sessionsService($http, userService, mentorService) {
 	};
 }
 
-sessionsService.$inject =['$http', 'userService','mentorService'];
+sessionsService.$inject =['$http', 'userService','mentorService', '$q', 'studentService'];
 export default sessionsService;

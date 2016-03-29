@@ -5,7 +5,7 @@ import angular from 'angular';
 import angular_routes from 'angular-route';
 import mentorDetailsController from './controllers/mentor_details_controller';
 import bookSessionController from './controllers/book_session_controller';
-
+import sessionDetailsController from './controllers/session_details_controller';
 import moment from 'moment';
 // Declare app level module which depends on filters, and services
 
@@ -35,6 +35,12 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'templates/book_session.html',
       controller: 'BookSessionController',
       resolve: bookSessionController.$resolve
+
+    }).
+    when('/sessions/:session_id', {
+      templateUrl: 'templates/session_details.html',
+      controller: 'SessionDetailsController',
+      resolve: sessionDetailsController.$resolve
 
     }).
     when('/landing',
@@ -75,10 +81,13 @@ myApp.filter('name', nameFilter);
 import mentorService from './services/mentor_service';
 import userService from './services/user_service';
 import sessionsService from './services/sessions_service';
+import studentService from './services/student_service';
 
 myApp.service('mentorService', mentorService);
 myApp.service('userService', userService);
 myApp.service('sessionsService', sessionsService);
+myApp.service('studentService', studentService);
+
 
 import profileSearchController from './controllers/profile_search_controller';
 import homeController from './controllers/home_controller';
@@ -92,3 +101,4 @@ myApp = myApp.controller('MentorProfileController', mentorProfileController);
 myApp = myApp.controller('MentorProfileSessionsController', mentorProfileSessionsController);
 myApp = myApp.controller('ProfileSearchController', profileSearchController);
 myApp = myApp.controller('MentorDetailsController', mentorDetailsController);
+myApp = myApp.controller('SessionDetailsController', sessionDetailsController);
