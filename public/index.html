@@ -21,55 +21,13 @@
 
 <body>
 <div ng-app="myApp">
-  <div ng-controller="ApplicationController">
-     <a href='/oauth/linkedin' ng-if="!signedIn() && !notNecessaryToSignIn()">
-      Register or Sign In with Linkedin
-    </a>
-    <profile-menu> </profile-menu>
-    <div ng-view ng-if="signedIn() || notNecessaryToSignIn()"> </div>
-   
-  </div>
-</div>
-
-<div class="card-list">
-    <div class="cards">
-        <div class="card">
-            <div class="card-image">
-                <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
-            </div>
-            <div class="card-header">
-                First Card
-            </div>
-            <div class="card-copy">
-                <p>Anderson UCLA, 2013</p>
-                <p>Operations and Communitions Manager</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image">
-                <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains-4.png" alt="">
-            </div>
-            <div class="card-header">
-                Another Card
-            </div>
-            <div class="card-copy">
-                <p>Anderson UCLA, 2012</p>
-                <p>Senior Executive Marketing Officer, Cisco</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image">
-                <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains-3.png" alt="">
-            </div>
-            <div class="card-header">
-                Louie Siongco
-            </div>
-            <div class="card-copy">
-                <p>Anderson UCLA, 2012</p>
-                <p>Director, Human Resources at NBCUniversal, Inc.</p>
-            </div>
-        </div>
+    <div ng-controller="ApplicationController">
+        <header-nav> </header-nav>
+        <div ng-view ng-if="signedIn() || notNecessaryToSignIn()"> </div>
     </div>
+    <a href='/oauth/linkedin' ng-if="!signedIn() && !notNecessaryToSignIn()">
+    Register or Sign In with Linkedin
+    </a>
 </div>
 
 

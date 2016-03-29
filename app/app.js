@@ -46,9 +46,9 @@ config(function ($routeProvider, $locationProvider) {
       redirectTo: '/home'
     });
 
-}).directive('profileMenu', function() {
+}).directive('headerNav', function() {
   return {
-    templateUrl: 'templates/directives/profile_menubar.html'
+    templateUrl: 'templates/directives/header_nav.html'
   }
 }).directive('topic', function() {
   return {
