@@ -7,62 +7,54 @@ const Path = require('path');
 const Vision = require('vision');
 
 require('babel-core/register')({
-    presets: ['react', 'es2015']
+  presets: ['react', 'es2015']
 });
 
 var server = new Hapi.Server();
 var options = {
-    storeBlank: false,
-    cookieOptions: {
-        password: 'the-password-must-be-at-least-32-characters-long',
-        isSecure: false
-    }
+  storeBlank: false,
+  cookieOptions: {
+    password: 'the-password-must-be-at-least-32-characters-long',
+    isSecure: false
+  }
 };
 server.connection({
   port: process.env.PORT || 3333,
   host: process.env.HOST
 });
 server.register({
-    register: require('yar'),
-    options: options
-}, function (err) { });
+  register: require('yar'),
+  options: options
+}, function(err) {
+  if(err) {
+    console.error(err);
+  }
+});
 
 server.register(require('inert'), (err) => {
   if (err) throw err;
 
   server.route({
-     method: 'GET',
-     path: '/{param*}',
-     handler: {
-       directory: {
-         path: 'public',
-         listing: true
-       }
-     }
-   });
-    server.route({
-      method: 'GET',
-      path: '/node_modules/{param*}',
-      handler: {
-          directory: {
-              path: 'node_modules',
-              redirectToSlash: false,
-              index: false
-          }
+    method: 'GET',
+    path: '/{param*}',
+    handler: {
+      directory: {
+        path: 'public',
+        listing: true
       }
+    }
   });
 
-
   server.route({
-      method: 'GET',
-      path: '/templates/{param*}',
-      handler: {
-          directory: {
-              path: 'app/templates',
-              redirectToSlash: false,
-              index: false
-          }
+    method: 'GET',
+    path: '/templates/{param*}',
+    handler: {
+      directory: {
+        path: 'app/templates',
+        redirectToSlash: false,
+        index: false
       }
+    }
   });
 });
 
