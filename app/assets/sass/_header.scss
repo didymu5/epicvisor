@@ -51,6 +51,30 @@ $steel-blue: #4373ae;
   z-index: 9999;
   border-top: 4px $header-top-border--color solid;
   // Mobile view
+
+  .header__logo{
+    $thisWidth: 120px;
+    max-width: $thisWidth;
+    position: relative;
+    float:left;
+    @include span-columns(2);
+    margin-top: 18px;
+    img {
+      max-width: 100%;
+    }
+  }
+  .logo__organization{
+    $thisWidth: 120px;
+    @include shift(3);
+    @include span-columns(2);
+    margin-top: 5px;
+    display: inline;
+    // max-height: $centered-navigation-height;
+    img{
+     max-width: 100%;
+     max-height: $centered-navigation-height;
+    }
+  }
   .navigation-logo{
     float:left;
     width: auto;
