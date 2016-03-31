@@ -14,7 +14,7 @@ exports.getMentor = function (request, reply) {
   sequelize.query(`SELECT * FROM users
     LEFT JOIN user_profiles ON users.id = user_profiles.user_id 
     LEFT JOIN user_profile_session_settings ON users.id = user_profile_session_settings.user_id
-    WHERE users.id = ?`, { type: sequelize.QueryTypes.SELECT, replacements: [request.params.id]})
+    WHERE users.id = ?`, { type: sequelize.QueryTypes.SELECT, replacements: [encodeURIComponent(request.params.id)]})
   .then(function(users) {
     reply(users[0]);
   });
@@ -24,7 +24,7 @@ exports.getMentor = function (request, reply) {
 exports.getMentorProfileSessionSettings = function (request, reply) {
   UserProfileSessionSetting.find({
     where: {
-      user_id : request.params.id
+      user_id : encodeURIComponent(request.params.id)
     }
   }).then(function(userProfile) {
     reply(userProfile);
