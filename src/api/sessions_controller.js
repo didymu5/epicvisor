@@ -4,15 +4,30 @@ var Student = require('../../models/student');
 
 
 exports.bookAppointment = function (request, reply) {
-  var bookingDetails = request.payload.data;
-  bookingDetails.user_id = request.params.id;
-  console.log("WHATSA UP?");
+  var bookingDetails = request;
   console.log(bookingDetails);
-  Sessions.create(bookingDetails).then(function(created) {
-    reply(created);
-  });
-}
+  reply(bookingDetails).code(204);
+  var Mailgun = require('mailgun-js');
 
+  // bookingDetails.user_id = encodeURIComponent(request.params.id);
+  console.log("WHATSA UP?");
+  var mailgun = new Mailgun({apiKey: process.env.MAILGUN_API_KEY, domain: process.env.MAILGUN_DOMAIN});
+  var email_data = {
+    from: 'no-reply@epicvisor.com',
+    to: 'wu.thomas@gmail.com, ehkim007@gmail.com, ian.norris.1991@gmail.com',
+    subject:'',
+    html:'hello'
+  }
+  mailgun.messages().send(email_data, function(err, body){
+    if(err){
+      reply('sent email');
+    }
+  });
+  // Sessions.create(bookingDetails).then(function(created) {
+  //   console.log(created)
+  //   reply(created);
+  // });
+}
 exports.checkStudentSignature = function(request, reply) {
   var studentDetails = request.payload.data;
   Student.findOne({where: {name: studentDetails.name, email: studentDetails.email}}).then(function(student) {
@@ -20,7 +35,7 @@ exports.checkStudentSignature = function(request, reply) {
       reply(student);
     }
     else {
-      reply(undefined);
+      reply(undefined).code(204);
     }
   })
 }
