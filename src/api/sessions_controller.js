@@ -1,30 +1,43 @@
 var moment = require('moment');
 var Sessions = require('../../models/sessions');
 var Student = require('../../models/student');
-
+var fs = require('fs');
+var Path = require('path');
+var Handlebars = require('Handlebars');
 
 exports.bookAppointment = function (request, reply) {
   var bookingDetails = request;
-  console.log(bookingDetails);
-  reply(bookingDetails).code(204);
   var Mailgun = require('mailgun-js');
 
   // bookingDetails.user_id = encodeURIComponent(request.params.id);
   console.log("WHATSA UP?");
+  var emailTemplate =  Handlebars.compile(fs.readFileSync(Path.resolve(__dirname, '../templates/email-intro.hbs'), 'utf-8'));
+
   var mailgun = new Mailgun({apiKey: process.env.MAILGUN_API_KEY, domain: process.env.MAILGUN_DOMAIN});
   var email_data = {
     from: 'no-reply@epicvisor.com',
-    to: 'wu.thomas@gmail.com, ehkim007@gmail.com, ian.norris.1991@gmail.com',
+    to: 'wu.thomas@gmail.com, ian.norris.1991@gmail.com',
     subject:'',
-    html:'hello'
+    html: emailTemplate({mentor: 'Eugene Kim', mentee:'Tommy'})
   }
   mailgun.messages().send(email_data, function(err, body){
     if(err){
-      reply('sent email');
+      throw err;
     }
+    reply('emails sent');
   });
   // Sessions.create(bookingDetails).then(function(created) {
   //   console.log(created)
+    // email_data.to = created.menotorEmail + ',' + created.menteeEmail;
+    // email_data.subject = created.menotee + 'would like to book time with you';
+    // email_data.html = emailTemplate({mentor: created.mentor, mentee: createdmentee});
+
+    // mailgun.messages().send(email_data, function(err, body){
+    // if(err){
+    //   throw err;
+    // }
+    //   reply('emails sent');
+    // });
   //   reply(created);
   // });
 }
