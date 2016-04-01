@@ -92,6 +92,18 @@ function register(server, options, next) {
     handler: sessionsController.getSession
   })
 
+    server.route({
+    method: 'POST',
+    path: '/sessions/{id}/destroy',
+    handler: sessionsController.cancelAppointment
+  });
+
+     server.route({
+    method: 'POST',
+    path: '/sessions/{id}/update',
+    handler: sessionsController.confirmAppointment
+  });
+
   return next();
 }
 

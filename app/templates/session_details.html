@@ -1,3 +1,6 @@
+<div class="alert">
+	{{status}}
+</div>
 <div class="profile">
 	<div class="profile__name-info">
 		<div class="profile__avatar">
@@ -29,24 +32,22 @@
 	Meeting with {{student.name}} ({{student.email}})
 </div>
 <div>
+	<select ng-options="day as day.formattedDate for day in days track by day.date" ng-model="selectedDay"></select>
+	<select ng-options="time as time.formattedTime for time in startTimes track by time.time" ng-model="selectedStartTime"></select>
+	<select ng-options="time as time.formattedTime for time in endTimes track by time.time" ng-model="selectedEndTime"></select>
+</div>
+<div>
 	Preferred way to connect:
 	<input type="text" ng-model="preferredConnection">
 </div>
 <div>
 	<div>
 		<button ng-click="confirm()">
-			Confirm
+			<text ng-if="isPending(session)"> Confirm </text>
+			<text ng-if="!isPending(session)"> Reschedule </text>
 		</button>
 		<p>
 			Confirmation emails will be sent to attendees
-		</p>
-	</div>
-	<div>
-		<button ng-click="reschedule()">
-			Reschedule
-		</button>
-		<p>
-			Please both confirm over email before rescheduling
 		</p>
 	</div>
 	<div>

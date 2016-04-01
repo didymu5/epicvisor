@@ -17,6 +17,15 @@ var Session = db.sequelize.define('sessions',{
       },
       student_id: {
         type: Sequelize.INTEGER
+      },
+      day: {
+        type: Sequelize.DATE
+      },
+      startTime: {
+        type: Sequelize.DATE
+      },
+      endTime: {
+        type: Sequelize.DATE
       }
 })
 module.exports = Session;
