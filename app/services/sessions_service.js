@@ -74,7 +74,7 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
                 session.student_id = studentData.id;
                 session.status = 'pending';
     			return $http.post('/mentor/' + mentor.user_id +  '/sessions/appointment', 
-                    {data: session}).then(function(session) {
+                    session).then(function(session) {
                         return true;
                     })
     		}
