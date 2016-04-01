@@ -38,11 +38,28 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
         });
 
     },
+    confirmTime: function(session, day, startTime, endTime) {
+        return $http.post('/sessions/' + session.id + '/update', 
+        {
+            data: {
+                day: day,
+                startTime: startTime,
+                endTime: endTime
+            }
+        }).then(function(res) {
+            return res.data;
+        });
+    },
+    cancelTime: function(session) {
+        return $http.post('/sessions/' + session.id + '/delete').then(function(res){
+            return res.data;
+        });
+    },
     storeMentor: function(mentor) {
     	sessionState.mentor = mentor;
     },
     storeSession: function(session) {
-    	sessionState.session = session
+    	sessionState.session = session;
     },
     getCurrentSession: function() {
     	return sessionState.session;

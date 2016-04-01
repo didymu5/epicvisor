@@ -6,7 +6,6 @@ var Path = require('path');
 var Handlebars = require('Handlebars');
 
 exports.bookAppointment = function (request, reply) {
-  var bookingDetails = request;
   var Mailgun = require('mailgun-js');
 
   // bookingDetails.user_id = encodeURIComponent(request.params.id);
@@ -19,12 +18,30 @@ exports.bookAppointment = function (request, reply) {
     subject:'',
     html: emailTemplate({mentor: 'Eugene Kim', mentee:'Tommy'})
   }
-  mailgun.messages().send(email_data, function(err, body){
-    if(err){
-      throw err;
-    }
-    reply('emails sent');
+  if(process.env['MAILGUN_DISABLED']) {
+    var bookingDetails = request.payload.data;
+      bookingDetails.user_id = request.params.id;
+      Sessions.create(bookingDetails).then(function(created) {
+            reply('emails sent');
+    });
+  }
+  else {
+    var bookingDetails = request.payload.data;
+      bookingDetails.user_id = request.params.id;
+      Sessions.create(bookingDetails).then(function(created) {
+        mailgun.messages().send(email_data, function(err, body){
+          if(err){
+            throw err;
+          }
+        reply('email sent');
+        return created;
+      });
+    });
+  }
 
+
+  
+ 
   // Sessions.create(bookingDetails).then(function(created) {
   //   console.log(created)
     // email_data.to = created.menotorEmail + ',' + created.menteeEmail;
@@ -40,7 +57,38 @@ exports.bookAppointment = function (request, reply) {
   //   reply(created);
   // });
 }
-=======
+exports.confirmAppointment = function(request, reply) {
+  var bookingDetails = request.payload.data;
+  var sessionId = request.params.id;
+  console.log("LE ID! " + sessionId);
+  console.log("LE PAYLOAD!");
+  console.log(bookingDetails);
+  Sessions.update({
+   day: bookingDetails.day,
+   startTime: bookingDetails.startTime,
+   endTime: bookingDetails.endTime,
+   status: 'confirmed'
+  },
+  {
+    where: {
+      id: sessionId
+    }
+  }).then(function(session) {
+    reply(session);
+  });
+}
+
+exports.cancelAppointment = function(request, reply) {
+  var sessionId = request.params.id;
+  Sessions.destroy({
+    where: {
+      id: sessionId
+    }
+  }).then(function(deleted) {
+    reply();
+  });
+}
+
 exports.getStudent = function(request, reply) {
   Student.findOne({where:{id: request.params.id}}).then(function(student) {
     reply(student || undefined);
@@ -53,7 +101,6 @@ exports.getSession = function(request, reply) {
   });
 }
 
->>>>>>> changing session details
 exports.checkStudentSignature = function(request, reply) {
   var studentDetails = request.payload.data;
   Student.findOne({where: {name: studentDetails.name, email: studentDetails.email}}).then(function(student) {
