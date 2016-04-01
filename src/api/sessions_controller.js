@@ -19,14 +19,14 @@ exports.bookAppointment = function (request, reply) {
     html: emailTemplate({mentor: 'Eugene Kim', mentee:'Tommy'})
   }
   if(process.env['MAILGUN_DISABLED']) {
-    var bookingDetails = request.payload.data;
+    var bookingDetails = request.payload;
       bookingDetails.user_id = request.params.id;
       Sessions.create(bookingDetails).then(function(created) {
             reply('emails sent');
     });
   }
   else {
-    var bookingDetails = request.payload.data;
+    var bookingDetails = request.payload;
       bookingDetails.user_id = request.params.id;
       Sessions.create(bookingDetails).then(function(created) {
         mailgun.messages().send(email_data, function(err, body){
