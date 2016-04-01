@@ -4,10 +4,12 @@
       <a href="#/home"><img src="https://s3-us-west-1.amazonaws.com/epicvisor/EPIVISOR_LOGO.png"></a>
     </div>
     <div class="logo__organization"><img src="https://s3-us-west-1.amazonaws.com/epicvisor/UCLA_anderson.png"></div>
-    <div class="profile__menue">
+
       <div ng-if="user">
-      Hello, {{user.first_name}} {{user.last_name}}
+        <div class="profile__menu">
+          Hello, {{user.first_name}} {{user.last_name}}
+        </div>
       </div>
-    </div>
+
   </div>
 </header>

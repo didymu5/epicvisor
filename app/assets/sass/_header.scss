@@ -75,6 +75,11 @@ $steel-blue: #4373ae;
      max-height: $centered-navigation-height;
     }
   }
+  .profile__menu{
+    float:right;
+    @include span-columns(3);
+    text-align: right;
+  }
   .navigation-logo{
     float:left;
     width: auto;
