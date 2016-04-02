@@ -1,12 +1,57 @@
-.profile{
+.profile {
   @include outer-container;
   @include clearfix;
-  .profile__left{
-    @include span-columns(6);
 
-  }
-  .profile__right{
+  .profile__left {
     @include span-columns(6);
-    float:right;
+  }
+  .profile__right {
+    @include span-columns(6);
+    float: right;
+  }
+}
+.profile-sessions {
+  @include outer-container;
+  margin-top: 40px;
+
+  .question {
+    @include clearfix;
+    margin-bottom: 30px;
+
+    .question-copy {
+      float: left;
+    }
+    .horizontal-select-group {
+      float: left;
+    }
+  }
+}
+.horizontal-select-group {
+  @include clearfix;
+  select {
+    display: inline-block;
+    float: left;
+    margin: 0 1em;
+    font-size: 1.2em;
+  }
+  input {
+    display: inline-block;
+  }
+}
+.checkbox-label-group {
+  display: inline-block;
+  margin-right:15px;
+
+  @include pad(5px)
+  label {
+    display: inline-block;
+    float: left;
+    line-height: .9em;
+    padding-left: 8px;
+  }
+  input {
+
+    display: inline-block;
+    float: left;
   }
 }
