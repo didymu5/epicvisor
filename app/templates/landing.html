@@ -9,8 +9,70 @@
 		Search
 	</button>
 </div>
+<div class="search-tools">
+  <div class="filters">
+    <div class="filter">
+      <label>Industry</label>
+      <div>
+        <ol class="filter-list">
+          <li><input id="i1" type="checkbox"><label for="i1">Consulting</label></li>
+          <li><input id="i2" type="checkbox"><label for="i2">Consumer Products</label></li>
+          <li>Entertainment and Media</li>
+          <li>Financial Services</li>
+          <li>Government</li>
+          <li>Healthcare</li>
+          <li>Manufacturing</li>
+          <li>Non-profit</li>
+          <li>Real Estate</li>
+          <li>Technology</li>
+        </ol>
+      </div>
+    </div>
+    <div class="filter">
+      <label>Field</label>
+      <div>
+        <ol class="filter-list">
+          <li>Corporate Development</li>
+          <li>Strategic Planning</li>
+          <li>Investment Banking</li>
+          <li>General Management</li>
+          <li>Management Consulting</li>
+          <li>Marketing</li>
+          <li>Product Marketing</li>
+          <li>Sales and Business Development</li>
+          <li>Software Engineering</li>
+          <li>Project Management</li>
+        </ol>
+      </div>
+    </div>
+    <div class="filter">
+      <label>Company</label>
+      <div>
+        <ol class="filter-list">
+          <li><label>Amazon</label></li>
+          <li><label>Bain</label></li>
+          <li><label>Barclays</label></li>
+          <li><label>Boston Consulting Company</label></li>
+          <li><label>Cisco</label></li>
+          <li><label>Deloitte</label></li>
+          <li><label>Disney</label></li>
+          <li><label>Facebook</label></li>
+          <li><label>Google</label></li>
+          <li><label>Goldman Sachs</label></li>
+          <li><label>Genentech</label></li>
+          <li><label>McKinsey</label></li>
+          <li><label>Salesforce</label></li>
+          <li><label>Twitter </label></li>
+        </ol>
+      </div>
+    </div>
+    <div class="filter trigger">
+      <button>Update</button>
+    </div>
+  </div>
+</div>
 
-<div class="card-list">
+<!-- <div class="card-list">
 	<div ng-repeat="mentor in mentors" class="card" ng-click="routeToMentor(mentor)">
         <div class="card-image">
             <img src="{{mentor.avatar}}" alt="{{mentor.first_name}} {{mentor.last_name}}">
@@ -21,6 +83,38 @@
         <div class="card-copy">
             <p>Anderson UCLA, {{mentor.year}}</p>
             <p>{{mentor.position}}</p>
+        </div>
+    </div>
+</div> -->
+<div class="card-list">
+    <div class="card">
+        <div class="card-image"><img src="images/edchoprofile.jpg" alt="Ed Cho"></div>
+        <div class="card-header">
+            Thomas Wu
+        </div>
+        <div class="card-copy">
+            <p>Anderson UCLA, 2014</p>
+            <p>Lead Developer</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-image"><img src="images/edchoprofile.jpg" alt="Ed Cho"></div>
+        <div class="card-header">
+            Thomas Wu
+        </div>
+        <div class="card-copy">
+            <p>Anderson UCLA, 2014</p>
+            <p>Lead Developer</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-image"><img src="images/edchoprofile.jpg" alt="Ed Cho"></div>
+        <div class="card-header">
+            Thomas Wu
+        </div>
+        <div class="card-copy">
+            <p>Anderson UCLA, 2014</p>
+            <p>Lead Developer</p>
         </div>
     </div>
 </div>

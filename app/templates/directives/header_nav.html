@@ -1,15 +1,26 @@
-<header class="centered-navigation" role="banner">
-  <div class="centered-navigation-wrapper">
-    <div class="header__logo">
-      <a href="#/home"><img src="https://s3-us-west-1.amazonaws.com/epicvisor/EPIVISOR_LOGO.png"></a>
-    </div>
-    <div class="logo__organization"><img src="https://s3-us-west-1.amazonaws.com/epicvisor/UCLA_anderson.png"></div>
-
-      <div ng-if="user">
-        <div class="profile__menu">
-          Hello, {{user.first_name}} {{user.last_name}}
-        </div>
-      </div>
-
+<header class="header">
+  <div class="header__logo">
+    <a href="#/home"><img src="https://s3-us-west-1.amazonaws.com/epicvisor/EPIVISOR_LOGO.png"></a>
   </div>
+  <div class="logo_org">
+    <img src="https://s3-us-west-1.amazonaws.com/epicvisor/UCLA_anderson.png">
+  </div>
+
+  <nav class="header__navigation">
+    <ul class="header__navigation-list">
+      <li>
+        <a href="#" title="Mentors">Mentors</a>
+      </li>
+      <li>
+        <a href="#" title="About Us">About Us</a>
+      </li>
+      <li>
+        <a href="#" title="Contact">Contact</a>
+      </li>
+      <li class="header__profile__link">
+        <a href="#" title="Profile">Profile <img src="images/edchoprofile.jpg" alt="Ed Cho" class="img__profile--small"></a>
+
+      </li>
+     </ul>
+  </nav>
 </header>
