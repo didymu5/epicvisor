@@ -17,8 +17,8 @@
       <li>
         <a href="#" title="Contact">Contact</a>
       </li>
-      <li class="header__profile__link">
-        <a href="#" title="Profile">Profile <img src="images/edchoprofile.jpg" alt="Ed Cho" class="img__profile--small"></a>
+      <li ng-if="user" class="header__profile__link">
+        <a href="#" title="Profile">Profile <img class="img__profile--small" src="{{user.avatar}}"></a>
       </li>
      </ul>
   </nav>
