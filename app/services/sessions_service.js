@@ -1,18 +1,44 @@
 import moment from 'moment';
+import _ from 'underscore';
 function sessionsService($http, userService, mentorService, $q, studentService) {
 	var sessionState = {};
+   
 	function makeSessions(sessions, sessionState) {
-	    var numberOfSessionsToGenerate = sessionState.sessionCount;
-	    for(var week=0; week <4; week++) {
-	      for(var sessionNumber=0; sessionNumber<numberOfSessionsToGenerate; sessionNumber++) {
-	        sessions.push({
-	          date: moment().add(week, 'week').toDate(),
-	          number: sessionNumber+1,
-	          status: 'Open'
-	        })
-	      }
-	    }
-	    return sessions;
+        var numberOfSessionsToGenerate = sessionState.sessionCount;
+        var sessionsByWeek = _.groupBy(sessions, function(session) {
+            return moment(session.date).startOf('week').startOf('day');
+        });
+        var orderedSessions = [];
+        var weeks = _.keys(sessionsByWeek);
+        for(var i=0; i< 4; i++) {
+            var currentWeek = moment().add('weeks', i).startOf('day');
+            var match = _.find(weeks, function(week) {
+                return moment(week).isSame(currentWeek,'week');
+            });
+            if(!match) {
+                sessionsByWeek[currentWeek.startOf('week').toString()] = [];
+                weeks.push(currentWeek.startOf('week').toString());
+            }
+        }
+        _.sortBy(weeks, function(week) {
+            return moment(week).toDate().getTime();
+        }).forEach(function(week) {
+            var sessionsForWeek = sessionsByWeek[week];
+
+            for(var sessionNumber =sessionsForWeek.length; sessionNumber < numberOfSessionsToGenerate; sessionNumber++ )
+            {
+              sessionsForWeek.push({
+                    date: moment(week).toDate(),
+                  number: sessionNumber+1,
+                  status: 'Open'
+                })
+            }
+            orderedSessions = orderedSessions.concat(sessionsForWeek);
+        });
+	    return orderedSessions.map(function(session) {
+            session.date = moment(session.date).startOf('week').toDate();
+            return session;
+        });
 	  }
 	return {
 		 getSessions: function() {

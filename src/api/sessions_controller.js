@@ -109,7 +109,8 @@ exports.checkStudentSignature = function(request, reply) {
   })
 }
 exports.getSessions = function(request, reply) {
-  var dates = [moment().startOf('day').toDate(), moment().startOf('day').add('4','weeks').toDate()];
+  console.log(moment().startOf('week').startOf('day'))
+  var dates = [moment().startOf('day').startOf('week').toDate(), moment().startOf('day').endOf('week').add('4','weeks').toDate()];
   Sessions.find({
     where:{'user_id': request.params.id,'date': {$between: dates 
       }}})
@@ -119,9 +120,9 @@ exports.getSessions = function(request, reply) {
 }
 
 exports.getMentorSessions = function(request, reply) {
-  var dates = [moment().startOf('day').toDate(), moment().startOf('day').add('4','weeks').toDate()];
+  var dates = [moment().startOf('day').startOf('week').toDate(), moment().startOf('day').startOf('week').add('4','weeks').toDate()];
   Sessions.findAll({
-    where:{'date': {$between: dates 
+    where:{'user_id': request.params.id,'date': {$between: dates 
       }}})
   .then(function(sessions) {
     reply(sessions || []);
