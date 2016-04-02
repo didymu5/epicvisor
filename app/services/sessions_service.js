@@ -41,11 +41,12 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
         });
 	  }
 	return {
+        makeSessions: makeSessions,
 		 getSessions: function() {
       var self = this;
       return $http.get('/sessions/user').then(function(res) {
         var sessions = res.data;
-        return self.getSessionSettings().then(function(sessionState) {       
+        return userService.getSessionSettings().then(function(sessionState) {       
           return makeSessions(sessions, sessionState);
         })
       });

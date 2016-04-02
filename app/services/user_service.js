@@ -29,15 +29,6 @@ function userService($http, $q) {
         return userState.profile;
       });
     },
-    getSessions: function() {
-      var self = this;
-      return $http.get('/sessions/user').then(function(res) {
-        var sessions = res.data;
-        return self.getSessionSettings().then(function(sessionState) {       
-          return makeSessions(sessions, sessionState);
-        })
-      });
-    },
     getSessionSettings: function() {
       return $http.get('/user/mentor/settings/session').then(function(res) {
         userState.sessionSettings = res.data;

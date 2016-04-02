@@ -1,6 +1,7 @@
 
 'use strict';
 import angular from 'angular';
+import mentorProfileController from './controllers/mentor_profile_controller';
 
 import angular_routes from 'angular-route';
 import mentorDetailsController from './controllers/mentor_details_controller';
@@ -25,7 +26,8 @@ config(function ($routeProvider, $locationProvider) {
     }).
     when('/profile', {
       templateUrl: 'templates/profile.html',
-      controller: 'MentorProfileController'
+      controller: 'MentorProfileController',
+      resolve: mentorProfileController.$resolve
     }).
     when('/profile/sessions', {
       templateUrl: 'templates/profile_sessions.html',
@@ -92,7 +94,6 @@ myApp.service('studentService', studentService);
 import profileSearchController from './controllers/profile_search_controller';
 import homeController from './controllers/home_controller';
 import applicationController from './controllers/application_controller';
-import mentorProfileController from './controllers/mentor_profile_controller';
 import mentorProfileSessionsController from './controllers/mentor_profile_sessions_controller';
 myApp.controller('BookSessionController', bookSessionController);
 myApp = myApp.controller('HomeController', homeController);

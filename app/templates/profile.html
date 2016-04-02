@@ -27,10 +27,12 @@
   <table class="scheduler__tables">
   <tbody>
     <tr ng-repeat="session in sessions">
-      <td>Week of {{session.date.toDate() | date:"M/d"}}</td>
+      <td>Week of {{session.date | date:"M/d"}}</td>
       <td>Session {{session.number}}</td>
       <td>Status</td>
       <td class="scheduler__session-status-open">{{session.status}}</td>
+      <td> <a ng-if="session.status !== 'Open'" href="#/sessions/{{session.id}}"> View Details </a> </td>
+      <td> <text ng-if="session.day"> Date: {{session.day | date: "M/d"}} </text> </td>
     </tr>
   </tbody>
 </table>

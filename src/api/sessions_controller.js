@@ -109,10 +109,10 @@ exports.checkStudentSignature = function(request, reply) {
   })
 }
 exports.getSessions = function(request, reply) {
-  console.log(moment().startOf('week').startOf('day'))
+  var user = request.yar.get('user')
   var dates = [moment().startOf('day').startOf('week').toDate(), moment().startOf('day').endOf('week').add('4','weeks').toDate()];
-  Sessions.find({
-    where:{'user_id': request.params.id,'date': {$between: dates 
+  Sessions.findAll({
+    where:{'user_id': user.id && user.id.toString(),'date': {$between: dates 
       }}})
   .then(function(sessions) {
     reply(sessions || []);

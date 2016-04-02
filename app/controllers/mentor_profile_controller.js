@@ -1,14 +1,8 @@
-function mentorProfileController($scope, userService) {
-	userService.getUser().then(function(user) {
-	  $scope.user = user;
-	});
-	userService.getProfile().then(function(profile) {
-	  $scope.selectedYear = profile.year || "2016";
-	  $scope.blurb = profile.blurb || "";
-	});
-	userService.getSessions().then(function(sessions) {
+function mentorProfileController($scope, user, sessions, profile) {
+	$scope.user = user;
+	$scope.selectedYear = profile.year || "2016";
+	$scope.blurb = profile.blurb || "";
 	$scope.sessions = sessions;
-	});
 
 	$scope.years = Array.from(new Array(2016-1940), (x,i) => 2016-i);
 	$scope.saveProfile = function() {
@@ -18,5 +12,16 @@ function mentorProfileController($scope, userService) {
 		});
 	}
 }
-mentorProfileController.$inject = ['$scope', 'userService'];
+mentorProfileController.$resolve = {
+	user: ['userService', function(userService) {
+		return userService.getUser();
+	}],
+	sessions: ['sessionsService', function(sessionsService) {
+		return sessionsService.getSessions();
+	}],
+	profile: ['userService', function(userService) {
+		return userService.getProfile();
+	}]
+}
+mentorProfileController.$inject = ['$scope', 'user','sessions','profile'];
 export default mentorProfileController;
