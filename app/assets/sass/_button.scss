@@ -14,7 +14,6 @@
  text-decoration:none;
  padding:5px 10px;
  border-radius:3px;
- font-size:2em;
 }
 
 .btn-green {
@@ -22,7 +21,7 @@
 }
 
 .btn-blue {
-   @include button-bg(#3498db);
+   @include button-bg($blue);
 }
 
 .btn-yellow{
@@ -31,6 +30,11 @@
 
 .btn-red {
    @include button-bg(#e74c3c);
+}
+
+button{
+  @extend .btn;
+  @extend .btn-blue;
 }
 
 // http://codepen.io/jason-kinney/pen/AqbCi
