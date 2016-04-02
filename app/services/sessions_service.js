@@ -39,7 +39,7 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
 
     },
     confirmTime: function(session, day, startTime, endTime) {
-        return $http.post('/sessions/' + session.id + '/update',
+        return $http.post('/sessions/' + session.id + '/update', 
         {
             data: {
                 day: day,
@@ -59,7 +59,7 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
     	sessionState.mentor = mentor;
     },
     storeSession: function(session) {
-	sessionState.session = session;
+    	sessionState.session = session;
     },
     getCurrentSession: function() {
     	return sessionState.session;
@@ -73,7 +73,7 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
     		if(studentData) {
                 session.student_id = studentData.id;
                 session.status = 'pending';
-			return $http.post('/mentor/' + mentor.user_id +  '/sessions/appointment',
+    			return $http.post('/mentor/' + mentor.user_id +  '/sessions/appointment', 
                     session).then(function(session) {
                         return true;
                     })

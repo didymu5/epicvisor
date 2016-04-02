@@ -38,10 +38,6 @@ exports.bookAppointment = function (request, reply) {
       });
     });
   }
-
-
-
-
   // Sessions.create(bookingDetails).then(function(created) {
   //   console.log(created)
     // email_data.to = created.menotorEmail + ',' + created.menteeEmail;
