@@ -1,23 +1,24 @@
 <div class="profile">
-	<div class="profile__name-info">
-		<div class="profile__avatar">
-			<img class="profile__img" src="{{user.avatar}}">
-		</div>
-		<div class="profile__name-info-name">
-			<h1>{{user.first_name}} {{user.last_name}}</h1>
-		</div>
-		<div class="profile__name-info-about">
-			<textarea class="profile__name-info-about-textarea" maxlength="200" ng-model="blurb"></textarea>
-			<p>Tell us about yourself in 200 characters</p>
-		</div>
-    <button ng-click="saveProfile()"> Update profile </button>
-		<div class="profile__name-info-edu">
-			<h2>Education</h2>
-			<p>UCLA, School of Anderson</p>
-			<p>2014 <select ng-options="year as year for year in years track by year" ng-model="selectedYear"></select></p>
-			<p>Last Sync: {{user.last_modified}} <button>sync</button></p>
-		</div>
-	</div>
+  <h2>My Epic Profile</h2>
+  <div class="profile__left">
+    <p>Class Year: <br><select ng-options="year as year for year in years track by year" ng-model="selectedYear"></select></p>
+    <div class="profile__name-info-about">
+      <p>Share a blurb about yourself for students</p>
+      <textarea class="profile__name-info-about-textarea" maxlength="200" ng-model="blurb"></textarea>
+      <button ng-click="saveProfile()"> Update profile </button>
+    </div>
+  </div>
+
+  <div class="profile__right">
+    Sync your LinkedIn background
+    <div class="profile__name-info-name">
+      <p>{{user.first_name}} {{user.last_name}}</p>
+      <p>Last Sync: {{user.last_modified}} <button>sync</button></p>
+    </div>
+    <div class="profile__avatar">
+      <img class="profile__img" src="{{user.avatar}}">
+    </div>
+  </div>
 </div>
 
 <div class="scheduler">

@@ -1,47 +1,60 @@
-.profile {
-  @include outer-container();
-  @include pad(0 20px);
-  margin-top: 2em;
-  &__avatar {
-    // @include circle(100px, #fffe);
-  }
-  &__img{
-    @include circle(100px, #fffe);
-  }
-  &__name-info {
-    @include span-columns(12);
-    text-align: center;
-    @include media($large-screen) {
-      @include span-columns(6);
-      @include pad(0);
-      @include shift(3);
-    }
-    &-name {
+// .profile {
+//   @include outer-container();
+//   @include pad(0 20px);
+//   margin-top: 2em;
+//   &__avatar {
+//     // @include circle(100px, #fffe);
+//   }
+//   &__img{
+//     @include circle(100px, #fffe);
+//   }
+//   &__name-info {
+//     @include span-columns(12);
+//     text-align: center;
+//     @include media($large-screen) {
+//       @include span-columns(6);
+//       @include pad(0);
+//       @include shift(3);
+//     }
+//     &-name {
         
-    }
-    &-about{
-      text-align: left;
-      &-textarea{
-        border:1px #ccc solid;
-        width:90%;
-      }
-    }
-    &-edu{}
-  }
+//     }
+//     &-about{
+//       text-align: left;
+//       &-textarea{
+//         border:1px #ccc solid;
+//         width:90%;
+//       }
+//     }
+//     &-edu{}
+//   }
 
-  &__area-info{
-    @include span-columns(12);
-    @include media($large-screen) {
-      @include span-columns(4);
-      @include pad(0);
-      @include shift(3);
-    }
+//   &__area-info{
+//     @include span-columns(12);
+//     @include media($large-screen) {
+//       @include span-columns(4);
+//       @include pad(0);
+//       @include shift(3);
+//     }
+//   }
+// }
+// .profile__advice-topics{
+//   @include span-columns(12);
+//   @include media($large-screen) {
+//       @include span-columns(4);
+//       @include pad(0);
+//     }
+// }
+
+.profile{
+  @include outer-container;
+  @include clearfix;
+  .profile__left{
+    @include span-columns(6);
+
   }
-}
-.profile__advice-topics{
-  @include span-columns(12);
-  @include media($large-screen) {
-      @include span-columns(4);
-      @include pad(0);
-    }
+  .profile__right{
+    @include span-columns(6);
+    float:right;
+  }
 }
