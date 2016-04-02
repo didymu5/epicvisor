@@ -1,61 +1,4 @@
-<h2>
-	Set up your sessions
-</h2>
-
-<div class="alert" ng-if="savedText">
-	{{savedText}}
-</div>
-
-<div class="row">
-	<span>
-		How many student EpicSessions would you like to hold?
-		<text> Students can only book up to 4 weeks in advance. Please respond to students within 2 days. </text>
-	</span>
-	<span>
-		<select ng-options="sessionCount for sessionCount in sessionCounts" ng-model="selectedSessionCount"></select>
-	</span>
-	<span>
-		<select ng-options="sessionCountType for sessionCountType in sessionCountTypes" ng-model="selectedSessionCountType"></select>
-	</span>
-
-</div>
-
-
-<div class="row">
-	<h3> Which topics would you like to share about? </h3>
-
-	<div ng-repeat="topic in topics">
-		<topic topic-to-select="topic"></topic>
-	</div>
-</div>
-
-<div class="row">
-	<h3> Add any other topics: </h3>
-	<input type="text" ng-model="extraTopic1" placeholder="Add">
-	<input type="text" ng-model="extraTopic2" placeholder="Add">
-	<input type="text" ng-model="extraTopic3" placeholder="Add">
-	
-</div>
-
-
-<div class="row">
-	<span>
-		How would you like to hold your EpicSession?
-	</span>
-	<span>
-		<select ng-options="contact as contact for contact in contacts" ng-model="selectedContact"></select>
-	</span>
-	<span>
-		<input type="text" ng-model="contactDetails">
-	</span>
-	
-</div>
-
-<button class="button" ng-click="saveSessionState()">
-	Update Profile Settings
-</button>
-
-<div class="booker">
+<!-- <div class="booker">
   <h2>How many student EpicSessions would you like to hold?</h2>
   <form class="booker__session__form">
     <input type="text" name="name" placeholder="Name">
@@ -78,4 +21,40 @@
       <button>Cancel</button>
   </form>
 
+</div> -->
+
+<div class="profile-sessions">
+  <h2>My EpicSessions</h2>
+  <h3>Set up your sessions</h3>
+  <div class="question">
+    <div class="question-copy">How many student EpicSessions would you like to hold? <br><small>Students can only book up to 4 weeks in advance. <br>Please respond to students within 2 days.</small></div>
+
+    <div class="horizontal-select-group">
+      <select ng-options="sessionCount for sessionCount in sessionCounts" ng-model="selectedSessionCount"></select>
+      <select ng-options="sessionCountType for sessionCountType in sessionCountTypes" ng-model="selectedSessionCountType"></select>
+    </div>
+  </div>
+  <p>Which career fields can you give advice in? </p>
+
+  <div class="question">
+    <p>Which topics would you like to share about?</p>
+    <div ng-repeat="topic in topics">
+      <topic topic-to-select="topic"></topic>
+    </div>
+    <p> Add any other topics: </p>
+    <div class="group-topic">
+      <input type="text" ng-model="extraTopic1" placeholder="Add">
+      <input type="text" ng-model="extraTopic2" placeholder="Add">
+      <input type="text" ng-model="extraTopic3" placeholder="Add">
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-copy">How would you like to hold your EpicSession?</div>
+    <div class="horizontal-select-group"><select ng-options="contact as contact for contact in contacts" ng-model="selectedContact"></select> <input type="text" ng-model="contactDetails" placeholder="SkypeID, Email...etc"></div>
+  </div>
+
+  <button class="button" ng-click="saveSessionState()">
+    Update Profile Settings
+  </button>
 </div>
