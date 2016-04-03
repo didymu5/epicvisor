@@ -51,10 +51,10 @@ To run migreations it calls on [sequlize cli](https://github.com/sequelize/cli).
 `npm run migrate [flags, tags, commands]`
 
 
-Digital Ocean set up
+~~Digital Ocean set up~~
 -----
 
-On DO, we have a server called Grandtham. You'll have to add your SSh key to it and go passwardless.
+~~On DO, we have a server called Grandtham. You'll have to add your SSh key to it and go passwardless.~~
 
 To deploy from your local
 1.) `chmod +x deploy`
