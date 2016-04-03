@@ -3,7 +3,7 @@ var Sessions = require('../../models/sessions');
 var Student = require('../../models/student');
 var fs = require('fs');
 var Path = require('path');
-var Handlebars = require('Handlebars');
+var Handlebars = require('handlebars');
 
 exports.bookAppointment = function (request, reply) {
   var Mailgun = require('mailgun-js');
