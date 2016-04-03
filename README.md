@@ -60,6 +60,6 @@ To deploy from your local
 1.) `chmod +x deploy`
 2.) ./deploy
 
-What this will do is ssh into the server `git pull` into the directory `/opt/epicvisor-app` then `npm prune` and `npm install`
+What this will do is ssh into the server `git pull` into the directory `/opt/epicvisor-app` then `npm prune` and `npm install`, then copy a `.env` file into the epicvisor-app directory.
 
 
