@@ -21,8 +21,6 @@ gulp.task('build', function() {
 
 //compile css
 gulp.task('sass', function() {
-  var test =  require('isteven-angular-multiselect');
-  var gutil = require('gulp-util');
   return gulp.src(paths.scss)
     .pipe(sass({
       includePaths: ['assets/sass'].concat(neat)
