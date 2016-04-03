@@ -1,19 +1,29 @@
 
 'use strict';
 import angular from 'angular';
-import mentorProfileController from './controllers/mentor_profile_controller';
-
 import angular_routes from 'angular-route';
-import mentorProfileSessionsController from './controllers/mentor_profile_sessions_controller';
 
+import moment from 'moment';
+
+import mentorService from './services/mentor_service';
+import userService from './services/user_service';
+import sessionsService from './services/sessions_service';
+import studentService from './services/student_service';
+
+import mentorProfileController from './controllers/mentor_profile_controller';
 import mentorDetailsController from './controllers/mentor_details_controller';
 import bookSessionController from './controllers/book_session_controller';
 import sessionDetailsController from './controllers/session_details_controller';
 import profileSearchController from './controllers/profile_search_controller';
-import moment from 'moment';
+import homeController from './controllers/home_controller';
+import applicationController from './controllers/application_controller';
+import mentorProfileSessionsController from './controllers/mentor_profile_sessions_controller';
+import joinController from './controllers/join_controller';
+
 // Declare app level module which depends on filters, and services
 import ng_dropdowns from 'angular-dropdowns';
 import isteven_angular_multiselect  from '../node_modules/isteven-angular-multiselect/isteven-multi-select';
+
 var myApp = angular.module('myApp', [
   'ngRoute', 'ngDropdowns', "isteven-multi-select" 
 ]).
@@ -54,6 +64,10 @@ config(function ($routeProvider, $locationProvider) {
         controller: 'ProfileSearchController',
         resolve: profileSearchController.$resolve
       }).
+    when('/join', {
+      tempalteUrl: 'templates/join.html',
+      controller: 'JoinController'
+    }).
     otherwise({
       redirectTo: '/home'
     });
@@ -81,22 +95,11 @@ config(function ($routeProvider, $locationProvider) {
   }
 })
 
-import nameFilter from './filters/name_filter';
-myApp.filter('name', nameFilter);
-
-import mentorService from './services/mentor_service';
-import userService from './services/user_service';
-import sessionsService from './services/sessions_service';
-import studentService from './services/student_service';
-
 myApp.service('mentorService', mentorService);
 myApp.service('userService', userService);
 myApp.service('sessionsService', sessionsService);
 myApp.service('studentService', studentService);
 
-
-import homeController from './controllers/home_controller';
-import applicationController from './controllers/application_controller';
 myApp.controller('BookSessionController', bookSessionController);
 myApp = myApp.controller('HomeController', homeController);
 myApp = myApp.controller('ApplicationController', applicationController);
@@ -105,3 +108,5 @@ myApp = myApp.controller('MentorProfileSessionsController', mentorProfileSession
 myApp = myApp.controller('ProfileSearchController', profileSearchController);
 myApp = myApp.controller('MentorDetailsController', mentorDetailsController);
 myApp = myApp.controller('SessionDetailsController', sessionDetailsController);
+myApp = myApp.controller('JoinController', joinController);
+myApp.filter('name', nameFilter);
