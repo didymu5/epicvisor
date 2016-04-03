@@ -6,6 +6,7 @@ ssh deploy@159.203.239.186 <<EOF
   git pull
   npm prune
   npm install
+  cp /opt/.env /opt/epicvisor-app
 EOF
 
 workdir=epicvisor_$now
