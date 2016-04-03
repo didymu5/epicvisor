@@ -7,11 +7,13 @@ import angular_routes from 'angular-route';
 import mentorDetailsController from './controllers/mentor_details_controller';
 import bookSessionController from './controllers/book_session_controller';
 import sessionDetailsController from './controllers/session_details_controller';
+import profileSearchController from './controllers/profile_search_controller';
 import moment from 'moment';
 // Declare app level module which depends on filters, and services
-
+import ng_dropdowns from 'angular-dropdowns';
+import isteven_angular_multiselect  from '../node_modules/isteven-angular-multiselect/isteven-multi-select';
 var myApp = angular.module('myApp', [
-  'ngRoute'
+  'ngRoute', 'ngDropdowns', "isteven-multi-select" 
 ]).
 config(function ($routeProvider, $locationProvider) {
   $routeProvider.
@@ -29,7 +31,7 @@ config(function ($routeProvider, $locationProvider) {
       controller: 'MentorProfileController',
       resolve: mentorProfileController.$resolve
     }).
-    when('/profile/sessions', {
+    when('  /profile/sessions', {
       templateUrl: 'templates/profile_sessions.html',
       controller: 'MentorProfileSessionsController'
     }).
@@ -48,7 +50,8 @@ config(function ($routeProvider, $locationProvider) {
     when('/landing',
       {
         templateUrl: 'templates/landing.html',
-        controller: 'ProfileSearchController'
+        controller: 'ProfileSearchController',
+        resolve: profileSearchController.$resolve
       }).
     otherwise({
       redirectTo: '/home'
@@ -91,7 +94,6 @@ myApp.service('sessionsService', sessionsService);
 myApp.service('studentService', studentService);
 
 
-import profileSearchController from './controllers/profile_search_controller';
 import homeController from './controllers/home_controller';
 import applicationController from './controllers/application_controller';
 import mentorProfileSessionsController from './controllers/mentor_profile_sessions_controller';
