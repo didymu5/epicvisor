@@ -31,7 +31,7 @@ config(function ($routeProvider, $locationProvider) {
       controller: 'MentorProfileController',
       resolve: mentorProfileController.$resolve
     }).
-    when('  /profile/sessions', {
+    when('/profile/sessions', {
       templateUrl: 'templates/profile_sessions.html',
       controller: 'MentorProfileSessionsController'
     }).
