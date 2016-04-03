@@ -54,13 +54,12 @@ To run migreations it calls on [sequlize cli](https://github.com/sequelize/cli).
 Digital Ocean set up
 -----
 
-There is a `deploy` user on the Droplet `epic-othello`
+On DO, we have a server called Grandtham. You'll have to add your SSh key to it and go passwardless.
 
-`ssh deploy@[ipaddres]`
+To deploy from your local
+1.) `chmod +x deploy`
+2.) ./deploy
 
-Basically, Ian Likes Cats
+What this will do is ssh into the server `git pull` into the directory `/opt/epicvisor-app` then `npm prune` and `npm install`
 
-Go passwordless
-
-Append your keys to: `deploy@url.com:~/.ssh/authorized_keys`
 
