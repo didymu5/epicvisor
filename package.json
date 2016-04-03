@@ -47,6 +47,7 @@
     "gulp-load-plugins": "^1.1.0",
     "gulp-nodemon": "^2.0.2",
     "gulp-sass": "^2.2.0",
+    "handlebars": "^4.0.5",
     "hapi": "^11.1.2",
     "hapi-sass": "^2.1.0",
     "inert": "^3.2.0",
@@ -64,9 +65,9 @@
     "sendgrid": "^2.0.0",
     "sequelize": "^3.19.3",
     "sequelize-cli": "^2.3.1",
+    "underscore": "^1.8.3",
     "vision": "^4.0.1",
     "webpack": "^1.12.14",
-    "underscore": "^1.8.3",
     "yar": "^7.0.0"
   }
 }
