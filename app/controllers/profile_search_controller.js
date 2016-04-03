@@ -9,7 +9,7 @@ function profileSearchController($scope, user, mentors, $location, mentorService
     }
   });
   var companies = _.uniq(mentors.map(function(mentor) {
-    return mentor.positions.values && mentor.positions.values[0].company.name
+    return mentor.positions && mentor.positions.values && mentor.positions.values[0].company.name
   }))
   companies = _.filter(companies, function(company) { return company !== undefined});
   $scope.companies = companies.map(function(company) {
