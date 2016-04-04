@@ -4,6 +4,8 @@ import angular from 'angular';
 import mentorProfileController from './controllers/mentor_profile_controller';
 
 import angular_routes from 'angular-route';
+import mentorProfileSessionsController from './controllers/mentor_profile_sessions_controller';
+
 import mentorDetailsController from './controllers/mentor_details_controller';
 import bookSessionController from './controllers/book_session_controller';
 import sessionDetailsController from './controllers/session_details_controller';
@@ -33,19 +35,18 @@ config(function ($routeProvider, $locationProvider) {
     }).
     when('/profile/sessions', {
       templateUrl: 'templates/profile_sessions.html',
-      controller: 'MentorProfileSessionsController'
+      controller: 'MentorProfileSessionsController',
+      resolve: mentorProfileSessionsController.$resolve
     }).
     when('/mentor/sessions/confirm', {
       templateUrl: 'templates/book_session.html',
       controller: 'BookSessionController',
       resolve: bookSessionController.$resolve
-
     }).
     when('/sessions/:session_id', {
       templateUrl: 'templates/session_details.html',
       controller: 'SessionDetailsController',
       resolve: sessionDetailsController.$resolve
-
     }).
     when('/landing',
       {
@@ -96,7 +97,6 @@ myApp.service('studentService', studentService);
 
 import homeController from './controllers/home_controller';
 import applicationController from './controllers/application_controller';
-import mentorProfileSessionsController from './controllers/mentor_profile_sessions_controller';
 myApp.controller('BookSessionController', bookSessionController);
 myApp = myApp.controller('HomeController', homeController);
 myApp = myApp.controller('ApplicationController', applicationController);

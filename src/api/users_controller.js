@@ -49,11 +49,11 @@ exports.setUserProfileSessionSettings = function(request, reply) {
   }).then(function(userSettingSet) {
     var userSetting = userSettingSet[0];
     ["topics", "contact","sessionCount", "sessionCountType",
-     "extraTopic1", "extraTopic2", "extraTopic3", "contactDetails", "user_id"].forEach(function(attr) {
+     "extraTopic1", "extraTopic2", "extraTopic3", "contactDetails", "user_id","career_topics"].forEach(function(attr) {
       userSetting[attr] = request.payload[attr];
      });
     return userSetting.update(request.payload.sessionState, {fields:  ["topics", "contact","sessionCount", "sessionCountType",
-     "extraTopic1", "extraTopic2", "extraTopic3", "contactDetails", "user_id"]});
+     "extraTopic1", "extraTopic2", "extraTopic3", "contactDetails", "user_id", "career_topics"]});
   }).then(function(userData) {
     reply(userData);
   });

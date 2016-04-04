@@ -34,6 +34,17 @@
     </div>
   </div>
   <p>Which career fields can you give advice in? </p>
+  <div class="group-topic">
+    <select ng-options="topic for topic in defaultCareerFields" ng-model="careerTopic1">
+      <option value=""> select a career field </option> 
+    </select>
+    <select ng-options="topic for topic in defaultCareerFields" ng-model="careerTopic2">
+      <option value=""> select a career field </option> 
+    </select>
+    <select ng-options="topic for topic in defaultCareerFields" ng-model="careerTopic3">
+      <option value=""> select a career field </option> 
+    </select>
+  </div>
   <div class="question">
     <p>Which topics would you like to share about?</p>
     <div ng-repeat="topic in topics">

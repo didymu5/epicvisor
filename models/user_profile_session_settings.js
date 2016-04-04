@@ -27,6 +27,9 @@ var UserProfileSessionSettings = db.sequelize.define('user_profile_session_setti
       extraTopic3: {
         type: Sequelize.STRING
       },
+      career_topics: {
+         type: Sequelize.ARRAY(Sequelize.STRING)
+       },
       contactDetails: {
         type: Sequelize.STRING
       },
