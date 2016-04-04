@@ -1,6 +1,6 @@
 
 <button ng-click="expandOrCollapse()"> {{filterExpandCollapse}} filters</button>
-<div class="search-tools" ng-if="showFilter">
+<div class="search-tools" ng-show="showFilter">
   <div class="filters">
     <div class="filter">
       <label>Industry</label>
@@ -42,7 +42,7 @@
       </div>
     </div>
     <div class="filter trigger">
-      <button>Update</button>
+      <button ng-click="search()">Update</button>
     </div>
   </div>
 </div>
