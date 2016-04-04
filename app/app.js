@@ -66,7 +66,7 @@ config(function ($routeProvider, $locationProvider) {
         resolve: profileSearchController.$resolve
       }).
     when('/join', {
-      tempalteUrl: 'templates/join.html',
+      templateUrl: 'templates/join.html',
       controller: 'JoinController'
     }).
     otherwise({
