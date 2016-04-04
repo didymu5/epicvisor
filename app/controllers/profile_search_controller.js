@@ -19,6 +19,16 @@ function profileSearchController($scope, user, mentors, $location, mentorService
     }
   });
 
+  var fields = _.uniq(_.flatten(mentors.map(function(mentor) {
+    return mentor.career_topics || [];
+  })));
+  $scope.fields = fields.map(function(field) {
+    return {
+      ticked: false,
+      name: field
+    }
+  });
+
   $scope.mentors = mentors;
   $scope.search = function() {
     mentorService.getMentors().then(function(mentors) {

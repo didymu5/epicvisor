@@ -4,30 +4,28 @@
   <div class="filters">
     <div class="filter">
       <label>Industry</label>
-      <isteven-multi-select    
-          input-model="industries"    
-          output-model="selectedIndustries"
-          button-label="name"
-          item-label="name"
-          tick-property="ticked"
-      >
-      </isteven-multi-select>
+      <div>
+        <isteven-multi-select    
+            input-model="industries"    
+            output-model="selectedIndustries"
+            button-label="name"
+            item-label="name"
+            tick-property="ticked"
+        >
+        </isteven-multi-select>
+      </div>
     </div>
     <div class="filter">
       <label>Field</label>
       <div>
-        <ol class="filter-list">
-          <li>Corporate Development</li>
-          <li>Strategic Planning</li>
-          <li>Investment Banking</li>
-          <li>General Management</li>
-          <li>Management Consulting</li>
-          <li>Marketing</li>
-          <li>Product Marketing</li>
-          <li>Sales and Business Development</li>
-          <li>Software Engineering</li>
-          <li>Project Management</li>
-        </ol>
+        <isteven-multi-select    
+          input-model="fields"    
+          output-model="selectedField"
+          button-label="name"
+          item-label="name"
+          tick-property="ticked"
+        >
+        </isteven-multi-select>
       </div>
     </div>
     <div class="filter">
