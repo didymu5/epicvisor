@@ -1,0 +1,13 @@
+.join-container{
+  @include outer-container(50%);
+  @include pad(15px 25px 25px 25px);
+  border: $medium-gray solid 1px;
+  background-color: $light-gray;
+  border-radius: 3px;
+  margin-top: 15%;
+  text-align: center;
+  .btn_linkedin{
+    @extend .btn;
+    @extend .btn-blue;
+  }
+}
