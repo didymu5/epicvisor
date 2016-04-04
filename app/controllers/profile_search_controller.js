@@ -46,7 +46,9 @@ function profileSearchController($scope, user, mentors, $location, mentorService
     }
     if($scope.selectedField.length > 0) {
       filteredMentors = filteredMentors.filter(function(mentor) {
-        return _.map($scope.selectedField, 'name').indexOf(getCareerTopics(mentor)) !== -1;
+        var names = _.map($scope.selectedField, 'name');
+        var fields = getCareerTopics(mentor)
+        return _.union(fields, names).length > 0;
       });
     }
     if($scope.selectedCompanies.length > 0) {
