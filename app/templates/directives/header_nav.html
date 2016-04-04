@@ -23,6 +23,9 @@
       <li ng-if="user" class="header__profile__link">
         <a href="#/profile/sessions" title="Profile">Session Settings</a>
       </li>
+      <li ng-if="!signedIn()">
+        <a href="#/join">Sign In</a>
+      </li>
      </ul>
   </nav>
 </header>

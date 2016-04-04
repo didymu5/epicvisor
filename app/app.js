@@ -9,6 +9,7 @@ import mentorService from './services/mentor_service';
 import userService from './services/user_service';
 import sessionsService from './services/sessions_service';
 import studentService from './services/student_service';
+import nameFilter from './filters/name_filter';
 
 import mentorProfileController from './controllers/mentor_profile_controller';
 import mentorDetailsController from './controllers/mentor_details_controller';
