@@ -19,6 +19,28 @@ function requestAuth(request, reply) {
 
 }
 
+function sendLinkedInEmail(user) {
+    var Mailgun = require('mailgun-js');
+
+  // bookingDetails.user_id = encodeURIComponent(request.params.id);
+  var emailTemplate =  Handlebars.compile(fs.readFileSync(Path.resolve(__dirname, '../templates/register-mentor.hbs'), 'utf-8'));
+  console.log("SENDING LE EMAIL!")
+  console.log(user);
+  var mailgun = new Mailgun({apiKey: process.env.MAILGUN_API_KEY, domain: process.env.MAILGUN_DOMAIN});
+   var email_data = {
+    from: 'no-reply@epicvisor.com',
+    to: user.email_address,
+    subject:'Registered to epicvisor',
+    html: emailTemplate({mentor: user})
+  }
+  mailgun.messages().send(email_data, function(err, body){
+    if(err){
+      throw err;
+    }
+    return body;
+  });
+}
+
 function linkedInOAUTH(request, reply) {
    Linkedin.auth.getAccessToken(reply, request.query.code, request.query.state, function(err, results) {
         if ( err )
@@ -42,7 +64,11 @@ function linkedInOAUTH(request, reply) {
             where: {
               linkedin_id: $in.id
             },
-            defaults: userDetails}).then(function(userData) {
+            defaults: userDetails}).then(function(userData,created) {
+              if(created)
+              {
+                sendLinkedInEmail(userData)
+              }
             userData[0].update(userDetails, {fields: Object.keys(userDetails)}).then(function(userData) {
               request.yar.set('user', userData);
               return reply.redirect('/index.html#/profile');

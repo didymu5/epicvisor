@@ -1,4 +1,4 @@
-function mentorProfileController($scope, user, sessions, profile) {
+function mentorProfileController($scope, user, sessions, profile, userService) {
 	$scope.user = user;
 	$scope.selectedYear = profile.year || "2016";
 	$scope.blurb = profile.blurb || "";
@@ -23,5 +23,5 @@ mentorProfileController.$resolve = {
 		return userService.getProfile();
 	}]
 }
-mentorProfileController.$inject = ['$scope', 'user','sessions','profile'];
+mentorProfileController.$inject = ['$scope', 'user','sessions','profile', 'userService'];
 export default mentorProfileController;
