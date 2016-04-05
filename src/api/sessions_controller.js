@@ -6,6 +6,53 @@ var fs = require('fs');
 var Path = require('path');
 var Handlebars = require('handlebars');
 var Mailgun = require('mailgun-js');
+var iCalendar = require('icsjs');
+
+function buildCalendar(startTime, endTime, summary) {
+  // Let's do a party right now.
+  var party = new iCalendar.EventBuilder();
+
+  party.setStartDate(startTime);
+  party.setEndDate(endTime);
+
+  party.setSummary(summary);
+  // Put that together in our calendar.
+  var calendar = new iCalendar.CalendarBuilder();
+  calendar.addEvent(party.getEvent());
+
+  // And display it.
+  console.log(calendar.getCalendar().toString());
+  return calendar.getCalendar().toString();
+}
+
+function sendConfirmationEmail(session, student, mentor) {
+  var mailgun = new Mailgun({apiKey: process.env.MAILGUN_API_KEY, domain: process.env.MAILGUN_DOMAIN});
+
+  var emailTemplate =  Handlebars.compile(fs.readFileSync(Path.resolve(__dirname, '../templates/session-confirm.hbs'), 'utf-8'));
+  var email_data = {
+      from: 'no-reply@epicvisor.com',
+      to: [mentor.email_address, student.email]
+    }
+  var startTime = moment(session.startTime).format('MMMM Do YYYY h:mm a');
+  var endTime = moment(session.endTime).format('MMMM Do YYYY h:mm a');
+  email_data.subject = "Session for " + startTime;
+  var summary ="At any time, make changes to your session using <a href='" + process.env.CALLBACK_URL + "#/sessions/" + session.id + "'> your scheduler. </a>";
+  
+  var buffer = new Buffer(buildCalendar(session.startTime, session.endTime, summary));
+  var attachment = new mailgun.Attachment({
+                          data: buffer,
+                          filename:'calendar.ics',
+                          contentType: 'ics'
+  });
+  email_data.attachment = attachment;
+  email_data.html = emailTemplate({mentor: mentor, mentee:student,
+   session: session, url: process.env.CALLBACK_URL, startTime: startTime, endTime: endTime})
+  mailgun.messages().send(email_data, function(err, body){
+    if(err){
+      console.log(err);
+    }
+  });
+}
 
 function bookAndSendEmail(request, reply, student, mentor) {
   var mailgun = new Mailgun({apiKey: process.env.MAILGUN_API_KEY, domain: process.env.MAILGUN_DOMAIN});
@@ -55,9 +102,7 @@ exports.bookAppointment = function (request, reply) {
 exports.confirmAppointment = function(request, reply) {
   var bookingDetails = request.payload.data;
   var sessionId = request.params.id;
-  console.log("LE ID! " + sessionId);
-  console.log("LE PAYLOAD!");
-  console.log(bookingDetails);
+
   Sessions.update({
    day: bookingDetails.day,
    startTime: bookingDetails.startTime,
@@ -65,11 +110,21 @@ exports.confirmAppointment = function(request, reply) {
    status: 'confirmed'
   },
   {
+    returning: true,
     where: {
       id: sessionId
     }
-  }).then(function(session) {
-    reply(session);
+  }).then(function(updateMetadata) {
+    console.log("the truth");
+    console.log(updateMetadata);
+    var session = updateMetadata[1][0];
+    return Student.findOne({where: { id: session.student_id}}).then(function(student) {
+      return User.findOne({where:{id: session.user_id }}).then(function(user) {
+        sendConfirmationEmail(session, student, user);
+        reply(session);
+        return true;
+      });
+    });
   });
 }
 
