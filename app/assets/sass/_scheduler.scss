@@ -1,13 +1,11 @@
+$schedule-table-bg-color: #fff;
+
 .scheduler{
   border-top: 3px #eee solid;
   @include outer-container;
   @include clearfix;
   @include pad(20px 0);
   margin-top:30px;
-  text-align: center;
-  &__h3 {
-    text-align: center;
-  }
 }
 
 .scheduler__tables {
@@ -23,7 +21,7 @@
   $base-font-color: $dark-gray !default;
   $table-border-color: $base-border-color;
   $table-border: 1px solid $table-border-color;
-  $table-background: lighten($table-border-color, 12%);
+  $table-background: #fff;
   $table-header-background: lighten($table-background, 10%);
   $table-hover-background: darken($table-background, 5%);
   $table-stripe-background: darken($table-background, 2%);
@@ -93,7 +91,7 @@
       border-left: 1px solid $table-border-color;
       border-top: 1px solid $table-border-color;
       padding: $table-padding;
-
+      text-align: center;
       &:first-child {
         border-left: none;
       }

@@ -28,7 +28,7 @@
   $flex-box-width: 18em;
   $flex-box-color: transparentize($base-font-color, 0.3);
   $flex-box-top-colors: tomato, #72BFBF, #92B1E3, #E3D743, #CCC, #F6C05C;
-  $card-color--gold: #f1c403;
+  $card-color--gold: $golden;
   @include clearfix;
   @include display(flex);
   @include justify-content(center);
