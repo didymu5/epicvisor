@@ -43,8 +43,6 @@
       <td>Status</td>
       <td class="scheduler__session-status-open">{{session.status}}</td>
       <td> <button ng-if="session.status === 'Open'" ng-click="bookSession(session, mentor)"> Book </button> </td>
-      <td> <a ng-if="session.status !== 'Open'" href="#/sessions/{{session.id}}"> View Details </a> </td>
-      <td> <text ng-if="session.day"> Date: {{session.day | date: "M/d"}} </text> </td>
     </tr>
   </tbody>
 </table>

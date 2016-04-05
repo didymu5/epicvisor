@@ -2,6 +2,10 @@ var scope = ['r_basicprofile',  'r_emailaddress'];
 var User = require('../../models/user');
 var Linkedin;
 var callback_url;
+var Handlebars = require('handlebars');
+var fs = require('fs');
+var Path = require('path');
+
 exports.initialize = function(LinkedInModule) {
   Linkedin = LinkedInModule( process.env.LINKEDIN_API_KEY, process.env.LINKEDIN_API_SECRET);
   callback_url = process.env.CALLBACK_URL ;
@@ -67,7 +71,7 @@ function linkedInOAUTH(request, reply) {
             defaults: userDetails}).then(function(userData,created) {
               if(created)
               {
-                sendLinkedInEmail(userData)
+                sendLinkedInEmail(userData[0])
               }
             userData[0].update(userDetails, {fields: Object.keys(userDetails)}).then(function(userData) {
               request.yar.set('user', userData);

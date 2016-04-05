@@ -1,3 +1,40 @@
-<h1>Hello, {{mentor}}</h1>
+<h1>Hello, {{mentor.first_name}} {{mentor.last_name}}</h1>
 
-<p>{{mentee}} would like to connect with you.</p>
+<p>{{student.name}} would like to chat with you about the following:
+</p>
+<ul>
+	{{#each session.topics}}
+	<li>
+		{{this}}
+	</li>
+	{{/each}}
+</ul>
+	
+<b>
+	EpicVisor 1-2-3
+</b>
+
+<p>
+	Step 1: {{mentor.first_name}}, Please reply to {{student.name}} with three sessions	times that work for you during the week of {{week}} and the preferred way to connect. (Skype, Hangout, Webex, Phone, Facetime)
+</p>
+
+<p>
+	Please respond within 2 days before the slot is re-opened.
+</p>
+
+<p>
+	Step 2: {{student.first_name}} Click on the EpicSession scheduler and confirm the best time
+</p>
+
+<p>
+<a href="{{url}}#/sessions/{{session.id}}"> Click on the EpicSession scheduler </a> and confirm the best time once you've confirmed a time with them.
+</p>
+<p>
+	Step 3: Connect and have an epic session!
+</p>
+
+<p>
+	Scheduler
+
+	At any time, make changes to your session using <a href="{{url}}#/sessions/{{session.id}}"> your scheduler. </a>
+</p>
