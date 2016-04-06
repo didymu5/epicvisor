@@ -59,7 +59,7 @@ function profileSearchController($scope, user, mentors, $location, mentorService
     $scope.mentors = filteredMentors;
   }
   $scope.routeToMentor = function(mentor) {
-    $location.path('/mentors/' + mentor.user_id);
+    $location.path('/mentors/' + mentor.uid);
   }
   $scope.showFilter = true;
   $scope.filterExpandCollapse = "collapse";
