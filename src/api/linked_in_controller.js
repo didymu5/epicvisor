@@ -24,21 +24,26 @@ function requestAuth(request, reply) {
 }
 
 function sendLinkedInEmail(user) {
-    var Mailgun = require('mailgun-js');
+  var Mailgun = require('mailgun-js');
 
   // bookingDetails.user_id = encodeURIComponent(request.params.id);
-  var emailTemplate =  Handlebars.compile(fs.readFileSync(Path.resolve(__dirname, '../templates/register-mentor.hbs'), 'utf-8'));
+  var emailTemplate = Handlebars.compile(fs.readFileSync(Path.resolve(__dirname, '../templates/register-mentor.hbs'), 'utf-8'));
   console.log("SENDING LE EMAIL!")
   console.log(user);
-  var mailgun = new Mailgun({apiKey: process.env.MAILGUN_API_KEY, domain: process.env.MAILGUN_DOMAIN});
-   var email_data = {
+  var mailgun = new Mailgun({
+    apiKey: process.env.MAILGUN_API_KEY,
+    domain: process.env.MAILGUN_DOMAIN
+  });
+  var email_data = {
     from: 'no-reply@epicvisor.com',
     to: user.email_address,
-    subject:'Registered to epicvisor',
-    html: emailTemplate({mentor: user})
+    subject: 'Registered to epicvisor',
+    html: emailTemplate({
+      mentor: user
+    })
   }
-  mailgun.messages().send(email_data, function(err, body){
-    if(err){
+  mailgun.messages().send(email_data, function(err, body) {
+    if (err) {
       throw err;
     }
     return body;
