@@ -72,10 +72,13 @@ function bookAndSendEmail(request, reply, student, mentor) {
          session: created, url: process.env.CALLBACK_URL, week: week})
         mailgun.messages().send(email_data, function(err, body){
           if(err){
+            console.log('email error');
             console.log(err);
             reply('email not sent');
           }
-        reply('email sent');
+          else {
+            reply('email sent'); 
+          }
         return created;
       });
     });

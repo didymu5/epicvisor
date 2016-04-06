@@ -25,6 +25,9 @@
       <h2>Career Fields</h2>
       <ul>
         <li ng-repeat="careerTopics in mentor.career_topics">{{careerTopics}}</li>
+        <li ng-if="extraTopic1"> {{mentor.extraTopic1}}></li>
+        <li ng-if="extraTopic2"> {{mentor.extraTopic2}}></li>
+        <li ng-if="extraTopic3"> {{mentor.extraTopic3}}></li>
       </ul>
       <hr>
       <h2>Advice Topics</h2>
