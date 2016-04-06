@@ -11,7 +11,11 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
     "Software Engineering",
     "Project Management"
   ];
-
+  $scope.contacts = ["Skype", "Email", "Google Hangouts"];
+  $scope.sessionCounts = Array.from(new Array(5), (x,i) => i+1);
+  $scope.sessionCountTypes = ["Per Week", "Per Month"]; 
+  $scope.topics = ["Career Advancement", "Building a Team","Internships","International Business","Raising Funding","Work Life Balance"];
+  
 
   $scope.user = user;
   $scope.selectedTopics = {};
@@ -62,11 +66,7 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
       $scope.savedText = "Your details have been saved."
     })
   }
-  $scope.sessionCounts = Array.from(new Array(5), (x,i) => i+1);
-  $scope.sessionCountTypes = ["Per Week", "Per Month"]; 
-  $scope.topics = ["Career Advancement", "Building a Team","Internships","International Business","Raising Funding","Work Life Balance"];
-  $scope.contacts = ["Skype", "Email", "Google Hangouts"]
-  
+
 }
 mentorProfileSessionsController.$resolve = {
   user: ["userService", function(userService) {
