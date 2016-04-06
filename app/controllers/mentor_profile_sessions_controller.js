@@ -1,4 +1,4 @@
-function mentorProfileSessionsController($scope, userService, userSessionSettings, user) {
+function mentorProfileSessionsController($scope, userService, userSessionSettings, user, $location) {
   $scope.defaultCareerFields = [
     "Corporate Development",
     "Strategic Planning",
@@ -64,6 +64,7 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
     }).then(function(data) {
       $scope.loading = true;
       $scope.savedText = "Your details have been saved."
+      $location.path('/profile');
     })
   }
 
@@ -76,5 +77,5 @@ mentorProfileSessionsController.$resolve = {
     return userService.getSessionSettings();
   }]
 };
-mentorProfileSessionsController.$inject = ["$scope", "userService", "userSessionSettings", "user"];
+mentorProfileSessionsController.$inject = ["$scope", "userService", "userSessionSettings", "user", "$location"];
 export default mentorProfileSessionsController;

@@ -1,4 +1,4 @@
-function mentorProfileController($scope, user, sessions, profile, userService) {
+function mentorProfileController($scope, user, sessions, profile, userService, $location) {
 	$scope.user = user;
 	$scope.selectedYear = profile.year || "2016";
 	$scope.blurb = profile.blurb || "";
@@ -9,6 +9,8 @@ function mentorProfileController($scope, user, sessions, profile, userService) {
 		userService.setProfileSettings({
 		  blurb: $scope.blurb,
 		  year: $scope.selectedYear
+		}).then(function(userProfile) {
+			$location.path('/mentors/' + user.id);
 		});
 	}
 	$scope.hasSetupSessions = function(){
@@ -26,5 +28,5 @@ mentorProfileController.$resolve = {
 		return userService.getProfile();
 	}]
 }
-mentorProfileController.$inject = ['$scope', 'user','sessions','profile', 'userService'];
+mentorProfileController.$inject = ['$scope', 'user','sessions','profile', 'userService', '$location'];
 export default mentorProfileController;

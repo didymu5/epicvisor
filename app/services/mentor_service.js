@@ -7,7 +7,7 @@ function mentorService($http) {
           var latestPosition = mentor.positions && mentor.positions.values[0];
           if(latestPosition)
           {
-            mentor.position = latestPosition.title + " -- " + latestPosition.company.name
+            mentor.position = latestPosition.title + ", " + latestPosition.company.name
           }
           return mentor;
         });
@@ -20,7 +20,7 @@ function mentorService($http) {
     		var latestPosition = mentor.positions && mentor.positions.values[0];
           if(latestPosition)
           {
-            mentor.position = latestPosition.title + " -- " + latestPosition.company.name
+            mentor.position = latestPosition.title + ", " + latestPosition.company.name
           }
           return mentor;	
     	});
