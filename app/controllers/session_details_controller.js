@@ -22,16 +22,25 @@ function sessionDetailsController($scope, session, sessionsService) {
 	$scope.days = makeDays(session.date);
 	$scope.startTimes = makeTimes();
 	$scope.endTimes = makeTimes();
-	function matchDay(selectedTime, times, defaultIndex) {
+	function matchDay(selectedTime, times, comparator, defaultIndex) {
 		return times.filter(function(time) {
-			return moment(time.date || time.time).isSame(moment(selectedTime));
+			return comparator(moment(time.date || time.time), moment(selectedTime));
 		})[0] || times[0 || defaultIndex];
 	}
-	$scope.selectedDay = matchDay(session.day, $scope.days);
-	$scope.selectedStartTime = matchDay(session.startTime, $scope.startTimes);
-	$scope.selectedEndTime = matchDay(session.endTime, $scope.endTimes, 2);
+	function compareDays(day1, day2) {
+		return day1.isSame(day2, 'day');
+	}
+	function compareTimeOfDay(day1, day2) {
+		return day1.hours() === day2.hours() && day1.minutes() === day2.minutes();
+	}
+	$scope.selectedDay = matchDay(session.day, $scope.days, compareDays);
+	$scope.selectedStartTime = matchDay(session.startTime, $scope.startTimes, compareTimeOfDay);
+	$scope.selectedEndTime = matchDay(session.endTime, $scope.endTimes, compareTimeOfDay,2);
 	$scope.confirm = function() {
-		sessionsService.confirmTime(session, $scope.selectedDay.date, $scope.selectedStartTime.time, $scope.selectedEndTime.time).then(function(session) {
+		var selectedDay = moment($scope.selectedDay.date).dayOfYear();
+		var selectedStart = moment($scope.selectedStartTime.time).dayOfYear(selectedDay).toDate();
+		var selectedEnd = moment($scope.selectedEndTime.time).dayOfYear(selectedDay).toDate(); 
+		sessionsService.confirmTime(session, $scope.selectedDay.date, selectedStart, selectedEnd).then(function(session) {
 				$scope.status = "Confirmed!"
 		});
 	};

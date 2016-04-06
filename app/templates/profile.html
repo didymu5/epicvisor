@@ -18,9 +18,11 @@
     <button ng-click="saveProfile()"> Update profile </button>
   </div>
 </div>
-
-<div class="scheduler">
-  <h2>Upcoming coming Epicsession</h2>
+<div ng-if="!hasSetupSessions()">
+  <a href="#/profile/sessions"> Setup your EpicSessions </a>
+</div>
+<div class="scheduler" ng-if="hasSetupSessions()">
+  <h2>Upcoming Epicsessions</h2>
   <table class="scheduler__tables">
     <tbody>
       <tr ng-repeat="session in sessions">

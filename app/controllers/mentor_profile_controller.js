@@ -11,6 +11,9 @@ function mentorProfileController($scope, user, sessions, profile, userService) {
 		  year: $scope.selectedYear
 		});
 	}
+	$scope.hasSetupSessions = function(){
+		return $scope.sessions.length > 0;
+	}
 }
 mentorProfileController.$resolve = {
 	user: ['userService', function(userService) {

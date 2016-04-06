@@ -21,7 +21,6 @@ function buildCalendar(startTime, endTime, summary) {
   calendar.addEvent(party.getEvent());
 
   // And display it.
-  console.log(calendar.getCalendar().toString());
   return calendar.getCalendar().toString();
 }
 
@@ -36,7 +35,7 @@ function sendConfirmationEmail(session, student, mentor) {
   var startTime = moment(session.startTime).format('MMMM Do YYYY h:mm a');
   var endTime = moment(session.endTime).format('MMMM Do YYYY h:mm a');
   email_data.subject = "Session for " + startTime;
-  var summary ="At any time, make changes to your session using <a href='" + process.env.CALLBACK_URL + "#/sessions/" + session.id + "'> your scheduler. </a>";
+  var summary ="Epicvisor Session For " + mentor.first_name + " " + mentor.last_name + " and " + student.name;
   
   var buffer = new Buffer(buildCalendar(session.startTime, session.endTime, summary));
   var attachment = new mailgun.Attachment({
