@@ -42,7 +42,7 @@
 
   .card {
     @include transition (all 0.2s ease-in-out);
-    @include flex(3 1 15em);
+    @include flex(3 1 20em);
     @include align-self(stretch);
     border-top:6px solid $card-color--gold;
     background-color: $light-gray;
