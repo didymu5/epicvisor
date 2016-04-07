@@ -70,7 +70,7 @@ config(function ($routeProvider, $locationProvider) {
       controller: 'JoinController'
     }).
     otherwise({
-      redirectTo: '/home'
+      redirectTo: '/landing'
     });
 
 }).directive('headerNav', function() {
