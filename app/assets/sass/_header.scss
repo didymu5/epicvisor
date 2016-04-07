@@ -27,8 +27,10 @@
 .header{
   $header_height: 65px;
   $header_background-color: #fff;
+  $header_bottom_spacing: 30px;
   @include outer-container;
   margin-top: 0;
+  margin-bottom: $header_bottom_spacing;
   min-height: $header_height;
   background-color: $header_background-color;
   z-index: 9999;
@@ -55,6 +57,7 @@
   .header__navigation{
     position: relative;
     float: right;
+    
     .header__navigation-list{
       list-style-type: none;
       li {
@@ -66,8 +69,12 @@
         padding-top: 5px;
         color:$dark-gray;
         text-transform: uppercase;
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left: 5px;
+        padding-right: 5px;
+        @include media($desktop-small-up) {
+          padding-left: 15px;
+          padding-right: 15px;
+        }
       }
       .img__profile--small {
         @include circle(30px, #fffe);
