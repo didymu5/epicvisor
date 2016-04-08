@@ -1,61 +1,43 @@
 <div class="alert">
 	{{status}}
 </div>
-<div class="profile">
-	<div class="profile__name-info">
-		<div class="profile__avatar">
-		  <img class="profile__img" src="{{mentor.avatar}}">
-		</div>
-		<div class="profile__name-info-name">
-		  <h1>{{mentor | name}}</h1>
-		  <div class="social-list">
-		    <a href="{{mentor.public_url}}"><img src="http://icons.iconarchive.com/icons/sicons/flat-shadow-social/512/linkedin-icon.png" width="20"></a>
-		    <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/twitter-128.png" width="20">
-		  </div>
-		</div>
-		<div class="profile__name-info-edu">
-		  <h2>Education</h2>
-		  <p>UCLA, School of Anderson</p>
-		  <p>{{mentor.year}}</p>
-		</div>
+<div class="session-details">
+	<div class="profile__avatar">
+		<img class="profile__img" src="{{mentor.avatar}}">
 	</div>
-</div>
-<div>
-	<p>
-		EpicSession for the Week of {{session.date | date:"M/d"}}
-	</p>
 	<p>
 		Status: {{session.status}}
 	</p>
-</div>
-<div>
-	Meeting with {{student.name}} ({{student.email}})
-</div>
-<div>
-	<select ng-options="day as day.formattedDate for day in days track by day.date" ng-model="selectedDay"></select>
-	<select ng-options="time as time.formattedTime for time in startTimes track by time.time" ng-model="selectedStartTime"></select>
-	<select ng-options="time as time.formattedTime for time in endTimes track by time.time" ng-model="selectedEndTime"></select>
-</div>
-<div>
-	Preferred way to connect:
-	<input type="text" ng-model="preferredConnection">
-</div>
-<div>
-	<div>
-		<button ng-click="confirm()">
-			<text ng-if="isPending(session)"> Confirm </text>
-			<text ng-if="!isPending(session)"> Reschedule </text>
-		</button>
-		<p>
-			Confirmation emails will be sent to attendees
-		</p>
+	<h1>{{mentor | name}}</h1>
+	<p>Class of {{mentor.year}}</p>
+	<h2>
+	EpicSession for the Week of {{session.date | date:"M/d"}}
+	</h2>
+	<h3>Meeting with {{student.name}} ({{student.email}})</h3>
+	<div class="session-selection-group">
+		<select ng-options="day as day.formattedDate for day in days track by day.date" ng-model="selectedDay"></select>
+		<select ng-options="time as time.formattedTime for time in startTimes track by time.time" ng-model="selectedStartTime"></select>
+		<select ng-options="time as time.formattedTime for time in endTimes track by time.time" ng-model="selectedEndTime"></select>
 	</div>
-	<div>
-		<button ng-click="cancel()">
+	<div class="label-input-text-group">
+		<label for="input-text-preveredtext">Preferred way to connect:</label>
+		<input type="text" ng-model="preferredConnection" id="input-text-preveredtext">
+	</div>
+	<div class="session-button-text-group__wrapper">
+		<div class="session-button-text-group">
+			<button ng-click="confirm()">
+				<text ng-if="isPending(session)"> Confirm </text>
+				<text ng-if="!isPending(session)"> Reschedule </text>
+			</button>
+		Confirmation emails will be sent to attendees
+		</div>
+		<div class="session-button-text-group">
+			<button ng-click="cancel()" class="btn-cancel">
 			Cancel
-		</button>
-		<p>
-			Session status will return to open
-		</p>
+			</button>
+			<p>
+				Session status will return to open
+			</p>
+		</div>
 	</div>
 </div>
