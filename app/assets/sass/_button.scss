@@ -3,6 +3,7 @@
   &:hover {
     background:darken($bg,8%);
     transition: all 0.3s ease;
+    color: #eee;
   }
   &:active {
     background:darken($bg,25%);
@@ -10,7 +11,7 @@
 }
 
 .btn {
- color:white;
+ color: white;
  text-decoration:none;
  padding:5px 10px;
  border-radius:3px;
@@ -21,6 +22,7 @@
 }
 
 .btn-blue {
+  @extend .btn;
    @include button-bg($blue);
 }
 

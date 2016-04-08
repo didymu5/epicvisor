@@ -18,9 +18,7 @@
     <button ng-click="saveProfile()"> Update profile </button>
   </div>
 </div>
-<div ng-if="!hasSetupSessions()">
-  <a href="#/profile/sessions"> Setup your EpicSessions </a>
-</div>
+
 <div class="scheduler" ng-if="hasSetupSessions()">
   <h2>Upcoming Epicsessions</h2>
   <table class="scheduler__tables">
@@ -35,5 +33,8 @@
       </tr>
     </tbody>
   </table>
+  <hr>
+  <a href="#/profile/sessions" class="btn-blue">Setup your EpicSessions</a>
+
 </div>
 </div>

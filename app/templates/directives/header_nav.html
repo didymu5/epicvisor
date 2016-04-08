@@ -9,19 +9,19 @@
   <nav class="header__navigation">
     <ul class="header__navigation-list">
       <li>
-        <a href="#" title="About Us">About Us</a>
+        <a href="http://www.epicvisor.com" title="About Us">About Us</a>
       </li>
       <li>
-        <a href="#" title="Contact">Contact</a>
+        <a href="mailto:info@epicvisor.com" title="Contact">Contact</a>
       </li>
       <li ng-if="user" class="header__profile__link">
         <a href="#/profile" title="Profile">Profile <img class="img__profile--small" src="{{user.avatar}}"></a>
       </li>
-      <li ng-if="user" class="header__profile__link">
+      <!-- <li ng-if="user" class="header__profile__link">
         <a href="#/profile/sessions" title="Profile">Session Settings</a>
-      </li>
+      </li> -->
       <li ng-if="!signedIn()">
-        <a href="#/join">Sign In</a>
+        <a href="/oauth/linkedin">Login with Linkedin</a>
       </li>
      </ul>
   </nav>
