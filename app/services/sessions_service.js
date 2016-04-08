@@ -54,6 +54,9 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
     getSession: function(sessionid) {
         return $http.get('/sessions/' + sessionid).then(function(res) {
             var session = res.data;
+            if(!session) {
+                throw new Error("test");
+            }
             var mentorId = session.user_id;
             var studentId = session.student_id;
             return $q.all([mentorService.getMentor(mentorId), studentService.getStudent(studentId)])
@@ -78,7 +81,7 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
         });
     },
     cancelTime: function(session) {
-        return $http.post('/sessions/' + session.id + '/delete').then(function(res){
+        return $http.post('/sessions/' + session.id + '/destroy').then(function(res){
             return res.data;
         });
     },

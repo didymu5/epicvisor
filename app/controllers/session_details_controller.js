@@ -1,5 +1,8 @@
 import moment from 'moment';
-function sessionDetailsController($scope, session, sessionsService, $location) {
+function sessionDetailsController($scope, session, sessionsService, $location, myModal) {
+	if(!session) {
+		$location.path('/');
+	}
 	$scope.session = session;
 	$scope.mentor = session.mentor;
 	$scope.student = session.student;
@@ -60,8 +63,10 @@ function sessionDetailsController($scope, session, sessionsService, $location) {
 }
 sessionDetailsController.$resolve = {
 	session: ['sessionsService', '$route', function(sessionsService, $route) {
-		return sessionsService.getSession($route.current.params.session_id);
+		return sessionsService.getSession($route.current.params.session_id).catch(function(err) {
+			return undefined;
+		});
 	}]
 }
-sessionDetailsController.$inject = ['$scope','session', 'sessionsService', '$location'];
+sessionDetailsController.$inject = ['$scope','session', 'sessionsService', '$location', 'myModal'];
 export default sessionDetailsController;

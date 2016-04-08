@@ -1,6 +1,7 @@
 function book_session_controller($scope, session, mentor, $location, sessionsService, myModal) {
 	if(mentor === undefined) {
-		$location.path('/')
+		$location.path('/');
+		return;
 	}
 	$scope.cancel = function() {
 		$location.path('/mentors/' + mentor.uid);
