@@ -1,0 +1,24 @@
+$mobile-max: 414px;
+$tablet-max: 768px;
+$desktop-small-max: 1024px;
+$desktop-medium-max: 1280px;
+
+$tablet-min: $mobile-max+1px;
+$desktop-small-min: $tablet-max+1px;
+$desktop-medium-min: $desktop-small-max+1px;
+$desktop-large-min: $desktop-medium-max+1px;
+
+$default-feature: min-width;
+
+$mobile: new-breakpoint(max-width $mobile-max, 12);
+$tablet: new-breakpoint(min-width #{$tablet-min} max-width #{$tablet-max}, 12);
+$desktop-small: new-breakpoint(min-width #{$desktop-small-min} max-width #{$desktop-small-max}, 12);
+$desktop-medium: new-breakpoint(min-width #{$desktop-medium-min} max-width #{$desktop-medium-max}, 12);
+$desktop-large: new-breakpoint(min-width $desktop-large-min, 12);
+
+$tablet-up: new-breakpoint(min-width $tablet-min, 12);
+$desktop-small-up: new-breakpoint(min-width $desktop-small-min, 12);
+$desktop-medium-up: new-breakpoint(min-width $desktop-medium-min, 12);
+
+$device: new-breakpoint(max-width $tablet-max, 12);
+$desktop: $desktop-small-up;
