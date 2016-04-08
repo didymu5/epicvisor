@@ -122,7 +122,9 @@ exports.confirmAppointment = function(request, reply) {
     var session = updateMetadata[1][0];
     return Student.findOne({where: { id: session.student_id}}).then(function(student) {
       return User.findOne({where:{id: session.user_id }}).then(function(user) {
-        sendConfirmationEmail(session, student, user);
+        if(!process.env['MAILGUN_DISABLED']) {
+          sendConfirmationEmail(session, student, user);
+        }
         reply(session);
         return true;
       });

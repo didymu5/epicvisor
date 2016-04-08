@@ -24,10 +24,28 @@ import joinController from './controllers/join_controller';
 // Declare app level module which depends on filters, and services
 import ng_dropdowns from 'angular-dropdowns';
 import isteven_angular_multiselect  from '../node_modules/isteven-angular-multiselect/isteven-multi-select';
+import angular_modal from 'angular-modal';
+
 
 var myApp = angular.module('myApp', [
-  'ngRoute', 'ngDropdowns', "isteven-multi-select" 
+  'ngRoute', 'ngDropdowns', "isteven-multi-select",'btford.modal' 
 ]).
+
+// let's make a modal called `myModal`
+factory('myModal', function (btfModal) {
+  return btfModal({
+    controller: 'MyModalCtrl',
+    controllerAs: 'modal',
+    templateUrl: 'templates/directives/my-modal.html'
+  });
+}).
+
+// typically you'll inject the modal service into its own
+// controller so that the modal can close itself
+controller('MyModalCtrl', function (myModal,message) {
+  this.closeMe = myModal.deactivate;
+  this.message = message;
+}).
 config(function ($routeProvider, $locationProvider) {
   $routeProvider.
     when('/home', {

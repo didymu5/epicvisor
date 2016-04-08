@@ -1,5 +1,5 @@
 import moment from 'moment';
-function sessionDetailsController($scope, session, sessionsService) {
+function sessionDetailsController($scope, session, sessionsService, $location) {
 	$scope.session = session;
 	$scope.mentor = session.mentor;
 	$scope.student = session.student;
@@ -52,7 +52,8 @@ function sessionDetailsController($scope, session, sessionsService) {
 	}
 	$scope.cancel = function() {
 		sessionsService.cancelTime(session, $scope.selectedDay, $scope.selectedStartTime, $scope.selectedEndTime).then(function(session) {
-			$scope.status = "Deleted!";
+			myModal.activate({message: "Your EpicSession has been cancelled."})
+			$location.path("/");
 		});
 	};
 
@@ -62,5 +63,5 @@ sessionDetailsController.$resolve = {
 		return sessionsService.getSession($route.current.params.session_id);
 	}]
 }
-sessionDetailsController.$inject = ['$scope','session', 'sessionsService'];
+sessionDetailsController.$inject = ['$scope','session', 'sessionsService', '$location'];
 export default sessionDetailsController;

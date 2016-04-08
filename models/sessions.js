@@ -12,6 +12,9 @@ var Session = db.sequelize.define('sessions', {
   date: {
     type: Sequelize.DATE
   },
+  topics: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
+  },
   status: {
     type: Sequelize.STRING
   },
