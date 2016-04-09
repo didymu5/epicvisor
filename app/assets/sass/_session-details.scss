@@ -1,0 +1,44 @@
+.session-details{
+  @include outer-container;
+  text-align: center;
+  .session-selection-group{
+    margin-top: 2em;
+    margin-bottom: 2em;
+    select {
+      @include pad(5px 15px);
+      display: inline-block;
+      margin-right: 20px;
+    }
+  }
+  .profile__img{
+    @include circle(100px, #fff);
+  }
+  .label-input-text-group{
+    @include span-columns(12);
+    @include clearfix;
+    @include row;
+    text-align: center;
+    input[type="text"] {
+      @include span-columns(4);
+      @include shift(4);
+    }
+  }
+  .session-button-text-group{
+    @include span-columns(4);
+    @include clearfix;
+    margin-bottom: 30px;
+
+    button {
+      min-width:100%;
+    }
+    text-align: center;
+    font-size: .9em;
+  }
+  .session-button-text-group__wrapper{
+    @include shift(3);
+    @include row();
+    @include clearfix;
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+}
