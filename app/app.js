@@ -33,11 +33,22 @@ var myApp = angular.module('myApp', [
 
 // let's make a modal called `myModal`
 factory('myModal', function (btfModal) {
-  return btfModal({
+  var btfModal = btfModal({
     controller: 'MyModalCtrl',
     controllerAs: 'modal',
     templateUrl: 'templates/directives/my-modal.html'
   });
+  var parentDeactivate = btfModal.deactivate;
+  btfModal.deactivate = function() {
+    angular.element(document).find('body').removeClass('modal-open');
+    parentDeactivate();
+  }
+  var parentActivate = btfModal.activate;
+  btfModal.activate = function(messages) {
+    angular.element(document).find('body').addClass('modal-open');
+    parentActivate(messages);
+  }
+  return btfModal;
 }).
 
 // typically you'll inject the modal service into its own
