@@ -80,7 +80,7 @@ function linkedInOAUTH(request, reply) {
               }
             userData[0].update(userDetails, {fields: Object.keys(userDetails)}).then(function(userData) {
               request.yar.set('user', userData);
-              return reply.redirect('/index.html#/profile');
+              return reply.redirect('/#/profile');
             });
           });
         });
