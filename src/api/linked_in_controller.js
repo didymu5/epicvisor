@@ -9,6 +9,9 @@ var Path = require('path');
 exports.initialize = function(LinkedInModule) {
   Linkedin = LinkedInModule( process.env.LINKEDIN_API_KEY, process.env.LINKEDIN_API_SECRET);
   callback_url = process.env.CALLBACK_URL ;
+
+  console.log("LE CALLBACK!")
+  console.log(callback_url + '/oauth/linkedin/callback');
   Linkedin.auth.setCallback(callback_url + '/oauth/linkedin/callback');
   
   return {
