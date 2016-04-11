@@ -157,7 +157,7 @@ exports.getSession = function(request, reply) {
 
 exports.checkStudentSignature = function(request, reply) {
   var studentDetails = request.payload.data;
-  Student.findOne({where: {name: studentDetails.name, email: studentDetails.email}}).then(function(student) {
+  Student.findOne({where: { email: studentDetails.email}}).then(function(student) {
     if(student) {
       reply(student);
     }
