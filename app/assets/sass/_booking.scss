@@ -8,13 +8,16 @@
   text-align: center;
   min-height:300px; 
   &__session__form{
-    @include span-columns(6 of 12);
-    @include shift(3);
+    @include span-columns(4 of 12);
+    @include shift(4);
     text-align: center;
     input {
       text-align: center;
     }
   }
+  .booker-heading{
+     margin-bottom: 15px; 
+    }
   &__checkbox-group{
     text-align: left;
     &--checkboxlabel{
