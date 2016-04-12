@@ -38,24 +38,15 @@ factory('myModal', function (btfModal) {
     controllerAs: 'modal',
     templateUrl: 'templates/directives/my-modal.html'
   });
-  var parentDeactivate = btfModal.deactivate;
-  btfModal.deactivate = function() {
-    angular.element(document).find('body').removeClass('modal-open');
-    parentDeactivate();
-  }
-  var parentActivate = btfModal.activate;
-  btfModal.activate = function(messages) {
-    angular.element(document).find('body').addClass('modal-open');
-    parentActivate(messages);
-  }
   return btfModal;
 }).
 
 // typically you'll inject the modal service into its own
 // controller so that the modal can close itself
-controller('MyModalCtrl', function (myModal,message) {
+controller('MyModalCtrl', function (myModal,message, closeBtnTxt) {
   this.closeMe = myModal.deactivate;
   this.message = message;
+  this.closeBtnTxt = closeBtnTxt;
 }).
 config(function ($routeProvider, $locationProvider) {
   $routeProvider.

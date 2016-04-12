@@ -23,7 +23,7 @@ gulp.task('build', function() {
 gulp.task('sass', function() {
   return gulp.src(paths.scss)
     .pipe(sass({
-      includePaths: ['assets/sass'].concat(neat)
+      includePaths: ['assets/sass', 'node_modules/'].concat(neat)
     }).on('error', sass.logError))
     .pipe(gulp.dest('public/assets/css'));
 });
