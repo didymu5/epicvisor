@@ -7,6 +7,7 @@ var Path = require('path');
 var Handlebars = require('handlebars');
 var Mailgun = require('mailgun-js');
 var iCalendar = require('icsjs');
+var Q = require('q');
 
 function buildCalendar(startTime, endTime, summary) {
   // Let's do a party right now.
@@ -46,6 +47,28 @@ function sendConfirmationEmail(session, student, mentor) {
   email_data.attachment = attachment;
   email_data.html = emailTemplate({mentor: mentor, student:student,
    session: session, url: process.env.CALLBACK_URL, startTime: startTime, endTime: endTime})
+  mailgun.messages().send(email_data, function(err, body){
+    if(err){
+      console.log(err);
+    }
+  });
+}
+
+function sendCancellationEmail(session, student, mentor) {
+    var mailgun = new Mailgun({apiKey: process.env.MAILGUN_API_KEY, domain: process.env.MAILGUN_DOMAIN});
+
+  var emailTemplate =  Handlebars.compile(fs.readFileSync(Path.resolve(__dirname, '../templates/session-cancel.hbs'), 'utf-8'));
+  var email_data = {
+      from: 'no-reply@epicvisor.com',
+      to: [mentor.email_address, student.email]
+    }
+  var beginTime = moment(session.date).format('MMMM Do YYYY h:mm a');
+  var startTime = startTime && moment(session.startTime).format('MMMM Do YYYY h:mm a');
+  var endTime = endTime && moment(session.endTime).format('MMMM Do YYYY h:mm a');
+  email_data.subject = "Session for " + (startTime || beginTime) + " cancelled";
+  var summary ="Epicvisor Session Cancelled: " + mentor.first_name + " " + mentor.last_name + " and " + student.name;
+  email_data.html = emailTemplate({mentor: mentor, student:student,
+   session: session, url: process.env.CALLBACK_URL, startTime: startTime, endTime: endTime, beginTime: beginTime})
   mailgun.messages().send(email_data, function(err, body){
     if(err){
       console.log(err);
@@ -134,12 +157,32 @@ exports.confirmAppointment = function(request, reply) {
 
 exports.cancelAppointment = function(request, reply) {
   var sessionId = request.params.id;
-  Sessions.destroy({
-    where: {
-      id: sessionId
-    }
-  }).then(function(deleted) {
-    reply();
+  getSessionAndDetails(sessionId).then(function(sessionDetails){
+     Sessions.destroy({
+        where: {
+          id: sessionId
+        }
+      }).then(function(deleted) {
+        console.log("BLAERGH!");
+        console.log(sessionDetails);
+        sendCancellationEmail(sessionDetails.session, sessionDetails.student, sessionDetails.mentor);
+        reply();
+      });
+    });
+ 
+}
+
+function getSessionAndDetails(session_id) {
+  return Sessions.findOne({where: {id: session_id}}).then(function(session) {
+    var student = Student.findOne({where:{id: session.student_id }});
+    var mentor = User.findOne({where:{id: session.user_id }})
+    return Q.all([student, mentor]).then(function(results) {
+      return {
+        student: results[0],
+        mentor: results[1],
+        session: session
+      };
+    });
   });
 }
 
