@@ -44,7 +44,7 @@ function sendConfirmationEmail(session, student, mentor) {
                           contentType: 'ics'
   });
   email_data.attachment = attachment;
-  email_data.html = emailTemplate({mentor: mentor, mentee:student,
+  email_data.html = emailTemplate({mentor: mentor, student:student,
    session: session, url: process.env.CALLBACK_URL, startTime: startTime, endTime: endTime})
   mailgun.messages().send(email_data, function(err, body){
     if(err){
@@ -68,7 +68,7 @@ function bookAndSendEmail(request, reply, student, mentor) {
       Sessions.create(bookingDetails).then(function(created) {
         week = moment(request.payload.date).startOf('week').format('MMMM Do YYYY');
         email_data.subject = "Session of " + week;
-        email_data.html = emailTemplate({mentor: mentor, mentee:student,
+        email_data.html = emailTemplate({mentor: mentor, student:student,
          session: created, url: process.env.CALLBACK_URL, week: week})
         mailgun.messages().send(email_data, function(err, body){
           if(err){
