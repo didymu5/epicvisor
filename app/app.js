@@ -98,10 +98,6 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'templates/join.html',
       controller: 'JoinController'
     }).
-    when('/signin', {
-      templateUrl: 'templates/join.html',
-      controller: 'JoinController'
-    }).
     otherwise({
       redirectTo: '/landing'
     });
