@@ -4,7 +4,7 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 		return;
 	}
 	$scope.cancel = function() {
-		$location.path('/mentors/' + mentor.uid);
+		$location.path('/mentors/' + mentor.user_id);
 	}
 	$scope.selectedTopics = {};
   	$scope.topics = ["Career Advancement", "Building a Team","Internships","International Business","Raising Funding","Work Life Balance"];
