@@ -9,6 +9,9 @@ var Session = db.sequelize.define('sessions', {
   user_id: {
     type: Sequelize.STRING
   },
+  encoded_url: {
+    type: Sequelize.STRING
+  },
   date: {
     type: Sequelize.DATE
   },

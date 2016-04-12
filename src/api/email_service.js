@@ -6,6 +6,7 @@ var Mailgun = require('mailgun-js');
 var iCalendar = require('icsjs');
 var Sessions = require('../../models/sessions');
 var moment = require('moment');
+var shortid = require('shortid');
 
 
 function buildCalendar (startTime, endTime, summary) {
@@ -87,6 +88,7 @@ exports.bookAndSendEmail = function(request, reply, student, mentor) {
     }
     var bookingDetails = request.payload;
       bookingDetails.user_id = request.params.id;
+      bookingDetails.encoded_url = shortid.generate();
       Sessions.create(bookingDetails).then(function(created) {
         week = moment(request.payload.date).startOf('week').format('MMMM Do YYYY');
         email_data.subject = "Session of " + week;

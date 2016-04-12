@@ -3,11 +3,13 @@ var Sessions = require('../../models/sessions');
 var Student = require('../../models/student');
 var User = require('../../models/user');
 var Q = require('q');
+var shortid = require('shortid');
 var emailService = require('./email_service');
 exports.bookAppointment = function (request, reply) {
   
   if(process.env['MAILGUN_DISABLED']) {
     var bookingDetails = request.payload;
+      bookingDetails.encoded_url = shortid.generate();
       bookingDetails.user_id = request.params.id;
       Sessions.create(bookingDetails).then(function(created) {
             reply('emails sent');
@@ -87,7 +89,7 @@ exports.getStudent = function(request, reply) {
 }
 
 exports.getSession = function(request, reply) {
-  Sessions.findOne({where:{id: request.params.id}}).then(function(session) {
+  Sessions.findOne({where:{encoded_url: request.params.id}}).then(function(session) {
     reply(session || undefined);
   });
 }
