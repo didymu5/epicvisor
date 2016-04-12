@@ -76,12 +76,14 @@ function linkedInOAUTH(request, reply) {
             where: {
               linkedin_id: $in.id
             },
-            defaults: userDetails}).then(function(userData,created) {
+            defaults: userDetails}).spread(function(userData,created) {
+              console.log("I HAVE BEEN CREATED!!!");
+              console.log(created);
               if(created)
               {
-                sendLinkedInEmail(userData[0])
+                sendLinkedInEmail(userData)
               }
-            userData[0].update(userDetails, {fields: Object.keys(userDetails)}).then(function(userData) {
+            userData.update(userDetails, {fields: Object.keys(userDetails)}).then(function(userData) {
               request.yar.set('user', userData);
               return reply.redirect('/#/profile');
             });
