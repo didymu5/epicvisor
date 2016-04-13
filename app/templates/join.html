@@ -1,11 +1,11 @@
-<div class="join-container">
+<div class="join-container" ng-if="sorry_message">
+  <h2>{{sorry_message}}</h2>
+</div>
+
+<div class="join-container" ng-if="!sorry_message">
   <h2>Welcome Mentor!</h2>
   <p>To registar login with LinkedIn</p>
   <a class="btn_linkedin" href="/oauth/linkedin">
     <img src="https://s3-us-west-1.amazonaws.com/epicvisor/signin_with_linkedin-buttons/Retina/Sign-In-Small---Default.png" alt="login with linkedin">
   </a>
-</div>
-
-<div class="join-container" ng-if="sorry_message">
-  <h2>{{sorry_message}}</h2>
 </div>

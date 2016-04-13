@@ -79,10 +79,6 @@ config(function ($routeProvider, $locationProvider) {
       controller: 'SessionDetailsController',
       resolve: sessionDetailsController.$resolve
     }).
-    when('/sorry', {
-      templateUrl: 'templates/sorry.html',
-      controller: 'JoinController'
-    }).
     when('/landing',
       {
         templateUrl: 'templates/landing.html',

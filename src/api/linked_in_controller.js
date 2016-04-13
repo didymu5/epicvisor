@@ -71,7 +71,7 @@ function linkedInSignBackIn(request, reply) {
           request.yar.set('user', user);
           reply.redirect('/#/profile');
         } else {
-          reply.redirect('/#/sorry');
+          reply.redirect('/#/join');
         }
         return user;
       });
