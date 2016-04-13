@@ -1,3 +1,7 @@
+.title-heading{
+  @include outer-container;
+  @include clearfix;
+}
 .profile {
   @include outer-container;
   @include clearfix;

@@ -1,25 +1,29 @@
+
+<div class="title-heading"><h2>My EpicVisor Profile</h2></div>
 <div class="profile">
   <div class="profile__left">
+    <p>Class of <select ng-options="year as year for year in years track by year" ng-model="selectedYear"></select></p>
+    <p>Share a blurb about yourself for students</p>
+      <textarea class="profile__name-info-about-textarea" maxlength="200" ng-model="blurb" rows="7"></textarea>
+      <button ng-click="saveProfile()"> Update profile </button>
+  </div>
+
+  <div class="profile__right">
+    <h3>Sync your LinkedIn background</h3>
     <div class="profile__intro">
       <div class="profile__avatar">
         <img class="profile__img" src="{{user.avatar}}">
       </div>
       <div class="profile__intro-copy">
         <h1 class="profile__intro_name">{{user.first_name}} {{user.last_name}}</h1>
-        <p>Share a blurb about yourself for students</p>
-        <textarea class="profile__name-info-about-textarea" maxlength="200" ng-model="blurb"></textarea>
-        <p>Class of <select ng-options="year as year for year in years track by year" ng-model="selectedYear"></select></p>
         <p>Last Sync to LinkedIn: {{user.last_modified}} <button>sync</button></p>
       </div>
     </div>
   </div>
-
-  <div class="profile__right">
-    <button ng-click="saveProfile()"> Update profile </button>
-
-  </div>
 </div>
-
+<div class="scheduler" ng-if="!hasSetupSessions()">
+  <a href="#/profile/sessions" class="btn-blue">Setup your EpicSessions</a>
+</div>
 <div class="scheduler" ng-if="hasSetupSessions()">
   <h2>Upcoming Epicsessions</h2>
   <a href="#/profile/sessions" class="btn-blue">Setup your EpicSessions</a>
@@ -36,7 +40,5 @@
     </tbody>
   </table>
   <hr>
-  <a href="#/profile/sessions" class="btn-blue">Setup your EpicSessions</a>
-
 </div>
 </div>
