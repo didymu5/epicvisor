@@ -1,4 +1,4 @@
-var scope = ['r_basicprofile',  'r_emailaddress'];
+var scope = ['r_basicprofile', 'r_emailaddress'];
 var User = require('../../models/user');
 var Linkedin;
 var callback_url;
@@ -7,22 +7,22 @@ var fs = require('fs');
 var Path = require('path');
 
 exports.initialize = function(LinkedInModule) {
-  Linkedin = LinkedInModule( process.env.LINKEDIN_API_KEY, process.env.LINKEDIN_API_SECRET);
-  callback_url = process.env.CALLBACK_URL ;
+  Linkedin = LinkedInModule(process.env.LINKEDIN_API_KEY, process.env.LINKEDIN_API_SECRET);
+  callback_url = process.env.CALLBACK_URL;
 
   Linkedin.auth.setCallback(callback_url + '/oauth/linkedin/callback');
-  
+
   return {
-    linkedInOAUTH: linkedInOAUTH, 
+    linkedInOAUTH: linkedInOAUTH,
     requestAuth: requestAuth
   }
 }
 
 
 function requestAuth(request, reply) {
-    callback_url = process.env.CALLBACK_URL ;
+  callback_url = process.env.CALLBACK_URL;
 
-   Linkedin.auth.authorize(reply, scope);
+  Linkedin.auth.authorize(reply, scope);
 
 }
 
@@ -54,40 +54,42 @@ function sendLinkedInEmail(user) {
 }
 
 function linkedInOAUTH(request, reply) {
-   Linkedin.auth.getAccessToken(reply, request.query.code, request.query.state, function(err, results) {
-        if ( err )
-            return console.error(err);
-        var linkedin = Linkedin.init(results.access_token);
-        linkedin.people.me(['id','first-name','last-name','picture-url', 'headline','location','industry','summary','positions','specialties','public-profile-url','email-address'], function(err, $in) {
-          var userDetails = {
-            first_name: $in.firstName,
-            last_name: $in.lastName,
-            email_address: $in.emailAddress,
-            industry: $in.industry,
-            public_url: $in.publicProfileUrl,
-            summary: $in.summary,
-            headline: $in.headline,
-            user_access_token: results.access_token,
-            avatar: $in.pictureUrl,
-            linkedin_id: $in.id,
-            positions: $in.positions
-          }
-          User.findOrCreate({
-            where: {
-              linkedin_id: $in.id
-            },
-            defaults: userDetails}).spread(function(userData,created) {
-              console.log("I HAVE BEEN CREATED!!!");
-              console.log(created);
-              if(created)
-              {
-                sendLinkedInEmail(userData)
-              }
-            userData.update(userDetails, {fields: Object.keys(userDetails)}).then(function(userData) {
-              request.yar.set('user', userData);
-              return reply.redirect('/#/profile');
-            });
-          });
+  Linkedin.auth.getAccessToken(reply, request.query.code, request.query.state, function(err, results) {
+    if (err)
+      return console.error(err);
+    var linkedin = Linkedin.init(results.access_token);
+    linkedin.people.me(['id', 'first-name', 'last-name', 'picture-url', 'headline', 'location', 'industry', 'summary', 'positions', 'specialties', 'public-profile-url', 'email-address'], function(err, $in) {
+      var userDetails = {
+        first_name: $in.firstName,
+        last_name: $in.lastName,
+        email_address: $in.emailAddress,
+        industry: $in.industry,
+        public_url: $in.publicProfileUrl,
+        summary: $in.summary,
+        headline: $in.headline,
+        user_access_token: results.access_token,
+        avatar: $in.pictureUrl,
+        linkedin_id: $in.id,
+        positions: $in.positions
+      }
+      User.findOrCreate({
+        where: {
+          linkedin_id: $in.id
+        },
+        defaults: userDetails
+      }).spread(function(userData, created) {
+        console.log("I HAVE BEEN CREATED!!!");
+        console.log(created);
+        if (created) {
+          sendLinkedInEmail(userData)
+        }
+        userData.update(userDetails, {
+          fields: Object.keys(userDetails)
+        }).then(function(userData) {
+          request.yar.set('user', userData);
+          return reply.redirect('/#/profile');
         });
+      });
     });
+  });
 }
