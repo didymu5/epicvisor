@@ -21,9 +21,7 @@ exports.initialize = function(LinkedInModule) {
 
 function requestAuth(request, reply) {
   callback_url = process.env.CALLBACK_URL;
-
   Linkedin.auth.authorize(reply, scope);
-
 }
 
 function sendLinkedInEmail(user) {
@@ -55,8 +53,10 @@ function sendLinkedInEmail(user) {
 
 function linkedInOAUTH(request, reply) {
   Linkedin.auth.getAccessToken(reply, request.query.code, request.query.state, function(err, results) {
-    if (err)
-      return console.error(err);
+    if (err) {
+      throw err;
+    }
+
     var linkedin = Linkedin.init(results.access_token);
     linkedin.people.me(['id', 'first-name', 'last-name', 'picture-url', 'headline', 'location', 'industry', 'summary', 'positions', 'specialties', 'public-profile-url', 'email-address'], function(err, $in) {
       var userDetails = {
@@ -72,15 +72,14 @@ function linkedInOAUTH(request, reply) {
         linkedin_id: $in.id,
         positions: $in.positions
       }
+
       User.findOrCreate({
         where: {
           linkedin_id: $in.id
         },
         defaults: userDetails
-      }).spread(function(userData, created) {
-        console.log("I HAVE BEEN CREATED!!!");
-        console.log(created);
-        if (created) {
+      }).spread(function(userData, justCreated) {
+        if (justCreated) {
           sendLinkedInEmail(userData)
         }
         userData.update(userDetails, {
