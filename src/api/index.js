@@ -17,7 +17,16 @@ function register(server, options, next) {
     path: '/oauth/linkedin',
     handler: linkedInController.requestAuth
   });
-
+  server.route({
+    method: 'GET',
+    path: '/oauth/linkedin/login',
+    handler: linkedInController.linkedInSignIn
+  });
+  server.route({
+    method: 'GET',
+    path: '/oauth/linkedin/callback/login',
+    handler: linkedInController.linkedInSignBackIn
+  });
   server.route({
     method: 'GET',
     path: '/user/info',

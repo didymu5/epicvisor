@@ -8,19 +8,19 @@ var Path = require('path');
 
 exports.initialize = function(LinkedInModule) {
   Linkedin = LinkedInModule(process.env.LINKEDIN_API_KEY, process.env.LINKEDIN_API_SECRET);
-  callback_url = process.env.CALLBACK_URL;
-
-  Linkedin.auth.setCallback(callback_url + '/oauth/linkedin/callback');
 
   return {
     linkedInOAUTH: linkedInOAUTH,
-    requestAuth: requestAuth
+    requestAuth: requestAuth,
+    linkedInSignBackIn: linkedInSignBackIn,
+    linkedInSignIn: linkedInSignIn
   }
 }
 
 
 function requestAuth(request, reply) {
   callback_url = process.env.CALLBACK_URL;
+  Linkedin.auth.setCallback(callback_url + '/oauth/linkedin/callback');
   Linkedin.auth.authorize(reply, scope);
 }
 
@@ -51,6 +51,39 @@ function sendLinkedInEmail(user) {
   });
 }
 
+function linkedInSignBackIn(request, reply) {
+
+  Linkedin.auth.getAccessToken(reply, request.query.code, request.query.state, function(err, results) {
+    if (err) {
+      throw err;
+    }
+    var linkedin = Linkedin.init(results.access_token);
+    linkedin.people.me(['email-address'], function(err, $in) {
+      if (err) {
+        throw err;
+      }
+      User.findOne({
+        where: {
+          email_address: $in.emailAddress
+        }
+      }).then(function(user) {
+        if(user){
+          request.yar.set('user', user);
+          reply.redirect('/#/profile');
+        } else {
+          reply.redirect('/#/sorry');
+        }
+        return user;
+      });
+    })
+  })
+}
+function linkedInSignIn(request, reply) {
+  callback_url = process.env.CALLBACK_URL;
+  Linkedin.auth.setCallback(callback_url + '/oauth/linkedin/callback/login');
+  Linkedin.auth.authorize(reply, scope);
+}
+
 function linkedInOAUTH(request, reply) {
   Linkedin.auth.getAccessToken(reply, request.query.code, request.query.state, function(err, results) {
     if (err) {
@@ -72,7 +105,6 @@ function linkedInOAUTH(request, reply) {
         linkedin_id: $in.id,
         positions: $in.positions
       }
-
       User.findOrCreate({
         where: {
           linkedin_id: $in.id
