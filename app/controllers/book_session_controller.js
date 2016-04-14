@@ -40,7 +40,7 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 					$location.path('/mentors/' + mentor.user_id);
 				}
 				else {
-					myModal.activate({message: "That's not the right email/username for this site. Please contact customer support for more information.", closeBtnTxt:'Got it thanks'})
+					myModal.activate({message: "Sorry only emails that have been invited to the UCLA Anderson / EpicVisor platform can request time with EpicVisors.", closeBtnTxt:'Ok'})
 				}
 				return undefined;
 		});
