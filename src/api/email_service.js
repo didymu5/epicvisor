@@ -35,7 +35,7 @@ exports.sendConfirmationEmail = function(session, student, mentor) {
     }
   var startTime = moment(session.startTime).format('MMMM Do YYYY h:mm a');
   var endTime = moment(session.endTime).format('MMMM Do YYYY h:mm a');
-  email_data.subject = "Session for " + startTime;
+  email_data.subject = "EpicSession Confirmed for " + startTime;
   var summary ="Epicvisor Session For " + mentor.first_name + " " + mentor.last_name + " and " + student.name;
   
   var buffer = new Buffer(buildCalendar(session.startTime, session.endTime, summary));
@@ -89,7 +89,7 @@ exports.bookAndSendEmail = function(request, reply, student, mentor) {
       bookingDetails.encoded_url = shortid.generate();
       Sessions.create(bookingDetails).then(function(created) {
         week = moment(request.payload.date).startOf('week').format('MMMM Do YYYY');
-        email_data.subject = "EpicSession request for of " + week;
+        email_data.subject = "EpicSession request for week of " + week;
         email_data.html = emailTemplate({mentor: mentor, student:student,
          session: created, url: process.env.CALLBACK_URL, week: week})
         mailgun.messages().send(email_data, function(err, body){
