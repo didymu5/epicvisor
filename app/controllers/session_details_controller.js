@@ -55,7 +55,7 @@ function sessionDetailsController($scope, session, sessionsService, $location, m
 	}
 	$scope.cancel = function() {
 		sessionsService.cancelTime(session, $scope.selectedDay, $scope.selectedStartTime, $scope.selectedEndTime).then(function(session) {
-			myModal.activate({message: "Your EpicSession has been cancelled."})
+			myModal.activate({message: "Your EpicSession has been cancelled.", closeBtnTxt:'ok =('})
 			$location.path("/");
 		});
 	};
