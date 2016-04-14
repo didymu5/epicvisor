@@ -36,7 +36,7 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 				email: email
 			}).then(function(confirmation) {
 				if(confirmation){
-					myModal.activate({message: " An intro has been made with this EpicVisor. Please follow email instructions. "})
+					myModal.activate({message: "An introduction has been made to this EpicVisor. Please check your email for more details.", closeBtnTxt:'Ok'})
 					$location.path('/mentors/' + mentor.user_id);
 				}
 				else {
