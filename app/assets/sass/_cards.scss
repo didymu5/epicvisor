@@ -15,6 +15,12 @@
     transform: translate(0, -50%);
   }
 }
+.sorry{
+  @include outer-container;
+  @extend .h2;
+  text-align: center;
+  margin-top: 2em;
+}
 .card-list {
   $base-border-radius: 3px !default;
   $base-background-color: white !default;
