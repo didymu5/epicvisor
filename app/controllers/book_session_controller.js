@@ -4,12 +4,14 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 		$location.path('/');
 		return;
 	}
+	$scope.years = Array.from(new Array(2016-1940), (x,i) => 2016-i);
+	$scope.selectedYear = '2013';
 	$scope.cancel = function() {
 		$location.path('/mentors/' + mentor.user_id);
 	}
 	$scope.selectedTopics = {};
 	function getMentorTopics(mentor){
-		var possibleTopics = [mentor.extraTopic1, mentor.extraTopic2, mentor.extraTopic3].concat(mentor.topics).concat(mentor.career_topics);
+		var possibleTopics = [mentor.extraTopic1, mentor.extraTopic2, mentor.extraTopic3].concat(mentor.topics);
 		return possibleTopics;
 	}
   	$scope.topics = ["Career Advancement", "Building a Team","Internships","International Business","Raising Funding","Work Life Balance"];
@@ -24,7 +26,7 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 		myModal.deactivate();
 		var name = $scope.name;
 		var email = $scope.email;
-		var year = $scope.year;
+		var year = $scope.selectedYear;
 		session.topics =  Object.keys($scope.selectedTopics).filter(function(topic) {
 			return $scope.selectedTopics[topic];
 		});

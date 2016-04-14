@@ -3,6 +3,7 @@ function mentorProfileController($scope, user, sessions, profile, userService, $
 	$scope.selectedYear = profile.year || "2016";
 	$scope.blurb = profile.blurb || "";
 	$scope.sessions = sessions;
+	$scope.selectedYear = '2013';
 
 	$scope.years = Array.from(new Array(2016-1940), (x,i) => 2016-i);
 	$scope.saveProfile = function() {

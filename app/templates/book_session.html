@@ -5,7 +5,7 @@
     <input type="text" name="name" placeholder="Name" ng-model="name">
     <input type="text" name="inviteEmail" placeholder="Invite Email" ng-model="email">
     <span>Only emails invited to EpicVisor can book sessions.</span>
-    <input type="text" name="classYear" placeholder="Enter class year" ng-model="year">
+    <p>Class of <select ng-options="year as year for year in years track by year" ng-model="selectedYear"></select></p>
 
     <p>Which topics would you like to talk about?</p>
     <div class="booker__checkbox-group">
