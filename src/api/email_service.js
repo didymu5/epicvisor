@@ -62,9 +62,9 @@ exports.sendCancellationEmail = function(session, student, mentor) {
       from: 'no-reply@epicvisor.com',
       to: [mentor.email_address, student.email]
     }
-  var beginTime = moment(session.date).format('MMMM Do YYYY h:mm a');
-  var startTime = startTime && moment(session.startTime).format('MMMM Do YYYY h:mm a');
-  var endTime = endTime && moment(session.endTime).format('MMMM Do YYYY h:mm a');
+  var beginTime = moment(session.date).tz('America/Los_Angeles').format('MMMM Do YYYY h:mm a');
+  var startTime = startTime && moment(session.startTime).tz('America/Los_Angeles').format('MMMM Do YYYY h:mm a');
+  var endTime = endTime && moment(session.endTime).tz('America/Los_Angeles').format('MMMM Do YYYY h:mm a');
   email_data.subject = "Cancelled EpicSession for " + (startTime || beginTime);
   var summary = "Epicvisor Session Cancelled: " + mentor.first_name + " " + mentor.last_name + " and " + student.name;
   email_data.html = emailTemplate({mentor: mentor, student:student,
@@ -88,7 +88,7 @@ exports.bookAndSendEmail = function(request, reply, student, mentor) {
       bookingDetails.user_id = request.params.id;
       bookingDetails.encoded_url = shortid.generate();
       Sessions.create(bookingDetails).then(function(created) {
-        week = moment(request.payload.date).startOf('week').format('MMMM Do YYYY');
+        week = moment(request.payload.date).tz('America/Los_Angeles').startOf('week').format('MMMM Do YYYY');
         email_data.subject = "EpicSession request for week of " + week;
         email_data.html = emailTemplate({mentor: mentor, student:student,
          session: created, url: process.env.CALLBACK_URL, week: week})
