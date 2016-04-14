@@ -65,7 +65,7 @@ exports.sendCancellationEmail = function(session, student, mentor) {
   var beginTime = moment(session.date).format('MMMM Do YYYY h:mm a');
   var startTime = startTime && moment(session.startTime).format('MMMM Do YYYY h:mm a');
   var endTime = endTime && moment(session.endTime).format('MMMM Do YYYY h:mm a');
-  email_data.subject = "Session for " + (startTime || beginTime) + " cancelled";
+  email_data.subject = "Cancelled EpicSession for " + (startTime || beginTime);
   var summary = "Epicvisor Session Cancelled: " + mentor.first_name + " " + mentor.last_name + " and " + student.name;
   email_data.html = emailTemplate({mentor: mentor, student:student,
    session: session, url: process.env.CALLBACK_URL, startTime: startTime, endTime: endTime, beginTime: beginTime})
