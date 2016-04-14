@@ -7,7 +7,7 @@ var iCalendar = require('icsjs');
 var Sessions = require('../../models/sessions');
 var moment = require('moment');
 var shortid = require('shortid');
-
+var moment = require('moment-timezone');
 
 function buildCalendar (startTime, endTime, summary) {
   // Let's do a party right now.
@@ -33,8 +33,8 @@ exports.sendConfirmationEmail = function(session, student, mentor) {
       from: 'no-reply@epicvisor.com',
       to: [mentor.email_address, student.email]
     }
-  var startTime = moment(session.startTime).format('MMMM Do YYYY h:mm a');
-  var endTime = moment(session.endTime).format('MMMM Do YYYY h:mm a');
+  var startTime = moment(session.startTime).tz('America/Los_Angeles').format('MMMM Do YYYY h:mm a');
+  var endTime = moment(session.endTime).tz('America/Los_Angeles').format('MMMM Do YYYY h:mm a');
   email_data.subject = "EpicSession Confirmed for " + startTime;
   var summary ="Epicvisor Session For " + mentor.first_name + " " + mentor.last_name + " and " + student.name;
   
