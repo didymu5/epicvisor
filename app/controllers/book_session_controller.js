@@ -1,3 +1,4 @@
+import _ from 'underscore';
 function book_session_controller($scope, session, mentor, $location, sessionsService, myModal) {
 	if(mentor === undefined) {
 		$location.path('/');
@@ -7,7 +8,13 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 		$location.path('/mentors/' + mentor.user_id);
 	}
 	$scope.selectedTopics = {};
+	function getMentorTopics(mentor){
+		var possibleTopics = [mentor.extraTopic1, mentor.extraTopic2, mentor.extraTopic3].concat(mentor.topics).concat(mentor.career_topics);
+		return possibleTopics;
+	}
   	$scope.topics = ["Career Advancement", "Building a Team","Internships","International Business","Raising Funding","Work Life Balance"];
+  	$scope.topics = $scope.topics.concat(getMentorTopics(mentor));
+  	$scope.topics = _.compact(_.uniq($scope.topics));
   	function extractExtraTopics(){
   		return [$scope.extraTopic1, $scope.extraTopic2, $scope.extraTopic3].filter(function(topic){
   			return topic !== undefined;
