@@ -35,7 +35,7 @@ exports.sendConfirmationEmail = function(session, student, mentor) {
     }
   var startTime = moment(session.startTime).tz('America/Los_Angeles').format('MMMM Do YYYY h:mm a');
   var endTime = moment(session.endTime).tz('America/Los_Angeles').format('MMMM Do YYYY h:mm a');
-  email_data.subject = "EpicSession Confirmed for " + startTime;
+  email_data.subject = "EpicSession Confirmed for " + startTime + "PT";
   var summary ="Epicvisor Session For " + mentor.first_name + " " + mentor.last_name + " and " + student.name;
   
   var buffer = new Buffer(buildCalendar(session.startTime, session.endTime, summary));
@@ -65,7 +65,7 @@ exports.sendCancellationEmail = function(session, student, mentor) {
   var beginTime = moment(session.date).tz('America/Los_Angeles').format('MMMM Do YYYY h:mm a');
   var startTime = startTime && moment(session.startTime).tz('America/Los_Angeles').format('MMMM Do YYYY h:mm a');
   var endTime = endTime && moment(session.endTime).tz('America/Los_Angeles').format('MMMM Do YYYY h:mm a');
-  email_data.subject = "Cancelled EpicSession for " + (startTime || beginTime);
+  email_data.subject = "Cancelled EpicSession for " + (startTime || beginTime) + "PT";
   var summary = "Epicvisor Session Cancelled: " + mentor.first_name + " " + mentor.last_name + " and " + student.name;
   email_data.html = emailTemplate({mentor: mentor, student:student,
    session: session, url: process.env.CALLBACK_URL, startTime: startTime, endTime: endTime, beginTime: beginTime})
