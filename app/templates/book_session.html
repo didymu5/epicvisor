@@ -7,8 +7,8 @@
     </div>
   <form class="booker__session__form">
     <div class="booker__sesssion__group">
-      <input type="text" name="name" placeholder="Name" ng-model="name">
-      <input type="text" name="inviteEmail" placeholder="Invite Email" ng-model="email">
+      <input type="text" name="name" placeholder="Your name" ng-model="name">
+      <input type="text" name="inviteEmail" placeholder="Your invitation email" ng-model="email">
       <span class="text--highlight">Only emails invited to EpicVisor can book sessions.</span>
 
       <div class="text-select-classyear">
@@ -26,9 +26,9 @@
       </div>
       <p class="booker__session__question"> Add any other topics
         <div class="group-topic">
-          <input type="text" ng-model="extraTopic1" placeholder="Add">
-          <input type="text" ng-model="extraTopic2" placeholder="Add">
-          <input type="text" ng-model="extraTopic3" placeholder="Add">
+          <input type="text" ng-model="extraTopic1" placeholder="Topic 1">
+          <input type="text" ng-model="extraTopic2" placeholder="Topic 2">
+          <input type="text" ng-model="extraTopic3" placeholder="Topic 3">
         </div>
       <button ng-click="confirm()">Send Request</button>
 

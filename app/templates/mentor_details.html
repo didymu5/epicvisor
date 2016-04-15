@@ -40,17 +40,17 @@
 </div>
 
 <div class="scheduler">
-  <h3 class="scheduler__h3">Availabliltiy</h3>
+  <h3 class="scheduler__h3">Availability</h3>
   <table class="scheduler__tables">
-  <tbody>
-    <tr ng-repeat="session in mentorSessions">
-      <td>Week of {{session.date | date:"M/d"}}</td>
-      <td>Session {{session.number}}</td>
-      <td>Status</td>
-      <td class="scheduler__session-status-open">{{session.status}}</td>
-      <td> <button ng-if="session.status === 'Open'" ng-click="bookSession(session, mentor)"> Book </button> </td>
-    </tr>
-  </tbody>
-</table>
-
+    <tbody>
+      <tr ng-repeat="session in mentorSessions">
+        <td>Week of {{session.date | date:"M/d"}}</td>
+        <td>Session {{session.number}}</td>
+        <td>Status</td>
+        <td class="scheduler__session-status-open">{{session.status}}</td>
+        <td> <button ng-if="session.status === 'Open'" ng-click="bookSession(session, mentor)"> Book </button> </td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Only the following 4 weeks of sessions are available to book. Check back next week for more.</p>
 </div>
