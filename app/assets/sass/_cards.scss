@@ -45,7 +45,7 @@
   max-width:1200px;
   margin-left: auto;
   margin-right: auto;
-
+  margin-bottom: 60px;
   .card {
     @include transition (all 0.2s ease-in-out);
     @include flex(3 1 20em);
