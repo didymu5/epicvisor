@@ -11,9 +11,11 @@ function mentorProfileController($scope, user, sessions, profile, userService, $
 		  blurb: $scope.blurb,
 		  year: $scope.selectedYear
 		}).then(function(userProfile) {
-			myModal.activate({message: "You profile has been updated", closeBtnTxt:'Ok'});
-			$location.path('/mentors/' + user.id);
+			$location.path('/profile/sessions');
 		});
+	}
+	$scope.viewUserProfile = function() {
+		$location.path('/mentors/'+user.id);
 	}
 	$scope.hasSetupSessions = function(){
 		return $scope.sessions.length > 0;
