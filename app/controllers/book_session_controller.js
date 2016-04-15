@@ -18,7 +18,7 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 		$scope.session = session;
 		$scope.avatar = mentor.avatar;
 		$scope.mentorName = mentor.first_name + ' ' + mentor.last_name;
-  	$scope.topics = ["Career Advancement", "Building a Team","Internships","International Business","Raising Funding","Work Life Balance"];
+	$scope.topics = ["Balancing Work/Life/School", "Choosing Electives" , "Internships as a FEMBA" , "Joining MBA Clubs" , "Being a Fly-in FEMBA" , "International FEMBA Trips"];
   	$scope.topics = $scope.topics.concat(getMentorTopics(mentor));
   	$scope.topics = _.compact(_.uniq($scope.topics));
   	function extractExtraTopics(){
