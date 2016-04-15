@@ -1,24 +1,38 @@
 <div class="booker">
-	<div class="alert" ng-if="error">{{error}}</div>
-  <h2 class="booker-heading">Epic Session for 4/13</h2>
+  <div class="alert" ng-if="error">{{error}}</div>
+  <h2 class="booker-heading">EpicSession for week of {{session.date | date:"M/d"}}</h2>
+  <p>With <span class="text--highlight">{{mentorName}}</span></p>
+    <div class="profile__avatar">
+      <img class="profile__img" src="{{avatar}}">
+    </div>
   <form class="booker__session__form">
-    <input type="text" name="name" placeholder="Name" ng-model="name">
-    <input type="text" name="inviteEmail" placeholder="Invite Email" ng-model="email">
-    <span>Only emails invited to EpicVisor can book sessions.</span>
-    <p>Class of <select ng-options="year as year for year in years track by year" ng-model="selectedYear"></select></p>
+    <div class="booker__sesssion__group">
+      <input type="text" name="name" placeholder="Name" ng-model="name">
+      <input type="text" name="inviteEmail" placeholder="Invite Email" ng-model="email">
+      <span class="text--highlight">Only emails invited to EpicVisor can book sessions.</span>
 
-    <p>Which topics would you like to talk about?</p>
-    <div class="booker__checkbox-group">
-    	<div class="booker__checkbox-group--checkboxlabel" ng-repeat="topic in topics"><input type="checkbox" name="chk1" ng-model="selectedTopics[topic]"> <label for="chk1">{{topic}}</label></div>
+      <div class="text-select-classyear">
+        <label>Class of</label>
+        <select ng-options="year as year for year in years track by year" ng-model="selectedYear">
+        </select>
+      </div>
     </div>
-    <p> Add any other topics
-    <div class="group-topic">
-      <input type="text" ng-model="extraTopic1" placeholder="Add">
-      <input type="text" ng-model="extraTopic2" placeholder="Add">
-      <input type="text" ng-model="extraTopic3" placeholder="Add">
-    </div>
+    <div class="booker__session__group__question">
+      <p class="booker__session__question">Which topics would you like to talk about?</p>
+      <div class="booker__checkbox-group">
+        <div class="booker__checkbox-group--checkboxlabel" ng-repeat="topic in topics">
+          <input type="checkbox" name="chk1" ng-model="selectedTopics[topic]"> <label for="chk1">{{topic}}</label>
+        </div>
+      </div>
+      <p class="booker__session__question"> Add any other topics
+        <div class="group-topic">
+          <input type="text" ng-model="extraTopic1" placeholder="Add">
+          <input type="text" ng-model="extraTopic2" placeholder="Add">
+          <input type="text" ng-model="extraTopic3" placeholder="Add">
+        </div>
       <button ng-click="confirm()">Send Request</button>
-      <button ng-click="cancel()">Cancel</button>
-  </form>
 
-</div>
+      <button ng-click="cancel()" class="btn-cancel-book">Cancel</button>
+    </div>
+    </form>
+  </div>

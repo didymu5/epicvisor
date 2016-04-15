@@ -9,11 +9,15 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 	$scope.cancel = function() {
 		$location.path('/mentors/' + mentor.user_id);
 	}
+
 	$scope.selectedTopics = {};
 	function getMentorTopics(mentor){
 		var possibleTopics = [mentor.extraTopic1, mentor.extraTopic2, mentor.extraTopic3].concat(mentor.topics);
 		return possibleTopics;
 	}
+		$scope.session = session;
+		$scope.avatar = mentor.avatar;
+		$scope.mentorName = mentor.first_name + ' ' + mentor.last_name;
   	$scope.topics = ["Career Advancement", "Building a Team","Internships","International Business","Raising Funding","Work Life Balance"];
   	$scope.topics = $scope.topics.concat(getMentorTopics(mentor));
   	$scope.topics = _.compact(_.uniq($scope.topics));
@@ -38,7 +42,7 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 				email: email
 			}).then(function(confirmation) {
 				if(confirmation){
-					myModal.activate({message: "An introduction has been made to this EpicVisor. Please check your email for more details.", closeBtnTxt:'Ok'})
+					myModal.activate({message: "An introduction has been made to this EpicVisor. Please check your email for more details.", closeBtnTxt:'Ok'});
 					$location.path('/mentors/' + mentor.user_id);
 				}
 				else {

@@ -46,7 +46,7 @@ factory('myModal', function (btfModal) {
 controller('MyModalCtrl', function (myModal,message, closeBtnTxt) {
   this.closeMe = myModal.deactivate;
   this.message = message;
-  this.closeBtnTxt = closeBtnTxt;
+  this.closeBtnTxt = closeBtnTxt || "Close";
 }).
 config(function ($routeProvider, $locationProvider) {
   $routeProvider.

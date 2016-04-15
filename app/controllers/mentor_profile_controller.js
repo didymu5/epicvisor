@@ -1,4 +1,4 @@
-function mentorProfileController($scope, user, sessions, profile, userService, $location) {
+function mentorProfileController($scope, user, sessions, profile, userService, $location, myModal) {
 	$scope.user = user;
 	$scope.selectedYear = profile.year || "2016";
 	$scope.blurb = profile.blurb || "";
@@ -11,6 +11,7 @@ function mentorProfileController($scope, user, sessions, profile, userService, $
 		  blurb: $scope.blurb,
 		  year: $scope.selectedYear
 		}).then(function(userProfile) {
+			myModal.activate({message: "You profile has been updated", closeBtnTxt:'Ok'});
 			$location.path('/mentors/' + user.id);
 		});
 	}
