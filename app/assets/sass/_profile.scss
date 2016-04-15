@@ -41,23 +41,6 @@
     background-color: #fff;
   }
 }
-
-.profile-sessions {
-  @include outer-container;
-  margin-top: 40px;
-
-  .question {
-    @include clearfix;
-    margin-bottom: 30px;
-
-    .question-copy {
-      float: left;
-    }
-    .horizontal-select-group {
-      float: left;
-    }
-  }
-}
 .horizontal-select-group {
   @include clearfix;
   select {

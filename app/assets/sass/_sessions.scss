@@ -1,0 +1,33 @@
+.epic-sessions{
+  @include outer-container;
+  .epic-sessions__question{
+    @include clearfix;
+    margin-bottom: 30px;
+    .question-copy{
+      @extend .h4;
+      margin-bottom: 10px;
+    }
+    .label-select-group{
+      label{
+        display: inline-block;
+        float: left;
+      }
+      select{
+        display: inline-block;
+        float: left;
+      }
+    }
+    .horizontal-select-group{
+      @include span-columns(5);
+      select{
+        display: inline-block;
+        float:left;
+      }
+      input {
+        display: inline-block;
+        float:left;
+        width:60%;
+      }
+    }
+  }
+}

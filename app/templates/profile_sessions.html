@@ -1,67 +1,52 @@
-<!-- <div class="booker">
-  <h2>How many student EpicSessions would you like to hold?</h2>
-  <form class="booker__session__form">
-    <input type="text" name="name" placeholder="Name">
-    <input type="text" name="inviteEmail" placeholder="Invite Email">
-    <span>Only emails invited to EpicVisor can book sessions.</span>
-    <input type="text" name="classYear" placeholder="Enter class year">
-
-    <p>Which topics would you liek to talk about?</p>
-    <div class="booker__checkbox-group">
-        <div class="booker__checkbox-group--checkboxlabel"><input type="checkbox" name="chk1" value=""> <label for="chk1">Career Advancement</label></div>
-        <div class="booker__checkbox-group--checkboxlabel"><input type="checkbox" name="chk2" value=""> <label for="chk2">Building a Team</label></div>
-
-        <div class="booker__checkbox-group--checkboxlabel"><input type="checkbox" name="chk3" value=""> <label for="chk3">Internships</label></div>
-
-        <div class="booker__checkbox-group--checkboxlabel"><input type="checkbox" name="chk4" value=""> <label for="chk4">International Business</label></div>
-
-        <div class="booker__checkbox-group--checkboxlabel"><input type="checkbox" name="chk5" value=""> <label for="chk5">Raising Funding</label></div>
-      </div>
-      <button>Send Request</button>
-      <button>Cancel</button>
-  </form>
-
-</div> -->
-
-<div class="profile-sessions">
-  <h2>My EpicSessions</h2>
-  <h3>Set up your sessions</h3>
-  <div class="question">
-    <div class="question-copy">How many student EpicSessions would you like to hold? <br><small>Students can only book up to 4 weeks in advance. <br>Please respond to students within 2 days.</small></div>
+<div class="epic-sessions">
+  <h1>Setup EpicSessions</h1>
+  <hr>
+  <div class="epic-sessions__question">
+    <div class="question-copy">How many student EpicSessions would you like to hold?</div>
+    <p><small>Students can only book up to 4 weeks in advance. Please respond to students within 2 days.</small></p>
     <div class="horizontal-select-group">
-      <select ng-options="sessionCount for sessionCount in sessionCounts" ng-model="selectedSessionCount"></select>
-      <select ng-options="sessionCountType for sessionCountType in sessionCountTypes" ng-model="selectedSessionCountType"></select>
-    </div>
+    <select ng-options="sessionCount for sessionCount in sessionCounts" ng-model="selectedSessionCount"></select>
+    <div class="label-select-group">
+      <label>Epic Session(s):</label>
+    <select ng-options="sessionCountType for sessionCountType in sessionCountTypes" ng-model="selectedSessionCountType"></select>
   </div>
-  <p>Which career fields can you give advice in? </p>
+</div>
+</div>
+<div class="epic-sessions__question">
+<div class="question-copy"><p>Which career fields can you give advice in? </p></div>
+<div class="group-topic">
+  <select ng-options="topic for topic in defaultCareerFields" ng-model="careerTopic1">
+    <option value=""> select a career field </option>
+  </select>
+  <select ng-options="topic for topic in defaultCareerFields" ng-model="careerTopic2">
+    <option value=""> select a career field </option>
+  </select>
+  <select ng-options="topic for topic in defaultCareerFields" ng-model="careerTopic3">
+    <option value=""> select a career field </option>
+  </select>
+</div>
+</div>
+
+
+<div class="epic-sessions__question">
+  <div class="question-copy">Which topics would you like to share about?</div>
+  <div ng-repeat="topic in topics">
+    <topic topic-to-select="topic"></topic>
+  </div>
+  <p> Add any other topics: </p>
   <div class="group-topic">
-    <select ng-options="topic for topic in defaultCareerFields" ng-model="careerTopic1">
-      <option value=""> select a career field </option> 
-    </select>
-    <select ng-options="topic for topic in defaultCareerFields" ng-model="careerTopic2">
-      <option value=""> select a career field </option> 
-    </select>
-    <select ng-options="topic for topic in defaultCareerFields" ng-model="careerTopic3">
-      <option value=""> select a career field </option> 
-    </select>
+    <input type="text" ng-model="extraTopic1" placeholder="Add">
+    <input type="text" ng-model="extraTopic2" placeholder="Add">
+    <input type="text" ng-model="extraTopic3" placeholder="Add">
   </div>
-  <div class="question">
-    <p>Which topics would you like to share about?</p>
-    <div ng-repeat="topic in topics">
-      <topic topic-to-select="topic"></topic>
-    </div>
-    <p> Add any other topics: </p>
-    <div class="group-topic">
-      <input type="text" ng-model="extraTopic1" placeholder="Add">
-      <input type="text" ng-model="extraTopic2" placeholder="Add">
-      <input type="text" ng-model="extraTopic3" placeholder="Add">
-    </div>
-  </div>
-  <div class="question">
-    <div class="question-copy">How would you like to hold your EpicSession?</div>
-    <div class="horizontal-select-group"><select ng-options="contact as contact for contact in contacts" ng-model="selectedContact"></select> <input type="text" ng-model="contactDetails" placeholder="SkypeID, Email...etc"></div>
-  </div>
-  <button class="button" ng-click="saveSessionState()">
-    Update Profile Settings
-  </button>
+</div>
+
+<div class="epic-sessions__question">
+<div class="question-copy">How would you like to hold your EpicSession?</div>
+<div class="horizontal-select-group">
+  <select ng-options="contact as contact for contact in contacts" ng-model="selectedContact"></select> <input type="text" ng-model="contactDetails" placeholder="SkypeID, Email...etc"></div>
+</div>
+<button class="button" ng-click="saveSessionState()">
+  Save
+</button>
 </div>
