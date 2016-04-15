@@ -1,5 +1,6 @@
 .epic-sessions{
   @include outer-container;
+  margin-bottom: 80px;
   .epic-sessions__question{
     @include clearfix;
     margin-bottom: 30px;
