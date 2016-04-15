@@ -2,6 +2,10 @@
   @include outer-container;
   @include clearfix;
 }
+.profile__nav{
+  @include clearfix;
+  @extend .h5;
+}
 .profile {
   @include outer-container;
   @include clearfix;
