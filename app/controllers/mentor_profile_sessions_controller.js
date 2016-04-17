@@ -14,7 +14,7 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
   $scope.contacts = ["Skype", "Email", "Google Hangouts"];
   $scope.sessionCounts = Array.from(new Array(5), (x,i) => i+1);
   $scope.sessionCountTypes = ["Per Week", "Per Month"]; 
-  $scope.topics = ["Balancing Work/Life/School", "Choosing Electives" , "Internships as a FEMBA" , "Joining MBA Clubs" , "Being a Fly-in FEMBA" , "International FEMBA Trips"];
+  $scope.topics = ["Work/Life/School Balance", "Clubs", "Career Paths & Entrepreneurship", "Commuting", "Preparing to start FEMBA", "Classes"];
   $scope.user = user;
   $scope.selectedTopics = {};
   $scope.selectedContact = userSessionSettings.contact || $scope.contacts[0];
