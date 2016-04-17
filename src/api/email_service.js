@@ -63,9 +63,9 @@ exports.sendCancellationEmail = function(session, student, mentor) {
       to: [mentor.email_address, student.email]
     }
   var beginTime = moment(session.date).tz('America/Los_Angeles').format('MMMM Do YYYY h:mm a');
-  var startTime = startTime && moment(session.startTime).tz('America/Los_Angeles').format('MMMM Do YYYY h:mm a');
-  var endTime = endTime && moment(session.endTime).tz('America/Los_Angeles').format('MMMM Do YYYY h:mm a');
-  email_data.subject = "Cancelled EpicSession for " + (startTime || beginTime) + "PT";
+  var startTime = startTime && moment(session.startTime).tz('America/Los_Angeles').format('MMMM Do YYYY @ h:mm a');
+  var endTime = endTime && moment(session.endTime).tz('America/Los_Angeles').format('MMMM Do YYYY @ h:mm a');
+  email_data.subject = "EpicSession Cancelled for " + (startTime || beginTime) + " PT";
   var summary = "Epicvisor Session Cancelled: " + mentor.first_name + " " + mentor.last_name + " and " + student.name;
   email_data.html = emailTemplate({mentor: mentor, student:student,
    session: session, url: process.env.CALLBACK_URL, startTime: startTime, endTime: endTime, beginTime: beginTime})
@@ -79,7 +79,7 @@ exports.sendCancellationEmail = function(session, student, mentor) {
 exports.bookAndSendEmail = function(request, reply, student, mentor) {
   var mailgun = new Mailgun({apiKey: process.env.MAILGUN_API_KEY, domain: process.env.MAILGUN_DOMAIN});
 
-  var emailTemplate =  Handlebars.compile(fs.readFileSync(Path.resolve(__dirname, '../templates/email-intro.hbs'), 'utf-8'));
+  var emailTemplate =  Handlebars.compile(fs.readFileSync(Path.resolve(__dirname, '../templates/session-request-email.hbs'), 'utf-8'));
   var email_data = {
       from: 'no-reply@epicvisor.com',
       to: [mentor.email_address, student.email]

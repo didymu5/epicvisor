@@ -1,0 +1,35 @@
+<h1>Hello, {{mentor.first_name}} {{mentor.last_name}}</h1>
+
+<p>{{student.name}} would like to connect with you to chat about:</p>
+<ul>
+	{{#each session.topics}}
+	<li>
+		{{this}}
+	</li>
+	{{/each}}
+</ul>
+	
+<b>
+	EpicVisor 1-2-3
+</b>
+
+<p>
+	<strong>Step 1 for {{mentor.first_name}}</strong> <br> 
+	Hi {{mentor.first_name}} please reply to {{student.name}} within 24 hrs with some times to connect during the week of {{week}} and your preferred way to connect (skype, hangouts, phone, etc.):
+	{{session}}
+</p>
+
+
+<p>
+	<b>Step 2: {{student.name}}</b> <br>
+	Hi {{student.name}}, <br>
+	After {{mentor.first_name}} {{mentor.last_name}} replies back with options, please visit the EpicSession scheduler and confirm the best time: <br>
+	<a href="{{url}}#/sessions/{{session.encoded_url}}"> Click on the EpicSession scheduler </a>
+</p>
+<p>Please confirm within 2 days (The slot will be re-opened after this period).</p>
+
+<p>
+	<b>Step 3:</b><br> 
+	Connect and have an Epic time together!
+</p>
+<p>Visit the <a href="{{url}}#/sessions/{{session.encoded_url}}"> to make changes to this session.</p>
