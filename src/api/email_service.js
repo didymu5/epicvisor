@@ -113,7 +113,7 @@ exports.bookAndSendEmail = function(request, reply, student, mentor, userProfile
   bookingDetails.encoded_url = shortid.generate();
   Sessions.create(bookingDetails).then(function(created) {
     week = moment(request.payload.date).tz('America/Los_Angeles').startOf('week').format('MMMM Do YYYY');
-    email_data.subject = "EpicSession request for week of " + week;
+    email_data.subject = "EpicSession request for week of " + week + " "+bookingDetails.encoded_url;
     email_data.html = emailTemplate({
       mentor: mentor,
       userProfileSettings: userProfileSettings,
