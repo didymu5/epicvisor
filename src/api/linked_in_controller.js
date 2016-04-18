@@ -38,7 +38,7 @@ function sendLinkedInEmail(user) {
   var email_data = {
     from: 'no-reply@epicvisor.com',
     to: user.email_address,
-    subject: 'Registered to epicvisor',
+    subject: 'Welcome to EpicVisor!',
     html: emailTemplate({
       mentor: user
     })
