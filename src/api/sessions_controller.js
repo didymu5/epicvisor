@@ -2,6 +2,7 @@ var moment = require('moment');
 var Sessions = require('../../models/sessions');
 var Student = require('../../models/student');
 var User = require('../../models/user');
+var UserProfileSessionSettings = require('../../models/user_profile_session_settings');
 var Q = require('q');
 var shortid = require('shortid');
 var emailService = require('./email_service');
@@ -18,8 +19,10 @@ exports.bookAppointment = function (request, reply) {
   else {
     var student = Student.findOne({where: {id: request.payload.student_id}})
     var user = User.findOne({where: {id: request.params.id}});
-    return Q.all([student, user]).then(function(data) {
-        emailService.bookAndSendEmail(request, reply, data[0], data[1]);
+    var userProfileSessionSettings = UserProfileSessionSettings.findOne({where: {user_id: request.params.id}});
+
+    return Q.all([student, user, userProfileSessionSettings]).then(function(data) {
+        emailService.bookAndSendEmail(request, reply, data[0], data[1], data[2]);
     });
   }
 }

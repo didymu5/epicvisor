@@ -96,7 +96,7 @@ exports.sendCancellationEmail = function(session, student, mentor) {
   });
 }
 
-exports.bookAndSendEmail = function(request, reply, student, mentor) {
+exports.bookAndSendEmail = function(request, reply, student, mentor, userProfileSettings) {
   var mailgun = new Mailgun({
     apiKey: process.env.MAILGUN_API_KEY,
     domain: process.env.MAILGUN_DOMAIN
@@ -107,6 +107,7 @@ exports.bookAndSendEmail = function(request, reply, student, mentor) {
     from: 'no-reply@epicvisor.com',
     to: [mentor.email_address, student.email]
   }
+  console.log(userProfileSettings);
   var bookingDetails = request.payload;
   bookingDetails.user_id = request.params.id;
   bookingDetails.encoded_url = shortid.generate();
@@ -115,14 +116,14 @@ exports.bookAndSendEmail = function(request, reply, student, mentor) {
     email_data.subject = "EpicSession request for week of " + week;
     email_data.html = emailTemplate({
       mentor: mentor,
+      userProfileSettings: userProfileSettings,
       student: student,
       session: created,
       url: process.env.CALLBACK_URL,
       week: week
-    })
+    });
     mailgun.messages().send(email_data, function(err, body) {
       if (err) {
-        console.log('email error');
         console.log(err);
         reply('email not sent');
       } else {
