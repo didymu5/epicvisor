@@ -6,19 +6,6 @@ function userService($http, $q) {
     userState.user = res.data;
     return userState.user;
   });
-  function makeSessions(sessions, sessionState) {
-    var numberOfSessionsToGenerate = sessionState.sessionCount;
-    for(var week=0; week <4; week++) {
-      for(var sessionNumber=0; sessionNumber<numberOfSessionsToGenerate; sessionNumber++) {
-        sessions.push({
-          date: moment().add(week, 'week'),
-          number: sessionNumber+1,
-          status: 'Open'
-        })
-      }
-    }
-    return sessions;
-  }
   return {
     getUser: function() {
       return userStateFetch;

@@ -5,12 +5,17 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
    
 	function makeSessions(sessions, sessionState) {
         var numberOfSessionsToGenerate = sessionState.sessionCount;
+        var sessionCountType = sessionState.sessionCountType;
         var sessionsByWeek = _.groupBy(sessions, function(session) {
             return moment(session.date).startOf('week').startOf('day');
         });
         var orderedSessions = [];
         var weeks = _.keys(sessionsByWeek);
-        for(var i=0; i< 4; i++) {
+        var increment = 1;
+        if(sessionCountType === "Every Other Week") {
+            increment = 2;    
+        }
+        for(var i=0; i< 4; i+=increment) {
             var currentWeek = moment().add('weeks', i).startOf('day');
             var match = _.find(weeks, function(week) {
                 return moment(week).isSame(currentWeek,'week');
