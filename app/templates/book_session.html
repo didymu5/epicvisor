@@ -2,15 +2,14 @@
   <div class="alert" ng-if="error">{{error}}</div>
   <h2 class="booker-heading">EpicSession for week of {{session.date | date:"M/d"}}</h2>
   <p>With <span class="text--highlight">{{mentorName}}</span></p>
-    <div class="profile__avatar">
-      <img class="profile__img" src="{{avatar}}">
-    </div>
+  <div class="profile__avatar">
+    <img class="profile__img" src="{{avatar}}">
+  </div>
   <form class="booker__session__form">
     <div class="booker__sesssion__group">
       <input type="text" name="name" placeholder="Your name" ng-model="name">
       <input type="text" name="inviteEmail" placeholder="Your invitation email" ng-model="email">
       <span class="text--highlight">Only emails invited to EpicVisor can book sessions.</span>
-
       <div class="text-select-classyear">
         <label>Class of</label>
         <select ng-options="year as year for year in years track by year" ng-model="selectedYear">
@@ -30,9 +29,8 @@
           <input type="text" ng-model="extraTopic2" placeholder="Topic 2">
           <input type="text" ng-model="extraTopic3" placeholder="Topic 3">
         </div>
-      <button ng-click="confirm()">Send Request</button>
-
-      <button ng-click="cancel()" class="btn-cancel-book">Cancel</button>
-    </div>
+        <button ng-click="confirm()">Send Request</button>
+        <button ng-click="cancel()" class="btn-cancel-book">Cancel</button>
+      </div>
     </form>
   </div>

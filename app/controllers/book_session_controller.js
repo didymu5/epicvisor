@@ -18,7 +18,7 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 		$scope.session = session;
 		$scope.avatar = mentor.avatar;
 		$scope.mentorName = mentor.first_name + ' ' + mentor.last_name;
-		$scope.topics = ["Work/Life/School Balance", "Clubs", "Career Paths & Entrepreneurship", "Commuting", "Preparing to start FEMBA", "Classes"];
+		$scope.topics = [];
   	$scope.topics = $scope.topics.concat(getMentorTopics(mentor));
   	$scope.topics = _.compact(_.uniq($scope.topics));
   	function extractExtraTopics(){
