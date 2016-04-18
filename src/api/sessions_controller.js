@@ -19,11 +19,8 @@ exports.bookAppointment = function (request, reply) {
     var student = Student.findOne({where: {id: request.payload.student_id}})
     var user = User.findOne({where: {id: request.params.id}});
     return Q.all([student, user]).then(function(data) {
-      console.log("ALLO!");
-      console.log(data);
-        emailService.bookAndSendEmail(request, reply, data[0], data[1]);  
+        emailService.bookAndSendEmail(request, reply, data[0], data[1]);
     });
-    
   }
 }
 exports.confirmAppointment = function(request, reply) {
