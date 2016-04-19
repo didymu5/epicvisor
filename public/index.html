@@ -24,7 +24,7 @@
         <a href='/oauth/linkedin' ng-if="!signedIn() && !notNecessaryToSignIn()">
             Register or Sign In with Linkedin
         </a>
-        <div ng-view ng-if="signedIn() || notNecessaryToSignIn()"> </div>
+        <div ng-view autoscroll="true" ng-if="signedIn() || notNecessaryToSignIn()"> </div>
 
     </div>
 </div>
