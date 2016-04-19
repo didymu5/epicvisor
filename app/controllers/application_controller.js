@@ -9,7 +9,10 @@ function applicationController($scope, userService, $route) {
   var whitelistedControllers = ["MentorDetailsController","SessionDetailsController", "ProfileSearchController", "BookSessionController", "JoinController"];
 
   $scope.notNecessaryToSignIn = function() {
-  	return $route.current && $route.current.$$route && whitelistedControllers.indexOf($route.current.$$route.controller) > -1;
+  	return $scope.currentRoute() && whitelistedControllers.indexOf($route.current.$$route.controller) > -1;
+  }
+  $scope.currentRoute = function() {
+    return $route.current && $route.current.$$route
   }
 }
 

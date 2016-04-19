@@ -29,8 +29,7 @@ function sendLinkedInEmail(user) {
 
   // bookingDetails.user_id = encodeURIComponent(request.params.id);
   var emailTemplate = Handlebars.compile(fs.readFileSync(Path.resolve(__dirname, '../templates/register-mentor.hbs'), 'utf-8'));
-  console.log("SENDING LE EMAIL!")
-  console.log(user);
+
   var mailgun = new Mailgun({
     apiKey: process.env.MAILGUN_API_KEY,
     domain: process.env.MAILGUN_DOMAIN
@@ -52,7 +51,6 @@ function sendLinkedInEmail(user) {
 }
 
 function linkedInSignBackIn(request, reply) {
-
   Linkedin.auth.getAccessToken(reply, request.query.code, request.query.state, function(err, results) {
     if (err) {
       throw err;
@@ -69,7 +67,12 @@ function linkedInSignBackIn(request, reply) {
       }).then(function(user) {
         if(user){
           request.yar.set('user', user);
-          reply.redirect('/#/profile');
+          if(request.yar.get('redirect_url')) {
+            reply.redirect('/#' + request.yar.get('redirect_url'))
+          }
+          else {
+            reply.redirect('/#/profile');
+          }
         } else {
           reply.redirect('/#/join');
         }
@@ -80,6 +83,7 @@ function linkedInSignBackIn(request, reply) {
 }
 function linkedInSignIn(request, reply) {
   callback_url = process.env.CALLBACK_URL;
+  request.yar.set('redirect_url', request.query.reroute);
   Linkedin.auth.setCallback(callback_url + '/oauth/linkedin/callback/login');
   Linkedin.auth.authorize(reply, scope);
 }
