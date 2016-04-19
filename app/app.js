@@ -11,6 +11,7 @@ import sessionsService from './services/sessions_service';
 import studentService from './services/student_service';
 import nameFilter from './filters/name_filter';
 
+import adminStudentsController from './controllers/admin_students_controller';
 import mentorProfileController from './controllers/mentor_profile_controller';
 import mentorDetailsController from './controllers/mentor_details_controller';
 import bookSessionController from './controllers/book_session_controller';
@@ -74,6 +75,11 @@ config(function ($routeProvider, $locationProvider) {
       controller: 'BookSessionController',
       resolve: bookSessionController.$resolve
     }).
+    when('/admin/students',
+      {templateUrl: 'templates/admin_students.html',
+      controller: 'AdminStudentsController',
+      resolve: adminStudentsController.$resolve
+    }).
     when('/sessions/:session_id', {
       templateUrl: 'templates/session_details.html',
       controller: 'SessionDetailsController',
@@ -130,4 +136,5 @@ myApp = myApp.controller('ProfileSearchController', profileSearchController);
 myApp = myApp.controller('MentorDetailsController', mentorDetailsController);
 myApp = myApp.controller('SessionDetailsController', sessionDetailsController);
 myApp = myApp.controller('JoinController', joinController);
+myApp = myApp.controller('AdminStudentsController', adminStudentsController);
 myApp.filter('name', nameFilter);

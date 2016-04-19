@@ -1,0 +1,30 @@
+<div>
+	Epicvisor Student Management Page
+</div>
+<div class="status">
+	{{addResult}}
+</div>
+<label> Name </label>
+<input type="text" ng-model="student.name">
+<label> Email </label>
+<input type="text" ng-model="student.email">
+<label> Year </label>
+<input type="text" ng-model="student.class_year">
+
+
+<button ng-click="addStudent()">
+	Add New Student
+</button>
+<ul>
+	<li ng-repeat="student in students">
+		<div>
+			Name: {{student.name}}
+		</div>
+		<div>
+			Email: {{student.email}}
+		</div>
+		<div>
+			Year: {{student.class_year}}
+		</div>
+	</li>
+</ul>

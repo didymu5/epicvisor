@@ -4,6 +4,16 @@ function studentService($http) {
 			return $http.get('/students/' + studentId).then(function(res) {
 				return res.data;
 			});
+		},
+		addStudent: function(student) {
+			return $http.post('/students/create', student).then(function(res) {
+				return res.data;
+			});
+		},
+		getStudents: function() {
+			return $http.get('/students').then(function(res) {
+				return res.data;
+			});
 		}
 	}
 }

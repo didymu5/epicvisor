@@ -18,6 +18,9 @@ var User = db.sequelize.define('user',{
       public_url: {
         type: Sequelize.STRING
       },
+      role: {
+        type: Sequelize.STRING
+      },
       email_address: {
         type: Sequelize.STRING
       },

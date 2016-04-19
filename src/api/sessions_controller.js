@@ -88,6 +88,22 @@ exports.getStudent = function(request, reply) {
   });
 }
 
+exports.getStudents = function(request, reply) {
+  return Student.findAll().then(function(students) {
+    reply(students);
+  });
+}
+
+exports.createStudent = function(request, reply) {
+  var student = request.payload;
+  Student.findOrCreate({where: {
+    email: student.email
+  }, defaults: student} ).spread(function(userData, created) {
+    reply(created);
+    return userData;
+  });
+}
+
 exports.getSession = function(request, reply) {
   Sessions.findOne({where:{encoded_url: request.params.id}}).then(function(session) {
     reply(session || undefined);

@@ -97,6 +97,16 @@ function register(server, options, next) {
   })
    server.route({
     method: 'GET',
+    path: '/students',
+    handler: sessionsController.getStudents
+  })
+   server.route({
+    method: 'POST',
+    path: '/students/create',
+    handler: sessionsController.createStudent
+  })
+   server.route({
+    method: 'GET',
     path: '/sessions/{id}',
     handler: sessionsController.getSession
   })
