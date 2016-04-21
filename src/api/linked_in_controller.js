@@ -109,7 +109,7 @@ function linkedInOAUTH(request, reply) {
         linkedin_id: $in.id,
         positions: $in.positions
       }
-      userDetails.role = userDetails.role || 'mentor';
+      userDetails.role = 'mentor';
       User.findOrCreate({
         where: {
           linkedin_id: $in.id
