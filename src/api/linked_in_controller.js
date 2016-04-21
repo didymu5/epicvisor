@@ -109,6 +109,7 @@ function linkedInOAUTH(request, reply) {
         linkedin_id: $in.id,
         positions: $in.positions
       }
+      userDetails.role = userDetails.role || 'mentor';
       User.findOrCreate({
         where: {
           linkedin_id: $in.id
@@ -118,8 +119,6 @@ function linkedInOAUTH(request, reply) {
         if (justCreated) {
           sendLinkedInEmail(userData)
         }
-        userDetails.role =  userDetails.role || 'mentor';
-
         userData.update(userDetails, {
           fields: Object.keys(userDetails)
         }).then(function(userData) {
