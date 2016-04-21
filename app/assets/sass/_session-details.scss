@@ -12,7 +12,6 @@
   }
   .alert {
     @extend .h2;
-    @include transition(all 2.0s ease-in-out);
   }
   .profile__img{
     @include circle(100px, #fff);
