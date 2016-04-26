@@ -59,6 +59,15 @@
     padding: 2em 2em 3em 2em;
     text-decoration: none;
     max-width: 22em;
+    &:hover{
+      cursor: pointer;
+      background-color: $background-grey;
+      .card-image{
+        img{
+          box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
     .card-image{
       overflow: hidden;
       max-height: 160px;
