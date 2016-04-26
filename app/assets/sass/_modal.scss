@@ -31,7 +31,7 @@
 
 .modal-dialog {
   $dialog-width: 40em;
-  @extend .animation-zoom-in;    // Animation-keyframes
+  // @extend .animation-zoom-in;    // Animation-keyframes
   background: hsl(0, 0%, 100%);
   border: 1px solid darken($base-border-color, 10%);
   // @include box-shadow(0 6px 26px 0 hsla(0%, 0%, 0%, 0.75));
