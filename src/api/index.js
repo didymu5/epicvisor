@@ -1,4 +1,4 @@
-  'use strict';
+'use strict';
 var sessionsController = require('./sessions_controller');
 var mentorsController = require('./mentors_controller');
 var linkedInController = require('./linked_in_controller').initialize(require('node-linkedin'));
@@ -26,6 +26,11 @@ function register(server, options, next) {
     method: 'GET',
     path: '/oauth/linkedin/callback/login',
     handler: linkedInController.linkedInSignBackIn
+  });
+  server.route({
+    method: 'GET',
+    path: '/logout',
+    handler: linkedInController.logout
   });
   server.route({
     method: 'GET',

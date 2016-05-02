@@ -13,7 +13,8 @@ exports.initialize = function(LinkedInModule) {
     linkedInOAUTH: linkedInOAUTH,
     requestAuth: requestAuth,
     linkedInSignBackIn: linkedInSignBackIn,
-    linkedInSignIn: linkedInSignIn
+    linkedInSignIn: linkedInSignIn,
+    logout: logout
   }
 }
 
@@ -81,6 +82,13 @@ function linkedInSignBackIn(request, reply) {
     })
   })
 }
+
+function logout(request, reply) {
+  request.yar.set('user', null);
+  console.log(request.yar);
+  return reply.redirect('/');
+}
+
 function linkedInSignIn(request, reply) {
   callback_url = process.env.CALLBACK_URL;
   request.yar.set('redirect_url', request.query.reroute);
