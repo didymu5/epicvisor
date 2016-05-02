@@ -14,7 +14,7 @@ var server = new Hapi.Server();
 var options = {
   storeBlank: false,
   cookieOptions: {
-    password: dotenv.COOKIE_PASSWORD,
+    password: 'the-password-must-be-at-least-32-characters-long',
     isSecure: false
   }
 };
