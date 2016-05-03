@@ -11,7 +11,7 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
     "Software Engineering",
     "Project Management"
   ];
-  $scope.contacts = ["Skype", "Email", "Google Hangouts"];
+  $scope.contacts = ["Skype", "Hangouts", "Phone","Other"];
   $scope.sessionCounts = Array.from(new Array(5), (x,i) => i+1);
   $scope.sessionCountTypes = ["Per Week", "Every Other Week"]; 
   $scope.topics = ["Work/Life/School Balance", "Clubs", "Career Paths & Entrepreneurship", "Commuting", "Preparing to start FEMBA", "Classes"];
