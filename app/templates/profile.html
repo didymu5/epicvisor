@@ -6,26 +6,26 @@
     <p>Class of <select ng-options="year as year for year in years track by year" ng-model="selectedYear"></select></p>
     <p>Share a blurb about yourself for students (max 200 characters)</p>
       <textarea class="profile__name-info-about-textarea" maxlength="200" ng-model="blurb" rows="7"></textarea>
+      <button ng-click="saveProfile()">Save Text</button>
   </div>
 
   <div class="profile__right">
-    <h3>Sync your LinkedIn background</h3>
     <div class="profile__intro">
+
       <div class="profile__avatar">
         <img class="profile__img" src="{{user.avatar}}">
       </div>
       <div class="profile__intro-copy">
-        <h1 class="profile__intro_name">{{user.first_name}} {{user.last_name}}</h1>
         <p>Are there any new updates to your LinkedIn background?</p>
+        <h1 class="profile__intro_name">{{user.first_name}} {{user.last_name}}</h1>
         <button>Update from LinkedIn</button>
       </div>
     </div>
-    <button ng-click="saveProfile()">Save Text</button>
   </div>
 </div>
 
 <div class="scheduler" ng-if="hasSetupSessions()">
-  <p><a href="#/profile/sessions" class="btn-blue">Edit your EpicSessions</a></p>
+  <a href="#/profile/sessions" class="button__edit_session--btn-blue btn-blue">Edit your EpicSessions</a>
   <h2>Upcoming EpicSessions</h2>
   <table class="scheduler__tables">
     <tbody>

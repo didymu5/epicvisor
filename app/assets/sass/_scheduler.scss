@@ -8,7 +8,10 @@ $schedule-table-bg-color: #fff;
   margin-top:30px;
   margin-bottom: 80px;
 }
-
+.button__edit_session--btn-blue{
+  @extend .btn-blue;
+  float:right;
+}
 .scheduler__tables {
   $base-border-color: gainsboro !default;
   $base-border-radius: 3px !default;
