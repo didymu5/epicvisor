@@ -16,9 +16,12 @@ function sessionDetailsController($scope, session, sessionsService, $location, m
 	}
 	function makeDays(date) {
 		var times = [];
-		for(var i=0; i<30; i++) {
-			var day = moment(date).add(i,'days').startOf('day');
+		var startDay = moment(date).startOf('week').startOf('day');
+		var endDay = moment(date).endOf('week').endOf('day');
+		var day = startDay;
+		while(day.isBefore(endDay)) {
 			times.push({date: day.toDate(), formattedDate: day.format("MM/DD")});
+			day = day.clone().add(1,'days');
 		}
 		return times;
 	}
@@ -27,7 +30,7 @@ function sessionDetailsController($scope, session, sessionsService, $location, m
 	$scope.endTimes = makeTimes();
 	function matchDay(selectedTime, times, comparator, defaultIndex) {
 		return times.filter(function(time) {
-			return comparator(moment(time.date || time.time), moment(selectedTime));
+			return comparator(moment(time.date || time.time), moment(selectedTime).startOf('day'));
 		})[0] || times[0 || defaultIndex];
 	}
 	function compareDays(day1, day2) {

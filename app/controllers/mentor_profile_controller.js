@@ -1,9 +1,20 @@
+import moment from 'moment';
+
 function mentorProfileController($scope, user, sessions, profile, userService, $location, myModal) {
 	$scope.user = user;
 	$scope.selectedYear = profile.year || "2016";
 	$scope.blurb = profile.blurb || "";
 	$scope.sessions = sessions;
 	$scope.selectedYear = '2013';
+
+	$scope.decorateExpirationTime = function(session) {
+		if(session.status === "pending") {
+			return moment(session.createdAt).add('2','days').startOf('day').toDate();
+		}
+		else {
+			return '';
+		}
+	}
 
 	$scope.years = Array.from(new Array(2019-1940), (x,i) => 2019-i);
 	$scope.saveProfile = function() {

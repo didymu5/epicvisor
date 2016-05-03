@@ -6,6 +6,10 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
 	function makeSessions(sessions, sessionState) {
         var numberOfSessionsToGenerate = sessionState.sessionCount;
         var sessionCountType = sessionState.sessionCountType;
+        var twoDaysAgo = moment().startOf('day').subtract(1, 'days');
+        sessions = sessions.filter(function(session) {
+            return session.status !== 'pending' || moment(session.createdAt).isAfter(twoDaysAgo);
+        });
         var sessionsByWeek = _.groupBy(sessions, function(session) {
             return moment(session.date).startOf('week').startOf('day');
         });

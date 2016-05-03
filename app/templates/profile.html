@@ -36,6 +36,7 @@
         <td class="scheduler__session-status-open">{{session.status}}</td>
         <td> <a ng-if="session.status !== 'Open'" href="#/sessions/{{session.encoded_url}}">View Details </a> </td>
         <td> <text ng-if="session.day"> Date: {{session.day | date: "M/d"}} </text> </td>
+        <td> <text  ng-if="decorateExpirationTime(session)"> Pending session expires on {{decorateExpirationTime(session) | date: "M/d"}} </text> </td>
       </tr>
     </tbody>
   </table>
