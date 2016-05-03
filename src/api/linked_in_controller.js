@@ -126,7 +126,7 @@ function linkedInOAUTH(request, reply) {
         if (justCreated) {
           sendLinkedInEmail(userData)
         }
-        userDetails.role =  userDetails.role || 'mentor';
+        userDetails.role =  userData.role || 'mentor';
 
         userData.update(userDetails, {
           fields: Object.keys(userDetails)
