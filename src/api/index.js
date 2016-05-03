@@ -128,6 +128,7 @@ function register(server, options, next) {
     handler: sessionsController.confirmAppointment
   });
 
+
   return next();
 }
 

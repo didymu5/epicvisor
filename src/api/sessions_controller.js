@@ -94,12 +94,14 @@ exports.getStudents = function(request, reply) {
   });
 }
 
+
+
 exports.createStudent = function(request, reply) {
   var student = request.payload;
   Student.findOrCreate({where: {
     email: student.email
   }, defaults: student} ).spread(function(userData, created) {
-    reply(created);
+    reply(userData);
     return userData;
   });
 }
