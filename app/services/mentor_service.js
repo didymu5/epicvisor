@@ -18,7 +18,7 @@ function mentorService($http) {
     getMentor: function(mentorId) {
     	return $http.get('/mentors/' + mentorId).then(function(res) {
     		var mentor = res.data;
-    		var latestPosition = mentor.positions && mentor.positions.values[0];
+    		var latestPosition = mentor.positions && mentor.positions.values && mentor.positions.values[0];
           if(latestPosition)
           {
             mentor.position = latestPosition.title + ", " + latestPosition.company.name
