@@ -1,6 +1,6 @@
 $schedule-table-bg-color: #fff;
 
-.scheduler{
+.scheduler, .scheduler-profile{
   border-top: 3px #eee solid;
   @include outer-container;
   @include clearfix;
@@ -119,12 +119,27 @@ $schedule-table-bg-color: #fff;
     }
   }
 }
-.scheduler__session-status{
-    &-open{
-      background-color: $light-green;
-      text-transform: uppercase;
-    }
-    &-blocked{
-      background-color: $light-gray;
-    }
+.scheduler__session-status-open{
+  background-color: $light-green;
+  text-transform: uppercase;
 }
+.scheduler__session-status-blocked{
+  background-color: $light-gray;
+}
+.scheduler-profile{
+  .scheduler__session-status-open {
+    background-color: $baby-blue;
+    text-transform: uppercase;
+  }
+}
+
+
+// .scheduler__session-status{
+//     &-open{
+//       background-color: $light-green;
+//       text-transform: uppercase;
+//     }
+//     &-blocked{
+//       background-color: $light-gray;
+//     }
+// }
