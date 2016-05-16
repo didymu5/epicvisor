@@ -16,9 +16,13 @@
 	</h2>
 	<h3>Meeting with {{student.name}} ({{student.email}})</h3>
 	<div class="session-selection-group">
-		<select ng-options="day as day.formattedDate for day in days track by day.date" ng-model="selectedDay"></select>
-		<select ng-options="time as time.formattedTime for time in startTimes track by time.time" ng-model="selectedStartTime"></select>
-		<select ng-options="time as time.formattedTime for time in endTimes track by time.time" ng-model="selectedEndTime"></select>
+		<div class="session-selection-group-labelselect">
+				<select id="startTime" ng-options="day as day.formattedDate for day in days track by day.date" ng-model="selectedDay"></select>
+		</div>
+		<div class="session-selection-group-labelselect">
+			<label for="startTime">Start time</label>
+			<select ng-options="time as time.formattedTime for time in startTimes track by time.time" ng-model="selectedStartTime"></select>
+		</div>
 	</div>
 	<div class="label-input-text-group">
 		<label for="input-text-preveredtext">Preferred way to connect:</label>
