@@ -2,10 +2,9 @@ import moment from 'moment';
 
 function mentorProfileController($scope, user, sessions, profile, userService, $location, myModal) {
 	$scope.user = user;
-	$scope.selectedYear = profile.year || "2016";
+	$scope.selectedYear = profile.year || "2019";
 	$scope.blurb = profile.blurb || "";
 	$scope.sessions = sessions;
-	$scope.selectedYear = '2013';
 
 	$scope.decorateExpirationTime = function(session) {
 		if(session.status === "pending") {
