@@ -127,11 +127,24 @@ exports.getSessions = function(request, reply) {
   var user = request.yar.get('user')
   var dates = [moment().startOf('day').startOf('week').toDate(), moment().startOf('day').endOf('week').add('4','weeks').toDate()];
   Sessions.findAll({
-    where:{'user_id': user.id && user.id.toString(),'date': {$between: dates 
+    where:{'user_id': user.id,'date': {$between: dates 
       }}})
   .then(function(sessions) {
     reply(sessions || []);
   });
+}
+
+exports.getAllMentorSessions = function(request, reply) {
+  User.hasMany(Sessions, {
+    foreignKey: "user_id"
+  });
+  User.findAll({
+     include: [{
+    model: Sessions}]
+  }).then(function(users) {
+    reply(users);
+    return users;
+  })
 }
 
 exports.getMentorSessions = function(request, reply) {

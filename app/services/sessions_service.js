@@ -122,6 +122,11 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
     		}
     	})
     },
+    getMentorsAndSessions: function() {
+        return $http.get('/mentors/sessions').then(function(res) {
+            return res.data;
+        });
+    },
     getMentorSessions: function(mentorId) {
 		var self = this;
 		  return $http.get('/mentor/' + mentorId + '/sessions').then(function(res) {

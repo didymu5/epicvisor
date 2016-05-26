@@ -21,6 +21,7 @@ import homeController from './controllers/home_controller';
 import applicationController from './controllers/application_controller';
 import mentorProfileSessionsController from './controllers/mentor_profile_sessions_controller';
 import joinController from './controllers/join_controller';
+import adminMentorsController from './controllers/admin_mentors_controller';
 
 // Declare app level module which depends on filters, and services
 import ng_dropdowns from 'angular-dropdowns';
@@ -85,6 +86,12 @@ config(function ($routeProvider, $locationProvider) {
       controller: 'SessionDetailsController',
       resolve: sessionDetailsController.$resolve
     }).
+    when('/admin/mentors', 
+      {
+        templateUrl: 'templates/admin_mentors.html',
+        controller: 'AdminMentorsController',
+        resolve: adminMentorsController.$resolve
+      }).
     when('/landing',
       {
         templateUrl: 'templates/landing.html',
@@ -128,6 +135,7 @@ myApp.service('sessionsService', sessionsService);
 myApp.service('studentService', studentService);
 
 myApp.controller('BookSessionController', bookSessionController);
+myApp.controller('AdminMentorsController', adminMentorsController);
 myApp = myApp.controller('HomeController', homeController);
 myApp = myApp.controller('ApplicationController', applicationController);
 myApp = myApp.controller('MentorProfileController', mentorProfileController);

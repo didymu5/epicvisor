@@ -1,0 +1,18 @@
+<div>
+	<ul> 
+		{{user.first_name}} {{user.last_name}}
+		<li ng-repeat="user in users"> 
+			<ul >
+				<li ng-repeat="session in user.sessions">
+					Date: {{session.date}}
+					Start Time: {{session.startTime}}
+					End Time: {{session.endTime}}
+					Day: {{session.day}}
+					Status: {{session.status}}
+					Url Slug: {{session.encoded_url}}
+					Student id: {{session.student_id}}
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>

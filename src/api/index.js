@@ -128,6 +128,12 @@ function register(server, options, next) {
     handler: sessionsController.confirmAppointment
   });
 
+     server.route({
+      method: 'GET',
+      path: '/mentors/sessions',
+      handler: sessionsController.getAllMentorSessions
+     })
+
 
   return next();
 }
