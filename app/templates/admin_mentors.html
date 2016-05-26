@@ -1,7 +1,8 @@
 <div>
 	<ul> 
-		{{user.first_name}} {{user.last_name}}
+		
 		<li ng-repeat="user in users"> 
+			{{user.first_name}} {{user.last_name}}
 			<ul >
 				<li ng-repeat="session in user.sessions">
 					Date: {{session.date}}
