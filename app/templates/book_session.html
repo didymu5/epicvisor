@@ -11,8 +11,8 @@
       <input type="text" name="inviteEmail" placeholder="Your invitation email" ng-model="email">
       <p><span class="text--highlight">Only emails invited to EpicVisor can book sessions.</span></p>
       <div class="text-select-classyear">
-        <label>Class of</label>
-        <select ng-options="year as year for year in years track by year" ng-model="selectedYear">
+        <label for="classofselect">Class of</label>
+        <select id="classofselect" ng-options="year as year for year in years track by year" ng-model="selectedYear">
         </select>
       </div>
     </div>

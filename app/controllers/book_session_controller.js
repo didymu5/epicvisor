@@ -5,7 +5,7 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 		return;
 	}
 	$scope.years = Array.from(new Array(2019-1940), (x,i) => 2019-i);
-	$scope.selectedYear = '2013';
+	$scope.selectedYear = '2019';
 	$scope.cancel = function() {
 		$location.path('/mentors/' + mentor.user_id);
 	}
