@@ -1,5 +1,5 @@
 function adminMentorsController($scope,user, $location, users) {
-	if(user.role !== 'admin' && false)
+	if(user.role !== 'admin')
 	{
 		$location.path('/');
 	}
