@@ -60,7 +60,6 @@ exports.cancelAppointment = function(request, reply) {
           id: sessionId
         }
       }).then(function(deleted) {
-        console.log(sessionDetails);
         emailService.sendCancellationEmail(sessionDetails.session, sessionDetails.student, sessionDetails.mentor);
         reply();
       });
