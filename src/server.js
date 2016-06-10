@@ -13,7 +13,7 @@ var server = new Hapi.Server();
 var options = {
   storeBlank: false,
   cookieOptions: {
-    password: dotenv.COOKIE_PASSWORD,
+    password: process.env.COOKIE_PASSWORD,
     isSecure: false
   }
 };
