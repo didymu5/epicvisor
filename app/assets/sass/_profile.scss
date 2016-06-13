@@ -27,19 +27,19 @@
   max-width: 1200px;
 
   .profile__left {
-    // @include span-columns(6);
-   @include flex(1);
+    @include flex(1);
     max-width: 500px;
+    min-width: 350px;
     margin: 20px;
   }
   .profile__right {
-   @include flex(1);
-   max-width: 500px;
-   margin: 20px;
+    @include flex(1);
+    max-width: 500px;
+    min-width: 350px;
+    margin: 20px;
   }
   .profile__intro{
     @include clearfix;
-    // @include pad(15px 0);
     border-bottom: 2px solid $medium-gray;
     margin-bottom: 20px;
   }
