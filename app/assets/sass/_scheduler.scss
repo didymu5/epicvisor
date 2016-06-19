@@ -40,9 +40,24 @@ $schedule-table-bg-color: #fff;
   width: 100%;
   margin-top: 15px;
   margin-bottom: 20px;
+  @include media($mobile) {
+    tbody {
+      tr {
+        float: left;
+        width: 350px;
+        border: 1px #ccc solid;
+        margin-bottom: 15px;
+
+        td {
+          float: left;
+          width: 100%;
+          border: none;
+        }
+      }
+    }
+  }
   tbody {
     background-color: $table-background;
-
     tr:hover > td, tr:hover > th {
       background-color: $table-hover-background;
     }
@@ -100,7 +115,6 @@ $schedule-table-bg-color: #fff;
       &:first-child {
         border-left: none;
       }
-
       button {
         display: inline-block;
         font-size: 0.7em;
