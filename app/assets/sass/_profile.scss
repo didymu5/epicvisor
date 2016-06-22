@@ -9,9 +9,6 @@
   @extend .h5;
 }
 .profile {
-  // @include outer-container;
-  // @include clearfix;
-
   @include display(flex);
   @include flex-direction(row);
   @include align-items(flex-start);
@@ -33,10 +30,12 @@
     margin: 20px;
   }
   .profile__right {
-    @include flex(1);
     max-width: 500px;
     min-width: 350px;
     margin: 20px;
+    @include media($desktop-small-up) {
+      @include flex(1);
+    }
   }
   .profile__intro{
     @include clearfix;
