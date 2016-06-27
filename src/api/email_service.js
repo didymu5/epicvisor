@@ -105,7 +105,8 @@ exports.bookAndSendEmail = function(request, reply, student, mentor, userProfile
   var emailTemplate = Handlebars.compile(fs.readFileSync(Path.resolve(__dirname, '../templates/session-request-email.hbs'), 'utf-8'));
   var email_data = {
     from: 'no-reply@epicvisor.com',
-    to: [mentor.email_address, student.email]
+    to: [mentor.email_address, student.email],
+    cc: 'no-reply@epicvisor.com'
   }
   console.log(userProfileSettings);
   var bookingDetails = request.payload;
