@@ -108,7 +108,6 @@ exports.bookAndSendEmail = function(request, reply, student, mentor, userProfile
     to: [mentor.email_address, student.email],
     cc: 'no-reply@epicvisor.com'
   }
-  console.log(userProfileSettings);
   var bookingDetails = request.payload;
   bookingDetails.user_id = request.params.id;
   bookingDetails.encoded_url = shortid.generate();
