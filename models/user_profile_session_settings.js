@@ -21,7 +21,7 @@ var UserProfileSessionSettings = db.sequelize.define('user_profile_session_setti
       extraTopic1: {
         type: Sequelize.STRING
       },
-       extraTopic2: {
+      extraTopic2: {
         type: Sequelize.STRING
       },
       extraTopic3: {
