@@ -1,7 +1,7 @@
 var db = require('./index');
 var Sequelize = db.Sequelize;
 var UserProfileSessionSettings = db.sequelize.define('user_profile_session_settings',{
-  id: {
+      id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
