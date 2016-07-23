@@ -1,53 +1,67 @@
 import moment from 'moment';
+
 function sessionDetailsController($scope, session, sessionsService, $location, myModal) {
-	if(!session) {
+	if (!session) {
 		$location.path('/');
 	}
 	$scope.session = session;
 	$scope.mentor = session.mentor;
 	$scope.student = session.student;
+
 	function makeTimes() {
 		var times = [];
-		for(var i=0; i<48; i++) {
-			var time = moment().startOf('day').add(i*30, 'minutes');
-			times.push({time: time.toDate(), formattedTime: time.format("h:mm a")});
+		for (var i = 0; i < 48; i++) {
+			var time = moment().startOf('day').add(i * 30, 'minutes');
+			times.push({
+				time: time.toDate(),
+				formattedTime: time.format("h:mm a")
+			});
 		}
 		return times;
 	}
+
 	function makeDays(date) {
 		var times = [];
 		var startDay = moment(date).startOf('week').startOf('day');
 		var endDay = moment(date).endOf('week').endOf('day');
 		var day = startDay;
-		while(day.isBefore(endDay)) {
-			times.push({date: day.toDate(), formattedDate: day.format("MM/DD")});
-			day = day.clone().add(1,'days');
+		while (day.isBefore(endDay)) {
+			times.push({
+				date: day.toDate(),
+				formattedDate: day.format("MM/DD")
+			});
+			day = day.clone().add(1, 'days');
 		}
 		return times;
 	}
 	$scope.days = makeDays(session.date);
 	$scope.startTimes = makeTimes();
 	$scope.endTimes = makeTimes();
+
 	function matchDay(selectedTime, times, comparator, defaultIndex) {
 		return times.filter(function(time) {
 			return comparator(moment(time.date || time.time), moment(selectedTime).startOf('day'));
 		})[0] || times[0 || defaultIndex];
 	}
+
 	function compareDays(day1, day2) {
 		return day1.isSame(day2, 'day');
 	}
+
 	function compareTimeOfDay(day1, day2) {
 		return day1.hours() === day2.hours() && day1.minutes() === day2.minutes();
 	}
 	$scope.selectedDay = matchDay(session.day, $scope.days, compareDays);
 	$scope.selectedStartTime = matchDay(session.startTime, $scope.startTimes, compareTimeOfDay);
-	$scope.selectedEndTime = matchDay(session.endTime, $scope.endTimes, compareTimeOfDay,2);
+	$scope.selectedEndTime = matchDay(session.endTime, $scope.endTimes, compareTimeOfDay, 2);
 	$scope.confirm = function() {
+
 		var selectedDay = moment($scope.selectedDay.date).dayOfYear();
 		var selectedStart = moment($scope.selectedStartTime.time).dayOfYear(selectedDay).toDate();
-		var selectedEnd = moment($scope.selectedEndTime.time).dayOfYear(selectedDay).toDate(); 
+		var selectedEnd = moment($scope.selectedEndTime.time).dayOfYear(selectedDay).toDate();
+
 		sessionsService.confirmTime(session, $scope.selectedDay.date, selectedStart, selectedEnd).then(function(session) {
-				$scope.status = "Confirmed!"
+			$scope.status = "Confirmed!"
 		});
 	};
 	$scope.canConfirm = function() {
@@ -58,7 +72,10 @@ function sessionDetailsController($scope, session, sessionsService, $location, m
 	}
 	$scope.cancel = function() {
 		sessionsService.cancelTime(session, $scope.selectedDay, $scope.selectedStartTime, $scope.selectedEndTime).then(function(session) {
-			myModal.activate({message: "Your EpicSession has been cancelled.", closeBtnTxt:'ok =('})
+			myModal.activate({
+				message: "Your EpicSession has been cancelled.",
+				closeBtnTxt: 'ok =('
+			})
 			$location.path("/");
 		});
 	};
@@ -71,5 +88,5 @@ sessionDetailsController.$resolve = {
 		});
 	}]
 }
-sessionDetailsController.$inject = ['$scope','session', 'sessionsService', '$location', 'myModal'];
+sessionDetailsController.$inject = ['$scope', 'session', 'sessionsService', '$location', 'myModal'];
 export default sessionDetailsController;

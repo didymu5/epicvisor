@@ -6,25 +6,30 @@
     <p><small>Students can only book up to 4 weeks in advance. Please respond to students within 2 days.</small></p>
     <div class="horizontal-select-group">
     <select ng-options="sessionCount for sessionCount in sessionCounts" ng-model="selectedSessionCount"></select>
-    <div class="label-select-group">
-      <label>Epic Session(s):</label>
-    <select ng-options="sessionCountType for sessionCountType in sessionCountTypes" ng-model="selectedSessionCountType"></select>
+      <div class="label-select-group">
+        <label>Epic Session(s):</label>
+        <select ng-options="sessionCountType for sessionCountType in sessionCountTypes" ng-model="selectedSessionCountType"></select>
+      </div>
+    </div>
+</div>
+
+<div class="epic-session-available-time-schedule">
+<p>Please provide ranges of time when you’ll be willing to host your <strong>{{selectedSessionCount}}</strong> <em>EpicSessions</em> during the week. <br><small>Students will use these times ranges to suggest the 30 minute sessions when booking</small></p>
+<div ng-repeat="daySelect in days">
+  <div class="epic-session-select-time-range-group">
+    <label>{{daySelect.day}}</label>
+    <select ng-options="startTimes.formattedTime for startTimes in daySelect.startTimes" ng-model="daySelect.selectedStartTime">
+      <option value="" disabled selected>--:--</option>
+    </select>
+    <span class="txt-between">to</span>
+    <select ng-options="endTimes.formattedTime for endTimes in daySelect.endTimes" ng-model="daySelect.selectedEndTime">
+      <option value="" disabled selected>--:--</option>
+    </select>
   </div>
 </div>
-</div>
-<div class="epic-sessions__question">
-<div class="question-copy"><p>Which career fields can you give advice in? </p></div>
-<div class="group-topic">
-  <select ng-options="topic for topic in defaultCareerFields" ng-model="careerTopic1">
-    <option value=""> select a career field </option>
-  </select>
-  <select ng-options="topic for topic in defaultCareerFields" ng-model="careerTopic2">
-    <option value=""> select a career field </option>
-  </select>
-  <select ng-options="topic for topic in defaultCareerFields" ng-model="careerTopic3">
-    <option value=""> select a career field </option>
-  </select>
-</div>
+<hr>
+<p>Which email should session calendar confirmations be sent to?</p>
+<input class="input-preferred-email-txt" size="40" type="email" ng-model="email_address" placeholder="Email">
 </div>
 
 

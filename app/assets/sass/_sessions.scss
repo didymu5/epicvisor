@@ -32,3 +32,33 @@
     }
   }
 }
+.epic-session-available-time-schedule{
+  @include clearfix;
+  margin-bottom: 30px;
+  .epic-session-select-time-range-group{
+    position: relative;
+    display: block;
+    @include clearfix;
+    label{
+      width: 10%;
+      text-align: right;
+      float:left;
+      margin-right: 20px;
+    }
+    .txt-between{
+      float:left;
+      margin-left: 20px;
+      margin-right:20px;
+    }
+    select {
+      @extend .h4;
+      float:left;
+      height: 25px;
+    }
+    .select-begin-time-range{
+      &:after{
+        content: "to";
+      }
+    }
+  }
+}

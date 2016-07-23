@@ -1,9 +1,13 @@
+import moment from 'moment';
+import _ from 'underscore';
+// import momentRange from 'moment-range';
+
 function mentorProfileSessionsController($scope, userService, userSessionSettings, user, $location) {
   $scope.defaultCareerFields = [
     "Corporate Development",
     "Strategic Planning",
     "Investment Banking",
-    "General Management",
+    "General Manag  ent",
     "Management Consulting",
     "Marketing",
     "Product Marketing",
@@ -29,15 +33,67 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
     $scope.careerTopic3 = userSessionSettings.career_topics[2];
   }
   $scope.contactDetails = userSessionSettings.contactDetails;
+  $scope.timesGenerated = makeTimes();
+  $scope.days = [{
+      day: 'Sunday',
+      startTimes: $scope.timesGenerated,
+      endTimes: $scope.timesGenerated,
+      selectedStartTime: null,
+      selectedEndTime: null
+    },
+    {
+      day: 'Monday',
+      startTimes: $scope.timesGenerated,
+      endTimes: $scope.timesGenerated,
+      selectedStartTime: null,
+      selectedEndTime: null
+    },
+    {
+      day: 'Tuesday',
+      startTimes: $scope.timesGenerated,
+      endTimes: $scope.timesGenerated,
+      selectedStartTime: null,
+      selectedEndTime: null
+    },
+    {
+      day: 'Wednesday',
+      startTimes: $scope.timesGenerated,
+      endTimes: $scope.timesGenerated,
+      selectedStartTime: null,
+      selectedEndTime: null
+    },
+    {
+      day: 'Thursday',
+      startTimes: $scope.timesGenerated,
+      endTimes: $scope.timesGenerated,
+      selectedStartTime: null,
+      selectedEndTime: null
+    },
+    {
+      day: 'Friday',
+      startTimes: $scope.timesGenerated,
+      endTimes: $scope.timesGenerated,
+      selectedStartTime: null,
+      selectedEndTime: null
+    }];
+    $scope.email_address = user.email_address;
+
   if(userSessionSettings.topics) {
      userSessionSettings.topics.forEach(function(topic){
       $scope.selectedTopics[topic] = true;
     });
   }
-
-   
   var extractTopics = function() {
     return Object.keys($scope.selectedTopics);
+  }
+  $scope.makePreferredTime = function() {
+    let preferredDays = [];
+    _.each($scope.days, function(day) {
+      if(_.isObject(day.selectedStartTime) && _.isObject(day.selectedEndTime)) {
+        preferredDays.push(_.omit(day, 'startTimes', 'endTimes'));
+      }
+    });
+    return preferredDays;
   }
 
   function extractCareerTopics() {
@@ -45,7 +101,14 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
     .filter(function(topic) { return topic !== undefined});
   }
 
-  
+  function makeTimes() {
+    var times = [];
+    for(var i=0; i<48; i++) {
+      var time = moment().startOf('day').add(i*30, 'minutes');
+      times.push({time: time.toDate(), formattedTime: time.format("h:mm a")});
+    }
+    return times;
+  }
 
   $scope.saveSessionState = function() {
     $scope.loading = false;
@@ -58,7 +121,8 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
       extraTopic3: $scope.extraTopic3,
       contactDetails: $scope.contactDetails,
       topics: extractTopics(),
-      career_topics: extractCareerTopics()
+      career_topics: extractCareerTopics(),
+      preferredTimeFrame: $scope.makePreferredTime()
     }).then(function(data) {
       $scope.loading = true;
       $scope.savedText = "Your details have been saved."
