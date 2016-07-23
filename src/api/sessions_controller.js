@@ -76,6 +76,8 @@ exports.cancelAppointment = function(request, reply) {
   });
 }
 exports.setPreferredTimeFrame = function(request, reply) {
+  var preferredTimes = request.payload
+  console.log(preferredTimes);
   return reply;
 }
 function getSessionAndDetails(session_id) {

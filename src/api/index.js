@@ -84,12 +84,17 @@ function register(server, options, next) {
     path:'/mentor/{id}/settings/session',
     handler: mentorsController.getMentorProfileSessionSettings
   })
-
   server.route({
     method: 'POST',
     path: '/mentor/{id}/sessions/appointment',
     handler: sessionsController.bookAppointment
   });
+  server.route({
+    method: 'POST',
+    path: '/mentor/{id}/settings/prefered-time',
+    handler: sessionsController.setPreferredTimeFrame
+  });
+
   server.route({
     method: 'POST',
     path: '/student/verify',
@@ -127,12 +132,11 @@ function register(server, options, next) {
     path: '/sessions/{id}/update',
     handler: sessionsController.confirmAppointment
   });
-
-     server.route({
-      method: 'GET',
-      path: '/mentors/sessions',
-      handler: sessionsController.getAllMentorSessions
-     })
+   server.route({
+    method: 'GET',
+    path: '/mentors/sessions',
+    handler: sessionsController.getAllMentorSessions
+   })
 
 
   return next();
