@@ -47,9 +47,6 @@ var User = db.sequelize.define('user',{
       },
       avatar: {
         type: Sequelize.STRING
-      },
-      preferredTimeFrame: {
-        type: Sequelize.ARRAY(Sequelize.JSON)
       }
 })
 module.exports = User;

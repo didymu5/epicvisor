@@ -35,6 +35,9 @@ var UserProfileSessionSettings = db.sequelize.define('user_profile_session_setti
       },
       user_id: {
         type: Sequelize.INTEGER
+      },
+      preferredTimeFrame: {
+        type: Sequelize.ARRAY(Sequelize.JSON)
       }
 })
 module.exports = UserProfileSessionSettings;

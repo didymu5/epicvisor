@@ -55,7 +55,6 @@ exports.setUserProfileSessionSettings = function(request, reply) {
     return userSetting.update(request.payload.sessionState, {fields:  ["topics", "contact","sessionCount", "sessionCountType",
      "extraTopic1", "extraTopic2", "extraTopic3", "contactDetails", "user_id", "career_topics", "preferredTimeFrame"]});
   }).then(function(userData) {
-    console.log(userData);
     reply(userData);
   });
 }
