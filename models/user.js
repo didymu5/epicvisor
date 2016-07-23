@@ -1,7 +1,7 @@
 var db = require('./index');
 var Sequelize = db.Sequelize;
 var User = db.sequelize.define('user',{
-  id: {
+      id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
@@ -47,6 +47,9 @@ var User = db.sequelize.define('user',{
       },
       avatar: {
         type: Sequelize.STRING
+      },
+      preferredTimeFrame: {
+        type: Sequelize.ARRAY(Sequelize.JSON)
       }
 })
 module.exports = User;
