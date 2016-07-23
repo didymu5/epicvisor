@@ -34,8 +34,6 @@ exports.getUserProfileSessionSettings = function(request, reply) {
   });
 }
 
-
-
 exports.getUserInfo = function(request, reply) {
   var user = request.yar.get('user');
   reply(user);  

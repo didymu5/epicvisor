@@ -32,6 +32,9 @@ var Session = db.sequelize.define('sessions', {
   },
   endTime: {
     type: Sequelize.DATE
+  },
+  SessionTimeOption: {
+    type: Sequelize.ARRAY(Sequelize.DATE)
   }
 })
 module.exports = Session;
