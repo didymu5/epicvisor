@@ -14,6 +14,9 @@ var UserProfile = db.sequelize.define('user_profiles', {
   },
   user_id: {
     type: Sequelize.INTEGER
+  },
+  current_status: {
+    type: Sequelize.STRING
   }
 })
 module.exports = UserProfile;
