@@ -19,6 +19,13 @@ function userService($http, $q) {
     getSessionSettings: function() {
       return $http.get('/user/mentor/settings/session').then(function(res) {
         userState.sessionSettings = res.data;
+        var times = userState.sessionSettings.preferredTimeFrame;
+        if(times) {
+          times.forEach(function(time) {
+            time.selectedEndTime.time = moment(time.selectedEndTime.time).toDate();
+            time.selectedStartTime.time = moment(time.selectedStartTime.time).toDate();
+          });
+        }
         return userState.sessionSettings;
       });
     },

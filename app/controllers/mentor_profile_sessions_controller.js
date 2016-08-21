@@ -76,6 +76,21 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
       selectedStartTime: null,
       selectedEndTime: null
     }];
+    userSessionSettings.preferredTimeFrame.forEach(function(timeframe) {
+       var matchingDay = _.find($scope.days, function(setTimeframe) {
+        return setTimeframe.day == timeframe.day;
+       });
+       if(matchingDay) {
+        var matchingStartTime = _.find(matchingDay.startTimes, function(time) {
+          return time.formattedTime === timeframe.selectedStartTime.formattedTime;
+        });
+        var matchingEndTime = _.find(matchingDay.endTimes, function(time) {
+          return time.formattedTime === timeframe.selectedEndTime.formattedTime;
+        });
+        matchingDay.selectedStartTime = matchingStartTime;
+        matchingDay.selectedEndTime = matchingEndTime;
+       }
+    });
     $scope.email_address = user.email_address;
 
   if(userSessionSettings.topics) {
