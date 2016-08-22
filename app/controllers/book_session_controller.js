@@ -4,6 +4,15 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 		$location.path('/');
 		return;
 	}
+	$scope.allAvailableTimes = sessionsService.deduceTimeframes(mentor).map(function(time) {
+		return {
+			formattedTime: time.format("MMMM Do, h:mm a"),
+			time: time
+		}
+	})
+	$scope.selectedOptionDay1 = undefined;
+	$scope.selectedOptionDay2 = undefined;
+	$scope.selectedOptionDay3 = undefined;
 	$scope.years = Array.from(new Array(2019-1940), (x,i) => 2019-i);
 	$scope.selectedYear = '2019';
 	$scope.cancel = function() {
@@ -33,6 +42,12 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 		var year = $scope.selectedYear;
 		session.topics =  Object.keys($scope.selectedTopics).filter(function(topic) {
 			return $scope.selectedTopics[topic];
+		});
+		var possibleTimes = [$scope.selectedOptionDay1, $scope.selectedOptionDay2,$scope.selectedOptionDay3]
+		session.SessionTimeOption = possibleTimes.map(function(time) {
+			if(time) {
+				return time.time.toDate();
+			}
 		});
 		session.topics = session.topics.concat(extractExtraTopics());
 		sessionsService.confirmSession(session, mentor,

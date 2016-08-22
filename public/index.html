@@ -22,8 +22,11 @@
         <div ng-controller="ApplicationController">
         <header-nav> </header-nav>
         <div ng-if="!signedIn() && !notNecessaryToSignIn()">
-            This page requires login to sign in. Please sign in. 
+            This page requires login to sign in.  
         </div>
+        <a href="/oauth/linkedin/login">
+            Please sign in.
+        </a>
         <div ng-view autoscroll="true" ng-if="signedIn() || notNecessaryToSignIn()"> </div>
 
     </div>

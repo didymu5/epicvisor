@@ -27,6 +27,16 @@
           <label><input type="checkbox" name="chk1" ng-model="selectedTopics[topic]">{{topic}}</label>
         </div>
       </div>
+      <div class="book_session_options">
+        <div class="book_session_option"> 
+          <select ng-options="item as item.formattedTime for item in allAvailableTimes track by item.time" ng-model="selectedOptionDay1"></select>
+          <select ng-options="item as item.formattedTime for item in allAvailableTimes track by item.time" ng-model="selectedOptionDay2"></select>
+          <select ng-options="item as item.formattedTime for item in allAvailableTimes track by item.time" ng-model="selectedOptionDay3"></select>
+        </div>
+        <div class="book_session_option"> </div>
+        <div class="book_session_option"> </div>
+        
+      </div>
       <p class="booker__session__question"> Add any other topics
         <div class="group-topic">
           <input type="text" ng-model="extraTopic1" placeholder="Topic 1">

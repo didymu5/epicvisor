@@ -15,18 +15,14 @@
 	EpicSession for the Week of {{session.date | date:"M/d"}}
 	</h2>
 	<h3>Meeting with {{student.name}} ({{student.email}})</h3>
-	<div class="session-selection-group">
-		<div class="session-selection-group-labelselect">
-				<select id="startTime" ng-options="day as day.formattedDate for day in days track by day.date" ng-model="selectedDay"></select>
-		</div>
-		<div class="session-selection-group-labelselect">
-			<label for="startTime">Start time</label>
-			<select ng-options="time as time.formattedTime for time in startTimes track by time.time" ng-model="selectedStartTime"></select>
-		</div>
-	</div>
+
 	<div class="label-input-text-group">
 		<label for="input-text-preveredtext">Preferred way to connect:</label>
 		<input type="text" ng-model="preferredConnection" id="input-text-preveredtext">
+	</div>
+	<div class="session-options" >
+		<label> Pick the time from this list if mentor: </label>
+		<select ng-options="time as time.formattedTime for time in timesToPickFrom track by time.time" ng-model="selectedBookingTime"></select>
 	</div>
 	<div class="session-button-text-group__wrapper">
 		<div class="session-button-text-group">

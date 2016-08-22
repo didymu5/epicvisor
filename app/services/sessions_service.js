@@ -72,6 +72,12 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
                     .then(function(results) {
                         session.mentor = results[0];
                         session.student = results[1];
+                        session.SessionTimeOption = session.SessionTimeOption.map(function(time) {
+                            if(time)
+                            {
+                                return moment(time);
+                            }
+                        });
                         return session;
                     });
             });
@@ -127,6 +133,26 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
                 console.log(res.data);
                 return res.data;
             });
+        },
+        getSegmentsBetween: function(startTime, endTime) {
+            var timesBetween = [];
+            var currentTime = moment(startTime);
+            var endTime = moment(endTime);
+            while(currentTime.isBefore(endTime)) {
+                timesBetween.push(currentTime);
+                currentTime = currentTime.clone().add(30, 'minutes');
+            }
+            return timesBetween;
+        },
+        deduceTimeframes: function(mentor) {
+            var times = [];
+            var self = this;
+            if(mentor.preferredTimeFrame) {
+                mentor.preferredTimeFrame.forEach(function(timeframe) {
+                   times = times.concat(self.getSegmentsBetween(timeframe.selectedStartTime.time, timeframe.selectedEndTime.time)); 
+                });
+            }
+            return times;
         },
         getMentorSessions: function(mentorId) {
             var self = this;

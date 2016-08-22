@@ -8,6 +8,18 @@ function sessionDetailsController($scope, session, sessionsService, $location, m
 	$scope.mentor = session.mentor;
 	$scope.student = session.student;
 
+
+	$scope.timesToPickFrom = session.SessionTimeOption.map(function(time) {
+		return {
+			time: time,
+			formattedTime: time.format("MMMM Do, h:mm a")
+		}
+	});
+
+	$scope.selectedBookingTime = $scope.timesToPickFrom.find(function(date) {
+		return date.time.isSame(	moment(session.startTime));
+	});
+
 	function makeTimes() {
 		var times = [];
 		for (var i = 0; i < 48; i++) {
@@ -56,11 +68,19 @@ function sessionDetailsController($scope, session, sessionsService, $location, m
 	$scope.selectedEndTime = matchDay(session.endTime, $scope.endTimes, compareTimeOfDay, 2);
 	$scope.confirm = function() {
 
-		var selectedDay = moment($scope.selectedDay.date).dayOfYear();
-		var selectedStart = moment($scope.selectedStartTime.time).dayOfYear(selectedDay).toDate();
-		var selectedEnd = moment($scope.selectedEndTime.time).dayOfYear(selectedDay).toDate();
+		if(!$scope.selectedBookingTime)
+		{
+			$scope.status = "You need to select a booking time!";
+			return;
+		}
 
-		sessionsService.confirmTime(session, $scope.selectedDay.date, selectedStart, selectedEnd).then(function(session) {
+		var selectedStartTime = $scope.selectedBookingTime.time;
+
+		var selectedDay = selectedStartTime.dayOfYear();
+		var selectedStart = selectedStartTime.toDate();
+		var selectedEnd = selectedStartTime.clone().add(30, 'minutes').toDate();
+
+		sessionsService.confirmTime(session, selectedDay, selectedStart, selectedEnd).then(function(session) {
 			$scope.status = "Confirmed!"
 		});
 	};
