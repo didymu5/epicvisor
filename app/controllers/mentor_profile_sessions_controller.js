@@ -125,8 +125,26 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
     return times;
   }
 
+  function timesNotValid(preferredTimes){
+    var isInvalid = false;
+    preferredTimes.forEach(function(time) {
+      if(time.selectedStartTime && time.selectedEndTime) {
+        if(moment(time.selectedStartTime.time).isAfter(moment(time.selectedEndTime.time)))
+        {
+          isInvalid = true;
+        }  
+      }
+    })
+    return isInvalid;
+  }
+
   $scope.saveSessionState = function() {
     $scope.loading = false;
+    if(timesNotValid($scope.makePreferredTime()))
+    {
+      $scope.sessionStatusText = "You have a start time that is after an end time. Please either blank out a day if not available or make valid timeframe."
+      return false;
+    }
     return userService.setSessionSettings({
       contact: $scope.selectedContact,
       sessionCountType: $scope.selectedSessionCountType,

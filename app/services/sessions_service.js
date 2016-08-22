@@ -149,7 +149,12 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
             var self = this;
             if(mentor.preferredTimeFrame) {
                 mentor.preferredTimeFrame.forEach(function(timeframe) {
-                   times = times.concat(self.getSegmentsBetween(timeframe.selectedStartTime.time, timeframe.selectedEndTime.time)); 
+                    var startTimeTemplate = moment(timeframe.selectedStartTime.time);
+                    var endTimeTemplate = moment(timeframe.selectedEndTime.time)
+                    var weeksDifference = startTimeTemplate.diff(moment(), 'weeks');
+                    var startTime = startTimeTemplate.add(weeksDifference,'weeks').day(timeframe.day);
+                    var endTime = endTimeTemplate.add(weeksDifference,'weeks').day(timeframe.day);              
+                   times = times.concat(self.getSegmentsBetween(startTime, endTime)); 
                 });
             }
             return times;
