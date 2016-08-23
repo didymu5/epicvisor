@@ -15,7 +15,7 @@
 
 <div class="epic-session-available-time-schedule">
 <p>Please provide ranges of time when you’ll be willing to host your <strong>{{selectedSessionCount}}</strong> <em>EpicSessions</em> during the week. <br><small>Students will use these times ranges to suggest the 30 minute sessions when booking</small></p>
-<div class="info" ng-if="sessionStatusText">
+<div class="error-session-time" ng-if="sessionStatusText" tabindex="-1">
   {{sessionStatusText}}
 </div>
 <div ng-repeat="daySelect in days">

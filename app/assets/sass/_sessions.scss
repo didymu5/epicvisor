@@ -52,7 +52,11 @@
     }
 }
 }
-
+.error-session-time{
+  color: $error-color;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
 .epic-session-available-time-schedule{
   @include clearfix;
   margin-bottom: 30px;

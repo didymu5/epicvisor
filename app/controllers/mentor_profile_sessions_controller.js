@@ -129,19 +129,19 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
     var isInvalid = false;
     preferredTimes.forEach(function(time) {
       if(time.selectedStartTime && time.selectedEndTime) {
-        if(moment(time.selectedStartTime.time).isAfter(moment(time.selectedEndTime.time)))
-        {
+        if(moment(time.selectedStartTime.time).isAfter(moment(time.selectedEndTime.time))){
           isInvalid = true;
         }  
       }
     })
     return isInvalid;
   }
-
+  $scope.setFocusOnError = function() {
+    document.getElementsByClassName('error-session-time')[0].focus();
+  }
   $scope.saveSessionState = function() {
     $scope.loading = false;
-    if(timesNotValid($scope.makePreferredTime()))
-    {
+    if(timesNotValid($scope.makePreferredTime())) {
       $scope.sessionStatusText = "You have a start time that is after an end time. Please either blank out a day if not available or make valid timeframe."
       return false;
     }
