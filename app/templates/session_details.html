@@ -20,7 +20,7 @@
 		<label for="input-text-preveredtext">Preferred way to connect:</label>
 		<input type="text" ng-model="preferredConnection" id="input-text-preveredtext">
 	</div>
-	<div class="session-options" >
+	<div class="session-select-option">
 		<label> Pick the time from this list if mentor: </label>
 		<select ng-options="time as time.formattedTime for time in timesToPickFrom track by time.time" ng-model="selectedBookingTime"></select>
 	</div>

@@ -32,6 +32,27 @@
     }
   }
 }
+.input-preferred-email-txt[type="email"]{
+  width:50%;
+}
+.book_session_options{
+  @include clearfix;
+  .book_session_label-select{
+    float:left;
+    padding-left:10px;
+    padding-right: 10px;
+    &:first-child{
+      padding-left:0;
+    }
+    &:last-child{
+      padding-right:0;
+    }
+    label{
+
+    }
+}
+}
+
 .epic-session-available-time-schedule{
   @include clearfix;
   margin-bottom: 30px;
