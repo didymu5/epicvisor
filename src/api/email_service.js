@@ -8,6 +8,7 @@ var Sessions = require('../../models/sessions');
 var moment = require('moment');
 var shortid = require('shortid');
 var moment = require('moment-timezone');
+var UserProfile = require('../../models/user_profile');
 
 function buildCalendar(startTime, endTime, summary) {
   // Let's do a party right now.
@@ -34,7 +35,7 @@ exports.sendConfirmationEmail = function(session, student, mentor) {
   var emailTemplate = Handlebars.compile(fs.readFileSync(Path.resolve(__dirname, '../templates/session-confirm.hbs'), 'utf-8'));
   var email_data = {
     from: 'no-reply@epicvisor.com',
-    to: [mentor.email_address, student.email]
+    to: [extractEmail(mentor, mentor.mentor_profile), student.email]
   }
   var startTime = moment(session.startTime).tz('America/Los_Angeles').format('MMMM Do YYYY h:mm a');
   var endTime = moment(session.endTime).tz('America/Los_Angeles').format('MMMM Do YYYY h:mm a');
@@ -64,7 +65,7 @@ exports.sendConfirmationEmail = function(session, student, mentor) {
   });
 }
 
-exports.sendCancellationEmail = function(session, student, mentor) {
+exports.sendCancellationEmail = function(session, student, mentor, mentorProfile) {
   var mailgun = new Mailgun({
     apiKey: process.env.MAILGUN_API_KEY,
     domain: process.env.MAILGUN_DOMAIN
@@ -73,7 +74,7 @@ exports.sendCancellationEmail = function(session, student, mentor) {
   var emailTemplate = Handlebars.compile(fs.readFileSync(Path.resolve(__dirname, '../templates/session-cancel.hbs'), 'utf-8'));
   var email_data = {
     from: 'no-reply@epicvisor.com',
-    to: [mentor.email_address, student.email]
+    to: [extractEmail(mentor, mentor.mentor_profile), student.email]
   }
   var beginTime = moment(session.date).tz('America/Los_Angeles').format('MMMM Do YYYY h:mm a');
   var startTime = startTime && moment(session.startTime).tz('America/Los_Angeles').format('MMMM Do YYYY @ h:mm a');
@@ -96,16 +97,22 @@ exports.sendCancellationEmail = function(session, student, mentor) {
   });
 }
 
-exports.bookAndSendEmail = function(request, reply, student, mentor, userProfileSettings) {
+function extractEmail(mentor, userProfile) 
+{
+    var mentorEmail = userProfile.preferred_email || mentor.email_address ;
+    return mentorEmail;
+}
+
+exports.bookAndSendEmail = function(request, reply, student, mentor, userProfileSettings, userProfile) {
   var mailgun = new Mailgun({
     apiKey: process.env.MAILGUN_API_KEY,
     domain: process.env.MAILGUN_DOMAIN
-  });
+  }); 
 
   var emailTemplate = Handlebars.compile(fs.readFileSync(Path.resolve(__dirname, '../templates/session-request-email.hbs'), 'utf-8'));
   var email_data = {
     from: 'no-reply@epicvisor.com',
-    to: [mentor.email_address, student.email],
+    to: [extractEmail(mentor, userProfile), student.email],
     cc: 'no-reply@epicvisor.com'
   }
   var bookingDetails = request.payload;

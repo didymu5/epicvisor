@@ -5,6 +5,7 @@ function mentorProfileController($scope, user, sessions, profile, userService, $
 	$scope.selectedYear = profile.year || "2019";
 	$scope.blurb = profile.blurb || "";
 	$scope.sessions = sessions;
+	$scope.preferred_email = profile.preferred_email || user.email_address;
 
 	$scope.decorateExpirationTime = function(session) {
 		if(session.status === "pending") {
@@ -19,7 +20,8 @@ function mentorProfileController($scope, user, sessions, profile, userService, $
 	$scope.saveProfile = function() {
 		userService.setProfileSettings({
 		  blurb: $scope.blurb,
-		  year: $scope.selectedYear
+		  year: $scope.selectedYear,
+		        preferred_email: $scope.preferred_email
 		}).then(function(userProfile) {
 			$location.path('/profile/sessions');
 		});

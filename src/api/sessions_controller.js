@@ -2,6 +2,7 @@ var moment = require('moment');
 var Sessions = require('../../models/sessions');
 var Student = require('../../models/student');
 var User = require('../../models/user');
+var UserProfile = require('../../models/user_profile');
 var UserProfileSessionSettings = require('../../models/user_profile_session_settings');
 var Q = require('q');
 var shortid = require('shortid');
@@ -26,14 +27,19 @@ exports.bookAppointment = function(request, reply) {
         id: request.params.id
       }
     });
+    var userProfile = UserProfile.findOne({
+      where: {
+        user_id: request.params.id
+      }
+    });
     var userProfileSessionSettings = UserProfileSessionSettings.findOne({
       where: {
         user_id: request.params.id
       }
     });
 
-    return Q.all([student, user, userProfileSessionSettings]).then(function(data) {
-      emailService.bookAndSendEmail(request, reply, data[0], data[1], data[2]);
+    return Q.all([student, user, userProfileSessionSettings, userProfile]).then(function(data) {
+      emailService.bookAndSendEmail(request, reply, data[0], data[1], data[2], data[3]);
     });
   }
 }
@@ -96,10 +102,17 @@ function getSessionAndDetails(session_id) {
         id: session.user_id
       }
     })
-    return Q.all([student, mentor]).then(function(results) {
+    var mentorProfile = UserProfile.findOne({
+      where: {
+        user_id: session.user_id
+      }
+    });
+    return Q.all([student, mentor, mentorProfile]).then(function(results) {
+      results[1].mentor_profile = results[2];
       return {
         student: results[0],
         mentor: results[1],
+        mentor_profile: results[2],
         session: session
       };
     });

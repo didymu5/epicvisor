@@ -17,6 +17,9 @@ var UserProfile = db.sequelize.define('user_profiles', {
   },
   current_status: {
     type: Sequelize.STRING
+  },
+  preferred_email: {
+    type: Sequelize.STRING
   }
 })
 module.exports = UserProfile;

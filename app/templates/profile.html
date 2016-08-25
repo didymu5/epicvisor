@@ -6,6 +6,8 @@
     <p>Class of <select ng-options="year as year for year in years track by year" ng-model="selectedYear"></select></p>
     <p>Share a blurb about yourself for students (max 200 characters)</p>
       <textarea class="profile__name-info-about-textarea" maxlength="200" ng-model="blurb" rows="7"></textarea>
+    <p> Select a preferred email </p>
+    <input type="text" ng-model="preferred_email">
       <button ng-click="saveProfile()">Go Next</button>
   </div>
 

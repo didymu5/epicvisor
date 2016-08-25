@@ -18,7 +18,7 @@ UserProfile.findOrCreate({
     }
   }).then(function(userSettingSet) {
     var userSetting = userSettingSet[0];
-    return userSetting.update(request.payload.profileSettings, {fields:  ["year","blurb"]});
+    return userSetting.update(request.payload.profileSettings, {fields:  ["year","blurb","preferred_email"]});
   }).then(function(userData) {
     reply(userData);
   });
