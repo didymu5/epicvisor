@@ -19,7 +19,8 @@ if (config.use_env_variable) {
       logging:  true //false
   })
 } else {
-  var sequelize = new Sequelize(config.database, config.username, config.password, config);
+  var username = process.env.USERNAME  || config.username;
+  var sequelize = new Sequelize(config.database, username, config.password, config);
 }
 
 

@@ -76,7 +76,7 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
       selectedStartTime: null,
       selectedEndTime: null
     }];
-    userSessionSettings.preferredTimeFrame.forEach(function(timeframe) {
+    (userSessionSettings.preferredTimeFrame || []).forEach(function(timeframe) {
        var matchingDay = _.find($scope.days, function(setTimeframe) {
         return setTimeframe.day == timeframe.day;
        });

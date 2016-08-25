@@ -37,7 +37,7 @@ module.exports = {
         column("summary", Sequelize.TEXT),
         column("public_url", Sequelize.STRING),
         column("email_address", Sequelize.STRING),
-        column("positions", Sequelize.STRING),
+        column("positions", Sequelize.JSON),
         column("specialties", Sequelize.STRING),
         column("industry", Sequelize.STRING),
         column("location", Sequelize.STRING),

@@ -90,6 +90,16 @@ function logout(request, reply) {
 }
 
 function linkedInSignIn(request, reply) {
+  // if stubbing out or working around mitm ssl issues, this is the way to go
+  if(process.env.FAKE_USER) {
+    console.log("THE CATS MEOW!")
+    User.findOne().then(function(user) {
+      request.yar.set('user', user);
+      return reply.redirect('/#/profile');      
+    })
+    return ;
+  }
+  // otherwise actually do linked in stuff
   callback_url = process.env.CALLBACK_URL;
   request.yar.set('redirect_url', request.query.reroute);
   Linkedin.auth.setCallback(callback_url + '/oauth/linkedin/callback/login');

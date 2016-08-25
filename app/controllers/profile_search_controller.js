@@ -11,7 +11,7 @@ function profileSearchController($scope, user, mentors, $location, mentorService
   function getCareerTopics(mentor) {
     return mentor.career_topics;
   }
-  var industries = _.uniq(mentors.map(getIndustryCompany));
+  var industries = _.compact(_.uniq(mentors.map(getIndustryCompany)));
   $scope.industries = industries.map(function(industry) {
     return {
       ticked: false,
@@ -19,7 +19,7 @@ function profileSearchController($scope, user, mentors, $location, mentorService
     }
   });
 
-  var companies = _.uniq(mentors.map(getMentorCompany));
+  var companies = _.compact(_.uniq(mentors.map(getMentorCompany)));
   companies = _.filter(companies, function(company) { return company !== undefined});
   $scope.companies = companies.map(function(company) {
     return {
@@ -28,7 +28,7 @@ function profileSearchController($scope, user, mentors, $location, mentorService
     }
   });
 
-  var fields = _.uniq(_.flatten(mentors.map(getCareerTopics)));
+  var fields = _.compact(_.uniq(_.flatten(mentors.map(getCareerTopics))));
   $scope.fields = fields.map(function(field) {
     return {
       ticked: false,
