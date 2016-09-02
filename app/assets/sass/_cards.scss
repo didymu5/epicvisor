@@ -46,11 +46,13 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 60px;
+  padding-top: rem(27px);
+
   .card {
     @include transition (all 0.2s ease-in-out);
     @include flex(3 1 20em);
     @include align-self(stretch);
-    border-top:6px solid $card-color--gold;
+    border-top: 6px solid $card-color--gold;
     background-color: $light-gray;
     border-radius: $base-border-radius;
     box-shadow: inset 0 0 1px $flex-box-border-color, 0 2px 4px darken($base-background-color, 10%);
@@ -59,15 +61,15 @@
     padding: 2em 2em 3em 2em;
     text-decoration: none;
     max-width: 22em;
+    transition: box-shadow 0.6s ease, border 0.8s ease;
+
     &:hover{
       cursor: pointer;
-      background-color: $background-grey;
-      .card-image{
-        img{
-          box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
-        }
-      }
+      background-color: #f1f1f1; // one-off light grey
+      border-top: 6px solid #d0a800; //darker gold
+      box-shadow: inset 0 0 0px $flex-box-border-color, 2px 4px 4px darken($base-background-color, 20%);
     }
+
     .card-image{
       overflow: hidden;
       max-height: 160px;
