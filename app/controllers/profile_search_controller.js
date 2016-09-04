@@ -11,6 +11,9 @@ function profileSearchController($scope, user, mentors, $location, mentorService
   function getCareerTopics(mentor) {
     return mentor.career_topics;
   }
+  function getMentorStatus(mentor) {
+    return mentor.current_status;
+  }
   var industries = _.compact(_.uniq(mentors.map(getIndustryCompany)));
   $scope.industries = industries.map(function(industry) {
     return {
@@ -36,6 +39,14 @@ function profileSearchController($scope, user, mentors, $location, mentorService
     }
   });
 
+  var mentorTypes = _.compact(_.uniq(_.flatten(mentors.map(getMentorStatus))))
+  $scope.mentorTypes = mentorTypes.map(function(type) {
+    return {
+      ticked: false,
+      name: type
+    }
+  });
+
   $scope.mentors = mentors;
   $scope.search = function() {
     var filteredMentors = allMentors;
@@ -54,6 +65,11 @@ function profileSearchController($scope, user, mentors, $location, mentorService
     if($scope.selectedCompanies.length > 0) {
       filteredMentors = filteredMentors.filter(function(mentor) {
         return _.map($scope.selectedCompanies, 'name').indexOf(getMentorCompany(mentor)) !== -1;
+      });
+    }
+    if($scope.mentorTypes.length > 0) {
+      filteredMentors = filteredMentors.filter(function(mentor) {
+        return _.map($scope.mentorTypes, 'name').indexOf(mentor.current_status) !== -1;
       });
     }
     $scope.mentors = filteredMentors;
