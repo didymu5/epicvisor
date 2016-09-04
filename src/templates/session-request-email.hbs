@@ -15,7 +15,17 @@
 
 <p>
 	<strong>Step 1 for {{mentor.first_name}}</strong> <br> 
-	Hi {{mentor.first_name}} please reply-all to {{student.name}} within 24 hrs with some times to connect during the week of {{week}} and your preferred way to connect (skype, hangouts, phone, etc.)
+	Please visit the EpicSession scheduler and confirm the best time and other details by clicking one of the following times: 
+	<br>
+</p>
+{{#each time_options}}
+<p>
+	<a href="{{../url}}#/sessions/{{../session.encoded_url}}?selectedTime={{this}}"> {{this}} </a>		
+</p>
+<br>
+{{/each}}
+<p>
+	Reply all to the student if none of the times specified actually work out.
 </p>
 
 <p>

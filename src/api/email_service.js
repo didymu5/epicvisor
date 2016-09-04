@@ -118,6 +118,9 @@ exports.bookAndSendEmail = function(request, reply, student, mentor, userProfile
   var bookingDetails = request.payload;
   bookingDetails.user_id = request.params.id;
   bookingDetails.encoded_url = shortid.generate();
+  var timeOptions = bookingDetails.SessionTimeOption.map(function(time) {
+    return moment(time).format("ddd h:mm a");
+  });
   Sessions.create(bookingDetails).then(function(created) {
     week = moment(request.payload.date).tz('America/Los_Angeles').startOf('week').format('MMMM Do YYYY');
     email_data.subject = "EpicSession request for week of " + week + " "+bookingDetails.encoded_url;
@@ -127,7 +130,8 @@ exports.bookAndSendEmail = function(request, reply, student, mentor, userProfile
       student: student,
       session: created,
       url: process.env.CALLBACK_URL,
-      week: week
+      week: week,
+      time_options: timeOptions
     });
     mailgun.messages().send(email_data, function(err, body) {
       if (err) {
