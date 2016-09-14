@@ -52,11 +52,6 @@
 
   .profile__avatar{
     text-align: center;
-    @include media($desktop-small-up) {
-      float:left;
-      text-align: left;
-      width: 100px;
-    }
   }
 
   .profile__social-list {
@@ -71,7 +66,7 @@
   }
   .profile__intro-copy{
     text-align: center;
-    max-width: 279px;
+    margin-bottom: rem(10px);
 
     p {
       font-size: rem(14px);
@@ -79,12 +74,6 @@
       color: grey;
       margin: 0;
       margin-top: -8px;
-    }
-
-    @include media($desktop) {
-      text-align: left;
-      float: left;
-      margin-left: rem(20px);
     }
   }
   .profile__intro_name{
@@ -120,5 +109,25 @@
   input {
     display: inline-block;
     float: left;
+  }
+}
+
+.profile__area-info {
+  ul {
+    padding-left: 0;
+  }
+}
+
+.profile__pill {
+  padding: 5px 20px;
+  list-style-type: none;
+  background: #e0e0e0;
+  width: inherit;
+  display: inline-block;
+  margin-right: rem(7px);
+  border-radius: 20px;
+
+  &:first-child {
+    margin-left: 0;
   }
 }
