@@ -53,9 +53,9 @@
     @include flex(3 1 20em);
     @include align-self(stretch);
     border-top: 6px solid $card-color--gold;
-    background-color: $light-gray;
+    background-color: $card-bg;
     border-radius: $base-border-radius;
-    box-shadow: inset 0 0 1px $flex-box-border-color, 0 2px 4px darken($base-background-color, 10%);
+    box-shadow: $dropshadow-1;
     display: block;
     margin: $flex-box-gutter;
     padding: 2em 2em 3em 2em;

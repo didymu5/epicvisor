@@ -27,6 +27,11 @@ h6 {
 
 p {
   margin: 0 0 $small-spacing;
+  font-family: $paragraph-font-family;
+  font-weight: 300;
+  letter-spacing: .02em;
+  line-height: 1.8;
+  font-size: 15px;
 }
 
 a {

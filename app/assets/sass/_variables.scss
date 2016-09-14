@@ -3,9 +3,9 @@ $medium-screen: 600px;
 $large-screen: 900px;
 
 // Typography
-$base-font-family: 'Open Sans', Arial, sans-serif;
+$base-font-family: 'Lato', sans-serif;
 $heading-font-family: $base-font-family;
-
+$paragraph-font-family: $base-font-family;
 // Font Sizes
 $base-font-size: 1em;
 $small-font-size: $base-font-size*.75;
@@ -32,10 +32,12 @@ $sunset: #fff6bf;
 $golden: #F1C403;
 
 // Greys
+$off-blue-grey: #f3f4f5;
 $lighter-grey: #e4e4e4;
 $light-gray: #f4f4f4;
 $dark-gray: #4a4a4a;
 $background-grey: #ececec;
+$border-grey: #e2e2e2;
 
 $alert-color: $light-green !default;
 $error-color: $rosie-red !default;
@@ -50,6 +52,8 @@ $action-color: $blue;
 $base-border-color: $lighter-grey;
 $base-border: 1px solid $base-border-color;
 
+$card-bg: white;
+
 // Background Colors
 $base-background-color: #fff;
 $secondary-background-color: tint($base-border-color, 75%);
@@ -61,3 +65,5 @@ $form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $l
 // Animations
 $base-duration: 150ms;
 $base-timing: ease;
+
+$dropshadow-1: inset 0 0 1px #F4F4F2, 0 1px 3px #e6e6e6;

@@ -9,7 +9,7 @@
     <title></title>
     <meta name="description" content="EpicVisor">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <script type="text/javascript" src="assets/js/bundle.js"></script>
     <link rel="stylesheet" href="assets/css/main.css">
@@ -18,13 +18,13 @@
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 <body >
-    <div ng-app="myApp" class="wrapper">
+    <div ng-app="myApp">
         <div ng-controller="ApplicationController">
-        <header-nav> </header-nav>
-        <div ng-if="!signedIn() && !notNecessaryToSignIn()">
+        <header-nav></header-nav>
+        <div class="wrapper" ng-if="!signedIn() && !notNecessaryToSignIn()">
             This page requires login to sign in.  
         </div>
-        <div ng-view autoscroll="true" ng-if="signedIn() || notNecessaryToSignIn()"> </div>
+        <div class="wrapper" ng-view autoscroll="true" ng-if="signedIn() || notNecessaryToSignIn()"> </div>
 
     </div>
 </div>

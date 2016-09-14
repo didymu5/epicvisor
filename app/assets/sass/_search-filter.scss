@@ -17,7 +17,7 @@
   @include clearfix;
   @include outer-container();
 
-  background-color: $light-gray;
+  background-color: $card-bg;
   border-radius: $base-border-radius;
   border: 1px solid $search-tools-border-color;
   padding: $gutter ($gutter / 2);

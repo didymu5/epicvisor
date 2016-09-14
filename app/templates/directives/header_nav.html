@@ -1,34 +1,36 @@
 <header class="header">
-  <div class="header__logo">
-    <a href="#/"><img src="https://s3-us-west-1.amazonaws.com/epicvisor/ev_logo_private_beta.png" alt="EpicVisor"></a>
-  </div>
-  <div class="logo_org">
-    <a href="#/"><img src="https://s3-us-west-1.amazonaws.com/epicvisor/UCLA_anderson.png"></a>
-  </div>
+  <div class="wrapper">
+    <div class="header__logo">
+      <a href="#/"><img src="https://s3-us-west-1.amazonaws.com/epicvisor/ev_logo_private_beta.png" alt="EpicVisor"></a>
+    </div>
+    <div class="logo_org">
+      <a href="#/"><img src="https://s3-us-west-1.amazonaws.com/epicvisor/UCLA_anderson.png"></a>
+    </div>
 
-  <nav class="header__navigation">
-    <ul class="header__navigation-list">
-      <li>
-        <a href="#" title="Mentors">Mentors</a>
-      </li>
-      <li>
-        <a href="http://www.epicvisor.com" title="About Us">About</a>
-      </li>
-      <li>
-        <a href="mailto:info@epicvisor.com" title="Contact">Contact</a>
-      </li>
-      <li ng-if="user" class="header__profile__link">
-        <a href="#/profile" title="Profile">Profile <img class="img__profile--small" src="{{user.avatar}}"></a>
-      </li>
-      <li ng-if="user" class="header__profile__link">
-        <a href="/logout" title="Profile">logout</a>
-      </li>
-      <!-- <li ng-if="user" class="header__profile__link">
-        <a href="#/profile/sessions" title="Profile">Session Settings</a>
-      </li> -->
-      <li ng-if="!signedIn()">
-        <a href="/oauth/linkedin/login?reroute={{currentRoute().originalPath}}">Mentor Login</a>
-      </li>
-     </ul>
-  </nav>
+    <nav class="header__navigation">
+      <ul class="header__navigation-list">
+        <li>
+          <a href="#" title="Mentors">Mentors</a>
+        </li>
+        <li>
+          <a href="http://www.epicvisor.com" title="About Us">About</a>
+        </li>
+        <li>
+          <a href="mailto:info@epicvisor.com" title="Contact">Contact</a>
+        </li>
+        <li ng-if="user" class="header__profile__link">
+          <a href="#/profile" title="Profile">Profile <img class="img__profile--small" src="{{user.avatar}}"></a>
+        </li>
+        <li ng-if="user" class="header__profile__link">
+          <a href="/logout" title="Profile">logout</a>
+        </li>
+        <!-- <li ng-if="user" class="header__profile__link">
+          <a href="#/profile/sessions" title="Profile">Session Settings</a>
+        </li> -->
+        <li ng-if="!signedIn()">
+          <a href="/oauth/linkedin/login?reroute={{currentRoute().originalPath}}">Mentor Login</a>
+        </li>
+       </ul>
+    </nav>
+  </div>
 </header>

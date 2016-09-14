@@ -1,5 +1,8 @@
 // Base.scss
 // Serves as the base file for global styling
+body {
+    background-color: $off-blue-grey;
+}
 
 .wrapper {
     max-width: 68em; // TODO: Revisit to make it responsive accordingly
@@ -10,4 +13,13 @@
 
 button {
     border: 0;
+}
+
+.block__quote {
+    border-left: 3px solid #ffcc00;
+    padding: 4px;
+    padding-left: 20px;
+    margin-top: 10px;
+    margin: #efefef;
+    font-style: italic;
 }

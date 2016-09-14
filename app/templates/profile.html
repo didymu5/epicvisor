@@ -3,10 +3,11 @@
 </div>
 <div class="profile">
   <div class="profile__left">
-    <p>Class of <select ng-options="year as year for year in years track by year" ng-model="selectedYear"></select></p>
-    <p>Share a blurb about yourself for students (max 200 characters)</p>
-      <textarea class="profile__name-info-about-textarea" maxlength="200" ng-model="blurb" rows="7"></textarea>
-    <p> Select a preferred email </p>
+    <p>Class Year</p>
+    <select class="profile__year-field" ng-options="year as year for year in years track by year" ng-model="selectedYear"></select>
+    <p>About</p>
+      <textarea class="profile__name-info-about-textarea" maxlength="200" ng-model="blurb" rows="7" placeholder="A blurb about yourself for students"></textarea>
+    <p>Email</p>
     <input type="text" ng-model="preferred_email">
       <button ng-click="saveProfile()">Go Next</button>
   </div>
@@ -18,8 +19,8 @@
         <img class="profile__img" src="{{user.avatar}}">
       </div>
       <div class="profile__intro-copy">
-        <p>Are there any new updates to your LinkedIn background?</p>
         <h1 class="profile__intro_name">{{user.first_name}} {{user.last_name}}</h1>
+        <p>Are there any new updates to your LinkedIn background?</p>
         <button>Update from LinkedIn</button>
       </div>
     </div>
