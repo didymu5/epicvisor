@@ -24,14 +24,17 @@ $base-z-index: 0;
 // Colors
 $blue: #00a3e8;
 $blackish: #000000;
-$dark-gray: #4a4a4a;
 $medium-gray: #B7BBC0;
-$light-gray: #f4f4f4;
 $light-green: #e6efc2;
 $rosie-red: #e57373;
 $baby-blue: #e5edf8;
 $sunset: #fff6bf;
 $golden: #F1C403;
+
+// Greys
+$lighter-grey: #e4e4e4;
+$light-gray: #f4f4f4;
+$dark-gray: #4a4a4a;
 $background-grey: #ececec;
 
 $alert-color: $light-green !default;
@@ -44,7 +47,7 @@ $base-font-color: $dark-gray;
 $action-color: $blue;
 
 // Border
-$base-border-color: $medium-gray;
+$base-border-color: $lighter-grey;
 $base-border: 1px solid $base-border-color;
 
 // Background Colors

@@ -1,0 +1,13 @@
+// Base.scss
+// Serves as the base file for global styling
+
+.wrapper {
+    max-width: 68em; // TODO: Revisit to make it responsive accordingly
+    margin: 0 auto;
+    display: block;
+    padding: rem(10px); // Avoiding squish-iness
+}
+
+button {
+    border: 0;
+}

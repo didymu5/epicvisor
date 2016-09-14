@@ -1,43 +1,223 @@
-<h1>Hello, {{mentor.first_name}} {{mentor.last_name}}</h1>
+<tr>
+    <td align="center" valign="top" id="templateBody">
+        <!--[if gte mso 9]>
+		<table align="center" border="0" cellspacing="0" cellpadding="0" width="600" style="width:600px;">
+			<tr>
+				<td align="center" valign="top" width="600" style="width:600px;">
+					<![endif]-->
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" class="templateContainer">
+            <tbody>
+                <tr>
+                    <td valign="top" class="bodyContainer">
+                        <table class="mcnDividerBlock" style="min-width:100%;" border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody class="mcnDividerBlockOuter">
+                                <tr>
+                                    <td class="mcnDividerBlockInner" style="min-width:100%; padding:18px;">
+                                        <table class="mcnDividerContent" style="min-width: 100%;border-top: 2px solid #EAEAEA;" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span></span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!--
+											<td class="mcnDividerBlockInner" style="padding: 18px;">
+												<hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
+												-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="mcnTextBlock" style="min-width:100%;" border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody class="mcnTextBlockOuter">
+                                <tr>
+                                    <td class="mcnTextBlockInner" style="padding-top:9px;" valign="top">
+                                        <!--[if mso]>
+														<table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+															<tr>
+													<![endif]-->
 
-<p>{{student.name}} would like to connect with you to chat about:</p>
-<ul>
-	{{#each session.topics}}
-	<li>
-		{{this}}
-	</li>
-	{{/each}}
-</ul>
-	
-<b>
-	EpicVisor 1-2-3
-</b>
+                                        <!--[if mso]>
+													<td valign="top" width="600" style="width:600px;">
+														<![endif]-->
+                                        <table style="max-width:100%; min-width:100%;" class="mcnTextContentContainer" align="left" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tbody>
+                                                <tr>
 
-<p>
-	<strong>Step 1 for {{mentor.first_name}}</strong> <br> 
-	Please visit the EpicSession scheduler and confirm the best time and other details by clicking one of the following times: 
-	<br>
-</p>
-{{#each time_options}}
-<p>
-	<a href="{{../url}}#/sessions/{{../session.encoded_url}}?selectedTime={{this}}"> {{this}} </a>		
-</p>
-<br>
-{{/each}}
-<p>
-	Reply all to the student if none of the times specified actually work out.
-</p>
+                                                    <td class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;" valign="top">
 
-<p>
-	<b>Step 2: {{student.name}}</b> <br>
-	Hi {{student.name}}, <br>
-	After {{mentor.first_name}} {{mentor.last_name}} replies back with options, please visit the EpicSession scheduler and confirm the best time: <br>
-	<a href="{{url}}#/sessions/{{session.encoded_url}}"> Click on the EpicSession scheduler </a>
-</p>
-<p>Please confirm within 2 days (The slot will be re-opened after this period).</p>
+                                                        <span style="font-size:22px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif"><strong>Hi {{mentor.first_name}} {{mentor.last_name}}!</strong></span></span>
+                                                        <br>
+                                                        <br>
+                                                        <span style="font-size:14px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif">{{student.name}} from the class of {{student.class_year}} would to chat with you
 
-<p>
-	<b>Step 3:</b><br> 
-	Connect and have an Epic time together!
-</p>
-<p>Visit the <a href="{{url}}#/sessions/{{session.encoded_url}}">scheduler</a> to make changes to this session.</p>
+                                                        {{#if session.topicsExists}}
+                                                        	about</span></span>
+		                                                        <ul>
+	                                                            	{{#each session.topics}}
+			                                                            <li><span style="font-size:14px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif">{{this}}</span></span>
+			                                                            </li>
+			                                                        {{/each}}
+		                                                        </ul>
+		                                                {{else}}
+		                                                	<!-- add period and space, end of convo -->
+		                                                	 .</span></span>
+		                                               	{{/if}}
+    
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!--[if mso]>
+													</td>
+													<![endif]-->
+
+                                        <!--[if mso]>
+												</tr>
+											</table>
+											<![endif]-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Start of Session Loop -->
+	                    {{#each time_options}}
+	                       <table class="mcnButtonBlock" style="min-width:100%;" border="0" cellpadding="0" cellspacing="0" width="100%">
+							    <tbody class="mcnButtonBlockOuter">
+							        <tr>
+							            <td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" class="mcnButtonBlockInner" align="left" valign="top">
+							                <table class="mcnButtonContentContainer" style="border-collapse: separate ! important;border-radius: 3px;background-color: #000080;" border="0" cellpadding="0" cellspacing="0">
+							                    <tbody>
+							                        <tr>
+							                            <td style="font-family: Arial; font-size: 14px; padding: 15px;" class="mcnButtonContent" align="center" valign="middle">
+							                                <a class="mcnButton " title="Mon, July 11 @ 3:00 PM " href="{{../url}}#/sessions/{{../session.encoded_url}}?selectedTime={{this}}" target="_blank" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">
+							                                	{{this}}
+							                                </a>
+							                            </td>
+							                        </tr>
+							                    </tbody>
+							                </table>
+							            </td>
+							        </tr>
+							    </tbody>
+							</table>
+						{{/each}}
+
+							<!-- end of session loop -->
+							<![endif]-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="mcnDividerBlock" style="min-width:100%;" border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody class="mcnDividerBlockOuter">
+                                <tr>
+                                    <td class="mcnDividerBlockInner" style="min-width:100%; padding:18px;">
+                                        <table class="mcnDividerContent" style="min-width: 100%;border-top: 2px solid #EAEAEA;" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span></span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!--
+						<td class="mcnDividerBlockInner" style="padding: 18px;">
+							<hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
+							-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="mcnTextBlock" style="min-width:100%;" border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody class="mcnTextBlockOuter">
+                                <tr>
+                                    <td class="mcnTextBlockInner" style="padding-top:9px;" valign="top">
+                                        <!--[if mso]>
+									<table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+										<tr>
+								<![endif]-->
+
+                                        <!--[if mso]>
+								<td valign="top" width="600" style="width:600px;">
+									<![endif]-->
+                                        <table style="max-width:100%; min-width:100%;" class="mcnTextContentContainer" align="left" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tbody>
+                                                <tr>
+
+                                                    <td class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;" valign="top">
+
+                                                        <div style="text-align: center;"><span style="color:#2baadf"><span style="font-size:14px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif"><strong>Do these times not work with you?</strong></span></span>
+                                                            </span>
+                                                        </div>
+                                                        <div style="text-align: center;"><span style="font-size:14px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif">Send an email to <a href="mailto:{{student.email}}" target="_blank">{{student.name}}</a> to reach out and suggest alternative times.<br></span></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!--[if mso]>
+								</td>
+								<![endif]-->
+
+                                        <!--[if mso]>
+							</tr>
+						</table>
+						<![endif]-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="mcnButtonBlock" style="min-width:100%;" border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody class="mcnButtonBlockOuter">
+                                <tr>
+                                    <td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" class="mcnButtonBlockInner" align="center" valign="top">
+                                        <table class="mcnButtonContentContainer" style="border-collapse: separate ! important;border-radius: 3px;background-color: #2BAADF;" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="font-family: Arial; font-size: 14px; padding: 15px;" class="mcnButtonContent" align="center" valign="middle">
+                                                        <a class="mcnButton " title="EpicSession Scheduler" href="http://uclamba.epicvisor.com/#/sessions/SJjR11Rv" target="_blank" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">EpicSession Scheduler</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="mcnDividerBlock" style="min-width:100%;" border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody class="mcnDividerBlockOuter">
+                                <tr>
+                                    <td class="mcnDividerBlockInner" style="min-width: 100%; padding: 0px 18px;">
+                                        <table class="mcnDividerContent" style="min-width: 100%;border-top: 2px solid #EAEAEA;" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span></span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!--
+				<td class="mcnDividerBlockInner" style="padding: 18px;">
+					<hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
+					-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!--[if gte mso 9]>
+</td>
+</tr>
+</table>
+<![endif]-->
+    </td>
+</tr>

@@ -6,14 +6,14 @@
     <div class="profile__intro">
       <div class="profile__avatar">
         <img class="profile__img" src="{{mentor.avatar}}">
-        <div class="social-list">
-          <a href="{{mentor.public_url}}" target="_blank"><img src="http://icons.iconarchive.com/icons/sicons/flat-shadow-social/512/linkedin-icon.png" width="20"></a>
-        </div>
       </div>
       <div class="profile__intro-copy">
         <h1 class="profile__intro_name">{{mentor | name}}</h1>
-        <p>Class of {{mentor.year}}</p>
-        <p>{{mentor.position}}</p>
+        <p class="profile__class">Class of {{mentor.year}}</p>
+        <p class="profile__position">{{mentor.position}}</p>
+        <div class="profile__social-list social-list">
+          <a href="{{mentor.public_url}}" target="_blank"><img src="http://icons.iconarchive.com/icons/sicons/flat-shadow-social/512/linkedin-icon.png" width="20"></a>
+        </div>
       </div>
     </div>
     <div class="profile__name-info-about">
