@@ -28,7 +28,7 @@
 <div class="card-plain">
   <div class="profile__right">
     <div class="profile__area-info">
-      <div>
+      <div ng-if="careerTopics.length > 1">
         <h2>Career Fields</h2>
         <ul>
           <li class="profile__pill" ng-repeat="careerTopics in mentor.career_topics">{{careerTopics}}</li>
