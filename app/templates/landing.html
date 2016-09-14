@@ -43,6 +43,20 @@
           </isteven-multi-select>
       </div>
     </div>
+    <div class="filter">
+      <label>Epicvisor Status</label>
+      <div>
+         <isteven-multi-select    
+          input-model="mentorTypes"    
+          output-model="selectedMentorStatuses"
+          button-label="name"
+          item-label="name"
+          tick-property="ticked"
+           helper-elements=""
+          >
+          </isteven-multi-select>
+      </div>
+    </div>
     <div class="filter trigger">
       <button ng-click="search()">Filter</button>
     </div>

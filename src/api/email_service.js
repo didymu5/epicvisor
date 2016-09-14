@@ -170,6 +170,10 @@ var bookAndSendEmail = function(request, reply, student, mentor, userProfileSett
   bookingDetails.user_id = request.params.id;
   bookingDetails.encoded_url = shortid.generate();
 
+  var timeOptions = bookingDetails.SessionTimeOption.map(function(time) {
+    return moment(time).format("ddd h:mm a");
+  });
+
   Sessions.create(bookingDetails).then(function(created) {
     var week = moment(request.payload.date).tz('America/Los_Angeles').startOf('week').format('MMMM Do YYYY');
 
@@ -179,7 +183,8 @@ var bookAndSendEmail = function(request, reply, student, mentor, userProfileSett
       student: student,
       session: created,
       url: process.env.CALLBACK_URL,
-      week: week
+      week: week,
+      time_options: timeOptions
     };
 
     // To offload logic on hbs

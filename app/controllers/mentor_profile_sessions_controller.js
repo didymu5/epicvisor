@@ -91,12 +91,29 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
         matchingDay.selectedEndTime = matchingEndTime;
        }
     });
+    if(!userSessionSettings.preferredTimeFrame || userSessionSettings.preferredTimeFrame.length === 0) {
+      $scope.days.forEach(function(day){
+        var matchingStartTime = _.find(day.startTimes, function(time) {
+          return time.formattedTime ===  "8:00 am";
+        });
+        var matchingEndTime = _.find(day.endTimes, function(time) {
+          return time.formattedTime ===  "5:00 pm";
+        });
+        day.selectedStartTime = matchingStartTime;
+        day.selectedEndTime = matchingEndTime;
+      })
+    }
     $scope.email_address = user.email_address;
 
   if(userSessionSettings.topics) {
      userSessionSettings.topics.forEach(function(topic){
       $scope.selectedTopics[topic] = true;
     });
+  }
+
+  $scope.wipeDefaultTimes = function(day) {
+    day.selectedStartTime = undefined;
+    day.selectedEndTime = undefined;
   }
   var extractTopics = function() {
     return Object.keys($scope.selectedTopics);

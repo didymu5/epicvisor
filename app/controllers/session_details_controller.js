@@ -1,9 +1,10 @@
 import moment from 'moment';
-
-function sessionDetailsController($scope, session, sessionsService, $location, myModal) {
+import _ from 'underscore';
+function sessionDetailsController($scope, session, sessionsService, $location, myModal, $routeParams) {
 	if (!session) {
 		$location.path('/');
 	}
+
 	$scope.session = session;
 	$scope.mentor = session.mentor;
 	$scope.student = session.student;
@@ -19,6 +20,15 @@ function sessionDetailsController($scope, session, sessionsService, $location, m
 	$scope.selectedBookingTime = $scope.timesToPickFrom.find(function(date) {
 		return date.time.isSame(	moment(session.startTime));
 	});
+
+	if($routeParams.selectedTime) {
+	  var selectedBookingTime = _.find($scope.timesToPickFrom, function(time) {
+	  	return time.time.format("ddd h:mm a") === $routeParams.selectedTime
+	  });
+	  $scope.selectedBookingTime = selectedBookingTime;
+	}
+
+	
 
 	function makeTimes() {
 		var times = [];
@@ -108,5 +118,5 @@ sessionDetailsController.$resolve = {
 		});
 	}]
 }
-sessionDetailsController.$inject = ['$scope', 'session', 'sessionsService', '$location', 'myModal'];
+sessionDetailsController.$inject = ['$scope', 'session', 'sessionsService', '$location', 'myModal', '$routeParams'];
 export default sessionDetailsController;

@@ -25,9 +25,11 @@
       <option value="" disabled selected>--:--</option>
     </select>
     <span class="txt-between">to</span>
+
     <select ng-options="endTimes.formattedTime for endTimes in daySelect.endTimes" ng-model="daySelect.selectedEndTime">
       <option value="" disabled selected>--:--</option>
     </select>
+    <button ng-click="wipeDefaultTimes(daySelect)" > Wipe Times For {{daySelect.day}} </button>
   </div>
 </div>
 <hr>
