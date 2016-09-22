@@ -53,6 +53,7 @@
     // Relative to others
     position: relative;
     min-height: 86px; // ensure height for abs elements
+    max-width: 20%;
 
     @include media($large-screen) {
       margin-bottom: 0;
@@ -111,8 +112,8 @@
       padding: .5em 1em;
       text-align: center;
       height: 56px;
+      margin-top: rem(24px);
       // Set to bottom of wrapper
-      position: absolute;
       border: 1px solid #0099da;
       bottom: 0;
     }

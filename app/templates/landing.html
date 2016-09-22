@@ -3,7 +3,6 @@
   <div class="filters">
     <div class="filter">
       <label>Industry</label>
-      <div>
         <isteven-multi-select    
             input-model="industries"    
             output-model="selectedIndustries"
@@ -11,13 +10,10 @@
             item-label="name"
             tick-property="ticked"
             helper-elements=""
-        >
-        </isteven-multi-select>
-      </div>
+        ></isteven-multi-select>
     </div>
     <div class="filter">
       <label>Field</label>
-      <div>
         <isteven-multi-select    
           input-model="fields"    
           output-model="selectedField"
@@ -27,11 +23,9 @@
            helper-elements=""
         >
         </isteven-multi-select>
-      </div>
     </div>
     <div class="filter">
       <label>Company</label>
-      <div>
          <isteven-multi-select    
           input-model="companies"    
           output-model="selectedCompanies"
@@ -41,11 +35,9 @@
            helper-elements=""
           >
           </isteven-multi-select>
-      </div>
     </div>
     <div class="filter">
       <label>Epicvisor Status</label>
-      <div>
          <isteven-multi-select    
           input-model="mentorTypes"    
           output-model="selectedMentorStatuses"
@@ -55,7 +47,6 @@
            helper-elements=""
           >
           </isteven-multi-select>
-      </div>
     </div>
     <div class="filter trigger">
       <button ng-click="search()">Filter</button>
