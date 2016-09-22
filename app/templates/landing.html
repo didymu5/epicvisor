@@ -59,16 +59,5 @@
 </div>
 
 <div class="card-list">
-	<div ng-repeat="mentor in mentors" class="card" ng-click="routeToMentor(mentor)">
-        <div class="card-image">
-            <img src="{{mentor.avatar}}" alt="{{mentor.first_name}} {{mentor.last_name}}">
-        </div>
-        <div class="card-header">
-            {{mentor.first_name}} {{mentor.last_name}}
-        </div>
-        <div class="card-copy">
-            <p ng-if="mentor.year">Class of {{mentor.year}}</p>
-            <p>{{mentor.position}}</p>
-        </div>
-    </div>
+	<ng-include src="'templates/partials/mentor-card.html'">
 </div>

@@ -120,11 +120,13 @@
 .profile__pill {
   padding: 5px 20px;
   list-style-type: none;
-  background: #e0e0e0;
+  background: rgb(234, 234, 234);
   width: inherit;
   display: inline-block;
   margin-right: rem(7px);
+  margin-top: rem(7px);
   border-radius: 20px;
+  color: #5d6267;
 
   &:first-child {
     margin-left: 0;

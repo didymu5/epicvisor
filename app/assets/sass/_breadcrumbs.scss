@@ -1,0 +1,13 @@
+// _breadcrumbs.scss
+
+.breadcrumbs {
+    margin-top: rem(-25px);
+    margin-bottom: rem(13px);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+
+    .divider {
+        margin: 0 5px;
+    }
+}

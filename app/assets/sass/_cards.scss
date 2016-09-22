@@ -67,11 +67,17 @@
     box-shadow: $dropshadow-1;
     display: block;
     margin: $flex-box-gutter;
-    padding: 2em 2em 3em 2em;
     text-decoration: none;
     max-width: 22em;
     transition: box-shadow 0.6s ease, border 0.8s ease;
 
+    .card__content--top {
+      padding: 2em 2em 0 2em;
+    }
+
+    .card__content--bottom {
+      padding: 0em 2em 1em 2em;
+    }
 
     &:hover{
       cursor: pointer;
@@ -98,6 +104,13 @@
     }
     .card-copy{
 
+    }
+    .divider {
+      height: 1px;
+      background: #f3f4f5;
+      width: 100%;
+      display: block;
+      margin: 1em 0;
     }
   }
 }
