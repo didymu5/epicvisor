@@ -4,12 +4,12 @@
   <span class="divider">></span>
   <a class="link" ng-click="cancel()">{{mentorName}} Profile</a>
   <span class="divider">></span>
-  <span class="inactive">Session Application</a>
+  <span class="inactive">Session Request</a>
 </div>
 
 <div class="card-plain session-form">
   <div class="alert" ng-if="error">{{error}}</div>
-  <h2>EpicSession Application</h2>
+  <h2>EpicSession Request</h2>
 
   <div class="session-form__bio">
     <h5 class="session-form__header">Selected Mentor</h5>
@@ -52,7 +52,7 @@
         </div>
       </fieldset>
 
-      <fieldset class="topics-group">
+      <fieldset ng-if="topics.length > 1" class="topics-group">
         <p class="session-form__instructions">Select all the topics you want to discuss</p>
         <div class="checkbox-topic" ng-repeat="topic in topics">
           <input type="checkbox" ng-name="selected-topic-{{$index}}" ng-model="selectedTopics[topic]"><label class="checkbox-label" ng-for="selected-topic-{{$index}}">{{topic}}</label>
