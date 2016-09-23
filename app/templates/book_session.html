@@ -1,52 +1,67 @@
-<div class="booker">
+<div class="card-plain session-form">
   <div class="alert" ng-if="error">{{error}}</div>
-  <h2 class="booker-heading">EpicSession for week of {{session.date | date:"M/d"}}</h2>
-  <p>With <span class="text--highlight">{{mentorName}}</span></p>
-  <div class="profile__avatar">
-    <img class="profile__img" src="{{avatar}}">
+  <h2>EpicSession Application</h2>
+
+  <div class="session-form__bio">
+    <h5 class="session-form__header">Selected Mentor</h5>
+    <span class="card-divider"></span>
+    <img class="profile__img round" src="{{avatar}}">
+    <div class="session-form__details">
+      <h3 class="session-form__h4">{{mentorName}}</h3>
+      <p class="session-form__date">Applying for a session on {{session.date | date:"M/d"}}</p>
+    </div>
   </div>
-  <form class="booker__session__form">
-    <div class="booker__sesssion__group">
-      <input type="text" name="name" placeholder="Your name" ng-model="name">
-      <input type="text" name="inviteEmail" placeholder="Your invitation email" ng-model="email">
-      <p><small>Only emails invited to EpicVisor can book sessions.</small></p>
-      <div class="time-suggestion-container">
-        <p><strong>Please recommend 3 session time options to {{mentorName}}</strong></p>
-        <div class="book_session_options">
-          <div class="book_session_label-select">
-            <label>Option 1</label>
-            <select ng-options="item as item.formattedTime for item in allAvailableTimes track by item.time" ng-model="selectedOptionDay1"></select>
-          </div>
-          <div class="book_session_label-select">
-            <label>Option 2</label>
-            <select ng-options="item as item.formattedTime for item in allAvailableTimes track by item.time" ng-model="selectedOptionDay2"></select>
-          </div>
-          <div class="book_session_label-select">
-            <label>Option 3</label>
-            <select ng-options="item as item.formattedTime for item in allAvailableTimes track by item.time" ng-model="selectedOptionDay3"></select></div>
+
+  <form>
+    <div class="session-form__personal">
+      <h5 class="session-form__header">Your Information</h5>
+      <span class="card-divider"></span>
+      <fieldset class="information-group">
+        <input class="field-small" type="text" name="name" placeholder="Name" ng-model="name">
+        <input class="field-small" type="text" name="inviteEmail" placeholder="Email" ng-model="email">
+        <input class="field-small" type="text" placeholder="Class Year" ng-model="selectedYear">
+        <p><small><i>NOTE: Only validated emails can arrange sessions.</i></small></p>
+      </fieldset>
+    </div>
+    <div class="session-form__session-info">
+      <h5 class="session-form__header">Session Details</h5>
+      <span class="card-divider"></span>
+      <p class="session-form__instructions">Please select 3 preferred time slots</p>
+
+      <fieldset class="time-slot-group">
+        <div class="time-field">
+          <label>Time Slot 1</label>
+          <select ng-options="item as item.formattedTime for item in allAvailableTimes track by item.time" ng-model="selectedOptionDay1"></select>
         </div>
-      </div>
-      <div class="text-select-classyear">
-        <label for="classofselect">Class of</label>
-        <select id="classofselect" ng-options="year as year for year in years track by year" ng-model="selectedYear">
-        </select>
+        <div class="time-field">
+          <label>Time Slot 2</label>
+          <select ng-options="item as item.formattedTime for item in allAvailableTimes track by item.time" ng-model="selectedOptionDay2"></select>
+        </div>
+        <div class="time-field">
+          <label>Time Slot 3</label>
+          <select ng-options="item as item.formattedTime for item in allAvailableTimes track by item.time" ng-model="selectedOptionDay3"></select>
+        </div>
+      </fieldset>
+
+      <fieldset class="topics-group">
+        <p class="session-form__instructions">Select all the topics you want to discuss</p>
+        <div class="checkbox-topic" ng-repeat="topic in topics">
+          <input type="checkbox" ng-name="selected-topic-{{$index}}" ng-model="selectedTopics[topic]"><label class="checkbox-label" ng-for="selected-topic-{{$index}}">{{topic}}</label>
+        </div>
+      </fieldset>
+
+      <p class="session-form__instructions">Propose additional topics</p>
+      <fieldset class="additional-topic-group">
+        <input class="field-small" type="text" ng-model="extraTopic1" placeholder="Topic 1">
+        <input class="field-small" type="text" ng-model="extraTopic2" placeholder="Topic 2">
+        <input class="field-small" type="text" ng-model="extraTopic3" placeholder="Topic 3">
+      </fieldset>
+
+      <span class="card-divider"></span>
+      <div class="session-form__btns">
+        <button class="btn btn-success" ng-click="confirm()"><i class="fa fa-envelope-o" aria-hidden="true"></i>Send</button>
+        <button class="btn btn-cancel" ng-click="cancel()" ><i class="fa fa-ban" aria-hidden="true"></i>Cancel</button>
       </div>
     </div>
-    <div class="booker__session__group__question">
-      <p class="booker__session__question">Which topics would you like to talk about?</p>
-      <div class="booker__checkbox-group">
-        <div class="booker__checkbox-group--checkboxlabel" ng-repeat="topic in topics">
-          <label><input type="checkbox" name="chk1" ng-model="selectedTopics[topic]">{{topic}}</label>
-        </div>
-      </div>
-      <p class="booker__session__question"> Add any other topics
-        <div class="group-topic">
-          <input type="text" ng-model="extraTopic1" placeholder="Topic 1">
-          <input type="text" ng-model="extraTopic2" placeholder="Topic 2">
-          <input type="text" ng-model="extraTopic3" placeholder="Topic 3">
-        </div>
-        <button ng-click="confirm()">Send Request</button>
-        <button ng-click="cancel()" class="btn-cancel-book">Cancel</button>
-      </div>
-    </form>
-  </div>
+  </form>
+</div>

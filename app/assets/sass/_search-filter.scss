@@ -20,7 +20,7 @@
   background-color: $card-bg;
   border-radius: $base-border-radius;
   border: 1px solid $search-tools-border-color;
-  padding: $gutter ($gutter / 2);
+  padding: rem(14px);
   width: 100%;
 
   li {
@@ -31,7 +31,8 @@
 
   label {
     display: block;
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 16px;
     margin-bottom: $base-spacing / 4;
   }
 
@@ -111,11 +112,15 @@
       width: 100%;
       padding: .5em 1em;
       text-align: center;
-      height: 56px;
+      height: 45px;
       margin-top: rem(24px);
       // Set to bottom of wrapper
       border: 1px solid #0099da;
       bottom: 0;
+
+      fa {
+        margin-right: rem(4px);
+      }
     }
   }
 }

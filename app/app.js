@@ -10,6 +10,9 @@ import userService from './services/user_service';
 import sessionsService from './services/sessions_service';
 import studentService from './services/student_service';
 import nameFilter from './filters/name_filter';
+import uniqueDateFilter from './filters/date_filter';
+import dayFilter from './filters/dayFilter';
+
 
 import adminStudentsController from './controllers/admin_students_controller';
 import mentorProfileController from './controllers/mentor_profile_controller';
@@ -28,9 +31,8 @@ import ng_dropdowns from 'angular-dropdowns';
 import isteven_angular_multiselect  from '../node_modules/isteven-angular-multiselect/isteven-multi-select';
 import angular_modal from 'angular-modal';
 
-
 var myApp = angular.module('myApp', [
-  'ngRoute', 'ngDropdowns', "isteven-multi-select",'btford.modal' 
+  'ngRoute', 'ngDropdowns', "isteven-multi-select",'btford.modal'
 ]).
 
 // let's make a modal called `myModal`
@@ -146,3 +148,5 @@ myApp = myApp.controller('SessionDetailsController', sessionDetailsController);
 myApp = myApp.controller('JoinController', joinController);
 myApp = myApp.controller('AdminStudentsController', adminStudentsController);
 myApp.filter('name', nameFilter);
+myApp.filter('uniqueDate', uniqueDateFilter);
+myApp.filter('dayShort', dayFilter);

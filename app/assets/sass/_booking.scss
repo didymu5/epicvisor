@@ -1,76 +1,96 @@
-.booker{
-  @include outer-container(12);
-  @include clearfix;
-  @include pad(20px 0);
-  border: 1px $light-gray solid;
-  margin-top:30px;
-  margin-bottom:30px;
-  text-align: center;
-  min-height:300px; 
-  .booker__session__form{
-    .booker__sesssion__group{
-      @include span-columns(6);
-      @include shift(3);
-      clear:both;
-      @include media($desktop-small-up) {
-        @include span-columns(4);
-        @include shift(4);
+.session-form {
+  margin-top: 0;
+
+  .profile__img {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+  }
+
+  &__bio {
+    margin: rem(6px) 0 rem(14px) 0;
+    width: 100%;
+  }
+
+  &__details {
+    margin-left: rem(14px);
+  }
+
+  &__details,
+  &__bio {
+    display: inline-block
+  }
+
+  &__h3 {
+    font-weight: 500;
+    font-size: 17px
+  }
+
+  &__date {
+    margin-top: -2px;
+  }
+
+  &__header {
+    color: #86888a; //@TODO var color this
+    letter-spacing: 0.08em;
+    font-weight: 800;
+    margin-bottom: rem(-14px);
+    margin-top: rem(10px);
+  }
+
+  &__instructions {
+    margin: rem(-11px) 0 rem(18px);
+  }
+
+  &__btns {
+    margin-bottom: rem(10px);
+
+    .btn {
+      &:not(:first-child) {
+        margin-left: rem(14px);
       }
-    }
-    .text-select-classyear{
-      text-align: center;
-      select {
-        @include span-columns(6);
-        @include shift(3);
-        border: 1px #ccc solid;
-        font-size: 1.5em;
-      }
-    }
-    .booker__session__group__question{
-      @include span-columns(6);
-      @include shift(3);
-      clear:both;
-      .booker__session__question{
-        @extend .text--bold;
-        @extend .h4;
-      }
-    }
-    text-align: center;
-    input[type="text"]{
-      text-align: center;
-    }
-    .booker__checkbox-group--checkboxlabel{
-      padding-left: 0;
-      margin-bottom: 20px;
-      @include media($desktop-small-up) {
-        padding-left: 150px;
-      }
-    }
-    .group-topic {
-      input {
-        @include span-columns(4);
-        float:left
-      }
-    }
-    .btn-cancel-book{
-      @extend .btn-cancel;
     }
   }
-  .booker-heading{
-    @extend .h2;
-     margin-bottom: 15px; 
+
+  .time-field {
+    display: inline-block;
+
+    &:not(:first-child) {
+      margin-left: rem(15px);
     }
-  &__checkbox-group{
-    text-align: left;
-    &--checkboxlabel{
-      margin-bottom: 2px;
-      input{
-        float:left;
-      }
-      label {
-        line-height: 1em;
-      }
+  }
+
+  .topics-group {
+    margin: rem(10px) 0 rem(13px);
+
+    .session-form__instructions {
+      margin-bottom: rem(10px);
     }
-    
+  }
+
+  label,
+  .checkbox-label {
+    display: block;
+    font-weight: 500;
+    color: #737477;
+    font-weight: 500;
+    font-size: 15px;
+    margin-bottom: 0.375em;
+  }
+
+  .checkbox-label {
+    display: inline;
+  }
+
+  .checkbox-topic {
+    margin-bottom: rem(8px);
+  }
+
+  .additional-topic-group {
+    margin-bottom: rem(13px);
+  }
+
+  .fa {
+    margin-right: rem(8px);
   }
 }

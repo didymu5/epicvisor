@@ -2,7 +2,10 @@ node_modules/
 bower_components/
 dist/
 public/js/*
-public/assets/*
+public/assets/css/*
+public/assets/js/*
+
+!public/assets/css/vendor
 .DS_STORE
 .DS_Store
 npm-debug.log
