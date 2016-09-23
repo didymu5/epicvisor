@@ -1,3 +1,10 @@
+<div class="breadcrumbs">
+  <a ng-href="/#/"><i class="fa fa-home" aria-hidden="true"></i></a>
+  <span class="divider">></span>
+  <span class="inactive">Profile</a>
+</div>
+
+
 <div class="profile">
   <div class="profile__left">
     <p>Class Year</p>
@@ -6,7 +13,7 @@
       <textarea class="profile__name-info-about-textarea" maxlength="200" ng-model="blurb" rows="7" placeholder="A blurb about yourself for students"></textarea>
     <p>Email</p>
     <input type="text" ng-model="preferred_email">
-      <button ng-click="saveProfile()">Go Next</button>
+      <button class="btn" ng-click="saveProfile()">Next</button>
   </div>
 
   <div class="profile__right">
@@ -18,15 +25,17 @@
       <div class="profile__intro-copy">
         <h1 class="profile__intro_name">{{user.first_name}} {{user.last_name}}</h1>
         <p>Are there any new updates to your LinkedIn background?</p>
-        <button>Update from LinkedIn</button>
+        <button class="btn btn-success"><i class="fa fa-refresh" aria-hidden="true"></i>
+Sync from LinkedIn</button>
       </div>
     </div>
   </div>
 </div>
 
 <div class="scheduler-profile card-plain" ng-if="hasSetupSessions()">
-  <a href="#/profile/sessions" class="button__edit_session--btn-blue btn-blue">Edit your EpicSessions</a>
-  <h2>Upcoming EpicSessions</h2>
+  <a href="#/profile/sessions" class="button__edit_session--btn-blue btn-blue"><i class="fa fa-pencil" aria-hidden="true"></i>
+ Edit EpicSessions</a>
+  <h3>Upcoming EpicSessions</h3>
   <table class="scheduler__tables">
     <tbody>
       <tr ng-repeat="session in sessions">

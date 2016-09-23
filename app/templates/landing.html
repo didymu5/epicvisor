@@ -55,7 +55,7 @@
 </div>
 
 <div ng-if="mentors.length < 1" class="sorry">
-  <p>Sorry, there are no results for the criteria you searched. Please try again.<p>
+  <ng-include src="'templates/partials/search-fail.html'">
 </div>
 
 <ng-include src="'templates/partials/mentor-card.html'">
