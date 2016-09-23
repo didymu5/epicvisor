@@ -53,7 +53,9 @@
   }
 
   .profile__social-list {
-    margin-top: rem(7px);
+    a {
+      font-size: rem(23px);
+    }
   }
 
   .profile__img{
