@@ -58,9 +58,17 @@ select {
     }
 }
 
+.field-medium {
+    min-width: 350px;
+}
+
 // Buttons
 .btn {
     padding: rem(7px) rem(20px);
+
+    .fa {
+        margin-right: rem(10px);
+    }
 }
 
 .btn-success {

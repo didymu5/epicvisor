@@ -26,12 +26,11 @@
     @include flex(1);
     max-width: 500px;
     min-width: 350px;
-    margin: 20px;
+
   }
   .profile__right {
     max-width: 500px;
     min-width: 350px;
-    margin: 20px;
     @include media($desktop-small-up) {
       @include flex(1);
     }

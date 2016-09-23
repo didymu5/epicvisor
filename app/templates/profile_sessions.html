@@ -1,62 +1,86 @@
-<div class="epic-sessions">
-  <h1>Setup EpicSessions</h1>
-  <hr>
-  <div class="epic-sessions__question">
-    <div class="question-copy">How many student EpicSessions would you like to hold?</div>
-    <p><small>Students can only book up to 4 weeks in advance. Please respond to students within 2 days.</small></p>
-    <div class="horizontal-select-group">
-    <select ng-options="sessionCount for sessionCount in sessionCounts" ng-model="selectedSessionCount"></select>
-      <div class="label-select-group">
-        <label>Epic Session(s):</label>
-        <select ng-options="sessionCountType for sessionCountType in sessionCountTypes" ng-model="selectedSessionCountType"></select>
-      </div>
+<div class="card-plain profile-session">
+  <h2>EpicSession Setup</h2>
+
+  <span class="card-divider"></span>
+  <p class="session-form__instructions">How many student EpicSessions would you like to hold?</p>
+  <fieldset class="session-frequency">
+    <div class="field">
+        <label>Qty</label>
+        <select ng-options="sessionCount for sessionCount in sessionCounts" ng-model="selectedSessionCount"></select>
     </div>
-</div>
+    <div class="field">
+      <p class="field-clarifier">Sessions</p>
+    </div>
+    <div class="field">
+      <label>Frequency</label>
+      <select ng-options="sessionCountType for sessionCountType in sessionCountTypes" ng-model="selectedSessionCountType"></select>
+    </div>
+    <p><small><i>Students can only book up to 4 weeks in advance.</i></small></p>
+  </fieldset>
 
-<div class="epic-session-available-time-schedule">
-<p>Please provide ranges of time when you’ll be willing to host your <strong>{{selectedSessionCount}}</strong> <em>EpicSessions</em> during the week. <br><small>Students will use these times ranges to suggest the 30 minute sessions when booking</small></p>
-<div class="error-session-time" ng-if="sessionStatusText" tabindex="-1">
-  {{sessionStatusText}}
-</div>
-<div ng-repeat="daySelect in days">
-  <div class="epic-session-select-time-range-group">
+  <h5 class="session-form__header">Preferred Time</h5>
+  <span class="card-divider"></span>
+
+  <p class="session-form__instructions">Students will be able to create 30 minute time slots within your preferred time range.</p>
+  <p class="error-session-time" ng-if="sessionStatusText" tabindex="-1">{{sessionStatusText}}</p>
+
+  <div ng-repeat="daySelect in days">
     <label>{{daySelect.day}}</label>
-    <select ng-options="startTimes.formattedTime for startTimes in daySelect.startTimes" ng-model="daySelect.selectedStartTime">
-      <option value="" disabled selected>--:--</option>
-    </select>
-    <span class="txt-between">to</span>
-
-    <select ng-options="endTimes.formattedTime for endTimes in daySelect.endTimes" ng-model="daySelect.selectedEndTime">
-      <option value="" disabled selected>--:--</option>
-    </select>
-    <button ng-click="wipeDefaultTimes(daySelect)" > Wipe Times For {{daySelect.day}} </button>
+    <fieldset class="time-group">
+      <div class="field">
+        <select ng-options="startTimes.formattedTime for startTimes in daySelect.startTimes" ng-model="daySelect.selectedStartTime">
+          <option value="" disabled selected>--:--</option>
+        </select>
+      </div>
+      <div class="field">
+        <p class="field-clarifier">to</p>
+      </div>
+      <div class="field">
+        <select ng-options="endTimes.formattedTime for endTimes in daySelect.endTimes" ng-model="daySelect.selectedEndTime">
+          <option value="" disabled selected>--:--</option>
+        </select>
+      </div>
+      <div class="field">
+          <button class="btn btn-cancel" ng-click="wipeDefaultTimes(daySelect)"><i class="fa fa-trash-o" aria-hidden="true"></i>Clear</button>
+      </div>
+    </fieldset>
   </div>
-</div>
-<hr>
-<p>Which email should session calendar confirmations be sent to?</p>
-<input class="input-preferred-email-txt" size="40" type="email" ng-model="email_address" placeholder="Email">
-</div>
 
-
-<div class="epic-sessions__question">
-  <div class="question-copy">Which topics would you like to share about?</div>
-  <div ng-repeat="topic in topics">
-    <topic topic-to-select="topic"></topic>
+  <h5 class="session-form__header">Topics</h5>
+  <span class="card-divider"></span>
+  <p class="session-form__instructions">Choose things you would like to discuss:</p>
+  <div class="topic-listing">
+    <div ng-repeat="topic in topics">
+      <topic topic-to-select="topic"></topic>
+    </div>
   </div>
-  <p> Add any other topics: </p>
-  <div class="group-topic">
-    <input type="text" ng-model="extraTopic1" placeholder="Add">
-    <input type="text" ng-model="extraTopic2" placeholder="Add">
-    <input type="text" ng-model="extraTopic3" placeholder="Add">
-  </div>
-</div>
+  <p class="session-form__instructions">Additional topics:</p>
+  <fieldset class="additional-topic-group">
+    <input class="field-small" type="text" ng-model="extraTopic1" placeholder="Topic 1">
+    <input class="field-small" type="text" ng-model="extraTopic2" placeholder="Topic 2">
+    <input class="field-small" type="text" ng-model="extraTopic3" placeholder="Topic 3">
+  </fieldset>
 
-<div class="epic-sessions__question">
-<div class="question-copy">How would you like to hold your EpicSession?</div>
-<div class="horizontal-select-group">
-  <select ng-options="contact as contact for contact in contacts" ng-model="selectedContact"></select> <input type="text" ng-model="contactDetails" placeholder="Skype ID, Gmail ID, Phone #"></div>
-</div>
-<button class="button" ng-click="saveSessionState()">
-  Save
-</button>
+  <h5 class="session-form__header">EpicSession Settings</h5>
+  <span class="card-divider"></span>
+  <label>Preferred Email</label>
+  <span>
+    <input class="field-small" type="email" ng-model="email_address" placeholder="Email">
+  </span>
+
+  <label>EpicSession Format</label>
+  <fieldset class="contact-setting">
+    <div class="field">
+      <label>Platform</label>
+      <select ng-options="contact as contact for contact in contacts" ng-model="selectedContact"></select>
+    </div>
+    <div class="field">
+      <label>Details</label>
+      <input class="field-medium" type="text" ng-model="contactDetails" placeholder="Skype ID, Gmail ID, Phone #">
+    </div>
+    <p><small><i>How will the session be held?</i></small></p>
+  </fieldset>
+
+  <span class="card-divider"></span>
+  <button class="btn btn-success" ng-click="saveSessionState()">Save</button>
 </div>

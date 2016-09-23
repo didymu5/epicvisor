@@ -1,89 +1,33 @@
-.epic-sessions{
-  @include outer-container;
-  margin-bottom: 80px;
-  .epic-sessions__question{
-    @include clearfix;
-    margin-bottom: 30px;
-    .question-copy{
-      @extend .h4;
-      margin-bottom: 10px;
-    }
-    .label-select-group{
-      label{
-        display: inline-block;
-        float: left;
-      }
-      select{
-        display: inline-block;
-        float: left;
-      }
-    }
-    .horizontal-select-group{
-      @include span-columns(5);
-      select{
-        display: inline-block;
-        float:left;
-      }
-      input {
-        display: inline-block;
-        float:left;
-        width:60%;
-      }
+.profile-session {
+  margin-top: 0;
+
+  .field {
+    display: inline-block;
+
+    &:not(:first-child) {
+      margin-left: rem(15px);
     }
   }
-}
-.input-preferred-email-txt[type="email"]{
-  width:50%;
-}
-.book_session_options{
-  @include clearfix;
-  .book_session_label-select{
-    float:left;
-    padding-left:10px;
-    padding-right: 10px;
-    &:first-child{
-      padding-left:0;
-    }
-    &:last-child{
-      padding-right:0;
-    }
-    label{
 
-    }
-}
-}
-.error-session-time{
-  color: $error-color;
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-.epic-session-available-time-schedule{
-  @include clearfix;
-  margin-bottom: 30px;
-  .epic-session-select-time-range-group{
-    position: relative;
+  .time-group {
+    margin: rem(8px) 0;
+  }
+
+  label {
     display: block;
-    @include clearfix;
-    label{
-      width: 10%;
-      text-align: right;
-      float:left;
-      margin-right: 20px;
-    }
-    .txt-between{
-      float:left;
-      margin-left: 20px;
-      margin-right:20px;
-    }
-    select {
-      @extend .h4;
-      float:left;
-      height: 25px;
-    }
-    .select-begin-time-range{
-      &:after{
-        content: "to";
-      }
-    }
+    font-weight: 500;
+    color: #737477;
+    font-weight: 500;
+    font-size: 15px;
+    margin-bottom: 0.375em;
+  }
+
+  .field-clarifier {
+    font-weight: bold;
+  }
+
+
+  .topic-listing {
+    margin-bottom: rem(10px);
   }
 }
