@@ -1,3 +1,12 @@
+<!-- needs to be abstracted and using routing to determine location -->
+<div class="breadcrumbs">
+  <a ng-href="/#/">mentors</a>
+  <span class="divider">></span>
+  <a class="link" ng-click="cancel()">{{mentorName}} Profile</a>
+  <span class="divider">></span>
+  <span class="inactive">Session Application</a>
+</div>
+
 <div class="card-plain session-form">
   <div class="alert" ng-if="error">{{error}}</div>
   <h2>EpicSession Application</h2>
