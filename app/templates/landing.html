@@ -1,8 +1,10 @@
-
 <div class="search-tools" ng-show="showFilter">
-  <div class="filters">
+  <div class="wrapper filters">
     <div class="filter">
-      <label>Industry</label>
+      <label class="filter-title">
+        <i class="fa fa-industry" aria-hidden="true"></i>
+        <span>Industry</span>
+      </label>
         <isteven-multi-select    
             input-model="industries"    
             output-model="selectedIndustries"
@@ -13,7 +15,10 @@
         ></isteven-multi-select>
     </div>
     <div class="filter">
-      <label>Field</label>
+      <label class="filter-title">
+        <i class="fa fa-briefcase" aria-hidden="true"></i>
+        <span>Field</span>
+      </label>
         <isteven-multi-select    
           input-model="fields"    
           output-model="selectedField"
@@ -25,7 +30,10 @@
         </isteven-multi-select>
     </div>
     <div class="filter">
-      <label>Company</label>
+      <label class="filter-title">
+        <i class="fa fa-building-o" aria-hidden="true"></i> 
+        <span>Company</span>
+      </label>
          <isteven-multi-select    
           input-model="companies"    
           output-model="selectedCompanies"
@@ -37,7 +45,10 @@
           </isteven-multi-select>
     </div>
     <div class="filter">
-      <label>Epicvisor Status</label>
+      <label class="filter-title">
+        <i class="fa fa-certificate" aria-hidden="true"></i> 
+        <span>Epicvisor Status</span>
+      </label>
          <isteven-multi-select    
           input-model="mentorTypes"    
           output-model="selectedMentorStatuses"

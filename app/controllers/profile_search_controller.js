@@ -1,6 +1,7 @@
 import _ from 'underscore';
 function profileSearchController($scope, user, mentors, $location, mentorService) {
   $scope.user = user;
+  $scope.current = $location.url();
   var allMentors = mentors;
     function getMentorCompany(mentor) {
     return mentor.positions && mentor.positions.values && mentor.positions.values[0].company.name;
