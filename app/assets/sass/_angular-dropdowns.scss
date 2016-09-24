@@ -22,6 +22,7 @@
 
 /* ! create a "column" */
 .multiSelect .acol {
+
     display: inline-block;
     min-width: 12px;
 }
@@ -50,7 +51,6 @@
     -o-user-select: none;
     user-select: none; 
     white-space:normal;
-
     &:hover {
         background: initial;
         color: initial;
@@ -190,8 +190,7 @@
 }
 
 /* Styling on selected items */
-.multiSelect .multiSelectItem:not(.multiSelectGroup).selected
-{
+.multiSelect .multiSelectItem:not(.multiSelectGroup).selected {
     color: #00a3e8;
     cursor: pointer;
 }
@@ -213,7 +212,8 @@
 
 /* change mouse pointer into the pointing finger */
 .multiSelect .multiSelectItem span:hover, 
-.multiSelect .multiSelectGroup span:hover {    
+
+.multiSelect .multiSelectGroup span:hover {
     cursor: pointer;  
 }
 
