@@ -110,3 +110,23 @@
         }
     }
 }
+
+.progress-bars {
+    $inactiveGrey: #d4d4d4;
+    $activeGrey: #7b7b7b;
+
+    .circle {
+        border: 2px solid $inactiveGrey;
+        padding: 5px 10px;
+        font-weight: bold;
+        font-size: 15px;
+        border-radius: 100%;
+        color: $inactiveGrey;
+        margin: 0 2px;
+    }
+
+    .active {
+        color: $activeGrey;
+        border-color: $activeGrey;
+    }
+}
