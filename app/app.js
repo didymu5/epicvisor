@@ -104,6 +104,41 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'templates/join.html',
       controller: 'JoinController'
     }).
+    when('/start/sessions', {
+      templateUrl: 'templates/start_sessions.html',
+      controller: 'MentorProfileSessionsController'
+    }).
+    when('/start/topics', {
+      templateUrl: 'templates/start_topics.html',
+      controller: 'MentorProfileSessionsController'
+    }).
+    when('/start/1', {
+      templateUrl: 'templates/start_about.html',
+    }).
+    when('/start/2', {
+      templateUrl: 'templates/start_sync.html',
+      controller: ''
+    }).
+    when('/start/3', {
+      templateUrl: 'templates/start_verify.html',
+      controller: ''
+    }).
+    when('/start/4', {
+      templateUrl: 'templates/start_frequency.html',
+      controller: ''
+    }).
+    when('/start/5', {
+      templateUrl: 'templates/start_preferred.html',
+      controller: ''
+    }).
+    when('/start/6', {
+      templateUrl: 'templates/start_topics.html',
+      controller: ''
+    }).
+    when('/start/7', {
+      templateUrl: 'templates/start_finish.html',
+      controller: ''
+    }).
     otherwise({
       redirectTo: '/landing'
     });
