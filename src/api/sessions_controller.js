@@ -182,6 +182,9 @@ exports.getSessions = function(request, reply) {
         'user_id': user.id,
         'date': {
           $between: dates
+        },
+        'status' : {
+          $ne: 'expired'
         }
       }
     })
