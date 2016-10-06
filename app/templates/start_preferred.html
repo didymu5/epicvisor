@@ -1,0 +1,38 @@
+<div class="progress-bars">
+  <!-- loop through progress views and create ng-class for active scope -->
+  <span class="circle">1</span>
+  <span class="circle">2</span>
+  <span class="circle">3</span>
+</div>
+
+<div class="card-plain onboarding onboarding-7 animated fadeInLeft">
+  <h1>What works best for you?</h1>
+  <p>Set a preferred time of when you'll be able to meet with a mentee, essentially think of it as your "office hours."</p>
+
+  <div class="form">
+    <div ng-repeat="daySelect in days">
+      <label>{{daySelect.day}}</label>
+      <fieldset class="time-group">
+        <div class="field">
+          <select ng-options="startTimes.formattedTime for startTimes in daySelect.startTimes" ng-model="daySelect.selectedStartTime">
+            <option value="" disabled selected>--:--</option>
+          </select>
+        </div>
+        <div class="field">
+          <p class="field-clarifier">to</p>
+        </div>
+        <div class="field">
+          <select ng-options="endTimes.formattedTime for endTimes in daySelect.endTimes" ng-model="daySelect.selectedEndTime">
+            <option value="" disabled selected>--:--</option>
+          </select>
+        </div>
+        <div class="field">
+            <button class="btn btn-cancel" ng-click="wipeDefaultTimes(daySelect)"><i class="fa fa-trash-o" aria-hidden="true"></i>Clear</button>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  <!-- saveProfile() and move to screen 4 -->
+  <a href="#/start/6"><button class="btn">Next</button></a>
+</div>

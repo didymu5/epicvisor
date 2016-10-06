@@ -1,0 +1,112 @@
+/**
+ * Onboarding
+ */
+
+.onboarding {
+    text-align: center;
+
+    .btn {
+        padding: 15px 45px;
+        border: 1px solid #07659b;
+        background: transparent;
+        color: #07659b;
+        font-weight: bold;
+        letter-spacing: .05em;
+        margin: 20px 0;
+    }
+
+    h1 {
+        font-weight: bold;
+        color: #404040;
+    }
+
+    @media only screen and (min-device-width: 768px) {
+        p {
+            max-width: 45%;
+            display: block;
+            margin: 10px auto;
+            font-size: 16px;
+        }
+
+        input, select, textarea {
+            max-width: 65%;
+            display: block;
+            margin: 5px auto;
+        }
+    }
+
+    .form {
+        text-align: center;
+    }
+
+    .svg {
+        max-width: 325px;
+        display: block;
+        margin: 25px auto;
+
+        &-large {
+            max-width: 600px;
+        }
+    }
+
+}
+
+.onboarding-1 {
+}
+
+.onboarding-2 {
+    .graphic-layout {
+        position: relative;
+    }
+
+    .fa-linkedin-square {
+        font-size: 90px;
+        margin: 25px auto;
+        color: #06a5e8;
+    }
+
+    .fa-refresh {
+        color: #a1da86;
+        font-size: 33px;
+        position: absolute;
+        bottom: 15px;
+        left: 52%;
+        animation-delay: .4s;
+    }
+}
+
+.onboarding-3 {
+    padding: 50px;
+    .fa-check-circle {
+        font-size: 80px;
+        color: #2ecc71;
+        margin: 15px auto;
+    }
+
+    .field {
+        * {
+            display: inline;
+        }
+
+        select {
+            margin: 0 8px; 
+        }
+    }
+
+    .card-divider {
+        width: 50%;
+        display: block;
+        margin: 10px auto;
+    }
+}
+
+.onboarding-6 {
+    @media only screen and (min-device-width: 768px) {
+        .field-small {
+            width: initial;
+            max-width: initial;
+            margin: 0 8px;
+            display: inline-block;
+        }
+    }
+}

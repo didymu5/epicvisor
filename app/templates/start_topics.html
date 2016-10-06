@@ -1,0 +1,27 @@
+<div class="progress-bars">
+  <!-- loop through progress views and create ng-class for active scope -->
+  <span class="circle">1</span>
+  <span class="circle">2</span>
+  <span class="circle">3</span>
+</div>
+
+<div class="card-plain onboarding onboarding-6 animated fadeInLeft">
+  <h1>What would you like to talk about?</h1>
+  <p>EpicVisor are passionate individuals, and have a wealth of knowledge to share. What peaks your interest?</p>
+
+  <span class="card-divider"></span>
+  <div class="topic-listing">
+    <div ng-repeat="topic in topics">
+      <topic topic-to-select="topic"></topic>
+    </div>
+  </div>
+  <p><b>Additional topics:<b></p>
+  <fieldset class="additional-topic-group">
+    <input class="field-small" type="text" ng-model="extraTopic1" placeholder="Topic 1">
+    <input class="field-small" type="text" ng-model="extraTopic2" placeholder="Topic 2">
+    <input class="field-small" type="text" ng-model="extraTopic3" placeholder="Topic 3">
+  </fieldset>
+
+   <!-- saveProfile() and move to screen 4 -->
+  <a href="#/start/7"><button class="btn">Next</button></a>
+</div>

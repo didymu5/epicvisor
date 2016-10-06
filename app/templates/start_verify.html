@@ -1,0 +1,28 @@
+<div class="progress-bars">
+  <!-- loop through progress views and create ng-class for active scope -->
+  <span class="circle">1</span>
+  <span class="circle">2</span>
+  <span class="circle">3</span>
+</div>
+
+<div class="card-plain onboarding onboarding-3 animated fadeInLeft">
+  <h1>Excellent, {{ mentor.name }}!</h1>
+  <p>Looks like we pulled in some information, but feel free to update anything below before it is shown to any potential mentees.</p>
+  <div class="card-divider"></div>
+
+  <div class="form">
+    <div class="field">
+      <p><b>Class of </b></p>
+      <select class="profile__year-field" ng-options="year as year for year in years track by year" ng-model="selectedYear"></select>
+      <p>@ UCLA</p>
+    </div>
+    <p><b>About</b></p>
+    <textarea class="profile__name-info-about-textarea" maxlength="200" ng-model="blurb" rows="7" placeholder="A blurb about yourself for students"></textarea>
+    <p><b>Contact Email</b></p>
+    <span><i>Where would you like to recieve notifications?</i></span>
+    <input type="text" ng-model="preferred_email">
+  </div>
+
+    <!-- saveProfile() and move to screen 4 -->
+  <a href="#/start/4"><button class="btn">Looks Good</button></a>
+</div>

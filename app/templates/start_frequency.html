@@ -1,0 +1,20 @@
+<div class="progress-bars">
+  <!-- loop through progress views and create ng-class for active scope -->
+  <span class="circle">1</span>
+  <span class="circle">2</span>
+  <span class="circle">3</span>
+</div>
+
+<div class="card-plain onboarding onboarding-4 animated fadeInLeft">
+  <h1>How often would you like to meet?</h1>
+  <p>We require 2 epic sessions a month, but feel free to add more if you like. Don't worry this can always be changed in your profile settings.</p>
+
+  <div class="form">
+    <p>I would like to meet...</p>
+    <select ng-options="sessionCount for sessionCount in sessionCounts" ng-model="selectedSessionCount"></select>
+    times a month.
+  </div>
+
+  <!-- saveProfile() and move to screen 4 -->
+  <a href="#/start/5"><button class="btn">Next</button></a>
+</div>
