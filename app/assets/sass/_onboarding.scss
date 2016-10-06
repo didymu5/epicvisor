@@ -4,6 +4,7 @@
 
 .onboarding {
     text-align: center;
+    margin-top: 10px;
 
     .btn {
         padding: 15px 45px;
@@ -114,6 +115,8 @@
 .progress-bars {
     $inactiveGrey: #d4d4d4;
     $activeGrey: #7b7b7b;
+    text-align: center;
+    margin-top: -15px;
 
     .circle {
         border: 2px solid $inactiveGrey;
