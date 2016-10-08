@@ -148,6 +148,54 @@ $schedule-table-bg-color: #fff;
   }
 }
 
+.scheduler__month-card {
+  display: inline-block;
+  margin: 15px 15px 0 0;
+  padding: 20px;
+  min-width: 30%;
+  color: #545454;
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 2px;
+  border-top: 4px solid #8ba6c1;
+
+  @include media($mobile) {
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  h4 {
+    font-size: 20px;
+    font-weight: 700;
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 100;
+  }
+
+  button {
+    display: block;
+    margin: 45px auto 0 auto;
+    color: #8ba6c1;
+    width: 100%;
+    font-size: 16px;
+    text-transform: uppercase;
+    background: transparent;
+    border: 2px solid rgba(139, 166, 193, 0.73);
+    padding: 8px 12px;
+    letter-spacing: 1px;
+
+    &:hover {
+      border: 2px solid rgba(139, 166, 193, 0.73);
+      color: rgba(139, 166, 193, 0.73);
+    }
+  }
+}
+
 
 // .scheduler__session-status{
 //     &-open{

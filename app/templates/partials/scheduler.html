@@ -1,13 +1,16 @@
 <div class="scheduler">
   <h3 class="scheduler__h3">Availability</h3>
-  <table class="scheduler__tables">
-    <tbody>
-      <tr ng-repeat="session in mentorSessions" ng-if="session.status === 'Open'">
-          <td>Week of {{session.date | date:"M/d"}}</td>
-          <td>Session {{session.number}}</td>
-          <td> <button ng-click="bookSession(session, mentor)"> Book </button> </td>
-      </tr>
-    </tbody>
-  </table>
   <p>Only the following 4 weeks of sessions are available to book. Check back next week for more.</p>
+  <div class="scheduler__month-card blue">
+    <h4 class="scheduler__h4">{{ month1 }}</h4>
+    <p><b>4</b> EpicSessions Available</p>
+    <button ng-click="bookSession(session, mentor)">Book</button>
+  </div>
+
+  <div class="scheduler__month-card" ng-if="month2 !== month1">
+    <h4 class="scheduler__h4">{{ month2 }}</h4>
+    <p><b>4</b> EpicSessions Available</p>
+    <button ng-click="bookSession(session, mentor)">Book</button>
+  </div>
 </div>
+
