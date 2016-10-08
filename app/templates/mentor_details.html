@@ -4,6 +4,10 @@
   <span class="inactive">{{mentor | name}} profile</a>
 </div>
 <div class="profile">
+  <div class="profile_setup_links" ng-if="user">
+    <a ng-href="#/profile"><i class="fa fa-cog"></i> Settings</a>
+    <a ng-href="#/profile/sessions"><i class="fa fa-calendar-o"></i> Sessions</a>
+  </div>
     <div class="profile__intro">
       <div class="profile__avatar">
         <img class="profile__img" src="{{mentor.avatar}}">
