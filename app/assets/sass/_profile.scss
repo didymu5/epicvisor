@@ -24,9 +24,15 @@
   max-width: 1200px;
 
   .profile_setup_links{
-    position: absolute;
-    right: 2em;
-    left:auto;
+    position: relative;
+    float: right;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+    @include media($desktop-small-up) {
+      text-align: right;
+      margin-bottom: 0;
+    }
     a {
       &:after{
         margin-left: 5px;
