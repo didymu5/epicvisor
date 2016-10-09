@@ -13,6 +13,13 @@ import nameFilter from './filters/name_filter';
 import uniqueDateFilter from './filters/date_filter';
 import dayFilter from './filters/dayFilter';
 
+import startSyncController from './controllers/start_sync_controller';
+import startFrequencyController from './controllers/start_frequency_controller';
+import startVerifyController from './controllers/start_verify_controller';
+import startFinishController from './controllers/start_finish_controller';
+import startPreferredController from './controllers/start_preferred_controller';
+import startTopicsController from './controllers/start_topics_controller';
+
 
 import adminStudentsController from './controllers/admin_students_controller';
 import mentorProfileController from './controllers/mentor_profile_controller';
@@ -117,27 +124,30 @@ config(function ($routeProvider, $locationProvider) {
     }).
     when('/start/2', {
       templateUrl: 'templates/start_sync.html',
-      controller: ''
+      controller: 'StartSyncController'
     }).
     when('/start/3', {
       templateUrl: 'templates/start_verify.html',
-      controller: ''
+      controller: startVerifyController,
+      resolve: startVerifyController.$resolve
     }).
     when('/start/4', {
       templateUrl: 'templates/start_frequency.html',
-      controller: ''
+      controller: startFrequencyController,
+      resolve: startFrequencyController.$resolve
     }).
     when('/start/5', {
       templateUrl: 'templates/start_preferred.html',
-      controller: ''
+      controller: startPreferredController,
+      resolve: startPreferredController.$resolve
     }).
     when('/start/6', {
       templateUrl: 'templates/start_topics.html',
-      controller: ''
+      controller: 'StartTopicsController'
     }).
     when('/start/7', {
       templateUrl: 'templates/start_finish.html',
-      controller: ''
+      controller: 'StartFinishController'
     }).
     otherwise({
       redirectTo: '/landing'
@@ -171,8 +181,16 @@ myApp.service('userService', userService);
 myApp.service('sessionsService', sessionsService);
 myApp.service('studentService', studentService);
 
+myApp.service('StartSyncController', startSyncController)
+myApp.service('StartFrequencyController', startFrequencyController)
+myApp.service('StartVerifyController', startVerifyController)
+myApp.service('StartFinishController', startFinishController)
+myApp.service('StartPreferredController', startPreferredController)
+myApp.service('StartTopicsController', startTopicsController)
+
 myApp.controller('BookSessionController', bookSessionController);
 myApp.controller('AdminMentorsController', adminMentorsController);
+myApp.controller('StartSyncController', startSyncController)
 myApp = myApp.controller('HomeController', homeController);
 myApp = myApp.controller('ApplicationController', applicationController);
 myApp = myApp.controller('MentorProfileController', mentorProfileController);

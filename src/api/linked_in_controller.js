@@ -14,7 +14,8 @@ exports.initialize = function(LinkedInModule) {
     requestAuth: requestAuth,
     linkedInSignBackIn: linkedInSignBackIn,
     linkedInSignIn: linkedInSignIn,
-    logout: logout
+    logout: logout,
+    refreshLinkedIn: refreshLinkedIn
   }
 }
 
@@ -49,6 +50,48 @@ function sendLinkedInEmail(user) {
     }
     return body;
   });
+}
+
+function refreshLinkedIn(request, reply) {
+  access_token = request.yar.get('user').user_access_token;
+  if(process.env.FAKE_USER) {
+    reply(request.yar.get("user"));
+  }
+  else {
+    var linkedin = Linkedin.init(access_token);
+    linkedin.people.me(['id', 'first-name', 'last-name', 'picture-url', 'headline', 'location', 'industry', 'summary', 'positions', 'specialties', 'public-profile-url', 'email-address'], 
+      function(err, $in) {
+      var userDetails = {
+        first_name: $in.firstName,
+        last_name: $in.lastName,
+        email_address: $in.emailAddress,
+        industry: $in.industry,
+        public_url: $in.publicProfileUrl,
+        summary: $in.summary,
+        headline: $in.headline,
+        user_access_token: results.access_token,
+        avatar: $in.pictureUrl,
+        linkedin_id: $in.id,
+        positions: $in.positions
+      };
+      User.findOrCreate({
+        where: {
+          linkedin_id: $in.id
+        },
+        defaults: userDetails
+      }).spread(function(userData, justCreated) {
+        userDetails.role =  userData.role || 'mentor';
+        userData.update(userDetails, {
+          fields: Object.keys(userDetails)
+        }).then(function(userData) {
+          request.yar.set('user', userData);
+          return reply(userData);
+        });
+      });
+
+
+    });
+  }
 }
 
 function linkedInSignBackIn(request, reply) {

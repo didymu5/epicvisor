@@ -18,6 +18,11 @@ function register(server, options, next) {
     handler: linkedInController.requestAuth
   });
   server.route({
+    method: 'POST',
+    path: '/user/refresh',
+    handler: linkedInController.refreshLinkedIn
+  });
+  server.route({
     method: 'GET',
     path: '/oauth/linkedin/login',
     handler: linkedInController.linkedInSignIn

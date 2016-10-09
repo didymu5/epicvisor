@@ -159,6 +159,14 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
             }
             return times;
         },
+        makeTimes: function() {
+            var times = [];
+            for(var i=0; i<48; i++) {
+              var time = moment().startOf('day').add(i*30, 'minutes');
+              times.push({time: time.toDate(), formattedTime: time.format("h:mm a")});
+            }
+            return times;
+          },
         getMentorSessions: function(mentorId) {
             var self = this;
             return $http.get('/mentor/' + mentorId + '/sessions').then(function(res) {
@@ -167,6 +175,90 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
                     return makeSessions(sessions, sessionState);
                 })
             });
+        },
+        makePreferredTime: function(days) {
+            let preferredDays = [];
+            _.each(days, function(day) {
+              if(_.isObject(day.selectedStartTime) && _.isObject(day.selectedEndTime)) {
+                preferredDays.push(_.omit(day, 'startTimes', 'endTimes'));
+              }
+            });
+            return preferredDays;
+        },
+        deduceDaySelectors: function(days, userSessionSettings) {
+        (userSessionSettings.preferredTimeFrame || []).forEach(function(timeframe) {
+            var matchingDay = _.find(days, function(setTimeframe) {
+                return setTimeframe.day == timeframe.day;
+            });
+            if(matchingDay) {
+            var matchingStartTime = _.find(matchingDay.startTimes, function(time) {
+                return time.formattedTime === timeframe.selectedStartTime.formattedTime;
+            });
+            var matchingEndTime = _.find(matchingDay.endTimes, function(time) {
+                return time.formattedTime === timeframe.selectedEndTime.formattedTime;
+            });
+            matchingDay.selectedStartTime = matchingStartTime;
+            matchingDay.selectedEndTime = matchingEndTime;
+        }
+        });
+        if(!userSessionSettings.preferredTimeFrame || userSessionSettings.preferredTimeFrame.length === 0) {
+          days.forEach(function(day){
+            var matchingStartTime = _.find(day.startTimes, function(time) {
+              return time.formattedTime ===  "8:00 am";
+            });
+            var matchingEndTime = _.find(day.endTimes, function(time) {
+              return time.formattedTime ===  "5:00 pm";
+            });
+            day.selectedStartTime = matchingStartTime;
+            day.selectedEndTime = matchingEndTime;
+          })
+        }
+        return days;
+        },
+        getDayOptions: function() {
+            var times = this.makeTimes();
+            return [{
+              day: 'Sunday',
+              startTimes: times,
+              endTimes: times,
+              selectedStartTime: null,
+              selectedEndTime: null
+            },
+            {
+              day: 'Monday',
+              startTimes: times,
+              endTimes: times,
+              selectedStartTime: null,
+              selectedEndTime: null
+            },
+            {
+              day: 'Tuesday',
+              startTimes: times,
+              endTimes: times,
+              selectedStartTime: null,
+              selectedEndTime: null
+            },
+            {
+              day: 'Wednesday',
+              startTimes: times,
+              endTimes: times,
+              selectedStartTime: null,
+              selectedEndTime: null
+            },
+            {
+              day: 'Thursday',
+              startTimes: times,
+              endTimes: times,
+              selectedStartTime: null,
+              selectedEndTime: null
+            },
+            {
+              day: 'Friday',
+              startTimes: times,
+              endTimes: times,
+              selectedStartTime: null,
+              selectedEndTime: null
+            }]
         }
     };
 }
