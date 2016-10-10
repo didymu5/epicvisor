@@ -64,9 +64,11 @@
             </div>
 
             <div class="date-input-wrapper">
+             
               <i class="fa fa-clock-o"></i>
-                <select class="time-select" ng-model="session2.time" ng-options="time as timeObject.label for timeObject in timeOptions.session1 track by timeObject.time"></select>
+                <select class="time-select"  ng-options="time as timeObject.label for timeObject in timeOptions.session2 track by timeObject.formattedTime" ng-model="session2.time"></select>
             </div>
+     
         </div>
 
 
@@ -81,7 +83,7 @@
 
             <div class="date-input-wrapper">
               <i class="fa fa-clock-o"></i>
-                <select class="time-select" ng-model="session3.time" ng-options="time as timeObject.label for timeObject in timeOptions.session1 track by timeObject.time"></select>
+                <select class="time-select" ng-model="session3.time" ng-options="time as timeObject.label for timeObject in timeOptions.session3 track by timeObject.time"></select>
             </div>
         </div>
       </fieldset>

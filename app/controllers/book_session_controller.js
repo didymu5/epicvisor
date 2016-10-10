@@ -4,6 +4,7 @@ import moment from 'moment';
  * Book Session Controller
  */
 function book_session_controller($scope, session, mentor, $location, sessionsService, myModal) {
+	$scope.sessionWhatever = "PERO ";
 	if (mentor === undefined) {
 		$location.path('/');
 		return;
@@ -65,6 +66,7 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 
 	$scope.confirm = function() {
 		myModal.deactivate();
+		var session = {};
 		var name = $scope.name;
 		var email = $scope.email;
 		var year = $scope.selectedYear;
@@ -101,11 +103,32 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 	 */
 	$scope.constraints = {
 		maxDate: getMaxDate(40).toString(),
-		minDate: new Date().toString(),
+		minDate: getMinDay().toString(),
 		defaultDate: new Date().toString(),
 		// Create a list of disabled dates
-		disabledDates: []
+		disabledDates: getDisabledDates()
 	};
+
+	function getDisabledDates() {
+		var timesByWeekDay = _.groupBy($scope.allAvailableTimes, function(time) {
+			return time.time.format('e')
+		})
+		var startDate = moment(getMinDay()).startOf('day');
+		var endDate = moment(getMaxDate(40));
+		var disabledDates = []
+		while(startDate.isBefore(endDate)) {
+			var day = startDate.format('e');
+			if(!timesByWeekDay[day]) {
+				disabledDates.push(startDate.toDate());
+			}
+			startDate = startDate.add('1','day')
+		}
+		return disabledDates;
+	}
+
+	function getMinDay() {
+		return new Date();
+	}
 
      // bug with date picker, despite 4 weeks in advance, it has to fill up the entire week for it to show
 	function getMaxDate(numDays) {
