@@ -185,7 +185,7 @@ function linkedInOAUTH(request, reply) {
           fields: Object.keys(userDetails)
         }).then(function(userData) {
           request.yar.set('user', userData);
-          return reply.redirect('/#/profile');
+          return reply.redirect('/#/start/3');
         });
       });
     });
