@@ -13,6 +13,7 @@ import nameFilter from './filters/name_filter';
 import uniqueDateFilter from './filters/date_filter';
 import dayFilter from './filters/dayFilter';
 
+import startAboutController from './controllers/start_about_controller';
 import startSyncController from './controllers/start_sync_controller';
 import startFrequencyController from './controllers/start_frequency_controller';
 import startVerifyController from './controllers/start_verify_controller';
@@ -122,10 +123,11 @@ config(function ($routeProvider, $locationProvider) {
     }).
     when('/start/1', {
       templateUrl: 'templates/start_about.html',
+      controller: startAboutController
     }).
     when('/start/2', {
       templateUrl: 'templates/start_sync.html',
-      controller: 'StartSyncController'
+      controller: startSyncController
     }).
     when('/start/3', {
       templateUrl: 'templates/start_verify.html',
@@ -184,6 +186,7 @@ myApp.service('userService', userService);
 myApp.service('sessionsService', sessionsService);
 myApp.service('studentService', studentService);
 
+myApp.service('StartAboutController', startAboutController);
 myApp.service('StartSyncController', startSyncController)
 myApp.service('StartFrequencyController', startFrequencyController)
 myApp.service('StartVerifyController', startVerifyController)
