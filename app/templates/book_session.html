@@ -39,16 +39,50 @@
 
       <fieldset class="time-slot-group">
         <div class="time-field">
-          <label>Time Slot 1</label>
-          <select ng-options="item as item.formattedTime for item in allAvailableTimes track by item.time" ng-model="selectedOptionDay1"></select>
+            <label>Time Slot 1</label>
+            <div class="date-input-wrapper">
+              <i class="fa fa-calendar-o"></i>
+              <datepicker button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>"  date-min-limit="{{constraints.minDate}}" date-max-limit="{{constraints.maxDate}}" date-format="longDate" date-disabled-dates="{{constraints.disabledDates}}" date-set="{{constraints.defaultDate}}">
+                <input ng-model="session1.date" type="text" placeholder="Choose a date"/>
+              </datepicker>
+            </div>
+
+            <div class="date-input-wrapper">
+              <i class="fa fa-clock-o"></i>
+                <!-- Set Label as .label and set Select value as Moment Object -->
+                <select class="time-select" ng-model="session1.time" ng-options="time as timeObject.label for timeObject in timeOptions.session1 track by timeObject.time"></select>
+            </div>
         </div>
+
         <div class="time-field">
-          <label>Time Slot 2</label>
-          <select ng-options="item as item.formattedTime for item in allAvailableTimes track by item.time" ng-model="selectedOptionDay2"></select>
+            <label>Time Slot 2</label>
+            <div class="date-input-wrapper">
+              <i class="fa fa-calendar-o"></i>
+              <datepicker button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>" date-max-limit="{{constraints.maxDate}}" date-min-limit="{{constraints.minDate}}" date-format="longDate" date-disabled-dates="{{constraints.disabledDates}}" date-set="{{constraints.defaultDate}}">
+                <input ng-model="session2.date" type="text" placeholder="Choose a date"/>
+              </datepicker>
+            </div>
+
+            <div class="date-input-wrapper">
+              <i class="fa fa-clock-o"></i>
+                <select class="time-select" ng-model="session2.time" ng-options="time as timeObject.label for timeObject in timeOptions.session1 track by timeObject.time"></select>
+            </div>
         </div>
+
+
         <div class="time-field">
-          <label>Time Slot 3</label>
-          <select ng-options="item as item.formattedTime for item in allAvailableTimes track by item.time" ng-model="selectedOptionDay3"></select>
+            <label>Time Slot 3</label>
+            <div class="date-input-wrapper">
+              <i class="fa fa-calendar-o"></i>
+              <datepicker button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>" date-max-limit="{{constraints.maxDate}}" date-min-limit="{{constraints.minDate}}" date-format="longDate" date-disabled-dates="{{constraints.disabledDates}}" date-set="{{constraints.defaultDate}}">
+                <input ng-model="session3.date" type="text" placeholder="Choose a date"/>
+              </datepicker>
+            </div>
+
+            <div class="date-input-wrapper">
+              <i class="fa fa-clock-o"></i>
+                <select class="time-select" ng-model="session3.time" ng-options="time as timeObject.label for timeObject in timeOptions.session1 track by timeObject.time"></select>
+            </div>
         </div>
       </fieldset>
 

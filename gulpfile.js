@@ -1,9 +1,10 @@
 var gulp = require('gulp'),
   sass = require('gulp-sass'),
-  neat = require('node-neat').includePaths;
+  neat = require('node-neat').includePaths,
+  cleanCSS = require('gulp-clean-css');
+  concat = require('gulp-concat');
+
 var $ = require('gulp-load-plugins')();
-
-
 
 var paths = {
   scss: 'app/assets/sass/**/*.scss'
@@ -32,6 +33,17 @@ gulp.task('sass', function() {
 //   gulp.src('./dist/assets/**/*')
 //     .pipe(gulp.dest('public/assets/'));
 // });
+
+gulp.task('css:vendor', function() {
+  //NOT node_modules/**/dist/*.css for now, manually import selected ones
+  return gulp.src([
+      'node_modules/angular-datepicker/dist/*.css',
+      'node_modules/angularjs-datepicker/src/css/angular-datepicker.css'
+    ])
+    .pipe(concat('vendor.css'))
+    .pipe(cleanCSS())
+    .pipe(gulp.dest('./public/assets/css'));
+});
 
 gulp.task('sass:watch', function () {
   gulp.watch(paths.scss, ['sass']);

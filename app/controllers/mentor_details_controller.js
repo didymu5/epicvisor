@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 function mentorDetailsController($scope, user, mentor, mentorSessions, sessionsService, $location) {
 	$scope.user = user;
 	$scope.mentor = mentor;
@@ -7,6 +9,9 @@ function mentorDetailsController($scope, user, mentor, mentorSessions, sessionsS
 		sessionsService.storeSession(session);
 		$location.path('/mentor/sessions/confirm')
 	}
+
+	$scope.month1 = moment().format('MMMM');
+	$scope.month2 = moment().add(4, 'w').format('MMMM')
 }
 mentorDetailsController.$resolve = {
 	user: ['userService', function(userService) {

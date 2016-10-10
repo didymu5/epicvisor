@@ -30,9 +30,10 @@ import adminMentorsController from './controllers/admin_mentors_controller';
 import ng_dropdowns from 'angular-dropdowns';
 import isteven_angular_multiselect  from '../node_modules/isteven-angular-multiselect/isteven-multi-select';
 import angular_modal from 'angular-modal';
+import kb720_datePicker from '../node_modules/angularjs-datepicker';
 
 var myApp = angular.module('myApp', [
-  'ngRoute', 'ngDropdowns', "isteven-multi-select",'btford.modal'
+  'ngRoute', 'ngDropdowns', "isteven-multi-select",'btford.modal', '720kb.datepicker'
 ]).
 
 // let's make a modal called `myModal`

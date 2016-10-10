@@ -55,8 +55,18 @@
   .time-field {
     display: inline-block;
 
+    select {
+      line-height: 1;
+    }
+
     &:not(:first-child) {
       margin-left: rem(15px);
+    }
+  }
+
+  ._720kb-datepicker-calendar {
+    select {
+      box-shadow: none;
     }
   }
 
@@ -65,6 +75,40 @@
 
     .session-form__instructions {
       margin-bottom: rem(10px);
+    }
+  }
+
+  .time-slot-group {
+    margin-bottom: rem(20px);
+  }
+
+  .date-input-wrapper {
+    position: relative;
+    height: 0;
+
+    .fa {
+      position: absolute;
+      z-index: 1;
+      top: 9px;
+      left: 8px;
+      color: #737373;
+      font-size: 13px;
+    }
+  
+    // @TODO: Why is the wrapper not being applied to the 2nd wrapper?
+    // needs to absorb the height of the elements for now absolute with static height
+    .fa-clock-o {
+      top: 53px;
+    }
+
+    .time-select {
+      min-width: 200px;
+      font-size: 13px;
+    }
+
+    input,
+    .time-select {
+      padding-left: 28px;
     }
   }
 
@@ -94,3 +138,4 @@
     margin-right: rem(8px);
   }
 }
+
