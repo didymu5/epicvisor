@@ -2,7 +2,7 @@ import moment from 'moment';
 import _ from 'underscore';
 // import momentRange from 'moment-range';
 
-function mentorProfileSessionsController($scope, userService, userSessionSettings, user, $location) {
+function mentorProfileSessionsController($scope, userService, userSessionSettings, user, $location, sessionsService) {
   $scope.defaultCareerFields = [
     "Corporate Development",
     "Strategic Planning",
@@ -33,9 +33,9 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
     $scope.careerTopic3 = userSessionSettings.career_topics[2];
   }
   $scope.contactDetails = userSessionSettings.contactDetails;
-  $scope.timesGenerated = sessionService.makeTimes();
-  $scope.days = sessionService.getDayOptions();
-  $scope.days = sessionService.deduceDaySelectors($scope.days, userSessionSettings);
+  $scope.timesGenerated = sessionsService.makeTimes();
+  $scope.days = sessionsService.getDayOptions();
+  $scope.days = sessionsService.deduceDaySelectors($scope.days, userSessionSettings);
     $scope.email_address = user.email_address;
 
   if(userSessionSettings.topics) {
@@ -115,5 +115,5 @@ mentorProfileSessionsController.$resolve = {
     return userService.getSessionSettings();
   }]
 };
-mentorProfileSessionsController.$inject = ["$scope", "userService", "userSessionSettings", "user", "$location"];
+mentorProfileSessionsController.$inject = ["$scope", "userService", "userSessionSettings", "user", "$location", "sessionsService"];
 export default mentorProfileSessionsController;
