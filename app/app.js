@@ -144,11 +144,13 @@ config(function ($routeProvider, $locationProvider) {
     }).
     when('/start/6', {
       templateUrl: 'templates/start_topics.html',
-      controller: 'StartTopicsController'
+      controller: startTopicsController,
+      resolve: startTopicsController.$resolve
     }).
     when('/start/7', {
       templateUrl: 'templates/start_finish.html',
-      controller: 'StartFinishController'
+      controller: startFinishController,
+      resolve: startFinishController.$resolve
     }).
     otherwise({
       redirectTo: '/landing'

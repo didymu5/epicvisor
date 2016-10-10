@@ -18,7 +18,7 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
   $scope.contacts = ["Skype", "Hangouts", "Phone","Other"];
   $scope.sessionCounts = userService.getSessionCountOptions();
   $scope.sessionCountTypes = ["Per Week", "Every Other Week"]; 
-  $scope.topics = ["Work/Life/School Balance", "Clubs", "Career Paths & Entrepreneurship", "Commuting", "Preparing to start FEMBA", "Classes"];
+  $scope.topics = sessionsService.getDefaultTopics();
   $scope.user = user;
   $scope.selectedTopics = {};
   $scope.selectedContact = userSessionSettings.contact || $scope.contacts[0];

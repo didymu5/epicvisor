@@ -198,7 +198,7 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
                 return time.formattedTime === timeframe.selectedEndTime.formattedTime;
             });
             matchingDay.selectedStartTime = matchingStartTime;
-            matchingDay.selectedEndTime = matchingEndTime;
+            matchingDay.selectedEndTime = matcdhingEndTime;
         }
         });
         if(!userSessionSettings.preferredTimeFrame || userSessionSettings.preferredTimeFrame.length === 0) {
@@ -214,6 +214,9 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
           })
         }
         return days;
+        },
+        getDefaultTopics: function() {
+            return ["Work/Life/School Balance", "Clubs", "Career Paths & Entrepreneurship", "Commuting", "Preparing to start FEMBA", "Classes"]
         },
         getDayOptions: function() {
             var times = this.makeTimes();
