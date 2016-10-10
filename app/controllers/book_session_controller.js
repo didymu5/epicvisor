@@ -73,7 +73,7 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 		session.topics =  Object.keys($scope.selectedTopics).filter(function(topic) {
 			return $scope.selectedTopics[topic];
 		});
-		var possibleTimes = [$scope.session1.time, $scope.session2.time, $scope.session3.time]
+		var possibleTimes = [$scope.session1_time, $scope.session2_time, $scope.session3_time]
 		// Slightly redudant, will fix
 		session.SessionTimeOption = possibleTimes.map(function(time) {
 			if (time) {
