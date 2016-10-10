@@ -1,4 +1,4 @@
-function startSyncController($scope, $location, userService) {
+function startSyncController($scope, $location, userService	) {
 	$scope.syncLinkedIn = function() {
 		userService.refreshLinkedIn().then(function(data){
 			$location.path('/start/3');

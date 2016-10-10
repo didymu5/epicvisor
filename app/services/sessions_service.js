@@ -198,7 +198,7 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
                 return time.formattedTime === timeframe.selectedEndTime.formattedTime;
             });
             matchingDay.selectedStartTime = matchingStartTime;
-            matchingDay.selectedEndTime = matcdhingEndTime;
+            matchingDay.selectedEndTime = matchingEndTime;
         }
         });
         if(!userSessionSettings.preferredTimeFrame || userSessionSettings.preferredTimeFrame.length === 0) {
