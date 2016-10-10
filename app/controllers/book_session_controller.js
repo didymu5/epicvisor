@@ -45,10 +45,11 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 
 	$scope.selectedTopics = {};
 
-	function getMentorTopics(mentor){
+	function getMentorTopics(mentor) {
 		var possibleTopics = [mentor.extraTopic1, mentor.extraTopic2, mentor.extraTopic3].concat(mentor.topics);
 		return possibleTopics;
 	}
+
 	$scope.session = session;
 	$scope.avatar = mentor.avatar;
 	$scope.mentorName = mentor.first_name + ' ' + mentor.last_name;
@@ -56,7 +57,7 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
   	$scope.topics = $scope.topics.concat(getMentorTopics(mentor));
   	$scope.topics = _.compact(_.uniq($scope.topics));
 
-  	function extractExtraTopics(){
+  	function extractExtraTopics() {
   		return [$scope.extraTopic1, $scope.extraTopic2, $scope.extraTopic3].filter(function(topic){
   			return topic !== undefined;
   		});
@@ -70,9 +71,10 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 		session.topics =  Object.keys($scope.selectedTopics).filter(function(topic) {
 			return $scope.selectedTopics[topic];
 		});
-		var possibleTimes = [$scope.selectedOptionDay1, $scope.selectedOptionDay2,$scope.selectedOptionDay3]
+		var possibleTimes = [$scope.session1.time, $scope.session2.time, $scope.session3.time]
+		// Slightly redudant, will fix
 		session.SessionTimeOption = possibleTimes.map(function(time) {
-			if(time) {
+			if (time) {
 				return time.time.toDate();
 			}
 		});
@@ -112,17 +114,13 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 	}
 
 	function createSessionTimesListener(sessionNumber) {
-		console.log(sessionNumber);
 		var watchedModel = sessionNumber + '.date';
 
 		$scope.$watch(watchedModel, function (newValue, oldValue) {
 			if (newValue !== oldValue) {
-				console.log($scope.allAvailableTimes.length);
 				$scope.timeOptions[sessionNumber] = _($scope.allAvailableTimes)
 														.filter(matchMonth)
 														.map(addLabelForTime);
-
-				console.log($scope.timeOptions[sessionNumber]);
 			}
 
 			/**
