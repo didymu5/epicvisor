@@ -7,6 +7,12 @@ function userService($http, $q) {
     return userState.user;
   });
   return {
+    getSessionCountOptions: function() {
+      return Array.from(new Array(5), (x,i) => i+1)
+    },
+    getSchoolYears: function() {
+      return Array.from(new Array(2019-1940), (x,i) => 2019-i);
+    },
     getUser: function() {
       return userStateFetch;
     },
@@ -14,6 +20,11 @@ function userService($http, $q) {
       return $http.get('/user/mentor/profile').then(function(res) {
         userState.profile = res.data;
         return userState.profile;
+      });
+    },
+    refreshLinkedIn: function() {
+      return $http.post('/user/refresh').then(function(res) {
+        return res.data;
       });
     },
     getSessionSettings: function() {

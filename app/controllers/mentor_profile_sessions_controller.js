@@ -16,7 +16,7 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
     "Project Management"
   ];
   $scope.contacts = ["Skype", "Hangouts", "Phone","Other"];
-  $scope.sessionCounts = Array.from(new Array(5), (x,i) => i+1);
+  $scope.sessionCounts = userService.getSessionCountOptions();
   $scope.sessionCountTypes = ["Per Week", "Every Other Week"]; 
   $scope.topics = ["Work/Life/School Balance", "Clubs", "Career Paths & Entrepreneurship", "Commuting", "Preparing to start FEMBA", "Classes"];
   $scope.user = user;
@@ -33,76 +33,9 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
     $scope.careerTopic3 = userSessionSettings.career_topics[2];
   }
   $scope.contactDetails = userSessionSettings.contactDetails;
-  $scope.timesGenerated = makeTimes();
-  $scope.days = [{
-      day: 'Sunday',
-      startTimes: $scope.timesGenerated,
-      endTimes: $scope.timesGenerated,
-      selectedStartTime: null,
-      selectedEndTime: null
-    },
-    {
-      day: 'Monday',
-      startTimes: $scope.timesGenerated,
-      endTimes: $scope.timesGenerated,
-      selectedStartTime: null,
-      selectedEndTime: null
-    },
-    {
-      day: 'Tuesday',
-      startTimes: $scope.timesGenerated,
-      endTimes: $scope.timesGenerated,
-      selectedStartTime: null,
-      selectedEndTime: null
-    },
-    {
-      day: 'Wednesday',
-      startTimes: $scope.timesGenerated,
-      endTimes: $scope.timesGenerated,
-      selectedStartTime: null,
-      selectedEndTime: null
-    },
-    {
-      day: 'Thursday',
-      startTimes: $scope.timesGenerated,
-      endTimes: $scope.timesGenerated,
-      selectedStartTime: null,
-      selectedEndTime: null
-    },
-    {
-      day: 'Friday',
-      startTimes: $scope.timesGenerated,
-      endTimes: $scope.timesGenerated,
-      selectedStartTime: null,
-      selectedEndTime: null
-    }];
-    (userSessionSettings.preferredTimeFrame || []).forEach(function(timeframe) {
-       var matchingDay = _.find($scope.days, function(setTimeframe) {
-        return setTimeframe.day == timeframe.day;
-       });
-       if(matchingDay) {
-        var matchingStartTime = _.find(matchingDay.startTimes, function(time) {
-          return time.formattedTime === timeframe.selectedStartTime.formattedTime;
-        });
-        var matchingEndTime = _.find(matchingDay.endTimes, function(time) {
-          return time.formattedTime === timeframe.selectedEndTime.formattedTime;
-        });
-        matchingDay.selectedStartTime = matchingStartTime;
-        matchingDay.selectedEndTime = matchingEndTime;
-       }
-    });
-    if(!userSessionSettings.preferredTimeFrame || userSessionSettings.preferredTimeFrame.length === 0) {
-      $scope.days.forEach(function(day){
-        var matchingStartTime = _.find(day.startTimes, function(time) {
-          return time.formattedTime ===  "8:00 am";
-        });
-        var matchingEndTime = _.find(day.endTimes, function(time) {
-          return time.formattedTime ===  "5:00 pm";
-        });
-        day.selectedStartTime = matchingStartTime;
-        day.selectedEndTime = matchingEndTime;
-      })
-    }
+  $scope.timesGenerated = sessionService.makeTimes();
+  $scope.days = sessionService.getDayOptions();
+  $scope.days = sessionService.deduceDaySelectors($scope.days, userSessionSettings);
     $scope.email_address = user.email_address;
 
   if(userSessionSettings.topics) {
@@ -133,14 +66,7 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
     .filter(function(topic) { return topic !== undefined});
   }
 
-  function makeTimes() {
-    var times = [];
-    for(var i=0; i<48; i++) {
-      var time = moment().startOf('day').add(i*30, 'minutes');
-      times.push({time: time.toDate(), formattedTime: time.format("h:mm a")});
-    }
-    return times;
-  }
+  
 
   function timesNotValid(preferredTimes){
     var isInvalid = false;
