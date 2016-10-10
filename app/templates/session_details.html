@@ -1,5 +1,4 @@
-
-<div class="session-details">
+<div class="session-details card-plain">
 	<div class="alert">
 		{{status}}
 	</div>
@@ -9,15 +8,11 @@
 	<p>
 		Status: {{session.status}}
 	</p>
-	<h1>{{mentor | name}}</h1>
-	<p>Class of {{mentor.year}}</p>
-	<h2>
-	EpicSession for the Week of {{session.date | date:"M/d"}}
-	</h2>
-	<h3>Meeting with {{student.name}} ({{student.email}})</h3>
+	<h2>Greetings, {{mentor | name}}.</h1>
+	<p>It appears {{student.name}} ({{student.email}}) would like to schedule an <br> EpicSession with you for <b>{{session.date | date:"M/d"}}</b></p>
 
 	<div class="label-input-text-group">
-		<label for="input-text-preveredtext">Preferred way to connect:</label>
+		<p><label for="input-text-preveredtext">Preferred way to connect:</label></p>
 		<input type="text" ng-model="preferredConnection" id="input-text-preveredtext">
 	</div>
 	<div class="session-select-option">
@@ -30,11 +25,13 @@
 				<text ng-if="isPending(session)"> Confirm </text>
 				<text ng-if="!isPending(session)"> Reschedule </text>
 			</button>
-		Confirmation emails will be sent to attendees
+			<p>
+				Confirmation emails will be sent to attendees
+			</p>
 		</div>
 		<div class="session-button-text-group">
 			<button ng-click="cancel()" class="btn-cancel">
-			Cancel
+				Cancel
 			</button>
 			<p>
 				Session status will return to open
