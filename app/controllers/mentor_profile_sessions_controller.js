@@ -36,7 +36,6 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
   $scope.timesGenerated = sessionsService.makeTimes();
   $scope.days = sessionsService.getDayOptions();
   $scope.days = sessionsService.deduceDaySelectors($scope.days, userSessionSettings);
-    $scope.email_address = user.email_address;
 
   if(userSessionSettings.topics) {
      userSessionSettings.topics.forEach(function(topic){
