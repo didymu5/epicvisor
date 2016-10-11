@@ -6,7 +6,7 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
 
     function makeSessionsByGroup(sessions, sessionState) {
         sessions = sessions.filter(function(session) {
-            return session.status !== 'pending' || session.status !== 'expired' || moment(session.createdAt).isAfter(twoDaysAgo);
+            return session.status !== 'pending' && session.status !== 'expired' || moment(session.createdAt).isAfter(twoDaysAgo);
         });
         var sessionsByMonth = _.groupBy(sessions, function(session) {
             return moment(session.startTime).startOf('month').format('MMMM YYYY');
@@ -19,49 +19,11 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
     }
 
     function makeSessions(sessions, sessionState) {
-        var numberOfSessionsToGenerate = sessionState.sessionCount;
-        var sessionCountType = sessionState.sessionCountType;
-        var twoDaysAgo = moment().startOf('day').subtract(1, 'days');
+        var twoDaysAgo = moment().add(-2,'days').startOf('day');
         sessions = sessions.filter(function(session) {
-            return session.status !== 'pending' || session.status !== 'expired' || moment(session.createdAt).isAfter(twoDaysAgo);
+            return session.status !== 'expired' && moment(session.createdAt).isAfter(twoDaysAgo);
         });
-        var sessionsByWeek = _.groupBy(sessions, function(session) {
-            return moment(session.date).startOf('week').startOf('day');
-        });
-        var orderedSessions = [];
-        var weeks = _.keys(sessionsByWeek);
-        var increment = 1;
-        if (sessionCountType === "Every Other Week") {
-            increment = 2;
-        }
-        for (var i = 0; i < 4; i += increment) {
-            var currentWeek = moment().add('weeks', i).startOf('day');
-            var match = _.find(weeks, function(week) {
-                return moment(week).isSame(currentWeek, 'week');
-            });
-            if (!match) {
-                sessionsByWeek[currentWeek.startOf('week').toString()] = [];
-                weeks.push(currentWeek.startOf('week').toString());
-            }
-        }
-        _.sortBy(weeks, function(week) {
-            return moment(week).toDate().getTime();
-        }).forEach(function(week) {
-            var sessionsForWeek = sessionsByWeek[week];
-
-            for (var sessionNumber = sessionsForWeek.length; sessionNumber < numberOfSessionsToGenerate; sessionNumber++) {
-                sessionsForWeek.push({
-                    date: moment(week).toDate(),
-                    number: sessionNumber + 1,
-                    status: 'Open'
-                })
-            }
-            orderedSessions = orderedSessions.concat(sessionsForWeek);
-        });
-        return orderedSessions.map(function(session) {
-            session.date = moment(session.date).startOf('week').toDate();
-            return session;
-        });
+        return sessions;
     }
     return {
         makeSessionsByGroup: makeSessionsByGroup,

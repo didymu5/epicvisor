@@ -180,9 +180,14 @@ exports.getSessions = function(request, reply) {
   Sessions.findAll({
       where: {
         'user_id': user.id,
+        $or: [{
         'startTime': {
           $between: dates
-        },
+        }},
+        {
+          'status': 'pending'
+        }
+        ],
         'status' : {
           $ne: 'expired'
         }

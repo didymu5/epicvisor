@@ -8,7 +8,7 @@ function userService($http, $q) {
   });
   return {
     getSessionCountOptions: function() {
-      return Array.from(new Array(5), (x,i) => i+1)
+      return Array.from(new Array(7), (x,i) => i+2)
     },
     getSchoolYears: function() {
       return Array.from(new Array(2019-1940), (x,i) => 2019-i);
