@@ -138,7 +138,7 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
         },
         makeTimes: function() {
             var times = [];
-            for(var i=0; i<48; i++) {
+            for(var i=14; i<=46; i++) {
               var time = moment().startOf('day').add(i*30, 'minutes');
               times.push({time: time.toDate(), formattedTime: time.format("h:mm a")});
             }
@@ -206,48 +206,16 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
         },
         getDayOptions: function() {
             var times = this.makeTimes();
-            return [{
-              day: 'Sunday',
-              startTimes: times,
-              endTimes: times,
-              selectedStartTime: null,
-              selectedEndTime: null
-            },
-            {
-              day: 'Monday',
-              startTimes: times,
-              endTimes: times,
-              selectedStartTime: null,
-              selectedEndTime: null
-            },
-            {
-              day: 'Tuesday',
-              startTimes: times,
-              endTimes: times,
-              selectedStartTime: null,
-              selectedEndTime: null
-            },
-            {
-              day: 'Wednesday',
-              startTimes: times,
-              endTimes: times,
-              selectedStartTime: null,
-              selectedEndTime: null
-            },
-            {
-              day: 'Thursday',
-              startTimes: times,
-              endTimes: times,
-              selectedStartTime: null,
-              selectedEndTime: null
-            },
-            {
-              day: 'Friday',
-              startTimes: times,
-              endTimes: times,
-              selectedStartTime: null,
-              selectedEndTime: null
-            }]
+            return ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'].map(function(day) {
+                return {
+                    day: day,
+                      startTimes: times,
+                      endTimes: times,
+                      selectedStartTime: null,
+                      selectedEndTime: null 
+                }
+            });
+          
         }
     };
 }
