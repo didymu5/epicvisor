@@ -1,6 +1,6 @@
 function startFrequencyController($scope, $location, user, userSessionSettings, userService) {
 	$scope.sessionCounts = userService.getSessionCountOptions();
-	$scope.selectedSessionCount = userSessionSettings.sessionCount || $scope.sessionCounts[0];
+	$scope.selectedSessionCount = parseInt(userSessionSettings.sessionCount) || $scope.sessionCounts[0];
 	$scope.saveProfile = function() {
 		userSessionSettings.sessionCount = $scope.selectedSessionCount;
 		userService.setSessionSettings(userSessionSettings).then(function() {
