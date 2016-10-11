@@ -4,6 +4,20 @@ import _ from 'underscore';
 function sessionsService($http, userService, mentorService, $q, studentService) {
     var sessionState = {};
 
+    function makeSessionsByGroup(sessions, sessionState) {
+        sessions = sessions.filter(function(session) {
+            return session.status !== 'pending' || session.status !== 'expired' || moment(session.createdAt).isAfter(twoDaysAgo);
+        });
+        var sessionsByMonth = _.groupBy(sessions, function(session) {
+            return moment(session.startTime).startOf('month').format('MMMM YYYY');
+        });
+        var orderedSessions = [];
+        return {
+            sessionsByMonth: sessionsByMonth,
+            sessionCount: sessionState.sessionCount
+        }
+    }
+
     function makeSessions(sessions, sessionState) {
         var numberOfSessionsToGenerate = sessionState.sessionCount;
         var sessionCountType = sessionState.sessionCountType;
@@ -50,6 +64,7 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
         });
     }
     return {
+        makeSessionsByGroup: makeSessionsByGroup,
         makeSessions: makeSessions,
         getSessions: function() {
             var self = this;
@@ -167,6 +182,15 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
             }
             return times;
           },
+        getMentorSessionsByMonth: function(mentorId) {
+            var self = this;
+            return $http.get('/mentor/' + mentorId + '/sessions').then(function(res) {
+                var sessions = res.data;
+                return mentorService.getMentorSettings(mentorId).then(function(sessionState) {
+                    return makeSessionsByGroup(sessions, sessionState);
+                })
+            });
+        },
         getMentorSessions: function(mentorId) {
             var self = this;
             return $http.get('/mentor/' + mentorId + '/sessions').then(function(res) {

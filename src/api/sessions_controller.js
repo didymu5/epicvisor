@@ -176,11 +176,11 @@ exports.checkStudentSignature = function(request, reply) {
 }
 exports.getSessions = function(request, reply) {
   var user = request.yar.get('user')
-  var dates = [moment().startOf('day').startOf('week').toDate(), moment().startOf('day').endOf('week').add('4', 'weeks').toDate()];
+  var dates = [moment().startOf('day').startOf('week').toDate(), moment().startOf('day').endOf('week').add('8', 'weeks').toDate()];
   Sessions.findAll({
       where: {
         'user_id': user.id,
-        'date': {
+        'startTime': {
           $between: dates
         },
         'status' : {
@@ -212,7 +212,7 @@ exports.getMentorSessions = function(request, reply) {
   Sessions.findAll({
       where: {
         'user_id': request.params.id,
-        'date': {
+        'startTime': {
           $between: dates
         }
       }

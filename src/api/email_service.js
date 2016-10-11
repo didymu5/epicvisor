@@ -215,4 +215,5 @@ module.exports = {
   bookAndSendEmail: bookAndSendEmail,
   extractEmail: extractEmail,
   sendCancellationEmail: sendCancellationEmail,
+  sendConfirmationEmail: sendConfirmationEmail
 };

@@ -3,13 +3,13 @@
   <p>Only the following 4 weeks of sessions are available to book. Check back next week for more.</p>
   <div class="scheduler__month-card blue">
     <h4 class="scheduler__h4">{{ month1 }}</h4>
-    <p><b>4</b> EpicSessions Available</p>
+    <p><b> {{getSessionsCount(month1)}}</b> EpicSessions Available</p>
     <button ng-click="bookSession(session, mentor)">Book</button>
   </div>
 
   <div class="scheduler__month-card" ng-if="month2 !== month1">
     <h4 class="scheduler__h4">{{ month2 }}</h4>
-    <p><b>4</b> EpicSessions Available</p>
+    <p><b> {{getSessionsCount(month2)}}</b> EpicSessions Available</p>
     <button ng-click="bookSession(session, mentor)">Book</button>
   </div>
 </div>
