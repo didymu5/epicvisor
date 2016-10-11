@@ -12,7 +12,7 @@
     "migrate": "node_modules/.bin/sequelize",
     "webpack-watch": "node_modules/.bin/webpack --watch",
     "serve-dev": "node_modules/.bin/webpack --watch & gulp serve",
-    "serve-prod": "node node_modules/gulp/bin/gulp sass && node_modules/.bin/webpack && node node_modules/gulp/bin/gulp serve",
+    "serve-prod": "node node_modules/gulp/bin/gulp sass && node node_modules/gulp/bin/gulp css:vendor &&  node_modules/.bin/webpack && node node_modules/gulp/bin/gulp serve",
     "expire-sessions": "node bin/expire_notifications.js"
   },
   "keywords": [
@@ -21,7 +21,7 @@
     "api",
     "server"
   ],
-  "author": "Ian and Tommy",
+  "author": "Ian and Tommy and Brandon",
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0",
