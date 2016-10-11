@@ -161,7 +161,7 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 			 * @param {object} timeObject the time object within the array
 			 */
 			function addLabelForTime(timeObject) {
-				timeObject.label = timeObject.time.format('LT');
+				timeObject.label = timeObject.time.format('LT (PT)');
 				return timeObject;
 			}
 		});
