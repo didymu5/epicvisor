@@ -139,6 +139,10 @@
 
     .field {
         display: inline-block;
+
+        select {
+            min-width: 100%;
+        }
     }
 }
 
