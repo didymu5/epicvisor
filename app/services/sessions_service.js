@@ -1,5 +1,12 @@
 import moment from 'moment';
+import momentTimezone from 'moment-timezone';
+// import momentRange from 'moment-range';
 import _ from 'underscore';
+
+var localTimezone = 'America/Los_Angeles'; // TODO: implement timezones without crying
+// if (/MSIE (\d+\.\d+);/.test(navigator.userAgent) || navigator.userAgent.indexOf("Trident/")){ //test for MSIE x.x;
+//     localTimezone =  Intl.DateTimeFormat().resolvedOptions().timeZone;
+// }
 
 function sessionsService($http, userService, mentorService, $q, studentService) {
     var sessionState = {};
@@ -52,7 +59,7 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
                         session.SessionTimeOption = session.SessionTimeOption.map(function(time) {
                             if(time)
                             {
-                                return moment(time);
+                                return moment(time).tz(localTimezone);
                             }
                         });
                         return session;
@@ -140,7 +147,7 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
             var times = [];
             for(var i=14; i<=46; i++) {
               var time = moment().startOf('day').add(i*30, 'minutes');
-              times.push({time: time.toDate(), formattedTime: time.format("h:mm a")});
+              times.push({time: time.toDate(), formattedTime: time.tz(localTimezone).format("h:mm a z")});
             }
             return times;
           },
@@ -176,12 +183,14 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
             var matchingDay = _.find(days, function(setTimeframe) {
                 return setTimeframe.day == timeframe.day;
             });
+            var timeOfConcernStart = moment(timeframe.selectedStartTime.time);
+            var timeOfConcernEnd = moment(timeframe.selectedEndTime.time);
             if(matchingDay) {
             var matchingStartTime = _.find(matchingDay.startTimes, function(time) {
-                return time.formattedTime === timeframe.selectedStartTime.formattedTime;
+                return moment(time.time).format('h mm') === timeOfConcernStart.format('h mm');
             });
             var matchingEndTime = _.find(matchingDay.endTimes, function(time) {
-                return time.formattedTime === timeframe.selectedEndTime.formattedTime;
+                return moment(time.time).format('h mm') === timeOfConcernEnd.format('h mm');
             });
             matchingDay.selectedStartTime = matchingStartTime;
             matchingDay.selectedEndTime = matchingEndTime;
@@ -189,12 +198,8 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
         });
         if(!userSessionSettings.preferredTimeFrame || userSessionSettings.preferredTimeFrame.length === 0) {
           days.forEach(function(day){
-            var matchingStartTime = _.find(day.startTimes, function(time) {
-              return time.formattedTime ===  "8:00 am";
-            });
-            var matchingEndTime = _.find(day.endTimes, function(time) {
-              return time.formattedTime ===  "5:00 pm";
-            });
+            var matchingStartTime = day.startTimes[2]; // 8 am
+            var matchingEndTime = day.endTimes[20]; // 5pm
             day.selectedStartTime = matchingStartTime;
             day.selectedEndTime = matchingEndTime;
           })

@@ -13,7 +13,7 @@ function sessionDetailsController($scope, session, sessionsService, $location, m
 	$scope.timesToPickFrom = session.SessionTimeOption.map(function(time) {
 		return {
 			time: time,
-			formattedTime: time.format("MMMM Do, h:mm a")
+			formattedTime: time.format("MMMM Do, h:mm a z")
 		}
 	});
 
@@ -36,7 +36,7 @@ function sessionDetailsController($scope, session, sessionsService, $location, m
 			var time = moment().startOf('day').add(i * 30, 'minutes');
 			times.push({
 				time: time.toDate(),
-				formattedTime: time.format("h:mm a")
+				formattedTime: time.format("h:mm a z")
 			});
 		}
 		return times;

@@ -12,7 +12,7 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 
 	$scope.allAvailableTimes = sessionsService.deduceTimeframes(mentor).map(function(time) {
 		return {
-			formattedTime: time.format("MMMM Do, h:mm a"),
+			formattedTime: time.format("MMMM Do, h:mm a z"),
 			time: time
 		}
 	});

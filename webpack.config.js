@@ -4,7 +4,9 @@ module.exports = {
     filename: "public/assets/js/bundle.js"
   },
   module: {
-    loaders: [{
+    loaders: [
+  {include: /\.json$/, loaders: ["json-loader"]},
+    {
       test: [/\.es6$/, /\.js$/],
       exclude: ['/node_modules/', '/src/'],
       loader: 'babel-loader',
