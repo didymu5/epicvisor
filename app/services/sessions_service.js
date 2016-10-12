@@ -146,7 +146,7 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
         makeTimes: function() {
             var times = [];
             for(var i=14; i<=46; i++) {
-              var time = moment().startOf('day').add(i*30, 'minutes');
+              var time = moment().startOf('day').tz(localTimezone).add(i*30, 'minutes');
               times.push({time: time.toDate(), formattedTime: time.tz(localTimezone).format("h:mm a z")});
             }
             return times;
