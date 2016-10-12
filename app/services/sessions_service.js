@@ -187,10 +187,10 @@ function sessionsService($http, userService, mentorService, $q, studentService) 
             var timeOfConcernEnd = moment(timeframe.selectedEndTime.time);
             if(matchingDay) {
             var matchingStartTime = _.find(matchingDay.startTimes, function(time) {
-                return moment(time.time).format('h mm') === timeOfConcernStart.format('h mm');
+                return moment(time.time).format('H mm') === timeOfConcernStart.format('H mm');
             });
             var matchingEndTime = _.find(matchingDay.endTimes, function(time) {
-                return moment(time.time).format('h mm') === timeOfConcernEnd.format('h mm');
+                return moment(time.time).format('H mm') === timeOfConcernEnd.format('H mm');
             });
             matchingDay.selectedStartTime = matchingStartTime;
             matchingDay.selectedEndTime = matchingEndTime;
