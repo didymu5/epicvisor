@@ -29,5 +29,14 @@
 
   .topic-listing {
     margin-bottom: rem(10px);
+    float:left;
+  }
+}
+
+.card-plain {
+  .topic-listing {
+    text-align: left;
+    width: 39%;
+    margin: 0 auto;
   }
 }
