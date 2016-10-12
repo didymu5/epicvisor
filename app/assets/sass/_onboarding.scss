@@ -74,6 +74,13 @@
         left: 52%;
         animation-delay: .4s;
     }
+
+    fieldset {
+        .field {
+            display: inline-block;
+
+        }
+    }
 }
 
 .onboarding-3 {
@@ -109,6 +116,29 @@
             margin: 0 8px;
             display: inline-block;
         }
+    }
+
+    .topic-listing {
+        text-align: left;
+        width: 40%;
+        margin: 0 auto;
+    }
+
+    .additional-topic-group {
+        margin-bottom: 10px;
+    }
+}
+
+.onboarding-7 {
+    .btn-cancel {
+        color: white;
+        border: white;
+        padding: 9px 19px;
+        margin-top: 10px;
+    }
+
+    .field {
+        display: inline-block;
     }
 }
 
