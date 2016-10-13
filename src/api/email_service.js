@@ -171,7 +171,7 @@ var bookAndSendEmail = function(request, reply, student, mentor, userProfileSett
   bookingDetails.encoded_url = shortid.generate();
 
   var timeOptions = bookingDetails.SessionTimeOption.map(function(time) {
-    return moment(time).tz('America/Los_Angeles').format("ddd h:mm a z");
+    return moment(time).tz('America/Los_Angeles').format("ddd, MMM @ h:mm a z");
   });
 
   Sessions.create(bookingDetails).then(function(created) {
