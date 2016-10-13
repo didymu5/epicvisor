@@ -63,7 +63,7 @@
 		                                                        </ul>
 		                                                {{else}}
 		                                                	<!-- add period and space, end of convo -->
-		                                                	 . And suggest the following times to connect (click on the best time to confirm your session):</span></span>
+									. And suggest the following times to connect (click on the best time to confirm your session):</span></span>
 		                                               	{{/if}}
     
                                                     </td>
@@ -92,8 +92,8 @@
 							                <table class="mcnButtonContentContainer" style="border-collapse: separate ! important;border-radius: 3px;background-color: #000080;" border="0" cellpadding="0" cellspacing="0">
 							                    <tbody>
 							                        <tr>
-							                            <td style="font-family: Arial; font-size: 14px; padding: 15px;" class="mcnButtonContent" align="center" valign="middle">
-							                                <a class="mcnButton " title="Mon, July 11 @ 3:00 PM " href="{{../url}}#/sessions/{{../session.encoded_url}}?selectedTime={{this}}" target="_blank" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">
+							                            <td style="font-family: Arial; font-size: 14px; padding: 0;" class="mcnButtonContent" align="center" valign="middle">
+							                                <a class="mcnButton" title="Mon, July 11 @ 3:00 PM " href="{{../url}}#/sessions/{{../session.encoded_url}}?selectedTime={{this}}" target="_blank" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF; padding: 15px;">
 							                                	{{this}} PT
 							                                </a>
 							                            </td>
@@ -108,6 +108,16 @@
 
 							<!-- end of session loop -->
 							<![endif]-->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>SESSION TIMES ARE GOOD</strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Please click on the best time to confirm
                                     </td>
                                 </tr>
                             </tbody>
@@ -151,10 +161,12 @@
 
                                                     <td class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;" valign="top">
 
-                                                        <div style="text-align: center;"><span style="color:#2baadf"><span style="font-size:14px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif"><strong>Do these times not work with you?</strong></span></span>
+                                                        <div style="text-align: center;"><span style="color:#2baadf"><span style="font-size:14px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif"><strong>SUGGEST OTHER TIMES</strong></span></span>
                                                             </span>
                                                         </div>
-                                                        <div style="text-align: center;"><span style="font-size:14px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif">Send an email to <a href="mailto:{{student.email}}" target="_blank">{{student.name}}</a> to reach out and suggest alternative times and confirm it with our scheduler.<br><br></span></span>
+                                                        <div style="text-align: center;"><span style="font-size:14px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif">REPLY ALL to <a href="mailto:{{student.email}}" target="_blank">{{student.name}}</a> and suggest times.<br>
+                                                            Confirm the best session time in the scheduler.
+                                                            <br></span></span>
                                                         </div>
                                                     </td>
                                                 </tr>
