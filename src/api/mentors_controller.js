@@ -4,7 +4,9 @@ var UserProfileSessionSetting = require('../../models/user_profile_session_setti
 exports.getMentors = function (request, reply){
   sequelize.query(`SELECT users.id AS uid,* FROM users
     LEFT JOIN user_profiles ON users.id = user_profiles.user_id 
-    LEFT JOIN user_profile_session_settings ON users.id = user_profile_session_settings.user_id`, { type: sequelize.QueryTypes.SELECT})
+    LEFT JOIN user_profile_session_settings ON users.id = user_profile_session_settings.user_id
+    WHERE users.inactive IS NOT true
+    `, { type: sequelize.QueryTypes.SELECT})
   .then(function(users) {
     reply(users);
   });
