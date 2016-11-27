@@ -157,7 +157,20 @@ exports.checkStudentSignature = function(request, reply) {
     if (student) {
       reply(student);
     } else {
-      reply(undefined).code(204);
+      if(studentDetails.email && studentDetails.email.match(/anderson.ucla.edu$/)) {
+        Student.findOrCreate({
+        where: {
+          email: studentDetails.email
+        },
+        defaults: studentDetails
+      }).spread(function(userData, created) {
+        reply(userData);
+        return userData;
+      });    
+      }
+      else {
+        reply(undefined).code(204);  
+      }
     }
   })
 }

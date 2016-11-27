@@ -1,13 +1,13 @@
 {
   "development": {
-    "username": "ian",
+    "username": "ian.norris",
     "password": null,
     "database": "epicvisor_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "username": "ian",
+    "username": "ian.norris",
     "password": null,
     "database": "epicvisor_test",
     "host": "127.0.0.1",

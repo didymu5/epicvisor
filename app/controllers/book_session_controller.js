@@ -42,11 +42,11 @@ function book_session_controller($scope, session, mentor, $location, sessionsSer
 				email: email
 			}).then(function(confirmation) {
 				if(confirmation){
-					myModal.activate({message: "An introduction has been made to this EpicVisor. Please check your email for more details.", closeBtnTxt:'Ok'});
+					myModal.activate({message: "An introduction has been made to this EpicVisor. Please check your anderson email for more details.", closeBtnTxt:'Ok'});
 					$location.path('/mentors/' + mentor.user_id);
 				}
 				else {
-					myModal.activate({message: "Sorry only emails that have been invited to the UCLA Anderson / EpicVisor platform can request time with EpicVisors.", closeBtnTxt:'Ok'})
+					myModal.activate({message: "During this beta, only UCLA Anderson emails can book sessions.", closeBtnTxt:'Ok'});
 				}
 				return undefined;
 		});
