@@ -127,6 +127,7 @@ exports.bookAndSendEmail = function(request, reply, student, mentor, userProfile
         console.log(err);
         reply('email not sent');
       } else {
+        console.log('email sent yo');
         reply('email sent');
       }
       return created;
