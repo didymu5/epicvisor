@@ -7,7 +7,7 @@ function mentorProfileSessionsController($scope, userService, userSessionSetting
     "Corporate Development",
     "Strategic Planning",
     "Investment Banking",
-    "General Manag  ent",
+    "General Management",
     "Management Consulting",
     "Marketing",
     "Product Marketing",
