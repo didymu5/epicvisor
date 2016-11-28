@@ -9,11 +9,8 @@
     <div class="booker__sesssion__group">
       <input type="text" name="name" placeholder="Your name" ng-model="name">
       <input type="text" name="inviteEmail" placeholder="Your Anderson email" ng-model="email">
-      <p><small>Only emails invited to EpicVisor can book sessions.</small></p>
-      <div class="time-suggestion-container">
-        <p><strong>Please recommend 3 session time options to {{mentorName}}</strong></p>
-
-      </div>
+      <p><small> During this beta, only UCLA Anderson emails may request sessions. </small></p>
+    
       <div class="text-select-classyear">
         <label for="classofselect">Class of</label>
         <select id="classofselect" ng-options="year as year for year in years track by year" ng-model="selectedYear">
