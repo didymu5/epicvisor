@@ -124,8 +124,6 @@ config(function ($routeProvider, $locationProvider) {
       topicToSelect: '='
     },
     templateUrl: 'templates/directives/topic.html'
-
-   
   }
 })
 
