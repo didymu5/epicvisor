@@ -110,6 +110,10 @@ config(function ($routeProvider, $locationProvider) {
   return {
     templateUrl: 'templates/directives/header_nav.html'
   }
+}).directive('evFooter', function() {
+  return {
+    templateUrl: 'templates/directives/ev-footer.html'
+  }
 }).directive('topic', function() {
   return {
     link: function(scope, element, attrs) {
